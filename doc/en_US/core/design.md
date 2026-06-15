@@ -1,6 +1,7 @@
 # Design Notes
 
-Luna Autodiff v0.1 is deliberately small. It provides forward-mode automatic
+autodiff v0.2 keeps the core deliberately small while adding ecosystem
+integration packages. The core still provides forward-mode automatic
 differentiation with dual numbers and avoids symbolic algebra, reverse mode, and
 optimizer APIs.
 
@@ -9,6 +10,10 @@ optimizer APIs.
 `Dual[T]` is owned by the `dual` package so MoonBit methods and trait
 implementations can live with the type. The `core`, `checked`, `elementary`,
 `forward`, and root packages are lightweight facades over that implementation.
+
+The `linalg` and `poly` packages are integration layers. They depend on the
+external Luna Flow libraries they bridge to, but lower-level autodiff packages
+do not depend on them.
 
 ## Algebraic Constraints
 
@@ -32,11 +37,10 @@ This keeps error handling compatible with the wider Luna Flow ecosystem.
 
 ## Out Of Scope
 
-The following are future work, not v0.1 features:
+The following remain future work, not v0.2 integration features:
 
-- vector-valued forward mode
-- gradients and Jacobians over linear algebra types
+- vector-valued tangent storage for `Forward[T]`
 - higher-order `Jet[T]` derivatives
-- polynomial integration
 - validated automatic differentiation over interval or ball scalars
 - reverse-mode automatic differentiation
+- symbolic differentiation through a CAS layer

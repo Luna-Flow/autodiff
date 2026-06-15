@@ -1,10 +1,10 @@
-# Luna Autodiff Documentation
+# autodiff Documentation
 
-English documentation for `Luna-Flow/autodiff` `0.1.0`.
+English documentation for `Luna-Flow/autodiff` `0.2.0`.
 
 ## Overview
 
-Luna Autodiff provides forward-mode automatic differentiation over Luna Flow
+autodiff provides forward-mode automatic differentiation over Luna Flow
 algebraic and arithmetic structures.
 
 The current release introduces dual numbers:
@@ -25,12 +25,19 @@ evaluated together with their first derivative.
 - Checked division and checked square root through `Luna-Flow/arithmetic`.
 - Elementary lifts for `sqrt`, `exp`, `ln`, `sin`, `cos`, and `tan`.
 - Forward helpers: `diff` and `value_and_diff`.
+- Linear algebra helpers: `gradient`, `jacobian`, `value_and_gradient`, and
+  `value_and_jacobian` in `autodiff/linalg`.
+- Polynomial helpers: dual-number evaluation and derivative-at-a-point helpers
+  in `autodiff/poly`.
 
 ## Documents
 
 - Core API: [core/api.md](core/api.md)
 - Tutorial: [core/tutorial.md](core/tutorial.md)
 - Design notes: [core/design.md](core/design.md)
+- Ecosystem integration API: [integration/api.md](integration/api.md)
+- Ecosystem integration tutorial: [integration/tutorial.md](integration/tutorial.md)
+- Ecosystem integration design: [integration/design.md](integration/design.md)
 - Documentation standard: [doc_standard.md](doc_standard.md)
 
 ## Validation

@@ -1,6 +1,8 @@
 # Core API
 
-この文書は v0.1 の双対数ベース前進モード自動微分 API を説明します。
+この文書は core の双対数ベース前進モード自動微分 API を説明します。
+エコシステム連携 API は [`../integration/api.md`](../integration/api.md)
+を参照してください。
 
 ## 双対数
 
@@ -58,3 +60,10 @@ checked trait を使わない場合、定義域と分岐の挙動は基底スカ
 
 - `value_and_diff(f, x)` は `(value, derivative)` を返します。
 - `diff(f, x)` は導関数値のみを返します。
+
+## パッケージ境界
+
+core の双対数パッケージは軽量に保たれています。`Luna-Flow/luna-generic`
+に依存し、checked 操作や初等関数では `Luna-Flow/arithmetic` に依存します。
+core 層は `linear-algebra`、`luna-poly`、`floating`、`type_theory` を
+import しません。

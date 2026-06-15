@@ -1,0 +1,10 @@
+import {
+  "Luna-Flow/autodiff/dual",
+  "Luna-Flow/luna-generic" @lg,
+  "Luna-Flow/luna-poly/immut/dense",
+  "Luna-Flow/luna-poly/immut/sparse",
+}
+
+import {
+  "moonbitlang/core/test",
+} for "test"

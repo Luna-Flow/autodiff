@@ -1,6 +1,7 @@
 # 核心 API
 
-本文档描述 v0.1 的对偶数前向模式自动微分 API。
+本文档描述核心对偶数前向模式自动微分 API。生态集成桥接 API 见
+[`../integration/api.md`](../integration/api.md)。
 
 ## 对偶数
 
@@ -58,3 +59,9 @@ checked square root 使用 `SqrtChecked` 和 `DivChecked`。
 
 - `value_and_diff(f, x)` 返回 `(value, derivative)`。
 - `diff(f, x)` 只返回导数。
+
+## 包边界
+
+核心对偶数包保持轻量。它们依赖 `Luna-Flow/luna-generic`，并在 checked
+或初等函数操作中依赖 `Luna-Flow/arithmetic`。核心层不导入
+`linear-algebra`、`luna-poly`、`floating` 或 `type_theory`。

@@ -1,7 +1,8 @@
 # Core API
 
-This document describes the v0.1 public API for dual-number forward-mode
-automatic differentiation.
+This document describes the core public API for dual-number forward-mode
+automatic differentiation. Ecosystem bridge APIs are documented in
+[`../integration/api.md`](../integration/api.md).
 
 ## Dual Numbers
 
@@ -75,3 +76,10 @@ checked trait is used.
 - `value_and_diff(f, x)` evaluates `f(Dual::variable(x))` and returns
   `(value, derivative)`.
 - `diff(f, x)` returns only the derivative.
+
+## Package Boundaries
+
+The core dual-number packages stay lightweight. They depend on
+`Luna-Flow/luna-generic` and, for checked or elementary operations,
+`Luna-Flow/arithmetic`. They do not import `linear-algebra`, `luna-poly`,
+`floating`, or `type_theory`.

@@ -1,0 +1,31 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "Luna-Flow/autodiff/linalg"
+
+import {
+  "Luna-Flow/autodiff/dual",
+  "Luna-Flow/linear-algebra/immut",
+  "Luna-Flow/luna-generic",
+}
+
+// Values
+pub fn[T : @luna-generic.One + @luna-generic.Zero] gradient((@immut.Vector[@dual.Dual[T]]) -> @dual.Dual[T], @immut.Vector[T]) -> @immut.Vector[T]
+
+pub fn[T : @luna-generic.One + @luna-generic.Zero] jacobian((@immut.Vector[@dual.Dual[T]]) -> @immut.Vector[@dual.Dual[T]], @immut.Vector[T]) -> @immut.Matrix[T]
+
+pub fn[T : @luna-generic.One + @luna-generic.Zero] value_and_gradient((@immut.Vector[@dual.Dual[T]]) -> @dual.Dual[T], @immut.Vector[T]) -> (T, @immut.Vector[T])
+
+pub fn[T : @luna-generic.One + @luna-generic.Zero] value_and_jacobian((@immut.Vector[@dual.Dual[T]]) -> @immut.Vector[@dual.Dual[T]], @immut.Vector[T]) -> (@immut.Vector[T], @immut.Matrix[T])
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+pub using @dual {type Dual}
+
+pub using @immut {type Matrix}
+
+pub using @immut {type Vector}
+
+// Traits
+

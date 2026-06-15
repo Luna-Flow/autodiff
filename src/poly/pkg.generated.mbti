@@ -1,0 +1,36 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "Luna-Flow/autodiff/poly"
+
+import {
+  "Luna-Flow/autodiff/dual",
+  "Luna-Flow/luna-generic",
+  "Luna-Flow/luna-poly/immut/dense",
+  "Luna-Flow/luna-poly/immut/sparse",
+}
+
+// Values
+pub fn[T : Eq + @luna-generic.Semiring] derivative_at(@dense.DensePolynomial[T], T) -> T
+
+pub fn[T : Eq + @luna-generic.Semiring] eval_dual(@dense.DensePolynomial[T], @dual.Dual[T]) -> @dual.Dual[T]
+
+pub fn[T : Eq + @luna-generic.Semiring] eval_sparse_dual(@sparse.SparsePolynomial[T], @dual.Dual[T]) -> @dual.Dual[T]
+
+pub fn[T : Eq + @luna-generic.Semiring] sparse_derivative_at(@sparse.SparsePolynomial[T], T) -> T
+
+pub fn[T : Eq + @luna-generic.Semiring] sparse_value_and_derivative_at(@sparse.SparsePolynomial[T], T) -> (T, T)
+
+pub fn[T : Eq + @luna-generic.Semiring] value_and_derivative_at(@dense.DensePolynomial[T], T) -> (T, T)
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+pub using @dense {type DensePolynomial}
+
+pub using @dual {type Dual}
+
+pub using @sparse {type SparsePolynomial}
+
+// Traits
+

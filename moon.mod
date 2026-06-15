@@ -1,10 +1,12 @@
 name = "Luna-Flow/autodiff"
 
-version = "0.1.0"
+version = "0.2.0"
 
 import {
   "Luna-Flow/luna-generic@0.3.3",
   "Luna-Flow/arithmetic@0.2.1",
+  "Luna-Flow/linear-algebra@0.3.0",
+  "Luna-Flow/luna-poly@0.2.0",
 }
 
 readme = "README.md"

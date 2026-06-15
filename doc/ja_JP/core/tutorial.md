@@ -41,3 +41,9 @@ let d = @autodiff.diff(fn(x) { x.sin() }, 0.5)
 ```
 
 導関数値は `cos(0.5)` です。
+
+## 次のステップ
+
+gradient、Jacobian、多項式の一点での導関数については連携チュートリアルを参照してください。
+
+- [../integration/tutorial.md](../integration/tutorial.md)

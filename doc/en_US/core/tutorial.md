@@ -50,3 +50,10 @@ The derivative is `cos(0.5)`.
 Use `DivChecked::div_checked` when division failure must be returned as data.
 The operation reuses `ArithmeticError` and `ArithmeticContext` from
 `Luna-Flow/arithmetic`.
+
+## Next Steps
+
+Use the integration tutorial for gradients, Jacobians, and polynomial
+derivative-at-a-point helpers:
+
+- [../integration/tutorial.md](../integration/tutorial.md)

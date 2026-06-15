@@ -41,3 +41,9 @@ let d = @autodiff.diff(fn(x) { x.sin() }, 0.5)
 ```
 
 导数是 `cos(0.5)`。
+
+## 后续阅读
+
+gradient、Jacobian 和多项式定点导数示例见生态集成教程：
+
+- [../integration/tutorial.md](../integration/tutorial.md)

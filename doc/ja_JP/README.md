@@ -1,10 +1,10 @@
-# Luna Autodiff ドキュメント
+# autodiff ドキュメント
 
-これは `Luna-Flow/autodiff` `0.1.0` の日本語ドキュメントです。
+これは `Luna-Flow/autodiff` `0.2.0` の日本語ドキュメントです。
 
 ## 概要
 
-Luna Autodiff は Luna Flow の代数・算術構造の上で前進モード自動微分を提供します。
+autodiff は Luna Flow の代数・算術構造の上で前進モード自動微分を提供します。
 
 現在のバージョンは双対数を導入します。
 
@@ -23,12 +23,18 @@ Dual[T] = value + tangent ε, ε² = 0
 - `Luna-Flow/arithmetic` による checked division と checked sqrt。
 - `sqrt`、`exp`、`ln`、`sin`、`cos`、`tan` のリフト。
 - 前進モードヘルパー: `diff` と `value_and_diff`。
+- 線形代数ヘルパー: `autodiff/linalg` の `gradient`、`jacobian`、
+  `value_and_gradient`、`value_and_jacobian`。
+- 多項式ヘルパー: `autodiff/poly` の双対数評価と一点での導関数。
 
 ## ドキュメント
 
 - Core API: [core/api.md](core/api.md)
 - Tutorial: [core/tutorial.md](core/tutorial.md)
 - Design notes: [core/design.md](core/design.md)
+- Ecosystem integration API: [integration/api.md](integration/api.md)
+- Ecosystem integration tutorial: [integration/tutorial.md](integration/tutorial.md)
+- Ecosystem integration design: [integration/design.md](integration/design.md)
 - Documentation standard: [doc_standard.md](doc_standard.md)
 
 ## 検証

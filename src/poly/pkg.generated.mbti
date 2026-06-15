@@ -9,6 +9,10 @@ import {
 }
 
 // Values
+pub fn[T : Eq + @luna-generic.Semiring] dense_derivative_at(@dense.DensePolynomial[T], T) -> T
+
+pub fn[T : Eq + @luna-generic.Semiring] dense_value_and_derivative_at(@dense.DensePolynomial[T], T) -> (T, T)
+
 pub fn[T : Eq + @luna-generic.Semiring] derivative_at(@dense.DensePolynomial[T], T) -> T
 
 pub fn[T : Eq + @luna-generic.Semiring] eval_dual(@dense.DensePolynomial[T], @dual.Dual[T]) -> @dual.Dual[T]
@@ -16,6 +20,12 @@ pub fn[T : Eq + @luna-generic.Semiring] eval_dual(@dense.DensePolynomial[T], @du
 pub fn[T : Eq + @luna-generic.Semiring] eval_sparse_dual(@sparse.SparsePolynomial[T], @dual.Dual[T]) -> @dual.Dual[T]
 
 pub fn[T : Eq + @luna-generic.Semiring] sparse_derivative_at(@sparse.SparsePolynomial[T], T) -> T
+
+pub fn[T : Eq + @luna-generic.Semiring] sparse_univariate_derivative_at(@sparse.SparsePolynomial[T], T) -> T
+
+pub fn[T : Eq + @luna-generic.Semiring] sparse_univariate_eval_dual(@sparse.SparsePolynomial[T], @dual.Dual[T]) -> @dual.Dual[T]
+
+pub fn[T : Eq + @luna-generic.Semiring] sparse_univariate_value_and_derivative_at(@sparse.SparsePolynomial[T], T) -> (T, T)
 
 pub fn[T : Eq + @luna-generic.Semiring] sparse_value_and_derivative_at(@sparse.SparsePolynomial[T], T) -> (T, T)
 

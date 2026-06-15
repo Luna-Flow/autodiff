@@ -6,11 +6,15 @@ import {
 }
 
 // Values
+pub fn basic_diff_example() -> Double
+
 pub fn gradient_example() -> @immut.Vector[Double]
 
 pub fn jacobian_example() -> @immut.Matrix[Double]
 
 pub fn polynomial_derivative_example() -> Double
+
+pub fn square_diff_example() -> Double
 
 // Errors
 

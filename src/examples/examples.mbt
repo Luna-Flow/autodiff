@@ -1,4 +1,17 @@
 ///|
+pub fn basic_diff_example() -> Double {
+  let x = @dual.Dual::variable(2.0)
+  let y = x * x + x
+  y.tangent()
+}
+
+///|
+pub fn square_diff_example() -> Double {
+  let x = @dual.Dual::variable(2.0)
+  (x * x).tangent()
+}
+
+///|
 pub fn gradient_example() -> @la.Vector[Double] {
   let x = @la.Vector::from_array([2.0, 3.0])
   @linalg.gradient(

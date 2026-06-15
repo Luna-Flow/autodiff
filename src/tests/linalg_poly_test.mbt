@@ -39,6 +39,18 @@ fn dot_dual(
 }
 
 ///|
+test "linalg value_and_gradient handles simple scalar function" {
+  let x = @la.Vector::from_array([2.0, 3.0])
+  let (value, gradient) = @linalg.value_and_gradient(
+    fn(v : @la.Vector[@autodiff.Dual[Double]]) { v[0] * v[0] + v[0] * v[1] },
+    x,
+  )
+  let expected_gradient = @la.Vector::from_array([7.0, 2.0])
+  assert_eq(approx_eq(value, 10.0), true)
+  assert_eq(approx_vec_eq(gradient, expected_gradient), true)
+}
+
+///|
 test "linalg gradient handles dot product" {
   let a = @la.Vector::from_array([2.0, -3.0, 5.0])
   let x = @la.Vector::from_array([7.0, 11.0, 13.0])
@@ -80,6 +92,25 @@ test "linalg jacobian uses output by input orientation" {
 }
 
 ///|
+test "linalg value_and_jacobian returns primal output and output by input jacobian" {
+  let x = @la.Vector::from_array([2.0, 3.0])
+  let (value, jacobian) = @linalg.value_and_jacobian(
+    fn(v : @la.Vector[@autodiff.Dual[Double]]) {
+      @la.Vector::from_array([v[0] + v[1], v[0] * v[1], v[0] * v[0]])
+    },
+    x,
+  )
+  let expected_value = @la.Vector::from_array([5.0, 6.0, 4.0])
+  let expected_jacobian = @la.Matrix::from_2d_array([
+    [1.0, 1.0],
+    [3.0, 2.0],
+    [4.0, 0.0],
+  ])
+  assert_eq(approx_vec_eq(value, expected_value), true)
+  assert_eq(approx_matrix_eq(jacobian, expected_jacobian), true)
+}
+
+///|
 test "linear algebra consumes dual values as ring scalars" {
   let left = @la.Matrix::from_2d_array([
     [@autodiff.Dual::new(1.0, 1.0), @autodiff.Dual::constant(2.0)],
@@ -113,18 +144,22 @@ test "poly dense cubic derivative through dual evaluation" {
 
 ///|
 test "poly dense constant derivative is zero" {
-  let polynomial = @dense.DensePolynomial::from_coefficients([42.0])
-  assert_eq(approx_eq(@poly.derivative_at(polynomial, 3.0), 0.0), true)
+  let polynomial = @dense.DensePolynomial::from_coefficients([5.0])
+  let (value, derivative) = @poly.dense_value_and_derivative_at(polynomial, 3.0)
+  assert_eq(approx_eq(value, 5.0), true)
+  assert_eq(approx_eq(derivative, 0.0), true)
 }
 
 ///|
 test "poly dense linear derivative is slope" {
-  let polynomial = @dense.DensePolynomial::from_coefficients([7.0, -4.0])
-  assert_eq(approx_eq(@poly.derivative_at(polynomial, 3.0), -4.0), true)
+  let polynomial = @dense.DensePolynomial::from_coefficients([-7.0, 4.0])
+  let (value, derivative) = @poly.value_and_derivative_at(polynomial, 10.0)
+  assert_eq(approx_eq(value, 33.0), true)
+  assert_eq(approx_eq(derivative, 4.0), true)
 }
 
 ///|
-test "poly sparse derivative through dual evaluation" {
+test "poly sparse univariate missing-degree derivative through dual evaluation" {
   let polynomial = @sparse.SparsePolynomial::from_array([
     ([5U], 1.0),
     ([2U], 3.0),
@@ -135,4 +170,27 @@ test "poly sparse derivative through dual evaluation" {
   )
   assert_eq(approx_eq(value, 45.0), true)
   assert_eq(approx_eq(derivative, 92.0), true)
+}
+
+///|
+test "poly sparse univariate constant derivative is zero" {
+  let polynomial = @sparse.SparsePolynomial::from_array([([0U], 9.0)])
+  let (value, derivative) = @poly.sparse_univariate_value_and_derivative_at(
+    polynomial, 5.0,
+  )
+  assert_eq(approx_eq(value, 9.0), true)
+  assert_eq(approx_eq(derivative, 0.0), true)
+}
+
+///|
+test "poly sparse univariate linear derivative is slope" {
+  let polynomial = @sparse.SparsePolynomial::from_array([
+    ([1U], -2.0),
+    ([0U], 4.0),
+  ])
+  let (value, derivative) = @poly.sparse_value_and_derivative_at(
+    polynomial, 3.0,
+  )
+  assert_eq(approx_eq(value, -2.0), true)
+  assert_eq(approx_eq(derivative, -2.0), true)
 }

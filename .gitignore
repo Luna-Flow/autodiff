@@ -1,0 +1,8 @@
+.mooncakes/
+_build/
+target/
+.DS_Store
+.codex-tmp/
+coverage/
+_coverage/
+coverage_summary.txt

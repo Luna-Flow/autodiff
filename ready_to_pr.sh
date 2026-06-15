@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+moon fmt
+moon check
+moon info
+moon clean
+moon coverage clean
+moon test --enable-coverage
+moon coverage report -f summary > coverage_summary.txt
+moon coverage report -f html

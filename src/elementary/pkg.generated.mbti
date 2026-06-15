@@ -1,0 +1,31 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "Luna-Flow/autodiff/elementary"
+
+import {
+  "Luna-Flow/arithmetic",
+  "Luna-Flow/autodiff/dual",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+pub using @dual {type Dual}
+
+pub using @arithmetic {trait Constants}
+
+pub using @arithmetic {trait Exponential}
+
+pub using @arithmetic {trait Logarithmic}
+
+pub using @arithmetic {trait Sqrt}
+
+pub using @arithmetic {trait SqrtChecked}
+
+pub using @arithmetic {trait Trigonometric}
+
+// Traits
+

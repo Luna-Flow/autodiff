@@ -1,0 +1,8 @@
+import {
+  "Luna-Flow/luna-generic" @lg,
+  "Luna-Flow/arithmetic",
+}
+
+import {
+  "moonbitlang/core/test",
+} for "test"

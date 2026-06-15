@@ -1,0 +1,61 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "Luna-Flow/autodiff"
+
+import {
+  "Luna-Flow/arithmetic",
+  "Luna-Flow/autodiff/dual",
+  "Luna-Flow/luna-generic",
+}
+
+// Values
+pub fn[T : @luna-generic.One] diff((@dual.Dual[T]) -> @dual.Dual[T], T) -> T
+
+pub fn[T : @luna-generic.One] value_and_diff((@dual.Dual[T]) -> @dual.Dual[T], T) -> (T, T)
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+pub using @arithmetic {type ArithmeticContext}
+
+pub using @arithmetic {type ArithmeticError}
+
+pub using @arithmetic {type ArithmeticErrorKind}
+
+pub using @dual {type Dual}
+
+pub using @arithmetic {type RoundingMode}
+
+pub using @luna-generic {trait AddGroup}
+
+pub using @luna-generic {trait AddMonoid}
+
+pub using @arithmetic {trait Constants}
+
+pub using @arithmetic {trait DivChecked}
+
+pub using @arithmetic {trait Exponential}
+
+pub using @luna-generic {trait IntegralHomomorphism}
+
+pub using @arithmetic {trait Logarithmic}
+
+pub using @luna-generic {trait MulMonoid}
+
+pub using @luna-generic {trait One}
+
+pub using @luna-generic {trait Ring}
+
+pub using @luna-generic {trait Semiring}
+
+pub using @arithmetic {trait Sqrt}
+
+pub using @arithmetic {trait SqrtChecked}
+
+pub using @arithmetic {trait Trigonometric}
+
+pub using @luna-generic {trait Zero}
+
+// Traits
+

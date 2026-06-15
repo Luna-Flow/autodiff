@@ -1,0 +1,22 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "Luna-Flow/autodiff/forward"
+
+import {
+  "Luna-Flow/autodiff/dual",
+  "Luna-Flow/luna-generic",
+}
+
+// Values
+pub fn[T : @luna-generic.One] diff((@dual.Dual[T]) -> @dual.Dual[T], T) -> T
+
+pub fn[T : @luna-generic.One] value_and_diff((@dual.Dual[T]) -> @dual.Dual[T], T) -> (T, T)
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+pub using @dual {type Dual}
+
+// Traits
+

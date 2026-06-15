@@ -1,0 +1,35 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "Luna-Flow/autodiff/core"
+
+import {
+  "Luna-Flow/autodiff/dual",
+  "Luna-Flow/luna-generic",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+pub using @dual {type Dual}
+
+pub using @luna-generic {trait AddGroup}
+
+pub using @luna-generic {trait AddMonoid}
+
+pub using @luna-generic {trait IntegralHomomorphism}
+
+pub using @luna-generic {trait MulMonoid}
+
+pub using @luna-generic {trait One}
+
+pub using @luna-generic {trait Ring}
+
+pub using @luna-generic {trait Semiring}
+
+pub using @luna-generic {trait Zero}
+
+// Traits
+

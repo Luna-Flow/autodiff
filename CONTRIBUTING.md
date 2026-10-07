@@ -63,7 +63,9 @@ same engineering-quality baseline used across Luna Flow packages.
 ## Release Checklist
 
 - Bump `moon.mod` to the intended unreleased version before publishing.
-- Update `README.md` if the public API or package positioning changes.
+- Update `README.md` and the manual in `doc/manual` if the public API or
+  package positioning changes, then run `lunadoc update` to refresh the
+  translation catalogs.
 - Run `moon check`, `./run_test.sh`, and `moon info`.
 - Confirm generated `pkg.generated.mbti` files match the intended public API.
 - If mooncakes reports a duplicate version, bump the version before retrying.

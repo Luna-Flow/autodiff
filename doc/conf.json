@@ -1,0 +1,8 @@
+{
+  "title": "autodiff",
+  "summary": "Forward-mode automatic differentiation over Luna Flow algebraic and arithmetic structures.",
+  "locales": [
+    "zh_CN",
+    "ja_JP"
+  ]
+}

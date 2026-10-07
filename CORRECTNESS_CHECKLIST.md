@@ -80,9 +80,8 @@ Future work: context-aware multivariate polynomial partial derivatives with expl
 | --- | --- | --- | --- | --- |
 | `moon.mod` | `Correct` | - | Inspected directly | Canonical module metadata and dependency manifest. |
 | `README.md` | `Correct` | - | Checked against current generated API | Describes v0.2 scalar AD, linalg integration, poly integration, limitations, and roadmap. |
-| `doc/en_US/*` | `Correct` | - | Existing v0.2 integration docs inspected | English package, API, tutorial, and design docs are aligned with current package layout. |
-| `doc/zh_CN/*` | `Correct` | - | Existing v0.2 integration docs inspected | Chinese docs mirror current v0.2 semantics. |
-| `doc/ja_JP/*` | `Correct` | - | Existing v0.2 integration docs inspected | Japanese docs mirror current v0.2 semantics. |
+| `doc/manual/*` | `Correct` | - | Existing v0.2 docs inspected | English package, API, tutorial, and design pages are aligned with current package layout. |
+| `doc/locale/*` | `Correct` | - | Existing v0.2 translations inspected | Chinese and Japanese gettext catalogs mirror current v0.2 semantics; untranslated messages fall back to English. |
 | `CONTRIBUTING.md` | `Correct` | - | Adapted from Luna Flow engineering workflow | Documents local contribution and correctness expectations. |
 | `run_test.sh` | `Correct` | - | Package matrix matches current repository | Runs root and package-level tests. |
 | `ready_to_pr.sh` | `Correct` | - | Mirrors Luna Flow PR workflow | Formats, checks, regenerates API, cleans, and runs coverage. |

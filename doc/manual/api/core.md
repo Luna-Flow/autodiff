@@ -1,10 +1,10 @@
 # Core API
 
 This document describes the core public API for dual-number forward-mode
-automatic differentiation. Ecosystem bridge APIs are documented in
-[`../integration/api.md`](../integration/api.md).
+automatic differentiation. The bridge packages are documented in the
+[linalg API](linalg.md) and the [poly API](poly.md).
 
-## Dual Numbers
+## Dual numbers
 
 ```moonbit
 pub struct Dual[T] {
@@ -41,7 +41,7 @@ The implemented operations are:
 required operations. It intentionally does not implement `Field`, `MulGroup`,
 `Inverse`, or total ordering.
 
-## Checked Arithmetic
+## Checked arithmetic
 
 Checked division uses `DivChecked`:
 
@@ -59,7 +59,7 @@ Checked square root uses `SqrtChecked` and `DivChecked`:
 sqrt(x, dx) = (sqrt(x), dx / (2 * sqrt(x)))
 ```
 
-## Elementary Functions
+## Elementary functions
 
 The current elementary lifts include:
 
@@ -71,13 +71,13 @@ The current elementary lifts include:
 Domain and branch behavior follows the base scalar implementation unless a
 checked trait is used.
 
-## Forward Helpers
+## Forward helpers
 
 - `value_and_diff(f, x)` evaluates `f(Dual::variable(x))` and returns
   `(value, derivative)`.
 - `diff(f, x)` returns only the derivative.
 
-## Package Boundaries
+## Package boundaries
 
 The core dual-number packages stay lightweight. They depend on
 `Luna-Flow/luna-generic` and, for checked or elementary operations,

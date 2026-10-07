@@ -1,11 +1,11 @@
-# Design Notes
+# Design notes
 
 autodiff v0.2 keeps the core deliberately small while adding ecosystem
 integration packages. The core still provides forward-mode automatic
 differentiation with dual numbers and avoids symbolic algebra, reverse mode, and
 optimizer APIs.
 
-## Package Ownership
+## Package ownership
 
 `Dual[T]` is owned by the `dual` package so MoonBit methods and trait
 implementations can live with the type. The `core`, `checked`, `elementary`,
@@ -15,7 +15,7 @@ The `linalg` and `poly` packages are integration layers. They depend on the
 external Luna Flow libraries they bridge to, but lower-level autodiff packages
 do not depend on them.
 
-## Algebraic Constraints
+## Algebraic constraints
 
 Dual numbers are ring-like but not field-like. The value `0 + 1ε` is nonzero and
 nilpotent, so it cannot have a multiplicative inverse. For this reason,
@@ -24,7 +24,7 @@ nilpotent, so it cannot have a multiplicative inverse. For this reason,
 Dual numbers also do not have a natural total order. The package does not
 implement `Compare` for `Dual[T]`.
 
-## Checked Semantics
+## Checked semantics
 
 Checked operations reuse `Luna-Flow/arithmetic`:
 
@@ -35,7 +35,24 @@ Checked operations reuse `Luna-Flow/arithmetic`:
 
 This keeps error handling compatible with the wider Luna Flow ecosystem.
 
-## Out Of Scope
+## Dependency direction
+
+The integration packages sit above the core autodiff layers:
+
+```text
+autodiff/core       -> luna-generic only
+autodiff/dual       -> luna-generic, arithmetic
+autodiff/elementary -> arithmetic
+autodiff/checked    -> arithmetic
+autodiff/forward    -> core/dual/elementary
+autodiff/linalg     -> autodiff + linear-algebra
+autodiff/poly       -> autodiff + luna-poly
+```
+
+Lower-level packages do not import `linear-algebra`, `luna-poly`, `floating`, or
+`type_theory`.
+
+## Out of scope
 
 The following remain future work, not v0.2 integration features:
 

@@ -1,0 +1,569 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Luna-Flow documentation\n"
+"Report-Msgid-Bugs-To: https://github.com/Luna-Flow\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: conf.json:summary
+msgid "Forward-mode automatic differentiation over Luna Flow algebraic and arithmetic structures."
+msgstr "基于 Luna Flow 代数与算术结构的前向模式自动微分。"
+
+#: manual/api/core.md:1
+msgid "Core API"
+msgstr "核心 API"
+
+#: manual/api/core.md:3
+msgid "This document describes the core public API for dual-number forward-mode automatic differentiation. The bridge packages are documented in the [linalg API](linalg.md) and the [poly API](poly.md)."
+msgstr "本文档描述基于对偶数的前向模式自动微分的核心公开 API。桥接包见 [linalg API](linalg.md) 与 [poly API](poly.md)。"
+
+#: manual/api/core.md:7
+msgid "Dual numbers"
+msgstr "对偶数"
+
+#: manual/api/core.md:16
+msgid "`value` is the primal scalar. `tangent` is the first-order derivative component."
+msgstr "`value` 是原始标量值，`tangent` 是一阶导数分量。"
+
+#: manual/api/core.md:18
+msgid "Constructors"
+msgstr "构造器"
+
+#: manual/api/core.md:20
+msgid "`Dual::new(value, tangent)` constructs a dual number directly."
+msgstr "`Dual::new(value, tangent)` 直接构造对偶数。"
+
+#: manual/api/core.md:21
+msgid "`Dual::constant(x)` constructs `Dual(x, zero)`."
+msgstr "`Dual::constant(x)` 构造 `Dual(x, zero)`。"
+
+#: manual/api/core.md:22
+msgid "`Dual::variable(x)` constructs `Dual(x, one)`."
+msgstr "`Dual::variable(x)` 构造 `Dual(x, one)`。"
+
+#: manual/api/core.md:24
+msgid "`constant` uses `Zero` from `Luna-Flow/luna-generic`. `variable` uses `One`."
+msgstr "`constant` 使用 `Luna-Flow/luna-generic` 的 `Zero`。`variable` 使用 `One`。"
+
+#: manual/api/core.md:26
+msgid "Accessors"
+msgstr "访问器"
+
+#: manual/api/core.md:28
+msgid "`Dual::value(self)` returns the primal value."
+msgstr "`Dual::value(self)` 返回原始值。"
+
+#: manual/api/core.md:29
+msgid "`Dual::tangent(self)` returns the tangent value."
+msgstr "`Dual::tangent(self)` 返回 tangent。"
+
+#: manual/api/core.md:31
+msgid "Algebra"
+msgstr "代数"
+
+#: manual/api/core.md:33
+msgid "The implemented operations are:"
+msgstr "已实现的运算包括："
+
+#: manual/api/core.md:35
+msgid "Addition: `(x, dx) + (y, dy) = (x + y, dx + dy)`"
+msgstr "加法：`(x, dx) + (y, dy) = (x + y, dx + dy)`"
+
+#: manual/api/core.md:36
+msgid "Subtraction: `(x, dx) - (y, dy) = (x - y, dx - dy)`"
+msgstr "减法：`(x, dx) - (y, dy) = (x - y, dx - dy)`"
+
+#: manual/api/core.md:37
+msgid "Negation: `-(x, dx) = (-x, -dx)`"
+msgstr "取负：`-(x, dx) = (-x, -dx)`"
+
+#: manual/api/core.md:38
+msgid "Multiplication: `(x, dx) * (y, dy) = (x * y, x * dy + y * dx)`"
+msgstr "乘法：`(x, dx) * (y, dy) = (x * y, x * dy + y * dx)`"
+
+#: manual/api/core.md:40
+msgid "`Dual[T]` implements Luna Flow ring-level traits when the base type supports the required operations. It intentionally does not implement `Field`, `MulGroup`, `Inverse`, or total ordering."
+msgstr "当基类型满足约束时，`Dual[T]` 实现 Luna Flow 的环层级结构。它不会实现 `Field`、`MulGroup`、`Inverse` 或总序。"
+
+#: manual/api/core.md:44
+msgid "Checked arithmetic"
+msgstr "Checked 运算"
+
+#: manual/api/core.md:46
+msgid "Checked division uses `DivChecked`:"
+msgstr "checked division 使用 `DivChecked`，失败通过 `ArithmeticError` 返回。"
+
+#: manual/api/core.md:53
+msgid "Failures are returned as `Result[Dual[T], ArithmeticError]` using `ArithmeticContext` from `Luna-Flow/arithmetic`."
+msgstr "失败以 `Result[Dual[T], ArithmeticError]` 返回，并使用 `Luna-Flow/arithmetic` 的 `ArithmeticContext`。"
+
+#: manual/api/core.md:56
+msgid "Checked square root uses `SqrtChecked` and `DivChecked`:"
+msgstr "checked square root 使用 `SqrtChecked` 和 `DivChecked`。"
+
+#: manual/api/core.md:62
+#: manual/tutorial/core.md:37
+msgid "Elementary functions"
+msgstr "初等函数"
+
+#: manual/api/core.md:64
+msgid "The current elementary lifts include:"
+msgstr "当前提升的初等函数包括："
+
+#: manual/api/core.md:71
+msgid "Domain and branch behavior follows the base scalar implementation unless a checked trait is used."
+msgstr "除 checked trait 外，定义域和分支行为沿用基标量实现。"
+
+#: manual/api/core.md:74
+msgid "Forward helpers"
+msgstr "前向模式辅助函数"
+
+#: manual/api/core.md:76
+msgid "`value_and_diff(f, x)` evaluates `f(Dual::variable(x))` and returns `(value, derivative)`."
+msgstr "`value_and_diff(f, x)` 返回 `(value, derivative)`。"
+
+#: manual/api/core.md:78
+msgid "`diff(f, x)` returns only the derivative."
+msgstr "`diff(f, x)` 只返回导数。"
+
+#: manual/api/core.md:80
+msgid "Package boundaries"
+msgstr "包边界"
+
+#: manual/api/core.md:82
+msgid "The core dual-number packages stay lightweight. They depend on `Luna-Flow/luna-generic` and, for checked or elementary operations, `Luna-Flow/arithmetic`. They do not import `linear-algebra`, `luna-poly`, `floating`, or `type_theory`."
+msgstr "核心对偶数包保持轻量。它们依赖 `Luna-Flow/luna-generic`，并在 checked 或初等函数操作中依赖 `Luna-Flow/arithmetic`。核心层不导入 `linear-algebra`、`luna-poly`、`floating` 或 `type_theory`。"
+
+#: manual/api/linalg.md:1
+msgid "linalg API"
+msgstr "linalg API"
+
+#: manual/api/linalg.md:3
+msgid "The `linalg` package uses immutable vectors and matrices from `Luna-Flow/linear-algebra/immut`."
+msgstr "`linalg` 包使用 `Luna-Flow/linear-algebra/immut` 的不可变向量和矩阵。"
+
+#: manual/api/linalg.md:11
+msgid "`gradient` expects:"
+msgstr "`gradient` 的概念签名："
+
+#: manual/api/linalg.md:18
+msgid "`jacobian` expects:"
+msgstr "`jacobian` 的概念签名："
+
+#: manual/api/linalg.md:25
+msgid "The Jacobian uses the output-by-input convention:"
+msgstr "Jacobian 使用“输出乘输入”的方向："
+
+#: manual/api/linalg.md:31
+msgid "The package uses n-pass forward-mode seeding. It does not require or define field-level behavior for `Dual[T]`."
+msgstr "该包使用 n-pass 前向模式播种。它不要求、也不定义 `Dual[T]` 的域级行为。"
+
+#: manual/api/poly.md:1
+msgid "poly API"
+msgstr "poly API"
+
+#: manual/api/poly.md:3
+msgid "The `poly` package bridges to `Luna-Flow/luna-poly`."
+msgstr "`poly` 包桥接到 `Luna-Flow/luna-poly`。"
+
+#: manual/api/poly.md:5
+msgid "Dense univariate helpers:"
+msgstr "dense 单变量辅助函数："
+
+#: manual/api/poly.md:11
+msgid "Sparse univariate-as-one-variable helpers:"
+msgstr "sparse 单变量使用方式的辅助函数："
+
+#: manual/api/poly.md:17
+msgid "These functions evaluate existing Luna Poly representations over dual numbers. They do not perform symbolic differentiation and do not introduce a new polynomial representation."
+msgstr "这些函数通过对偶数求值复用 Luna Poly 的现有表示。它们不进行符号微分，也不引入新的多项式表示。"
+
+#: manual/conventions.md:1
+msgid "Repository conventions"
+msgstr "仓库约定"
+
+#: manual/conventions.md:3
+msgid "These rules apply to the `autodiff` manual in addition to the Luna-Flow documentation standard."
+msgstr "除 Luna-Flow 文档规范外，`autodiff` 手册还遵循以下规则。"
+
+#: manual/conventions.md:6
+msgid "Terminology"
+msgstr "术语"
+
+#: manual/conventions.md:8
+msgid "Keep package terminology aligned with Luna Flow names from `luna-generic` and `arithmetic`."
+msgstr "术语应与 `luna-generic` 和 `arithmetic` 中的 Luna Flow 命名保持一致。"
+
+#: manual/conventions.md:10
+msgid "Do not describe `Dual[T]` as a field or ordered scalar."
+msgstr "不得把 `Dual[T]` 描述为域或有序标量。"
+
+#: manual/conventions.md:12
+msgid "Scope"
+msgstr "范围"
+
+#: manual/conventions.md:14
+msgid "Future work must be clearly marked as future work."
+msgstr "未来工作必须明确标注为未来工作。"
+
+#: manual/design/core.md:1
+msgid "Design notes"
+msgstr "设计说明"
+
+#: manual/design/core.md:3
+msgid "autodiff v0.2 keeps the core deliberately small while adding ecosystem integration packages. The core still provides forward-mode automatic differentiation with dual numbers and avoids symbolic algebra, reverse mode, and optimizer APIs."
+msgstr "autodiff v0.2 在保持核心层小而明确的同时，加入生态集成包。核心仍只提供基于对偶数的前向模式自动微分，不提供符号代数、反向模式或优化器 API。"
+
+#: manual/design/core.md:8
+msgid "Package ownership"
+msgstr "包所有权"
+
+#: manual/design/core.md:10
+msgid "`Dual[T]` is owned by the `dual` package so MoonBit methods and trait implementations can live with the type. The `core`, `checked`, `elementary`, `forward`, and root packages are lightweight facades over that implementation."
+msgstr "`Dual[T]` 由 `dual` 包拥有，这样 MoonBit 方法和 trait 实现可以与类型放在同一个包中。`core`、`checked`、`elementary`、`forward` 和根包保持为轻量 facade。"
+
+#: manual/design/core.md:14
+msgid "The `linalg` and `poly` packages are integration layers. They depend on the external Luna Flow libraries they bridge to, but lower-level autodiff packages do not depend on them."
+msgstr "`linalg` 和 `poly` 是集成层。它们依赖被桥接的外部 Luna Flow 库，但低层 autodiff 包不依赖这些集成层。"
+
+#: manual/design/core.md:18
+msgid "Algebraic constraints"
+msgstr "代数约束"
+
+#: manual/design/core.md:20
+msgid "Dual numbers are ring-like but not field-like. The value `0 + 1ε` is nonzero and nilpotent, so it cannot have a multiplicative inverse. For this reason, `Dual[T]` must not implement `Field`, `MulGroup`, or `Inverse`."
+msgstr "对偶数是环式标量，但不是域。`0 + 1ε` 是非零幂零元，因此没有乘法逆元。所以 `Dual[T]` 不应实现 `Field`、`MulGroup` 或 `Inverse`。"
+
+#: manual/design/core.md:24
+msgid "Dual numbers also do not have a natural total order. The package does not implement `Compare` for `Dual[T]`."
+msgstr "对偶数也没有自然总序，因此本包不实现 `Compare`。"
+
+#: manual/design/core.md:27
+msgid "Checked semantics"
+msgstr "Checked 语义"
+
+#: manual/design/core.md:29
+msgid "Checked operations reuse `Luna-Flow/arithmetic`:"
+msgstr "checked 操作复用 `Luna-Flow/arithmetic` 中的以下名称："
+
+#: manual/design/core.md:36
+msgid "This keeps error handling compatible with the wider Luna Flow ecosystem."
+msgstr "这使错误处理与更广泛的 Luna Flow 生态保持兼容。"
+
+#: manual/design/core.md:38
+msgid "Dependency direction"
+msgstr "依赖方向"
+
+#: manual/design/core.md:40
+msgid "The integration packages sit above the core autodiff layers:"
+msgstr "集成包位于核心 autodiff 层之上："
+
+#: manual/design/core.md:52
+msgid "Lower-level packages do not import `linear-algebra`, `luna-poly`, `floating`, or `type_theory`."
+msgstr "低层包不导入 `linear-algebra`、`luna-poly`、`floating` 或 `type_theory`。"
+
+#: manual/design/core.md:55
+msgid "Out of scope"
+msgstr "非 v0.2 范围"
+
+#: manual/design/core.md:57
+msgid "The following remain future work, not v0.2 integration features:"
+msgstr "以下内容仍属于未来工作，不是 v0.2 集成功能："
+
+#: manual/design/core.md:59
+msgid "vector-valued tangent storage for `Forward[T]`"
+msgstr "`Forward[T]` 的向量值 tangent 存储"
+
+#: manual/design/core.md:60
+msgid "higher-order `Jet[T]` derivatives"
+msgstr "高阶 `Jet[T]`"
+
+#: manual/design/core.md:61
+msgid "validated automatic differentiation over interval or ball scalars"
+msgstr "区间或 ball 标量上的 validated AD"
+
+#: manual/design/core.md:62
+msgid "reverse-mode automatic differentiation"
+msgstr "反向模式自动微分"
+
+#: manual/design/core.md:63
+msgid "symbolic differentiation through a CAS layer"
+msgstr "基于 CAS 层的符号微分"
+
+#: manual/design/linalg.md:1
+msgid "linalg design"
+msgstr "linalg 设计"
+
+#: manual/design/linalg.md:3
+msgid "`Dual[T]` is a valid scalar for ring-level vector and matrix operations because it implements the relevant Luna Flow algebraic traits when `T` does. The integration intentionally avoids algorithms that require `Field`, total division, inverses, or total ordering."
+msgstr "当 `T` 满足相应 Luna Flow 代数 trait 时，`Dual[T]` 可作为环层级向量和矩阵操作的合法标量。集成层有意避开需要 `Field`、总除法、逆元或总序的算法。"
+
+#: manual/design/linalg.md:8
+msgid "Gradients and Jacobians use n-pass forward-mode seeding. This is simple, correct, and keeps the API small. Vector-valued tangent storage is future work."
+msgstr "gradient 和 Jacobian 使用 n-pass 前向模式播种。该方案简单、正确，并保持 API 小。向量值 tangent 存储是未来工作。"
+
+#: manual/design/poly.md:1
+msgid "poly design"
+msgstr "poly 设计"
+
+#: manual/design/poly.md:3
+msgid "The polynomial bridge reuses `luna-poly` data structures. It lifts coefficients to constants in `Dual[T]`, evaluates through the existing Luna Poly algorithm, and reads the tangent as the derivative at the point."
+msgstr "多项式桥接复用 `luna-poly` 数据结构。它把系数提升为 `Dual[T]` 常量，通过现有 Luna Poly 求值算法执行，再把 tangent 读作该点导数。"
+
+#: manual/design/poly.md:7
+msgid "This is automatic differentiation through evaluation, not symbolic differentiation."
+msgstr "这是对求值算法做自动微分，不是符号微分。"
+
+#: manual/index.md:1
+msgid "autodiff"
+msgstr "autodiff"
+
+#: manual/index.md:3
+msgid "This manual documents `Luna-Flow/autodiff` `0.2.0`."
+msgstr "本手册介绍 `Luna-Flow/autodiff` `0.2.0`。"
+
+#: manual/index.md:5
+msgid "Overview"
+msgstr "概览"
+
+#: manual/index.md:7
+msgid "autodiff provides forward-mode automatic differentiation over Luna Flow algebraic and arithmetic structures."
+msgstr "autodiff 在 Luna Flow 的代数和算术结构上提供前向模式自动微分。"
+
+#: manual/index.md:10
+msgid "The current release introduces dual numbers:"
+msgstr "当前版本引入对偶数："
+
+#: manual/index.md:16
+msgid "This lets ordinary scalar functions written against Luna Flow arithmetic be evaluated together with their first derivative."
+msgstr "普通标量函数在 `Dual::variable(x)` 上求值时，可以同时得到函数值和一阶导数。"
+
+#: manual/index.md:19
+msgid "Current surface"
+msgstr "当前 API"
+
+#: manual/index.md:21
+msgid "`Dual[T]` with `value` and `tangent`."
+msgstr "`Dual[T]`，包含 `value` 和 `tangent`。"
+
+#: manual/index.md:22
+msgid "Constructors: `Dual::new`, `Dual::constant`, and `Dual::variable`."
+msgstr "构造器：`Dual::new`、`Dual::constant`、`Dual::variable`。"
+
+#: manual/index.md:23
+msgid "Accessors: `Dual::value` and `Dual::tangent`."
+msgstr "访问器：`Dual::value`、`Dual::tangent`。"
+
+#: manual/index.md:24
+msgid "Ring-level algebraic instances where the base scalar supports them."
+msgstr "在基类型满足条件时实现环层级代数结构。"
+
+#: manual/index.md:25
+msgid "Checked division and checked square root through `Luna-Flow/arithmetic`."
+msgstr "通过 `Luna-Flow/arithmetic` 支持 checked division 和 checked sqrt。"
+
+#: manual/index.md:26
+msgid "Elementary lifts for `sqrt`, `exp`, `ln`, `sin`, `cos`, and `tan`."
+msgstr "支持 `sqrt`、`exp`、`ln`、`sin`、`cos`、`tan` 等初等函数提升。"
+
+#: manual/index.md:27
+msgid "Forward helpers: `diff` and `value_and_diff`."
+msgstr "前向模式辅助函数：`diff` 和 `value_and_diff`。"
+
+#: manual/index.md:28
+msgid "Linear algebra helpers: `gradient`, `jacobian`, `value_and_gradient`, and `value_and_jacobian` in `autodiff/linalg`."
+msgstr "线性代数辅助函数：`autodiff/linalg` 中的 `gradient`、`jacobian`、 `value_and_gradient` 和 `value_and_jacobian`。"
+
+#: manual/index.md:30
+msgid "Polynomial helpers: dual-number evaluation and derivative-at-a-point helpers in `autodiff/poly`."
+msgstr "多项式辅助函数：`autodiff/poly` 中基于对偶数求值的定点导数接口。"
+
+#: manual/index.md:33
+msgid "Documents"
+msgstr "文档"
+
+#: manual/index.md:35
+msgid "The [core API](api/core.md), [core tutorial](tutorial/core.md) and [core design](design/core.md) cover dual numbers and scalar differentiation."
+msgstr "[core API](api/core.md)、[core 教程](tutorial/core.md)和 [core 设计](design/core.md)介绍对偶数与标量求导。"
+
+#: manual/index.md:37
+msgid "The [linalg API](api/linalg.md), [linalg tutorial](tutorial/linalg.md) and [linalg design](design/linalg.md) cover gradients and Jacobians over `linear-algebra` vectors and matrices."
+msgstr "[linalg API](api/linalg.md)、[linalg 教程](tutorial/linalg.md)和 [linalg 设计](design/linalg.md)介绍基于 `linear-algebra` 向量与矩阵的 gradient 和 Jacobian。"
+
+#: manual/index.md:40
+msgid "The [poly API](api/poly.md), [poly tutorial](tutorial/poly.md) and [poly design](design/poly.md) cover derivatives of `luna-poly` polynomials."
+msgstr "[poly API](api/poly.md)、[poly 教程](tutorial/poly.md)和 [poly 设计](design/poly.md)介绍 `luna-poly` 多项式的导数。"
+
+#: manual/index.md:42
+msgid "The [repository conventions](conventions.md) fix the terminology used in this manual."
+msgstr "[仓库约定](conventions.md)规定本手册使用的术语。"
+
+#: manual/index.md:45
+msgid "Validation"
+msgstr "验证"
+
+#: manual/index.md:47
+msgid "Recommended checks:"
+msgstr "推荐检查："
+
+#: manual/tutorial/core.md:1
+msgid "Tutorial"
+msgstr "教程"
+
+#: manual/tutorial/core.md:3
+msgid "Differentiate a scalar function"
+msgstr "对标量函数求导"
+
+#: manual/tutorial/core.md:5
+msgid "Use `diff` to compute the derivative of a scalar function."
+msgstr "使用 `diff` 计算标量函数的导数。"
+
+#: manual/tutorial/core.md:11
+msgid "The result is `6.0`."
+msgstr "结果是 `6.0`。"
+
+#: manual/tutorial/core.md:13
+msgid "Keep value and derivative"
+msgstr "同时保留函数值和导数"
+
+#: manual/tutorial/core.md:15
+msgid "Use `value_and_diff` when both outputs are needed."
+msgstr "需要同时得到两个结果时，使用 `value_and_diff`。"
+
+#: manual/tutorial/core.md:24
+msgid "The value is `8.0` and the derivative is `12.0`."
+msgstr "函数值是 `8.0`，导数是 `12.0`。"
+
+#: manual/tutorial/core.md:26
+msgid "Constants and variables"
+msgstr "常量和变量"
+
+#: manual/tutorial/core.md:28
+msgid "`Dual::constant(x)` has zero tangent. `Dual::variable(x)` has unit tangent."
+msgstr "`Dual::constant(x)` 的 tangent 为零。`Dual::variable(x)` 的 tangent 为一。"
+
+#: manual/tutorial/core.md:35
+msgid "Constants differentiate to zero. The identity variable differentiates to one."
+msgstr "常量的导数为零，恒等变量的导数为一。"
+
+#: manual/tutorial/core.md:39
+msgid "Elementary methods can be used when the base scalar supports the corresponding Luna Flow arithmetic trait."
+msgstr "当基标量支持对应 Luna Flow arithmetic trait 时，可以使用初等函数方法。"
+
+#: manual/tutorial/core.md:46
+msgid "The derivative is `cos(0.5)`."
+msgstr "导数是 `cos(0.5)`。"
+
+#: manual/tutorial/core.md:48
+msgid "Checked division"
+msgstr "后续阅读"
+
+#: manual/tutorial/core.md:50
+msgid "Use `DivChecked::div_checked` when division failure must be returned as data. The operation reuses `ArithmeticError` and `ArithmeticContext` from `Luna-Flow/arithmetic`."
+msgstr "当除法失败必须作为数据返回时，使用 `DivChecked::div_checked`。该操作复用 `Luna-Flow/arithmetic` 的 `ArithmeticError` 与 `ArithmeticContext`。"
+
+#: manual/tutorial/core.md:54
+#: manual/tutorial/linalg.md:39
+#: manual/tutorial/poly.md:13
+msgid "Next steps"
+msgstr "后续阅读"
+
+#: manual/tutorial/core.md:56
+msgid "Continue with the [linalg tutorial](linalg.md) for gradients and Jacobians, and with the [poly tutorial](poly.md) for polynomial derivatives at a point."
+msgstr "gradient 和 Jacobian 请继续阅读 [linalg 教程](linalg.md)，多项式定点导数请阅读 [poly 教程](poly.md)。"
+
+#: manual/tutorial/linalg.md:1
+msgid "linalg tutorial"
+msgstr "linalg 教程"
+
+#: manual/tutorial/linalg.md:3
+msgid "This tutorial computes the gradient and the Jacobian of functions over Luna Flow immutable vectors with `autodiff/linalg`."
+msgstr "本教程使用 `autodiff/linalg` 计算 Luna Flow 不可变向量上函数的 gradient 与 Jacobian。"
+
+#: manual/tutorial/linalg.md:6
+msgid "Gradient"
+msgstr "Gradient"
+
+#: manual/tutorial/linalg.md:8
+msgid "Use `autodiff/linalg` when a scalar function consumes a Luna Flow vector."
+msgstr "当标量函数接收 Luna Flow 向量时，可以使用 `autodiff/linalg`。"
+
+#: manual/tutorial/linalg.md:18
+msgid "For `f(x, y) = x² + xy`, the gradient at `(2, 3)` is `[7, 2]`."
+msgstr "对于 `f(x, y) = x² + xy`，在 `(2, 3)` 处的 gradient 是 `[7, 2]`。"
+
+#: manual/tutorial/linalg.md:20
+msgid "Jacobian"
+msgstr "Jacobian"
+
+#: manual/tutorial/linalg.md:22
+msgid "`jacobian` works for vector-valued functions."
+msgstr "`jacobian` 用于向量值函数。"
+
+#: manual/tutorial/linalg.md:32
+msgid "The returned matrix is output-by-input:"
+msgstr "返回矩阵采用输出乘输入方向："
+
+#: manual/tutorial/linalg.md:41
+msgid "The [linalg API](../api/linalg.md) lists every helper and its expected function shape. The [linalg design](../design/linalg.md) explains why the helpers use n-pass forward-mode seeding."
+msgstr "[linalg API](../api/linalg.md) 列出所有辅助函数及其要求的函数形状。[linalg 设计](../design/linalg.md)解释这些辅助函数为何使用 n-pass 前向模式播种。"
+
+#: manual/tutorial/poly.md:1
+msgid "poly tutorial"
+msgstr "poly 教程"
+
+#: manual/tutorial/poly.md:3
+msgid "`autodiff/poly` differentiates a polynomial at a point by evaluating it over `Dual[T]`."
+msgstr "`autodiff/poly` 通过在 `Dual[T]` 上求值来计算多项式在某一点的导数。"
+
+#: manual/tutorial/poly.md:11
+msgid "For `p(x) = x² + 2x + 1`, the value is `16` and the derivative is `8`."
+msgstr "对于 `p(x) = x² + 2x + 1`，函数值是 `16`，导数是 `8`。"
+
+#: manual/tutorial/poly.md:15
+msgid "The [poly API](../api/poly.md) lists the dense and sparse helpers, including the sparse univariate variants."
+msgstr "[poly API](../api/poly.md) 列出稠密与稀疏辅助函数，包括稀疏单变量版本。"
+
+#~ msgid "Documentation Standard"
+#~ msgstr "文档规范"
+
+#~ msgid "Documentation for `Luna-Flow/autodiff` must describe the implementation on the current branch. It must stay aligned with the exported MoonBit API, algebraic constraints, and release scope."
+#~ msgstr "`Luna-Flow/autodiff` 的文档必须描述当前分支中真实存在的实现，并与导出的 MoonBit API、代数约束和发布范围保持一致。"
+
+#~ msgid "Rules"
+#~ msgstr "规则"
+
+#~ msgid "Provide `README.md`, `doc_standard.md`, and subsystem documents for every supported locale."
+#~ msgstr "每个支持的语言目录都应包含 `README.md`、`doc_standard.md` 和子系统文档。"
+
+#~ msgid "Document only APIs and behavior that exist in the current branch."
+#~ msgstr "只记录当前分支已经实现的 API 和行为。"
+
+#~ msgid "Each subsystem directory should contain `api.md`, `tutorial.md`, and `design.md`."
+#~ msgstr "每个子系统目录应包含 `api.md`、`tutorial.md` 和 `design.md`。"
+
+#~ msgid "Core API: [core/api.md](api/core.md)"
+#~ msgstr "核心 API：[core/api.md](api/core.md)"
+
+#~ msgid "Tutorial: [core/tutorial.md](tutorial/core.md)"
+#~ msgstr "教程：[core/tutorial.md](tutorial/core.md)"
+
+#~ msgid "Design notes: [core/design.md](design/core.md)"
+#~ msgstr "设计说明：[core/design.md](design/core.md)"
+
+#~ msgid "Ecosystem integration API: [integration/api.md](api/integration.md)"
+#~ msgstr "生态集成 API：[integration/api.md](api/integration.md)"
+
+#~ msgid "Ecosystem integration tutorial: [integration/tutorial.md](tutorial/integration.md)"
+#~ msgstr "生态集成教程：[integration/tutorial.md](tutorial/integration.md)"
+
+#~ msgid "Ecosystem integration design: [integration/design.md](design/integration.md)"
+#~ msgstr "生态集成设计：[integration/design.md](design/integration.md)"
+
+#~ msgid "Documentation standard: [doc_standard.md](conventions.md)"
+#~ msgstr "文档规范：[doc_standard.md](conventions.md)"
+
+#~ msgid "Use the integration tutorial for gradients, Jacobians, and polynomial derivative-at-a-point helpers:"
+#~ msgstr "gradient、Jacobian 和多项式定点导数示例见生态集成教程："

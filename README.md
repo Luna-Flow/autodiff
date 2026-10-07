@@ -137,3 +137,11 @@ Future work:
 - Context-aware multivariate polynomial partial derivatives.
 
 These remain deliberately out of scope for the v0.2 integration layer.
+
+## Documentation
+
+The manual is published at
+[luna-flow.github.io/en/autodiff](https://luna-flow.github.io/en/autodiff/)
+with Simplified Chinese and Japanese translations. Its English source lives in
+[doc/manual](./doc/manual/index.md), with API, tutorial, and design pages for
+the core scalar layer and for the `linalg` and `poly` bridges.

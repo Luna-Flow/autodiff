@@ -1,0 +1,548 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Luna-Flow documentation\n"
+"Report-Msgid-Bugs-To: https://github.com/Luna-Flow\n"
+"Language: ja_JP\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: conf.json:summary
+msgid "Forward-mode automatic differentiation over Luna Flow algebraic and arithmetic structures."
+msgstr "Luna Flow の代数構造と算術構造の上での前進モード自動微分。"
+
+#: manual/api/core.md:1
+msgid "Core API"
+msgstr "Core API"
+
+#: manual/api/core.md:3
+msgid "This document describes the core public API for dual-number forward-mode automatic differentiation. The bridge packages are documented in the [linalg API](linalg.md) and the [poly API](poly.md)."
+msgstr "この文書は、双対数による前進モード自動微分の core 公開 API を説明します。ブリッジパッケージについては [linalg API](linalg.md) と [poly API](poly.md) を参照してください。"
+
+#: manual/api/core.md:7
+msgid "Dual numbers"
+msgstr "双対数"
+
+#: manual/api/core.md:16
+msgid "`value` is the primal scalar. `tangent` is the first-order derivative component."
+msgstr "`value` は primal なスカラー値、`tangent` は一階微分成分です。"
+
+#: manual/api/core.md:18
+msgid "Constructors"
+msgstr "コンストラクタ"
+
+#: manual/api/core.md:20
+msgid "`Dual::new(value, tangent)` constructs a dual number directly."
+msgstr "`Dual::new(value, tangent)` は双対数を直接構築します。"
+
+#: manual/api/core.md:21
+msgid "`Dual::constant(x)` constructs `Dual(x, zero)`."
+msgstr "`Dual::constant(x)` は `Dual(x, zero)` を構築します。"
+
+#: manual/api/core.md:22
+msgid "`Dual::variable(x)` constructs `Dual(x, one)`."
+msgstr "`Dual::variable(x)` は `Dual(x, one)` を構築します。"
+
+#: manual/api/core.md:24
+msgid "`constant` uses `Zero` from `Luna-Flow/luna-generic`. `variable` uses `One`."
+msgstr "`constant` は `Luna-Flow/luna-generic` の `Zero` を使い、`variable` は `One` を使います。"
+
+#: manual/api/core.md:26
+msgid "Accessors"
+msgstr "アクセサ"
+
+#: manual/api/core.md:28
+msgid "`Dual::value(self)` returns the primal value."
+msgstr "`Dual::value(self)` は値を返します。"
+
+#: manual/api/core.md:29
+msgid "`Dual::tangent(self)` returns the tangent value."
+msgstr "`Dual::tangent(self)` は tangent を返します。"
+
+#: manual/api/core.md:31
+msgid "Algebra"
+msgstr "代数"
+
+#: manual/api/core.md:33
+msgid "The implemented operations are:"
+msgstr "実装済みの演算:"
+
+#: manual/api/core.md:35
+msgid "Addition: `(x, dx) + (y, dy) = (x + y, dx + dy)`"
+msgstr "加算: `(x, dx) + (y, dy) = (x + y, dx + dy)`"
+
+#: manual/api/core.md:36
+msgid "Subtraction: `(x, dx) - (y, dy) = (x - y, dx - dy)`"
+msgstr "減算: `(x, dx) - (y, dy) = (x - y, dx - dy)`"
+
+#: manual/api/core.md:37
+msgid "Negation: `-(x, dx) = (-x, -dx)`"
+msgstr "符号反転: `-(x, dx) = (-x, -dx)`"
+
+#: manual/api/core.md:38
+msgid "Multiplication: `(x, dx) * (y, dy) = (x * y, x * dy + y * dx)`"
+msgstr "乗算: `(x, dx) * (y, dy) = (x * y, x * dy + y * dx)`"
+
+#: manual/api/core.md:40
+msgid "`Dual[T]` implements Luna Flow ring-level traits when the base type supports the required operations. It intentionally does not implement `Field`, `MulGroup`, `Inverse`, or total ordering."
+msgstr "`Dual[T]` は基底型が必要な制約を満たす場合に Luna Flow の環レベル構造を実装します。`Field`、`MulGroup`、`Inverse`、全順序は実装しません。"
+
+#: manual/api/core.md:44
+msgid "Checked arithmetic"
+msgstr "Checked 演算"
+
+#: manual/api/core.md:46
+msgid "Checked division uses `DivChecked`:"
+msgstr "checked division は `DivChecked` を使い、失敗を `ArithmeticError` として返します。"
+
+#: manual/api/core.md:53
+msgid "Failures are returned as `Result[Dual[T], ArithmeticError]` using `ArithmeticContext` from `Luna-Flow/arithmetic`."
+msgstr "失敗は `Luna-Flow/arithmetic` の `ArithmeticContext` を使い、`Result[Dual[T], ArithmeticError]` として返されます。"
+
+#: manual/api/core.md:56
+msgid "Checked square root uses `SqrtChecked` and `DivChecked`:"
+msgstr "checked square root は `SqrtChecked` と `DivChecked` を使います。"
+
+#: manual/api/core.md:62
+#: manual/tutorial/core.md:37
+msgid "Elementary functions"
+msgstr "初等関数"
+
+#: manual/api/core.md:64
+msgid "The current elementary lifts include:"
+msgstr "現在リフトされる初等関数:"
+
+#: manual/api/core.md:71
+msgid "Domain and branch behavior follows the base scalar implementation unless a checked trait is used."
+msgstr "checked trait を使わない場合、定義域と分岐の挙動は基底スカラーに従います。"
+
+#: manual/api/core.md:74
+msgid "Forward helpers"
+msgstr "前進モードヘルパー"
+
+#: manual/api/core.md:76
+msgid "`value_and_diff(f, x)` evaluates `f(Dual::variable(x))` and returns `(value, derivative)`."
+msgstr "`value_and_diff(f, x)` は `(value, derivative)` を返します。"
+
+#: manual/api/core.md:78
+msgid "`diff(f, x)` returns only the derivative."
+msgstr "`diff(f, x)` は導関数値のみを返します。"
+
+#: manual/api/core.md:80
+msgid "Package boundaries"
+msgstr "パッケージ境界"
+
+#: manual/api/core.md:82
+msgid "The core dual-number packages stay lightweight. They depend on `Luna-Flow/luna-generic` and, for checked or elementary operations, `Luna-Flow/arithmetic`. They do not import `linear-algebra`, `luna-poly`, `floating`, or `type_theory`."
+msgstr "core の双対数パッケージは軽量に保たれています。`Luna-Flow/luna-generic` に依存し、checked 操作や初等関数では `Luna-Flow/arithmetic` に依存します。 core 層は `linear-algebra`、`luna-poly`、`floating`、`type_theory` を import しません。"
+
+#: manual/api/linalg.md:1
+msgid "linalg API"
+msgstr "linalg API"
+
+#: manual/api/linalg.md:3
+msgid "The `linalg` package uses immutable vectors and matrices from `Luna-Flow/linear-algebra/immut`."
+msgstr "`linalg` パッケージは `Luna-Flow/linear-algebra/immut` の immutable ベクトルと行列を使います。"
+
+#: manual/api/linalg.md:11
+msgid "`gradient` expects:"
+msgstr "`gradient` の概念的なシグネチャ:"
+
+#: manual/api/linalg.md:18
+msgid "`jacobian` expects:"
+msgstr "`jacobian` の概念的なシグネチャ:"
+
+#: manual/api/linalg.md:25
+msgid "The Jacobian uses the output-by-input convention:"
+msgstr "Jacobian は output-by-input の向きを使います。"
+
+#: manual/api/linalg.md:31
+msgid "The package uses n-pass forward-mode seeding. It does not require or define field-level behavior for `Dual[T]`."
+msgstr "このパッケージは n-pass 前進モード seeding を使います。`Dual[T]` の体としての振る舞いは要求せず、定義もしません。"
+
+#: manual/api/poly.md:1
+msgid "poly API"
+msgstr "poly API"
+
+#: manual/api/poly.md:3
+msgid "The `poly` package bridges to `Luna-Flow/luna-poly`."
+msgstr "`poly` パッケージは `Luna-Flow/luna-poly` へのブリッジです。"
+
+#: manual/api/poly.md:5
+msgid "Dense univariate helpers:"
+msgstr "dense 単変数ヘルパー:"
+
+#: manual/api/poly.md:11
+msgid "Sparse univariate-as-one-variable helpers:"
+msgstr "sparse を一変数として使うヘルパー:"
+
+#: manual/api/poly.md:17
+msgid "These functions evaluate existing Luna Poly representations over dual numbers. They do not perform symbolic differentiation and do not introduce a new polynomial representation."
+msgstr "これらの関数は既存の Luna Poly 表現を双対数上で評価します。記号微分は行わず、新しい多項式表現も導入しません。"
+
+#: manual/conventions.md:1
+msgid "Repository conventions"
+msgstr "リポジトリの規約"
+
+#: manual/conventions.md:3
+msgid "These rules apply to the `autodiff` manual in addition to the Luna-Flow documentation standard."
+msgstr "`autodiff` のマニュアルには、Luna-Flow のドキュメント標準に加えて次の規則が適用されます。"
+
+#: manual/conventions.md:6
+msgid "Terminology"
+msgstr "用語"
+
+#: manual/conventions.md:8
+msgid "Keep package terminology aligned with Luna Flow names from `luna-generic` and `arithmetic`."
+msgstr "用語は `luna-generic` と `arithmetic` の Luna Flow 名称に合わせる。"
+
+#: manual/conventions.md:10
+msgid "Do not describe `Dual[T]` as a field or ordered scalar."
+msgstr "`Dual[T]` を体または順序付きスカラーとして記述しない。"
+
+#: manual/conventions.md:12
+msgid "Scope"
+msgstr "範囲"
+
+#: manual/conventions.md:14
+msgid "Future work must be clearly marked as future work."
+msgstr "将来作業は明確に将来作業として示す。"
+
+#: manual/design/core.md:1
+msgid "Design notes"
+msgstr "設計ノート"
+
+#: manual/design/core.md:3
+msgid "autodiff v0.2 keeps the core deliberately small while adding ecosystem integration packages. The core still provides forward-mode automatic differentiation with dual numbers and avoids symbolic algebra, reverse mode, and optimizer APIs."
+msgstr "autodiff v0.2 は core 層を小さく保ちながら、エコシステム連携パッケージを追加します。core は引き続き双対数による前進モード自動微分を提供し、記号代数、逆モード、最適化 API は提供しません。"
+
+#: manual/design/core.md:8
+msgid "Package ownership"
+msgstr "パッケージ所有権"
+
+#: manual/design/core.md:10
+msgid "`Dual[T]` is owned by the `dual` package so MoonBit methods and trait implementations can live with the type. The `core`, `checked`, `elementary`, `forward`, and root packages are lightweight facades over that implementation."
+msgstr "`Dual[T]` は `dual` パッケージが所有します。これにより MoonBit のメソッドと trait 実装を型と同じパッケージに置けます。`core`、`checked`、`elementary`、`forward`、root は軽量 facade です。"
+
+#: manual/design/core.md:14
+msgid "The `linalg` and `poly` packages are integration layers. They depend on the external Luna Flow libraries they bridge to, but lower-level autodiff packages do not depend on them."
+msgstr "`linalg` と `poly` は連携層です。橋渡し先の Luna Flow ライブラリには依存しますが、低レベルの autodiff パッケージはこれらの連携層に依存しません。"
+
+#: manual/design/core.md:18
+msgid "Algebraic constraints"
+msgstr "代数的制約"
+
+#: manual/design/core.md:20
+msgid "Dual numbers are ring-like but not field-like. The value `0 + 1ε` is nonzero and nilpotent, so it cannot have a multiplicative inverse. For this reason, `Dual[T]` must not implement `Field`, `MulGroup`, or `Inverse`."
+msgstr "双対数は環的なスカラーですが、体ではありません。`0 + 1ε` は非ゼロの冪零元なので乗法逆元を持ちません。そのため `Dual[T]` は `Field`、`MulGroup`、`Inverse` を実装しません。"
+
+#: manual/design/core.md:24
+msgid "Dual numbers also do not have a natural total order. The package does not implement `Compare` for `Dual[T]`."
+msgstr "双対数には自然な全順序もないため、`Compare` も実装しません。"
+
+#: manual/design/core.md:27
+msgid "Checked semantics"
+msgstr "Checked セマンティクス"
+
+#: manual/design/core.md:29
+msgid "Checked operations reuse `Luna-Flow/arithmetic`:"
+msgstr "checked 操作は `Luna-Flow/arithmetic` の次の名前を再利用します。"
+
+#: manual/design/core.md:36
+msgid "This keeps error handling compatible with the wider Luna Flow ecosystem."
+msgstr "これにより、エラー処理が Luna Flow エコシステム全体と互換に保たれます。"
+
+#: manual/design/core.md:38
+msgid "Dependency direction"
+msgstr "依存方向"
+
+#: manual/design/core.md:40
+msgid "The integration packages sit above the core autodiff layers:"
+msgstr "連携パッケージは core autodiff 層の上に位置します。"
+
+#: manual/design/core.md:52
+msgid "Lower-level packages do not import `linear-algebra`, `luna-poly`, `floating`, or `type_theory`."
+msgstr "低レベルパッケージは `linear-algebra`、`luna-poly`、`floating`、`type_theory` を import しません。"
+
+#: manual/design/core.md:55
+msgid "Out of scope"
+msgstr "v0.2 の範囲外"
+
+#: manual/design/core.md:57
+msgid "The following remain future work, not v0.2 integration features:"
+msgstr "次の項目は将来作業であり、v0.2 の連携機能ではありません。"
+
+#: manual/design/core.md:59
+msgid "vector-valued tangent storage for `Forward[T]`"
+msgstr "`Forward[T]` のベクトル値 tangent ストレージ"
+
+#: manual/design/core.md:60
+msgid "higher-order `Jet[T]` derivatives"
+msgstr "高階 `Jet[T]`"
+
+#: manual/design/core.md:61
+msgid "validated automatic differentiation over interval or ball scalars"
+msgstr "interval または ball スカラー上の validated AD"
+
+#: manual/design/core.md:62
+msgid "reverse-mode automatic differentiation"
+msgstr "逆モード自動微分"
+
+#: manual/design/core.md:63
+msgid "symbolic differentiation through a CAS layer"
+msgstr "CAS 層による記号微分"
+
+#: manual/design/linalg.md:1
+msgid "linalg design"
+msgstr "linalg 設計"
+
+#: manual/design/linalg.md:3
+msgid "`Dual[T]` is a valid scalar for ring-level vector and matrix operations because it implements the relevant Luna Flow algebraic traits when `T` does. The integration intentionally avoids algorithms that require `Field`, total division, inverses, or total ordering."
+msgstr "`T` が必要な Luna Flow 代数 trait を満たすとき、`Dual[T]` は環レベルのベクトル・行列演算の正当なスカラーです。連携層は `Field`、全除算、逆元、全順序を必要とするアルゴリズムを意図的に避けます。"
+
+#: manual/design/linalg.md:8
+msgid "Gradients and Jacobians use n-pass forward-mode seeding. This is simple, correct, and keeps the API small. Vector-valued tangent storage is future work."
+msgstr "gradient と Jacobian は n-pass 前進モード seeding を使います。これは単純で正しく、API を小さく保ちます。ベクトル値 tangent ストレージは将来作業です。"
+
+#: manual/design/poly.md:1
+msgid "poly design"
+msgstr "poly 設計"
+
+#: manual/design/poly.md:3
+msgid "The polynomial bridge reuses `luna-poly` data structures. It lifts coefficients to constants in `Dual[T]`, evaluates through the existing Luna Poly algorithm, and reads the tangent as the derivative at the point."
+msgstr "多項式ブリッジは `luna-poly` のデータ構造を再利用します。係数を `Dual[T]` の定数へリフトし、既存の Luna Poly 評価アルゴリズムで評価し、tangent をその点での導関数として読みます。"
+
+#: manual/design/poly.md:7
+msgid "This is automatic differentiation through evaluation, not symbolic differentiation."
+msgstr "これは評価アルゴリズムへの自動微分であり、記号微分ではありません。"
+
+#: manual/index.md:1
+msgid "autodiff"
+msgstr "autodiff"
+
+#: manual/index.md:3
+msgid "This manual documents `Luna-Flow/autodiff` `0.2.0`."
+msgstr "このマニュアルは `Luna-Flow/autodiff` `0.2.0` を説明します。"
+
+#: manual/index.md:5
+msgid "Overview"
+msgstr "概要"
+
+#: manual/index.md:7
+msgid "autodiff provides forward-mode automatic differentiation over Luna Flow algebraic and arithmetic structures."
+msgstr "autodiff は Luna Flow の代数・算術構造の上で前進モード自動微分を提供します。"
+
+#: manual/index.md:10
+msgid "The current release introduces dual numbers:"
+msgstr "現在のバージョンは双対数を導入します。"
+
+#: manual/index.md:16
+msgid "This lets ordinary scalar functions written against Luna Flow arithmetic be evaluated together with their first derivative."
+msgstr "`Dual::variable(x)` で通常のスカラー関数を評価すると、値と一階微分を同時に得られます。"
+
+#: manual/index.md:19
+msgid "Current surface"
+msgstr "現在の API"
+
+#: manual/index.md:21
+msgid "`Dual[T]` with `value` and `tangent`."
+msgstr "`value` と `tangent` を持つ `Dual[T]`。"
+
+#: manual/index.md:22
+msgid "Constructors: `Dual::new`, `Dual::constant`, and `Dual::variable`."
+msgstr "コンストラクタ: `Dual::new`、`Dual::constant`、`Dual::variable`。"
+
+#: manual/index.md:23
+msgid "Accessors: `Dual::value` and `Dual::tangent`."
+msgstr "アクセサ: `Dual::value`、`Dual::tangent`。"
+
+#: manual/index.md:24
+msgid "Ring-level algebraic instances where the base scalar supports them."
+msgstr "基底型が条件を満たす場合の環レベル代数インスタンス。"
+
+#: manual/index.md:25
+msgid "Checked division and checked square root through `Luna-Flow/arithmetic`."
+msgstr "`Luna-Flow/arithmetic` による checked division と checked sqrt。"
+
+#: manual/index.md:26
+msgid "Elementary lifts for `sqrt`, `exp`, `ln`, `sin`, `cos`, and `tan`."
+msgstr "`sqrt`、`exp`、`ln`、`sin`、`cos`、`tan` のリフト。"
+
+#: manual/index.md:27
+msgid "Forward helpers: `diff` and `value_and_diff`."
+msgstr "前進モードヘルパー: `diff` と `value_and_diff`。"
+
+#: manual/index.md:28
+msgid "Linear algebra helpers: `gradient`, `jacobian`, `value_and_gradient`, and `value_and_jacobian` in `autodiff/linalg`."
+msgstr "線形代数ヘルパー: `autodiff/linalg` の `gradient`、`jacobian`、 `value_and_gradient`、`value_and_jacobian`。"
+
+#: manual/index.md:30
+msgid "Polynomial helpers: dual-number evaluation and derivative-at-a-point helpers in `autodiff/poly`."
+msgstr "多項式ヘルパー: `autodiff/poly` の双対数評価と一点での導関数。"
+
+#: manual/index.md:33
+msgid "Documents"
+msgstr "ドキュメント"
+
+#: manual/index.md:35
+msgid "The [core API](api/core.md), [core tutorial](tutorial/core.md) and [core design](design/core.md) cover dual numbers and scalar differentiation."
+msgstr "[core API](api/core.md)、[core チュートリアル](tutorial/core.md)、[core 設計](design/core.md)では双対数とスカラーの微分を扱います。"
+
+#: manual/index.md:37
+msgid "The [linalg API](api/linalg.md), [linalg tutorial](tutorial/linalg.md) and [linalg design](design/linalg.md) cover gradients and Jacobians over `linear-algebra` vectors and matrices."
+msgstr "[linalg API](api/linalg.md)、[linalg チュートリアル](tutorial/linalg.md)、[linalg 設計](design/linalg.md)では `linear-algebra` のベクトルと行列に対する gradient と Jacobian を扱います。"
+
+#: manual/index.md:40
+msgid "The [poly API](api/poly.md), [poly tutorial](tutorial/poly.md) and [poly design](design/poly.md) cover derivatives of `luna-poly` polynomials."
+msgstr "[poly API](api/poly.md)、[poly チュートリアル](tutorial/poly.md)、[poly 設計](design/poly.md)では `luna-poly` の多項式の導関数を扱います。"
+
+#: manual/index.md:42
+msgid "The [repository conventions](conventions.md) fix the terminology used in this manual."
+msgstr "[リポジトリの規約](conventions.md)は、このマニュアルで使う用語を定めます。"
+
+#: manual/index.md:45
+msgid "Validation"
+msgstr "検証"
+
+#: manual/index.md:47
+msgid "Recommended checks:"
+msgstr "推奨チェック:"
+
+#: manual/tutorial/core.md:1
+msgid "Tutorial"
+msgstr "チュートリアル"
+
+#: manual/tutorial/core.md:3
+msgid "Differentiate a scalar function"
+msgstr "スカラー関数を微分する"
+
+#: manual/tutorial/core.md:5
+msgid "Use `diff` to compute the derivative of a scalar function."
+msgstr "`diff` を使ってスカラー関数の導関数値を計算します。"
+
+#: manual/tutorial/core.md:11
+msgid "The result is `6.0`."
+msgstr "結果は `6.0` です。"
+
+#: manual/tutorial/core.md:13
+msgid "Keep value and derivative"
+msgstr "値と導関数を同時に得る"
+
+#: manual/tutorial/core.md:15
+msgid "Use `value_and_diff` when both outputs are needed."
+msgstr "両方の結果が必要な場合は `value_and_diff` を使います。"
+
+#: manual/tutorial/core.md:24
+msgid "The value is `8.0` and the derivative is `12.0`."
+msgstr "値は `8.0`、導関数値は `12.0` です。"
+
+#: manual/tutorial/core.md:26
+msgid "Constants and variables"
+msgstr "定数と変数"
+
+#: manual/tutorial/core.md:28
+msgid "`Dual::constant(x)` has zero tangent. `Dual::variable(x)` has unit tangent."
+msgstr "`Dual::constant(x)` の tangent はゼロです。`Dual::variable(x)` の tangent は一です。"
+
+#: manual/tutorial/core.md:35
+msgid "Constants differentiate to zero. The identity variable differentiates to one."
+msgstr "定数の微分はゼロ、恒等変数の微分は一です。"
+
+#: manual/tutorial/core.md:39
+msgid "Elementary methods can be used when the base scalar supports the corresponding Luna Flow arithmetic trait."
+msgstr "基底スカラーが対応する Luna Flow arithmetic trait をサポートする場合、初等関数メソッドを使えます。"
+
+#: manual/tutorial/core.md:46
+msgid "The derivative is `cos(0.5)`."
+msgstr "導関数値は `cos(0.5)` です。"
+
+#: manual/tutorial/core.md:48
+msgid "Checked division"
+msgstr "次のステップ"
+
+#: manual/tutorial/core.md:50
+msgid "Use `DivChecked::div_checked` when division failure must be returned as data. The operation reuses `ArithmeticError` and `ArithmeticContext` from `Luna-Flow/arithmetic`."
+msgstr "除算の失敗をデータとして返す必要がある場合は `DivChecked::div_checked` を使います。この操作は `Luna-Flow/arithmetic` の `ArithmeticError` と `ArithmeticContext` を再利用します。"
+
+#: manual/tutorial/core.md:54
+#: manual/tutorial/linalg.md:39
+#: manual/tutorial/poly.md:13
+msgid "Next steps"
+msgstr "次のステップ"
+
+#: manual/tutorial/core.md:56
+msgid "Continue with the [linalg tutorial](linalg.md) for gradients and Jacobians, and with the [poly tutorial](poly.md) for polynomial derivatives at a point."
+msgstr "gradient と Jacobian については [linalg チュートリアル](linalg.md)、多項式の一点での導関数については [poly チュートリアル](poly.md) に進んでください。"
+
+#: manual/tutorial/linalg.md:1
+msgid "linalg tutorial"
+msgstr "linalg チュートリアル"
+
+#: manual/tutorial/linalg.md:3
+msgid "This tutorial computes the gradient and the Jacobian of functions over Luna Flow immutable vectors with `autodiff/linalg`."
+msgstr "このチュートリアルでは、`autodiff/linalg` を使って Luna Flow の immutable ベクトル上の関数の gradient と Jacobian を計算します。"
+
+#: manual/tutorial/linalg.md:6
+msgid "Gradient"
+msgstr "Gradient"
+
+#: manual/tutorial/linalg.md:8
+msgid "Use `autodiff/linalg` when a scalar function consumes a Luna Flow vector."
+msgstr "スカラー関数が Luna Flow ベクトルを受け取る場合は `autodiff/linalg` を使います。"
+
+#: manual/tutorial/linalg.md:18
+msgid "For `f(x, y) = x² + xy`, the gradient at `(2, 3)` is `[7, 2]`."
+msgstr "`f(x, y) = x² + xy` の `(2, 3)` における gradient は `[7, 2]` です。"
+
+#: manual/tutorial/linalg.md:20
+msgid "Jacobian"
+msgstr "Jacobian"
+
+#: manual/tutorial/linalg.md:22
+msgid "`jacobian` works for vector-valued functions."
+msgstr "`jacobian` はベクトル値関数に使います。"
+
+#: manual/tutorial/linalg.md:32
+msgid "The returned matrix is output-by-input:"
+msgstr "返る行列は output-by-input です。"
+
+#: manual/tutorial/linalg.md:41
+msgid "The [linalg API](../api/linalg.md) lists every helper and its expected function shape. The [linalg design](../design/linalg.md) explains why the helpers use n-pass forward-mode seeding."
+msgstr "[linalg API](../api/linalg.md) はすべてのヘルパーと、それぞれが期待する関数の形を列挙します。[linalg 設計](../design/linalg.md)は、ヘルパーが n-pass 前進モード seeding を使う理由を説明します。"
+
+#: manual/tutorial/poly.md:1
+msgid "poly tutorial"
+msgstr "poly チュートリアル"
+
+#: manual/tutorial/poly.md:3
+msgid "`autodiff/poly` differentiates a polynomial at a point by evaluating it over `Dual[T]`."
+msgstr "`autodiff/poly` は `Dual[T]` 上で多項式を評価することで、一点での導関数を計算します。"
+
+#: manual/tutorial/poly.md:11
+msgid "For `p(x) = x² + 2x + 1`, the value is `16` and the derivative is `8`."
+msgstr "`p(x) = x² + 2x + 1` の値は `16`、導関数値は `8` です。"
+
+#: manual/tutorial/poly.md:15
+msgid "The [poly API](../api/poly.md) lists the dense and sparse helpers, including the sparse univariate variants."
+msgstr "[poly API](../api/poly.md) は、疎な一変数版を含む密・疎のヘルパーを列挙します。"
+
+#~ msgid "Documentation Standard"
+#~ msgstr "ドキュメント標準"
+
+#~ msgid "Documentation for `Luna-Flow/autodiff` must describe the implementation on the current branch. It must stay aligned with the exported MoonBit API, algebraic constraints, and release scope."
+#~ msgstr "`Luna-Flow/autodiff` のドキュメントは、現在のブランチに存在する実装を記述し、公開 MoonBit API、代数的制約、リリース範囲と一致している必要があります。"
+
+#~ msgid "Rules"
+#~ msgstr "ルール"
+
+#~ msgid "Provide `README.md`, `doc_standard.md`, and subsystem documents for every supported locale."
+#~ msgstr "対応する各ロケールに `README.md`、`doc_standard.md`、サブシステム文書を用意する。"
+
+#~ msgid "Document only APIs and behavior that exist in the current branch."
+#~ msgstr "現在のブランチに実装済みの API と挙動のみを記述する。"
+
+#~ msgid "Each subsystem directory should contain `api.md`, `tutorial.md`, and `design.md`."
+#~ msgstr "各サブシステムディレクトリには `api.md`、`tutorial.md`、`design.md` を置く。"
+
+#~ msgid "Use the integration tutorial for gradients, Jacobians, and polynomial derivative-at-a-point helpers:"
+#~ msgstr "gradient、Jacobian、多項式の一点での導関数については連携チュートリアルを参照してください。"

@@ -1,4 +1,7 @@
-# Ecosystem Integration Tutorial
+# linalg tutorial
+
+This tutorial computes the gradient and the Jacobian of functions over Luna Flow
+immutable vectors with `autodiff/linalg`.
 
 ## Gradient
 
@@ -33,14 +36,8 @@ The returned matrix is output-by-input:
  [3, 2]]
 ```
 
-## Polynomial Derivative At A Point
+## Next steps
 
-`autodiff/poly` differentiates a polynomial at a point by evaluating it over
-`Dual[T]`.
-
-```moonbit
-let p = @dense.DensePolynomial::from_coefficients([1.0, 2.0, 1.0])
-let (value, derivative) = @poly.value_and_derivative_at(p, 3.0)
-```
-
-For `p(x) = x² + 2x + 1`, the value is `16` and the derivative is `8`.
+The [linalg API](../api/linalg.md) lists every helper and its expected
+function shape. The [linalg design](../design/linalg.md) explains why the
+helpers use n-pass forward-mode seeding.

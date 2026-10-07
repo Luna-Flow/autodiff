@@ -1,6 +1,6 @@
-# autodiff Documentation
+# autodiff
 
-English documentation for `Luna-Flow/autodiff` `0.2.0`.
+This manual documents `Luna-Flow/autodiff` `0.2.0`.
 
 ## Overview
 
@@ -16,7 +16,7 @@ Dual[T] = value + tangent ε, ε² = 0
 This lets ordinary scalar functions written against Luna Flow arithmetic be
 evaluated together with their first derivative.
 
-## Current Surface
+## Current surface
 
 - `Dual[T]` with `value` and `tangent`.
 - Constructors: `Dual::new`, `Dual::constant`, and `Dual::variable`.
@@ -32,13 +32,15 @@ evaluated together with their first derivative.
 
 ## Documents
 
-- Core API: [core/api.md](core/api.md)
-- Tutorial: [core/tutorial.md](core/tutorial.md)
-- Design notes: [core/design.md](core/design.md)
-- Ecosystem integration API: [integration/api.md](integration/api.md)
-- Ecosystem integration tutorial: [integration/tutorial.md](integration/tutorial.md)
-- Ecosystem integration design: [integration/design.md](integration/design.md)
-- Documentation standard: [doc_standard.md](doc_standard.md)
+- The [core API](api/core.md), [core tutorial](tutorial/core.md) and
+  [core design](design/core.md) cover dual numbers and scalar differentiation.
+- The [linalg API](api/linalg.md), [linalg tutorial](tutorial/linalg.md) and
+  [linalg design](design/linalg.md) cover gradients and Jacobians over
+  `linear-algebra` vectors and matrices.
+- The [poly API](api/poly.md), [poly tutorial](tutorial/poly.md) and
+  [poly design](design/poly.md) cover derivatives of `luna-poly` polynomials.
+- The [repository conventions](conventions.md) fix the terminology used in this
+  manual.
 
 ## Validation
 

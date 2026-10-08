@@ -6,6 +6,13 @@ integers, floating-point numbers and dual numbers, and build integer
 constants inside generic code. The background is in the
 [core design](../design/core.md).
 
+| I want to | Use |
+| --- | --- |
+| write ring-level generic code | `T : @ad_core.Ring` |
+| use an integer constant in generic code | `@ad_core.IntegralHomomorphism::from_integral(n)` |
+| start a sum or a product | `@ad_core.Zero::zero()`, `@ad_core.One::one()` |
+| differentiate that code | call it on `@ad_core.Dual::variable(x)` |
+
 ## Quick start
 
 ```bash

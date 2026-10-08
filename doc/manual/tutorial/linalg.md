@@ -6,6 +6,14 @@ functions on `linear-algebra` vectors. You will write functions over
 results in a small optimization loop. Why the drivers work this way is in
 the [linalg design](../design/linalg.md).
 
+| I want to | Use |
+| --- | --- |
+| get the gradient of $f : T^n \to T$ | `@linalg.gradient(f, x)` |
+| get the value and the gradient | `@linalg.value_and_gradient(f, x)` |
+| get the Jacobian of $f : T^n \to T^m$ | `@linalg.jacobian(f, x)` |
+| get the value and the Jacobian | `@linalg.value_and_jacobian(f, x)` |
+| get a Jacobian-vector product $J_f(x)\,v$ | seed `Dual::new(x[j], v[j])` and call `f` once |
+
 ## Quick start
 
 ```bash

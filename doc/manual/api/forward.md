@@ -1,5 +1,7 @@
 # forward API
 
+## Purpose
+
 The `forward` package turns a function on dual numbers into its derivative
 at a point. It contains the two scalar forward-mode drivers, `diff` and
 `value_and_diff`, and re-exports `Dual`. The root package re-exports both

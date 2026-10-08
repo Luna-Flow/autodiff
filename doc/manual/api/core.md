@@ -1,5 +1,7 @@
 # core API
 
+## Purpose
+
 The `core` package is the algebraic facade of the repository: it re-exports
 `Dual` together with the `luna-generic` structure traits that `Dual[T]`
 implements, and nothing from `arithmetic`. Import it when you write generic,

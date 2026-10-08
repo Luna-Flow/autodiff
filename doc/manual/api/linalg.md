@@ -1,5 +1,7 @@
 # linalg API
 
+## Purpose
+
 The `linalg` package computes gradients and Jacobians of functions on
 immutable vectors from
 [`Luna-Flow/linear-algebra`](https://lunaflow.cn/en/linear-algebra/). Each

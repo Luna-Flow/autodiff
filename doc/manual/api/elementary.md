@@ -1,5 +1,7 @@
 # elementary API
 
+## Purpose
+
 The `elementary` package is the facade for the analytic traits of
 [arithmetic](https://lunaflow.cn/en/arithmetic/) that `Dual[T]` implements.
 It re-exports `Dual`, `Sqrt`, `SqrtChecked`, `Exponential`, `Logarithmic`,

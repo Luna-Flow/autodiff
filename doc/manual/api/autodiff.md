@@ -1,5 +1,7 @@
 # autodiff API
 
+## Purpose
+
 The root package `Luna-Flow/autodiff` is the one import most programs need.
 It re-exports `Dual`, the scalar drivers `diff` and `value_and_diff`, the
 algebraic traits from `luna-generic` and the arithmetic traits and error

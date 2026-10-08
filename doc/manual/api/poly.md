@@ -1,5 +1,7 @@
 # poly API
 
+## Purpose
+
 The `poly` package differentiates polynomials from
 [`Luna-Flow/luna-poly`](https://lunaflow.cn/en/luna-poly/) at a point by
 evaluating them over `Dual[T]`. It covers dense univariate polynomials and

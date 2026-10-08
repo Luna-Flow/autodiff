@@ -5,6 +5,14 @@ get values and slopes of dense and sparse polynomials, use a polynomial
 inside a larger differentiated expression, and run Newton's method on a
 polynomial. The mathematics is in the [poly design](../design/poly.md).
 
+| I want to | Use |
+| --- | --- |
+| get $p'(x)$ of a dense polynomial | `@poly.dense_derivative_at(p, x)` |
+| get $p(x)$ and $p'(x)$ together | `@poly.dense_value_and_derivative_at(p, x)` |
+| differentiate a sparse polynomial in one variable | `@poly.sparse_univariate_derivative_at(p, x)` |
+| differentiate a polynomial inside a larger dual computation | `@poly.eval_dual(p, y)` |
+| get the derivative polynomial itself | `DensePolynomial::derivative` from `luna-poly` |
+
 ## Quick start
 
 ```bash

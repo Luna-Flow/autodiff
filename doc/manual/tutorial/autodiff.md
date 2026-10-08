@@ -5,6 +5,14 @@ import `Luna-Flow/autodiff` you differentiate a function, write generic code
 against the re-exported traits, and handle checked failures. Each section
 links to the package tutorial that goes deeper.
 
+| I want to | Use |
+| --- | --- |
+| differentiate a function of one variable | `@autodiff.diff(f, x)` |
+| get the value and the derivative together | `@autodiff.value_and_diff(f, x)` |
+| write one function for plain and dual numbers | bounds such as `T : @autodiff.Ring + @autodiff.Trigonometric` |
+| use $\pi$ or $e$ in differentiated code | `@autodiff.Constants::pi()` |
+| get an error instead of NaN | `x.div_checked(y, ctx)`, `x.sqrt_checked(ctx)` |
+
 ## Quick start
 
 ```bash

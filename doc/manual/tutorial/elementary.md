@@ -17,7 +17,7 @@ the [elementary design](../design/elementary.md).
 ## Quick start
 
 ```bash
-moon add Luna-Flow/autodiff@0.2.0
+moon add Luna-Flow/autodiff@0.3.0
 ```
 
 ```moonbit nocheck
@@ -142,7 +142,7 @@ The derivative $1/\cos^2 a$ grows without bound towards $\pi/2$.
   NaN value but a finite tangent, so test the value.
 - **The trait instances need more than the method.** Calling
   `@elementary.Exponential::exp` on `Dual[T]` needs the full instance bound
-  (`Logarithmic` and `IntegralHomomorphism` on `T`); the method `x.exp()`
+  (`Logarithmic` and `FromInteger` on `T`); the method `x.exp()`
   needs less.
 - **No hyperbolic or inverse functions.** `sinh`, `asin`, `atan` and friends
   have no dual rule yet; compose them from the available functions if you

@@ -16,7 +16,7 @@ links to the package tutorial that goes deeper.
 ## Quick start
 
 ```bash
-moon add Luna-Flow/autodiff@0.2.0
+moon add Luna-Flow/autodiff@0.3.0
 ```
 
 ```moonbit nocheck
@@ -60,10 +60,10 @@ d/dx sin x cos x at 0 = 1
 All bounds come from the one import:
 
 ```moonbit
-fn[T : @autodiff.Ring + @autodiff.Exponential + @autodiff.IntegralHomomorphism] softplus_like(
+fn[T : @autodiff.Ring + @autodiff.Exponential + @autodiff.FromInteger] softplus_like(
   x : T,
 ) -> T {
-  let one : T = @autodiff.IntegralHomomorphism::from_integral(1)
+  let one : T = @autodiff.FromInteger::from_integer(1N)
   one + @autodiff.Exponential::exp(x)
 }
 
@@ -131,7 +131,7 @@ division by zero: true
   for `gradient` and `jacobian`.
 - **Re-exported traits are the original traits.** An instance you write for
   `@lg.Ring` is the instance of `@autodiff.Ring`; do not implement both.
-- **Literals need `Dual::constant`** or `from_integral` inside
+- **Literals need `Dual::constant`** or `FromInteger::from_integer` inside
   differentiated code.
 
 ## Next steps

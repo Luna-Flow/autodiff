@@ -53,7 +53,7 @@ yet, so they are not re-exported.
 
 A trait instance must provide all its methods. `Exponential` contains
 `exp2`, whose rule needs $\ln 2$, so the instance needs `Logarithmic` and
-`IntegralHomomorphism` on `T` even if a caller only uses `exp`. The inherent
+`FromInteger` on `T` even if a caller only uses `exp`. The inherent
 method `Dual::exp` has the smaller bound `Exponential + Mul` for that case.
 
 ### Constants have tangent zero

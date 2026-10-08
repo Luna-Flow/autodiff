@@ -82,8 +82,7 @@ $f$ and $f'$, as derived above; in particular `sqrt_checked` fails at $0$.
 At $a = 0$ with $b = 0$ the tangent is the indeterminate $0/0$. One could
 return $0$ (a constant input has no derivative to report), but that would
 make the result depend on how a constant was produced. The implementation
-lets `T` decide: for `Double` this is a domain error with `arithmetic` 0.5,
-and a division by zero with the pinned `arithmetic@0.2.1`.
+lets `T` decide: for `Double` this is a domain error.
 
 ### Reuse `arithmetic`
 
@@ -107,11 +106,7 @@ follow the unchecked semantics of `T`.
   both $a/c$ and $(bc - ad)/c^2$; then it equals `x / y` computed with the
   same operations.
 - `sqrt_checked(x)` succeeds exactly when `T`'s `sqrt_checked(a)` and
-  `div_checked(b, 2√a)` succeed; for `Double` with `arithmetic` 0.5 that is
-  $a > 0$, or $a$ NaN. With `arithmetic@0.2.1` it also succeeds, with NaN
-  components, for $a < 0$, because that release does not check the domain
-  of the square root (see
-  [versions of arithmetic](../api/checked.md#versions-of-arithmetic)).
+  `div_checked(b, 2√a)` succeed; for `Double` that is $a > 0$, or $a$ NaN.
 - The context is passed to `T` unchanged and never modified.
 
 ## Alternatives rejected

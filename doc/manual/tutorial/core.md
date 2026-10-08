@@ -9,14 +9,14 @@ constants inside generic code. The background is in the
 | I want to | Use |
 | --- | --- |
 | write ring-level generic code | `T : @ad_core.Ring` |
-| use an integer constant in generic code | `@ad_core.IntegralHomomorphism::from_integral(n)` |
+| use an integer constant in generic code | `@ad_core.FromInteger::from_integer(n)`, or `@lg.lift_to(n)` for an `Int` |
 | start a sum or a product | `@ad_core.Zero::zero()`, `@ad_core.One::one()` |
 | differentiate that code | call it on `@ad_core.Dual::variable(x)` |
 
 ## Quick start
 
 ```bash
-moon add Luna-Flow/autodiff@0.2.0
+moon add Luna-Flow/autodiff@0.3.0
 ```
 
 ```moonbit nocheck
@@ -49,12 +49,12 @@ value 8, derivative 6
 ### Integer constants in generic code
 
 Literals have a fixed type; inside a generic function, make constants with
-`IntegralHomomorphism::from_integral`:
+`FromInteger::from_integer`, which takes a `BigInt` literal such as `2N`:
 
 ```moonbit
-fn[T : @ad_core.Ring + @ad_core.IntegralHomomorphism] cubic(x : T) -> T {
-  let two : T = @ad_core.IntegralHomomorphism::from_integral(2)
-  let seven : T = @ad_core.IntegralHomomorphism::from_integral(7)
+fn[T : @ad_core.Ring + @ad_core.FromInteger] cubic(x : T) -> T {
+  let two : T = @ad_core.FromInteger::from_integer(2N)
+  let seven : T = @ad_core.FromInteger::from_integer(7N)
   two * x * x * x - seven
 }
 
@@ -68,7 +68,10 @@ fn main {
 value -0.25, derivative 13.5
 ```
 
-On `Dual[T]`, `from_integral` produces constants with tangent zero.
+On `Dual[T]`, `from_integer` produces constants with tangent zero. For an
+integer held in an `Int` (or another integral type), `@lg.lift_to(n)` from
+`Luna-Flow/luna-generic` converts it through the same map; the older
+`IntegralHomomorphism::from_integral` is deprecated.
 
 ### Identities
 

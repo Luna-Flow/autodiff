@@ -74,8 +74,9 @@ p'(a)\,b\,\varepsilon$ again.
 `Dual[T]`.
 
 **Choice.** Evaluate over `Dual[T]`. It returns $p(x)$ and $p'(x)$ from one
-pass, needs only `Semiring` (the formal derivative in `luna-poly` also needs
-`NatHomomorphism` to form $k\,c_k$), does not allocate a second polynomial
+pass, needs only `Semiring` (the formal derivative in `luna-poly` 0.2.0 also
+needs the deprecated `NatHomomorphism` to form $k\,c_k$, which `Dual[T]`
+keeps as a compatibility shim), does not allocate a second polynomial
 per derivative order, and composes with other dual computations through
 `eval_dual`. The formal derivative remains the right tool when the
 derivative polynomial itself is wanted; the test suite checks that the two

@@ -17,7 +17,7 @@ independent of any container or polynomial library.
 
 - MoonBit has no operator overloading for mixed types, so a literal cannot
   be added to a `Dual[T]`; every constant enters through
-  `Dual::constant` or a trait such as `IntegralHomomorphism`.
+  `Dual::constant` or a trait such as `FromInteger`.
 - Luna Flow traits are single-parameter traits on `Self`, so `Dual[T]` can
   only claim a structure for every `T` with a given bound, never for one
   particular `T`.
@@ -165,7 +165,7 @@ ask for the smallest trait set they use.
 
 **Choice.** `Dual[T]` is generic, and every method carries its own bound
 (`Dual::mul` needs only `Add + Mul`, `Dual::exp2` needs `Exponential +
-Logarithmic + IntegralHomomorphism + Mul`). This follows the Luna Flow rule
+Logarithmic + FromInteger + Mul`). This follows the Luna Flow rule
 of depending on the smallest trait composition. It also lets `T` itself be a
 dual number, which gives higher derivatives by nesting (see the
 [forward design](forward.md)).
@@ -245,8 +245,9 @@ constants $2$ and $10$ in `T`.
 **Options.** Require a conversion from `Double`; build them as `one + one`;
 use the canonical map from the integers.
 
-**Choice.** `IntegralHomomorphism::from_integral(2)` and `from_integral(10)`.
-The map $\mathbb Z \to T$ is the unique ring homomorphism, so it names the
+**Choice.** `lift_to(2)` and `lift_to(10)` from `luna-generic`, which pass
+the `Int` through `BigInt` to `FromInteger::from_integer`. The map
+$\mathbb Z \to T$ is the unique ring homomorphism, so it names the
 right constant in every ring, and small integers such as $2$ and $10$ are
 exact in every numeric instance. A `Double` conversion would not exist for
 exact types, and repeated addition costs more for $10$.
@@ -269,10 +270,21 @@ is undefined at exactly the same points as $\tan$ itself.
 
 With MoonBit 0.10, trait instances no longer create methods implicitly.
 [`src/dual/extends.mbt`](../../../src/dual/extends.mbt) promotes the
-arithmetic operators, `equal`, `zero`, `one` and `div_checked`, and keeps
-`not_equal`, `to_repr`, `from_nat`, `from_integral`, `pi`, `e` and `tau` as
-hidden deprecated forms for existing callers (see
-[Deprecated](../api/dual.md#deprecated)).
+arithmetic operators, `equal`, `zero`, `one`, `from_natural`,
+`from_integer` and `div_checked`, and keeps `not_equal`, `to_repr`,
+`from_nat`, `from_integral`, `pi`, `e` and `tau` as hidden deprecated forms
+for existing callers (see [Deprecated](../api/dual.md#deprecated)).
+
+### Compatibility shims for the deprecated homomorphism traits
+
+`luna-generic` 0.4.0 deprecates `NatHomomorphism` and
+`IntegralHomomorphism`: they compose a lift to ℕ or ℤ with the canonical
+map, which is not a homomorphism for fixed-width sources. `Dual[T]` now
+implements `FromNat` and `FromInteger`. The old instances stay in
+[`src/dual/compat.mbt`](../../../src/dual/compat.mbt), because `luna-poly`
+0.2.0 bounds `DensePolynomial::derivative` by `NatHomomorphism` and would
+otherwise reject dual coefficients. Each shim suppresses the deprecation
+warning locally, and all of them go once `luna-poly` moves to `FromNat`.
 
 ## Correctness and invariants
 
@@ -417,8 +429,9 @@ and needs twice the memory for its numbers.
 
 - `x.value()` of any result equals the same computation on values (the
   projection is a homomorphism).
-- Constants, `zero()`, `one()`, `from_integral`, `from_nat` and the
-  `Constants` instance have tangent zero.
+- Constants, `zero()`, `one()`, `from_natural`, `from_integer` (and the
+  deprecated `from_nat`, `from_integral`) and the `Constants` instance have
+  tangent zero.
 - Instances stop at `Ring`; no `Field`, `MulGroup`, `Inverse` or `Compare`.
 - The product rule assumes commutative multiplication of `T`, which every
   numeric instance in Luna Flow has.

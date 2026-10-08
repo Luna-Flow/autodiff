@@ -58,11 +58,9 @@ of this release.
 MoonBit `moonc` 0.10 or newer, with `moon.mod` / `moon.pkg` manifests. Tests
 run on `wasm-gc`, `wasm`, `js` and `native`.
 
-The checked operations return the errors of the scalar's own instances.
-`moon.mod` still pins `Luna-Flow/arithmetic@0.2.1`, whose `Double`
-`sqrt_checked` does not reject negative inputs; the manual describes the
-behaviour of `arithmetic` 0.5 and lists the differences in the
-[checked API](doc/manual/api/checked.md).
+The checked operations return the errors of the scalar's own instances; the
+[checked API](doc/manual/api/checked.md) lists them for `Double` from
+`Luna-Flow/arithmetic` 0.5.
 
 ## Documentation
 

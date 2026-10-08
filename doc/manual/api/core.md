@@ -45,7 +45,8 @@ it under the bound shown.
 | `MulMonoid` | `Mul + One` | `T : Semiring` |
 | `Semiring` | `AddMonoid + MulMonoid` | `T : Semiring` |
 | `Ring` | `Semiring + Neg + Sub` | `T : Ring` |
-| `IntegralHomomorphism` | `from_integral` from integral types | `T : IntegralHomomorphism + Zero` |
+| `FromNat` | `from_natural` from the natural numbers | `T : FromNat + Zero` |
+| `FromInteger` | `from_integer` from the integers | `T : FromInteger + Zero` |
 
 ```mbti
 pub using @luna-generic {trait Zero}
@@ -55,7 +56,8 @@ pub using @luna-generic {trait AddGroup}
 pub using @luna-generic {trait MulMonoid}
 pub using @luna-generic {trait Semiring}
 pub using @luna-generic {trait Ring}
-pub using @luna-generic {trait IntegralHomomorphism}
+pub using @luna-generic {trait FromInteger}
+pub using @luna-generic {trait FromNat}
 ```
 
 ### `Zero`
@@ -86,14 +88,20 @@ Both monoids with distributivity.
 
 A semiring with additive inverses.
 
-### `IntegralHomomorphism`
+### `FromNat`
 
-The canonical map from the integers, used for integer constants in generic
-code.
+The canonical map from the natural numbers, `from_natural(n)` for a `BigInt`
+$n \ge 0$.
+
+### `FromInteger`
+
+The canonical map from the integers, `from_integer(n)` for a `BigInt`, used
+for integer constants in generic code. It extends `FromNat`; `@lg.lift_to`
+from `Luna-Flow/luna-generic` converts other integral types through it.
 
 ```moonbit
-fn[T : @ad_core.Ring + @ad_core.IntegralHomomorphism] f(x : T) -> T {
-  let five : T = @ad_core.IntegralHomomorphism::from_integral(5)
+fn[T : @ad_core.Ring + @ad_core.FromInteger] f(x : T) -> T {
+  let five : T = @ad_core.FromInteger::from_integer(5N)
   x * x - five * x
 }
 

@@ -74,7 +74,8 @@ import. `Dual[T]` implements each of them when `T` does.
 | `MulMonoid` | `Mul + One` | instance on `Dual[T]` for `T : Semiring` |
 | `Semiring` | `AddMonoid + MulMonoid` | bound of every `poly` function |
 | `Ring` | `Semiring + Neg + Sub` | typical bound of generic differentiable code |
-| `IntegralHomomorphism` | `from_integral(n)`, the map from the integers | constants $2$ and $10$ in the elementary rules; integer literals in generic code |
+| `FromNat` | `from_natural(n)`, the map from the natural numbers | supertrait of `FromInteger` |
+| `FromInteger` | `from_integer(n)`, the map from the integers | constants $2$ and $10$ in the elementary rules; integer literals in generic code |
 
 ```mbti
 pub using @luna-generic {trait Zero}
@@ -84,7 +85,8 @@ pub using @luna-generic {trait AddGroup}
 pub using @luna-generic {trait MulMonoid}
 pub using @luna-generic {trait Semiring}
 pub using @luna-generic {trait Ring}
-pub using @luna-generic {trait IntegralHomomorphism}
+pub using @luna-generic {trait FromInteger}
+pub using @luna-generic {trait FromNat}
 ```
 
 ### `Zero`
@@ -115,14 +117,21 @@ Additive and multiplicative monoids with distributivity.
 
 A semiring with negation and subtraction.
 
-### `IntegralHomomorphism`
+### `FromNat`
 
-The canonical map from integral types; `from_integral(n)` on `Dual[T]` is
-`Dual::constant(from_integral(n))`.
+The canonical map from the natural numbers, taking a `BigInt`;
+`from_natural(n)` on `Dual[T]` is `Dual::constant(from_natural(n))`.
+
+### `FromInteger`
+
+The canonical map from the integers, taking a `BigInt`; `from_integer(n)` on
+`Dual[T]` is `Dual::constant(from_integer(n))`. It extends `FromNat`. To
+convert an `Int` or another integral value, use `@lg.lift_to` from
+`Luna-Flow/luna-generic`, which is not re-exported.
 
 ```moonbit
-fn[T : @autodiff.Ring + @autodiff.IntegralHomomorphism] poly3(x : T) -> T {
-  let two : T = @autodiff.IntegralHomomorphism::from_integral(2)
+fn[T : @autodiff.Ring + @autodiff.FromInteger] poly3(x : T) -> T {
+  let two : T = @autodiff.FromInteger::from_integer(2N)
   x * x * x - two * x
 }
 

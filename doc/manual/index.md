@@ -1,7 +1,7 @@
 # autodiff
 
 This manual documents the unreleased `main` branch of `Luna-Flow/autodiff`
-(version `0.2.0` in `moon.mod`) after its migration to MoonBit 0.10.
+(version `0.3.0` in `moon.mod`) after its migration to MoonBit 0.10.
 
 ## Overview
 
@@ -24,7 +24,7 @@ checked domains for division and square roots, gradients and Jacobians over
 ## Install
 
 ```bash
-moon add Luna-Flow/autodiff@0.2.0
+moon add Luna-Flow/autodiff@0.3.0
 ```
 
 Then import the root package in your `moon.pkg`:
@@ -40,15 +40,6 @@ for `linalg` and `moon add Luna-Flow/luna-poly` for `poly`. The code needs
 the MoonBit toolchain 0.10 or later (`moonc` ≥ 0.10) with `moon.mod` /
 `moon.pkg` manifests, and the test suite runs on the `wasm-gc`, `wasm`, `js`
 and `native` targets.
-
-> [!IMPORTANT]
-> The checked operations report the errors of `T`'s own `DivChecked` and
-> `SqrtChecked`. This manual describes `Double` as implemented by
-> `Luna-Flow/arithmetic` 0.5, the version the repository is developed
-> against. `moon.mod` still pins `arithmetic@0.2.1`, whose `Double`
-> `sqrt_checked` never fails (a negative input gives NaN) and whose
-> `div_checked` reports every zero divisor, including $0/0$, as a division
-> by zero. See the [checked API](api/checked.md#versions-of-arithmetic).
 
 ## Pages
 
@@ -80,7 +71,7 @@ a few lines; read [`src/examples/examples.mbt`](../../src/examples/examples.mbt)
 ### The number type
 
 - `Dual[T]` with `Dual::new`, `constant`, `variable`, `value`, `tangent`,
-  `zero` and `one`
+  `zero`, `one`, `from_natural` and `from_integer`
 - Arithmetic: `add`, `sub`, `neg`, `mul`, `div` and `equal`, also as
   operators
 - Elementary rules: `sqrt`, `exp`, `exp2`, `ln`, `log2`, `log10`, `sin`,
@@ -99,7 +90,7 @@ a few lines; read [`src/examples/examples.mbt`](../../src/examples/examples.mbt)
 ### Re-exported vocabulary
 
 - From `luna-generic`: `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`,
-  `Semiring`, `Ring`, `IntegralHomomorphism`
+  `Semiring`, `Ring`, `FromNat`, `FromInteger`
 - From `arithmetic`: `Sqrt`, `SqrtChecked`, `Exponential`, `Logarithmic`,
   `Trigonometric`, `Constants`, `DivChecked`, `ArithmeticContext`,
   `ArithmeticError`, `ArithmeticErrorKind`, `RoundingMode`

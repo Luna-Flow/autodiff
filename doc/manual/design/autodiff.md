@@ -25,7 +25,7 @@ needs the structure traits `Zero`, `One`, `AddMonoid`, `AddGroup`,
 `MulMonoid`, `Semiring` and `Ring`; the elementary rules
 $f(a + b\varepsilon) = f(a) + f'(a)\,b\,\varepsilon$ need `Sqrt`,
 `Exponential`, `Logarithmic` and `Trigonometric` on `T` and the canonical
-map $\mathbb Z \to T$ (`IntegralHomomorphism`); the checked rules need
+map $\mathbb Z \to T$ (`FromInteger`); the checked rules need
 `DivChecked`, `SqrtChecked` and the context and error values; and
 `Constants` provides $\pi$, $\tau$ and $e$ as dual constants.
 
@@ -52,11 +52,11 @@ The root package re-exports the traits that occur in the bounds of the
 public `Dual` methods and instances, plus the error and context types of the
 checked methods. It does not re-export `Field`, `MulGroup` or `Inverse`
 (which `Dual[T]` deliberately lacks), nor the contextual or enclosure traits
-of `arithmetic`, which `Dual[T]` does not implement. `NatHomomorphism` is
-the one trait with an instance on `Dual[T]` that is left out: it occurs only
-in the bound of its own instance, no method needs it, and generic code
-reaches the natural numbers through `IntegralHomomorphism`, which extends
-it.
+of `arithmetic`, which `Dual[T]` does not implement. `FromNat` occurs in no
+method bound, but it is re-exported because `FromInteger` extends it. The
+deprecated `NatHomomorphism` and `IntegralHomomorphism` are left out: their
+instances on `Dual[T]` are compatibility shims for `luna-poly` 0.2.0, and
+new code should not name them.
 
 ### Drivers but no bridges
 
@@ -88,5 +88,6 @@ every user of the root package depend on `linear-algebra` and `luna-poly`.
 - No behaviour of its own; everything is documented on the
   [dual](dual.md) and [forward](forward.md) pages.
 - No re-export of `linalg`, `poly` or their container types.
-- No re-export of `Field`, `MulGroup`, `Inverse`, `NatHomomorphism` or the
-  contextual arithmetic traits.
+- No re-export of `Field`, `MulGroup`, `Inverse`, the deprecated
+  `NatHomomorphism` / `IntegralHomomorphism` or the contextual arithmetic
+  traits.

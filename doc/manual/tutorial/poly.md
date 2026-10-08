@@ -16,7 +16,7 @@ polynomial. The mathematics is in the [poly design](../design/poly.md).
 ## Quick start
 
 ```bash
-moon add Luna-Flow/autodiff@0.2.0
+moon add Luna-Flow/autodiff@0.3.0
 moon add Luna-Flow/luna-poly
 ```
 

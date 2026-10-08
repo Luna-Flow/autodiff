@@ -37,7 +37,7 @@ msgstr "源码：[`src/alias.mbt`](../../../src/alias.mbt)。"
 #: manual/api/autodiff.md:14
 #: manual/api/checked.md:14
 #: manual/api/core.md:12
-#: manual/api/dual.md:14
+#: manual/api/dual.md:15
 #: manual/api/elementary.md:14
 #: manual/api/forward.md:13
 #: manual/api/linalg.md:14
@@ -78,14 +78,14 @@ msgid "These traits come from [luna-generic](https://lunaflow.cn/en/luna-generic
 msgstr "这些 trait 来自 [luna-generic](https://lunaflow.cn/en/luna-generic/)。重新导出它们是为了让泛型代码只需一次导入就能写出所需的约束。当 `T` 实现了其中某个 trait 时，`Dual[T]` 也会实现它。"
 
 #: manual/api/autodiff.md:68
-#: manual/api/autodiff.md:141
+#: manual/api/autodiff.md:150
 #: manual/api/core.md:39
 #: manual/api/elementary.md:34
 msgid "Trait"
 msgstr "Trait"
 
 #: manual/api/autodiff.md:68
-#: manual/api/dual.md:490
+#: manual/api/dual.md:520
 msgid "Meaning"
 msgstr "含义"
 
@@ -127,124 +127,136 @@ msgid "typical bound of generic differentiable code"
 msgstr "泛型可微代码的典型约束"
 
 #: manual/api/autodiff.md:77
-msgid "`from_integral(n)`, the map from the integers"
-msgstr "`from_integral(n)`，从整数出发的映射"
+msgid "`from_natural(n)`, the map from the natural numbers"
+msgstr "`from_natural(n)`，从自然数出发的映射"
 
 #: manual/api/autodiff.md:77
+msgid "supertrait of `FromInteger`"
+msgstr "`FromInteger` 的超 trait"
+
+#: manual/api/autodiff.md:78
+msgid "`from_integer(n)`, the map from the integers"
+msgstr "`from_integer(n)`，从整数出发的映射"
+
+#: manual/api/autodiff.md:78
 msgid "constants $2$ and $10$ in the elementary rules; integer literals in generic code"
 msgstr "初等函数规则中的常数 $2$ 和 $10$；泛型代码中的整数字面量"
 
-#: manual/api/autodiff.md:92
+#: manual/api/autodiff.md:94
 msgid "The additive identity; `Dual` implements it as $0 + 0\\varepsilon$."
 msgstr "加法单位元；`Dual` 将其实现为 $0 + 0\\varepsilon$。"
 
-#: manual/api/autodiff.md:96
+#: manual/api/autodiff.md:98
 msgid "The multiplicative identity; `Dual` implements it as $1 + 0\\varepsilon$."
 msgstr "乘法单位元；`Dual` 将其实现为 $1 + 0\\varepsilon$。"
 
-#: manual/api/autodiff.md:100
+#: manual/api/autodiff.md:102
 msgid "Addition with a zero. `Dual[T]` is an additive monoid when `T` is."
 msgstr "带零元的加法。当 `T` 是加法幺半群时，`Dual[T]` 也是。"
 
-#: manual/api/autodiff.md:104
+#: manual/api/autodiff.md:106
 msgid "An additive monoid with negation and subtraction."
 msgstr "带取负和减法的加法幺半群。"
 
-#: manual/api/autodiff.md:108
+#: manual/api/autodiff.md:110
 msgid "Multiplication with a one."
 msgstr "带单位元的乘法。"
 
-#: manual/api/autodiff.md:112
+#: manual/api/autodiff.md:114
 msgid "Additive and multiplicative monoids with distributivity."
 msgstr "满足分配律的加法幺半群与乘法幺半群。"
 
-#: manual/api/autodiff.md:116
+#: manual/api/autodiff.md:118
 msgid "A semiring with negation and subtraction."
 msgstr "带取负和减法的半环。"
 
-#: manual/api/autodiff.md:120
-msgid "The canonical map from integral types; `from_integral(n)` on `Dual[T]` is `Dual::constant(from_integral(n))`."
-msgstr "从整数类型出发的典范映射；`Dual[T]` 上的 `from_integral(n)` 即 `Dual::constant(from_integral(n))`。"
+#: manual/api/autodiff.md:122
+msgid "The canonical map from the natural numbers, taking a `BigInt`; `from_natural(n)` on `Dual[T]` is `Dual::constant(from_natural(n))`."
+msgstr "从自然数出发的典范映射，参数为 `BigInt`；`Dual[T]` 上的 `from_natural(n)` 即 `Dual::constant(from_natural(n))`。"
 
-#: manual/api/autodiff.md:135
+#: manual/api/autodiff.md:127
+msgid "The canonical map from the integers, taking a `BigInt`; `from_integer(n)` on `Dual[T]` is `Dual::constant(from_integer(n))`. It extends `FromNat`. To convert an `Int` or another integral value, use `@lg.lift_to` from `Luna-Flow/luna-generic`, which is not re-exported."
+msgstr "从整数出发的典范映射，参数为 `BigInt`；`Dual[T]` 上的 `from_integer(n)` 即 `Dual::constant(from_integer(n))`。它扩展了 `FromNat`。要转换 `Int` 或其他整数类型的值，请使用 `Luna-Flow/luna-generic` 中的 `@lg.lift_to`，根包不重新导出它。"
+
+#: manual/api/autodiff.md:144
 msgid "Arithmetic traits"
 msgstr "算术 trait"
 
-#: manual/api/autodiff.md:137
+#: manual/api/autodiff.md:146
 msgid "These traits come from [arithmetic](https://lunaflow.cn/en/arithmetic/). `Dual[T]` implements each of them under the bounds listed in the [dual API](dual.md#trait-instances)."
 msgstr "这些 trait 来自 [arithmetic](https://lunaflow.cn/en/arithmetic/)。`Dual[T]` 在 [dual API](dual.md#trait-instances) 所列的约束下实现其中每一个。"
 
-#: manual/api/autodiff.md:141
+#: manual/api/autodiff.md:150
 #: manual/api/elementary.md:34
 msgid "Methods"
 msgstr "方法"
 
-#: manual/api/autodiff.md:141
+#: manual/api/autodiff.md:150
 msgid "Dual rule"
 msgstr "对偶规则"
 
-#: manual/api/autodiff.md:147
+#: manual/api/autodiff.md:156
 msgid "constants, tangent zero"
 msgstr "常数，切向分量为零"
 
-#: manual/api/autodiff.md:148
+#: manual/api/autodiff.md:157
 msgid "quotient rule, both parts checked"
 msgstr "商法则，两个分量都带检查"
 
-#: manual/api/autodiff.md:149
+#: manual/api/autodiff.md:158
 msgid "square-root rule, both parts checked"
 msgstr "平方根法则，两个分量都带检查"
 
-#: manual/api/autodiff.md:163
+#: manual/api/autodiff.md:172
 #: manual/api/elementary.md:45
 msgid "Unchecked square root."
 msgstr "不带检查的平方根。"
 
-#: manual/api/autodiff.md:167
+#: manual/api/autodiff.md:176
 msgid "Square root returning `Result[Self, ArithmeticError]`."
 msgstr "返回 `Result[Self, ArithmeticError]` 的平方根。"
 
-#: manual/api/autodiff.md:171
+#: manual/api/autodiff.md:180
 msgid "`exp` and `exp2`."
 msgstr "`exp` 与 `exp2`。"
 
-#: manual/api/autodiff.md:175
+#: manual/api/autodiff.md:184
 msgid "`ln`, `log2` and `log10`."
 msgstr "`ln`、`log2` 与 `log10`。"
 
-#: manual/api/autodiff.md:179
+#: manual/api/autodiff.md:188
 msgid "`sin`, `cos` and `tan`."
 msgstr "`sin`、`cos` 与 `tan`。"
 
-#: manual/api/autodiff.md:183
+#: manual/api/autodiff.md:192
 msgid "$\\pi$, $\\tau = 2\\pi$ and $e$."
 msgstr "$\\pi$、$\\tau = 2\\pi$ 与 $e$。"
 
-#: manual/api/autodiff.md:187
+#: manual/api/autodiff.md:196
 msgid "Division returning `Result[Self, ArithmeticError]`."
 msgstr "返回 `Result[Self, ArithmeticError]` 的除法。"
 
-#: manual/api/autodiff.md:198
+#: manual/api/autodiff.md:207
 msgid "Arithmetic error types"
 msgstr "算术错误类型"
 
-#: manual/api/autodiff.md:200
+#: manual/api/autodiff.md:209
 msgid "The checked operations take an `ArithmeticContext` and return an `ArithmeticError`. Both are defined in `arithmetic`; the [checked API](checked.md) describes how `Dual[T]` uses them."
 msgstr "带检查的运算接受一个 `ArithmeticContext` 并返回 `ArithmeticError`。两者都定义在 `arithmetic` 中；[checked API](checked.md) 说明了 `Dual[T]` 如何使用它们。"
 
-#: manual/api/autodiff.md:213
+#: manual/api/autodiff.md:222
 msgid "The explicit numeric context: precision, `RoundingMode` and optional exponent range, built with `ArithmeticContext::new(precision)`. The `Double` and `Float` instances of the checked traits ignore it."
 msgstr "显式数值上下文：精度、`RoundingMode` 以及可选的指数范围，通过 `ArithmeticContext::new(precision)` 构建。带检查 trait 的 `Double` 与 `Float` 实例会忽略它。"
 
-#: manual/api/autodiff.md:219
+#: manual/api/autodiff.md:228
 msgid "A structured error with a `kind` and a `message`; test it with `is_division_by_zero()`, `is_domain_error()` and the other predicates."
 msgstr "带有 `kind` 和 `message` 的结构化错误；可以用 `is_division_by_zero()`、`is_domain_error()` 以及其他谓词进行判断。"
 
-#: manual/api/autodiff.md:224
+#: manual/api/autodiff.md:233
 msgid "The enumeration behind `ArithmeticError::kind`: `DivisionByZero`, `DomainError`, `ParseError`, `FormatError`, `UnsupportedOperation`, `UnorderedComparison` and `CertificationFailure`."
 msgstr "`ArithmeticError::kind` 背后的枚举：`DivisionByZero`、`DomainError`、`ParseError`、`FormatError`、`UnsupportedOperation`、`UnorderedComparison` 与 `CertificationFailure`。"
 
-#: manual/api/autodiff.md:230
+#: manual/api/autodiff.md:239
 msgid "The rounding direction of a context: `ToNearestEven`, `TowardZero`, `TowardPositive`, `TowardNegative` and `AwayFromZero`."
 msgstr "上下文的舍入方向：`ToNearestEven`、`TowardZero`、`TowardPositive`、`TowardNegative` 与 `AwayFromZero`。"
 
@@ -281,10 +293,10 @@ msgstr "返回 `Result[Self, ArithmeticError]` 的除法。"
 
 #: manual/api/checked.md:43
 msgid ""
-"On `Dual[T]` (for `T : DivChecked + Sub + Mul`) it computes $a/c$ and $(bc - ad)/c^2$ with `T`'s `div_checked` and returns the first error. For `Double` (with `arithmetic` 0.5) it fails with `is_division_by_zero()` when $c = 0 \\n"
+"On `Dual[T]` (for `T : DivChecked + Sub + Mul`) it computes $a/c$ and $(bc - ad)/c^2$ with `T`'s `div_checked` and returns the first error. For `Double` it fails with `is_division_by_zero()` when $c = 0 \\n"
 "e a$ and with `is_domain_error()` for $0/0$ and $\\infty/\\infty$."
 msgstr ""
-"在 `Dual[T]` 上（要求 `T : DivChecked + Sub + Mul`），它用 `T` 的 `div_checked` 计算 $a/c$ 与 $(bc - ad)/c^2$，并返回遇到的第一个错误。对于 `Double`（使用 `arithmetic` 0.5），当 $c = 0 \\n"
+"在 `Dual[T]` 上（要求 `T : DivChecked + Sub + Mul`），它用 `T` 的 `div_checked` 计算 $a/c$ 与 $(bc - ad)/c^2$，并返回遇到的第一个错误。对于 `Double`，当 $c = 0 \\n"
 "e a$ 时以 `is_division_by_zero()` 失败，对 $0/0$ 和 $\\infty/\\infty$ 则以 `is_domain_error()` 失败。"
 
 #: manual/api/checked.md:50
@@ -292,60 +304,36 @@ msgid "Square root that returns `Result[Self, ArithmeticError]`."
 msgstr "返回 `Result[Self, ArithmeticError]` 的平方根。"
 
 #: manual/api/checked.md:56
-msgid "On `Dual[T]` it computes $\\sqrt a$ with `T`'s `sqrt_checked` and the tangent $b/(2\\sqrt a)$ with `div_checked`. For `Double` (with `arithmetic` 0.5) it fails for $a < 0$ (domain error) and for $a = 0$ (division by zero, or $0/0$ when $b = 0$)."
-msgstr "在 `Dual[T]` 上，它用 `T` 的 `sqrt_checked` 计算 $\\sqrt a$，并用 `div_checked` 计算切向分量 $b/(2\\sqrt a)$。对于 `Double`（使用 `arithmetic` 0.5），当 $a < 0$ 时失败（定义域错误），当 $a = 0$ 时也失败（除以零；若 $b = 0$ 则为 $0/0$）。"
+msgid "On `Dual[T]` it computes $\\sqrt a$ with `T`'s `sqrt_checked` and the tangent $b/(2\\sqrt a)$ with `div_checked`. For `Double` it fails for $a < 0$ (domain error) and for $a = 0$ (division by zero, or $0/0$ when $b = 0$)."
+msgstr "在 `Dual[T]` 上，它用 `T` 的 `sqrt_checked` 计算 $\\sqrt a$，并用 `div_checked` 计算切向分量 $b/(2\\sqrt a)$。对于 `Double`，当 $a < 0$ 时失败（定义域错误），当 $a = 0$ 时也失败（除以零；若 $b = 0$ 则为 $0/0$）。"
 
-#: manual/api/checked.md:74
+#: manual/api/checked.md:73
 msgid "Context and errors"
 msgstr "上下文与错误"
 
-#: manual/api/checked.md:78
+#: manual/api/checked.md:77
 msgid "The explicit numeric context passed to every checked call."
 msgstr "传给每次带检查调用的显式数值上下文。"
 
-#: manual/api/checked.md:84
+#: manual/api/checked.md:83
 msgid "Build it with `ArithmeticContext::new(precision, rounding?, e_min?, e_max?, clamp?)`. `Dual[T]` passes it to `T` unchanged; the `Double` and `Float` instances ignore it."
 msgstr "用 `ArithmeticContext::new(precision, rounding?, e_min?, e_max?, clamp?)` 构建。`Dual[T]` 将其原样传给 `T`；`Double` 与 `Float` 实例会忽略它。"
 
-#: manual/api/checked.md:90
+#: manual/api/checked.md:89
 msgid "The rounding direction stored in a context."
 msgstr "存储在上下文中的舍入方向。"
 
-#: manual/api/checked.md:98
+#: manual/api/checked.md:97
 msgid "The structured error returned by checked operations: a `kind` and a human-readable `message`."
 msgstr "带检查运算返回的结构化错误：包含一个 `kind` 和一条人类可读的 `message`。"
 
-#: manual/api/checked.md:105
+#: manual/api/checked.md:104
 msgid "The predicates `is_division_by_zero()` and `is_domain_error()` cover every error that the checked `Dual` operations produce for `Double`."
 msgstr "谓词 `is_division_by_zero()` 与 `is_domain_error()` 覆盖了带检查的 `Dual` 运算对 `Double` 可能产生的所有错误。"
 
-#: manual/api/checked.md:110
+#: manual/api/checked.md:109
 msgid "The kind of an `ArithmeticError`."
 msgstr "`ArithmeticError` 的种类。"
-
-#: manual/api/checked.md:131
-msgid "Versions of `arithmetic`"
-msgstr "`arithmetic` 的版本"
-
-#: manual/api/checked.md:133
-msgid "The checked rules of `Dual[T]` only call `T`'s `div_checked` and `sqrt_checked`, so the errors depend on the `arithmetic` release that provides the `Double` instances. This manual and its examples follow `arithmetic` 0.5, which the repository is developed against in a workspace. `moon.mod` still pins `arithmetic@0.2.1`, where `Double` behaves differently:"
-msgstr "`Dual[T]` 的带检查规则只调用 `T` 的 `div_checked` 和 `sqrt_checked`，因此错误取决于提供 `Double` 实例的 `arithmetic` 版本。本手册及其示例以 `arithmetic` 0.5 为准，本仓库在工作区中正是基于该版本开发的。`moon.mod` 仍锁定 `arithmetic@0.2.1`，其中 `Double` 的行为有所不同："
-
-#: manual/api/checked.md:140
-msgid "Operation on `Double`"
-msgstr "`Double` 上的运算"
-
-#: manual/api/checked.md:146
-msgid "exists"
-msgstr "存在"
-
-#: manual/api/checked.md:146
-msgid "does not exist"
-msgstr "不存在"
-
-#: manual/api/checked.md:149
-msgid "[!WARNING] With `arithmetic@0.2.1`, `Dual::sqrt_checked` of a negative `Double` returns `Ok` with value and tangent NaN instead of an error. Check `value().is_nan()` until the pin is raised."
-msgstr "[!WARNING] 使用 `arithmetic@0.2.1` 时，对负的 `Double` 调用 `Dual::sqrt_checked` 会返回值与切向分量均为 NaN 的 `Ok`，而不是错误。在提高锁定版本之前，请检查 `value().is_nan()`。"
 
 #: manual/api/core.md:1
 msgid "core API"
@@ -384,40 +372,48 @@ msgid "`Dual[T]` instance when"
 msgstr "`Dual[T]` 具有实例的条件"
 
 #: manual/api/core.md:48
-msgid "`from_integral` from integral types"
-msgstr "从整数类型出发的 `from_integral`"
+msgid "`from_natural` from the natural numbers"
+msgstr "从自然数出发的 `from_natural`"
 
-#: manual/api/core.md:63
+#: manual/api/core.md:49
+msgid "`from_integer` from the integers"
+msgstr "从整数出发的 `from_integer`"
+
+#: manual/api/core.md:65
 msgid "Additive identity."
 msgstr "加法单位元。"
 
-#: manual/api/core.md:67
+#: manual/api/core.md:69
 msgid "Multiplicative identity."
 msgstr "乘法单位元。"
 
-#: manual/api/core.md:71
+#: manual/api/core.md:73
 msgid "Addition with an identity."
 msgstr "带单位元的加法。"
 
-#: manual/api/core.md:75
+#: manual/api/core.md:77
 msgid "Addition with negation and subtraction."
 msgstr "带取负和减法的加法。"
 
-#: manual/api/core.md:79
+#: manual/api/core.md:81
 msgid "Multiplication with an identity."
 msgstr "带单位元的乘法。"
 
-#: manual/api/core.md:83
+#: manual/api/core.md:85
 msgid "Both monoids with distributivity."
 msgstr "满足分配律的两个幺半群。"
 
-#: manual/api/core.md:87
+#: manual/api/core.md:89
 msgid "A semiring with additive inverses."
 msgstr "具有加法逆元的半环。"
 
-#: manual/api/core.md:91
-msgid "The canonical map from the integers, used for integer constants in generic code."
-msgstr "从整数出发的典范映射，用于泛型代码中的整数常量。"
+#: manual/api/core.md:93
+msgid "The canonical map from the natural numbers, `from_natural(n)` for a `BigInt` $n \\ge 0$."
+msgstr "从自然数出发的典范映射，即对 `BigInt` $n \\ge 0$ 的 `from_natural(n)`。"
+
+#: manual/api/core.md:98
+msgid "The canonical map from the integers, `from_integer(n)` for a `BigInt`, used for integer constants in generic code. It extends `FromNat`; `@lg.lift_to` from `Luna-Flow/luna-generic` converts other integral types through it."
+msgstr "从整数出发的典范映射，即对 `BigInt` 的 `from_integer(n)`，用于在泛型代码中构造整数常量。它扩展了 `FromNat`；`Luna-Flow/luna-generic` 中的 `@lg.lift_to` 通过它转换其他整数类型。"
 
 #: manual/api/dual.md:1
 msgid "dual API"
@@ -428,42 +424,42 @@ msgid "The `dual` package owns `Dual[T]`, the dual number $a + b\\varepsilon$ wi
 msgstr "`dual` 包拥有 `Dual[T]`，即满足 $\\varepsilon^2 = 0$ 的对偶数 $a + b\\varepsilon$，以及它的算术运算、Luna Flow trait 实例和初等函数的求导规则。本仓库的其他所有包都会重新导出或使用这个类型。这些规则背后的数学见 [dual 设计](../design/dual.md)。"
 
 #: manual/api/dual.md:11
-msgid "Source: [`src/dual/dual.mbt`](../../../src/dual/dual.mbt) and [`src/dual/extends.mbt`](../../../src/dual/extends.mbt)."
-msgstr "源码：[`src/dual/dual.mbt`](../../../src/dual/dual.mbt) 与 [`src/dual/extends.mbt`](../../../src/dual/extends.mbt)。"
+msgid "Source: [`src/dual/dual.mbt`](../../../src/dual/dual.mbt), [`src/dual/extends.mbt`](../../../src/dual/extends.mbt) and [`src/dual/compat.mbt`](../../../src/dual/compat.mbt)."
+msgstr "源码：[`src/dual/dual.mbt`](../../../src/dual/dual.mbt)、[`src/dual/extends.mbt`](../../../src/dual/extends.mbt) 与 [`src/dual/compat.mbt`](../../../src/dual/compat.mbt)。"
 
-#: manual/api/dual.md:22
+#: manual/api/dual.md:23
 msgid "Most programs import the root package `Luna-Flow/autodiff` instead, which re-exports `Dual` as `@autodiff.Dual` (see the [autodiff API](autodiff.md)). The examples on this page use the root alias."
 msgstr "大多数程序改为导入根包 `Luna-Flow/autodiff`，它将 `Dual` 重新导出为 `@autodiff.Dual`（见 [autodiff API](autodiff.md)）。本页示例使用根包别名。"
 
-#: manual/api/dual.md:26
+#: manual/api/dual.md:27
 msgid "The type"
 msgstr "类型"
 
-#: manual/api/dual.md:30
+#: manual/api/dual.md:31
 msgid "`Dual[T]` stores a primal value and a first-order tangent."
 msgstr "`Dual[T]` 存储一个原始值和一个一阶切向分量。"
 
-#: manual/api/dual.md:39
+#: manual/api/dual.md:40
 msgid "The pair `(value, tangent)` represents $a + b\\varepsilon$ with $a$ = `value` and $b$ = `tangent`. When a computation starts from `Dual::variable(x)`, the tangent of every intermediate result is the derivative of that intermediate with respect to `x`. The fields are read-only outside the package; build values with the constructors below."
 msgstr "二元组 `(value, tangent)` 表示 $a + b\\varepsilon$，其中 $a$ = `value`，$b$ = `tangent`。当计算从 `Dual::variable(x)` 开始时，每个中间结果的切向分量就是该中间量对 `x` 的导数。这些字段在包外是只读的；请用下面的构造函数构建值。"
 
-#: manual/api/dual.md:45
+#: manual/api/dual.md:46
 msgid "`derive(Eq)` compares both components, so two dual numbers with the same value and different tangents are not equal. `derive(Debug)` prints the record form `{ value: …, tangent: … }`, which `debug_inspect` and `assert_eq` use."
 msgstr "`derive(Eq)` 会比较两个分量，因此值相同而切向分量不同的两个对偶数并不相等。`derive(Debug)` 打印记录形式 `{ value: …, tangent: … }`，`debug_inspect` 和 `assert_eq` 都使用这种形式。"
 
-#: manual/api/dual.md:50
+#: manual/api/dual.md:51
 msgid "`Dual[T]` deliberately has no `Compare`, `Field`, `MulGroup`, `Inverse` or `Show` instance; see [Design decisions](../design/dual.md#design-decisions)."
 msgstr "`Dual[T]` 有意不提供 `Compare`、`Field`、`MulGroup`、`Inverse` 或 `Show` 实例；见[设计决策](../design/dual.md#design-decisions)。"
 
-#: manual/api/dual.md:53
+#: manual/api/dual.md:54
 msgid "Construction and access"
 msgstr "构造与访问"
 
-#: manual/api/dual.md:57
+#: manual/api/dual.md:58
 msgid "Builds $a + b\\varepsilon$ from an explicit value and tangent."
 msgstr "由显式给出的值和切向分量构建 $a + b\\varepsilon$。"
 
-#: manual/api/dual.md:63
+#: manual/api/dual.md:64
 msgid ""
 "Use it to seed a direction other than $1$, for example a directional derivative $\\n"
 "abla f(x) \\cdot v$ where each input coordinate gets the tangent $v_i$."
@@ -471,135 +467,151 @@ msgstr ""
 "用它来设定 $1$ 以外的种子方向，例如计算方向导数 $\\n"
 "abla f(x) \\cdot v$，此时每个输入坐标的切向分量取 $v_i$。"
 
-#: manual/api/dual.md:69
+#: manual/api/dual.md:70
 msgid "Embeds a value with tangent zero: $c \\mapsto c + 0\\varepsilon$."
 msgstr "以零切向分量嵌入一个值：$c \\mapsto c + 0\\varepsilon$。"
 
-#: manual/api/dual.md:75
+#: manual/api/dual.md:76
 msgid "Constants do not depend on the differentiation variable, so their derivative is $0$. Use it for every literal or captured value that enters a differentiated computation."
 msgstr "常数不依赖于求导变量，因此其导数为 $0$。凡是进入被求导计算的字面量或捕获值，都应使用它。"
 
-#: manual/api/dual.md:81
+#: manual/api/dual.md:82
 msgid "Embeds the differentiation variable with tangent one: $x \\mapsto x + 1\\varepsilon$."
 msgstr "以切向分量 1 嵌入求导变量：$x \\mapsto x + 1\\varepsilon$。"
 
-#: manual/api/dual.md:90
+#: manual/api/dual.md:91
 msgid "Returns the primal component $a$."
 msgstr "返回原始分量 $a$。"
 
-#: manual/api/dual.md:98
+#: manual/api/dual.md:99
 msgid "Returns the tangent component $b$."
 msgstr "返回切向分量 $b$。"
 
-#: manual/api/dual.md:118
+#: manual/api/dual.md:119
 msgid "Returns the additive identity $0 + 0\\varepsilon$."
 msgstr "返回加法单位元 $0 + 0\\varepsilon$。"
 
-#: manual/api/dual.md:125
+#: manual/api/dual.md:126
 msgid "This is the promoted method of the `Zero` instance."
 msgstr "这是 `Zero` 实例提升而来的方法。"
 
-#: manual/api/dual.md:129
+#: manual/api/dual.md:130
 msgid "Returns the multiplicative identity $1 + 0\\varepsilon$."
 msgstr "返回乘法单位元 $1 + 0\\varepsilon$。"
 
-#: manual/api/dual.md:136
+#: manual/api/dual.md:137
 msgid "`one` is a constant, so its tangent is zero; it is not `Dual::variable(1)`. This is the promoted method of the `One` instance."
 msgstr "`one` 是常数，所以其切向分量为零；它不是 `Dual::variable(1)`。这是 `One` 实例提升而来的方法。"
 
-#: manual/api/dual.md:139
+#: manual/api/dual.md:142
+msgid "Embeds a natural number, given as a `BigInt`, as a constant."
+msgstr "把以 `BigInt` 给出的自然数嵌入为常数。"
+
+#: manual/api/dual.md:149
+msgid "`from_natural(n)` is `Dual::constant(FromNat::from_natural(n))`. This is the promoted method of the `FromNat` instance."
+msgstr "`from_natural(n)` 即 `Dual::constant(FromNat::from_natural(n))`。这是 `FromNat` 实例提升出的方法。"
+
+#: manual/api/dual.md:154
+msgid "Embeds an integer, given as a `BigInt`, as a constant."
+msgstr "把以 `BigInt` 给出的整数嵌入为常数。"
+
+#: manual/api/dual.md:161
+msgid "`from_integer(n)` is `Dual::constant(FromInteger::from_integer(n))`, the canonical map $\\mathbb Z \\to T[\\varepsilon]$. This is the promoted method of the `FromInteger` instance. To convert an `Int` or another integral type, use `@lg.lift_to(n)` from `Luna-Flow/luna-generic`."
+msgstr "`from_integer(n)` 即 `Dual::constant(FromInteger::from_integer(n))`，也就是典范映射 $\\mathbb Z \\to T[\\varepsilon]$。这是 `FromInteger` 实例提升出的方法。要转换 `Int` 或其他整数类型，请使用 `Luna-Flow/luna-generic` 中的 `@lg.lift_to(n)`。"
+
+#: manual/api/dual.md:175
 msgid "Arithmetic"
 msgstr "算术运算"
 
-#: manual/api/dual.md:141
+#: manual/api/dual.md:177
 msgid "The four operators implement the sum, difference, product and quotient rules. They are available both as operators and as promoted methods."
 msgstr "这四个运算符实现了和、差、积、商的求导法则。它们既可以作为运算符使用，也可以作为提升方法使用。"
 
-#: manual/api/dual.md:144
-#: manual/api/dual.md:353
+#: manual/api/dual.md:180
+#: manual/api/dual.md:383
 msgid "Item"
 msgstr "条目"
 
-#: manual/api/dual.md:144
+#: manual/api/dual.md:180
 msgid "Operator"
 msgstr "运算符"
 
-#: manual/api/dual.md:144
+#: manual/api/dual.md:180
 msgid "Rule"
 msgstr "规则"
 
-#: manual/api/dual.md:144
-#: manual/api/dual.md:490
+#: manual/api/dual.md:180
+#: manual/api/dual.md:520
 msgid "Bound on `T`"
 msgstr "对 `T` 的约束"
 
-#: manual/api/dual.md:154
+#: manual/api/dual.md:190
 msgid "Adds componentwise."
 msgstr "逐分量相加。"
 
-#: manual/api/dual.md:163
+#: manual/api/dual.md:199
 msgid "Subtracts componentwise."
 msgstr "逐分量相减。"
 
-#: manual/api/dual.md:172
+#: manual/api/dual.md:208
 msgid "Negates both components."
 msgstr "对两个分量取负。"
 
-#: manual/api/dual.md:181
+#: manual/api/dual.md:217
 msgid "Multiplies with the product rule."
 msgstr "按乘积法则相乘。"
 
-#: manual/api/dual.md:188
+#: manual/api/dual.md:224
 msgid "The tangent is computed as `self.value * other.tangent + other.value * self.tangent`, that is $ad + cb$. This equals the product rule $ad + bc$ because the multiplication of every numeric `T` is commutative."
 msgstr "切向分量按 `self.value * other.tangent + other.value * self.tangent` 计算，即 $ad + cb$。由于所有数值类型 `T` 的乘法都满足交换律，它等于乘积法则 $ad + bc$。"
 
-#: manual/api/dual.md:194
+#: manual/api/dual.md:230
 msgid "Divides with the quotient rule, without any domain check."
 msgstr "按商法则相除，不做任何定义域检查。"
 
-#: manual/api/dual.md:201
+#: manual/api/dual.md:237
 msgid "The tangent is `(self.tangent * other.value - self.value * other.tangent) / (other.value * other.value)`. A zero divisor value gives whatever `T`'s division gives (for `Double`, an infinity or NaN). Use `Dual::div_checked` to get an error instead."
 msgstr "切向分量为 `(self.tangent * other.value - self.value * other.tangent) / (other.value * other.value)`。除数的值为零时，结果就是 `T` 的除法给出的结果（对于 `Double`，是无穷大或 NaN）。如果希望得到错误，请使用 `Dual::div_checked`。"
 
-#: manual/api/dual.md:206
+#: manual/api/dual.md:242
 msgid "Because the tangent divides by $c^2$ rather than by $c$ twice, it leaves the range of `Double` long before the quotient does; see the warning under `Dual::div_checked`, which applies to `/` as well."
 msgstr "由于切向分量除以的是 $c^2$，而不是两次除以 $c$，它会远早于商本身超出 `Double` 的范围；见 `Dual::div_checked` 下的警告，该警告同样适用于 `/`。"
 
-#: manual/api/dual.md:224
+#: manual/api/dual.md:260
 msgid "Tests both components for equality."
 msgstr "判断两个分量是否都相等。"
 
-#: manual/api/dual.md:230
+#: manual/api/dual.md:266
 msgid "This is the promoted method of the derived `Eq` instance; prefer `==`."
 msgstr "这是派生的 `Eq` 实例提升而来的方法；推荐使用 `==`。"
 
-#: manual/api/dual.md:232
+#: manual/api/dual.md:268
 msgid "Checked operations"
 msgstr "带检查的运算"
 
-#: manual/api/dual.md:234
+#: manual/api/dual.md:270
 msgid "The checked forms return `Result[Dual[T], ArithmeticError]` from [`Luna-Flow/arithmetic`](https://lunaflow.cn/en/arithmetic/) instead of producing infinities or NaN. The [checked API](checked.md) re-exports the types they use."
 msgstr "带检查的形式返回来自 [`Luna-Flow/arithmetic`](https://lunaflow.cn/en/arithmetic/) 的 `Result[Dual[T], ArithmeticError]`，而不会产生无穷大或 NaN。[checked API](checked.md) 重新导出了它们使用的类型。"
 
-#: manual/api/dual.md:241
+#: manual/api/dual.md:277
 msgid "Divides with the quotient rule and reports invalid divisions as errors."
 msgstr "按商法则相除，并将非法除法报告为错误。"
 
-#: manual/api/dual.md:248
-msgid "The value $a / c$ is computed first with `T`'s `div_checked`; the tangent $(bc - ad) / c^2$ is then computed with a second `div_checked` call. The first error is returned unchanged, so the errors are exactly those of `T`. For `Double` with `arithmetic` 0.5 they are:"
-msgstr "先用 `T` 的 `div_checked` 计算值 $a / c$，再用第二次 `div_checked` 调用计算切向分量 $(bc - ad) / c^2$。遇到的第一个错误会原样返回，因此错误恰好就是 `T` 的错误。对于使用 `arithmetic` 0.5 的 `Double`，错误如下："
+#: manual/api/dual.md:284
+msgid "The value $a / c$ is computed first with `T`'s `div_checked`; the tangent $(bc - ad) / c^2$ is then computed with a second `div_checked` call. The first error is returned unchanged, so the errors are exactly those of `T`. For `Double` they are:"
+msgstr "先用 `T` 的 `div_checked` 计算值 $a / c$，再用第二次 `div_checked` 调用计算切向分量 $(bc - ad) / c^2$。遇到的第一个错误会原样返回，因此错误恰好就是 `T` 的错误。对于 `Double`，错误如下："
 
-#: manual/api/dual.md:253
-#: manual/api/dual.md:317
+#: manual/api/dual.md:289
+#: manual/api/dual.md:349
 msgid "Condition"
 msgstr "条件"
 
-#: manual/api/dual.md:253
-#: manual/api/dual.md:317
+#: manual/api/dual.md:289
+#: manual/api/dual.md:349
 msgid "Error"
 msgstr "错误"
 
-#: manual/api/dual.md:255
+#: manual/api/dual.md:291
 msgid ""
 "$c = 0$ and $a \\n"
 "e 0$"
@@ -607,19 +619,19 @@ msgstr ""
 "$c = 0$ 且 $a \\n"
 "e 0$"
 
-#: manual/api/dual.md:256
+#: manual/api/dual.md:292
 msgid "$a = 0$ and $c = 0$"
 msgstr "$a = 0$ 且 $c = 0$"
 
-#: manual/api/dual.md:256
+#: manual/api/dual.md:292
 msgid "`is_domain_error()` (zero divided by zero)"
 msgstr "`is_domain_error()`（零除以零）"
 
-#: manual/api/dual.md:257
+#: manual/api/dual.md:293
 msgid "both $a$ and $c$ infinite"
 msgstr "$a$ 与 $c$ 均为无穷大"
 
-#: manual/api/dual.md:258
+#: manual/api/dual.md:294
 msgid ""
 "$c \\n"
 "e 0$ but $c \\cdot c$ underflows to $0$"
@@ -627,7 +639,7 @@ msgstr ""
 "$c \\n"
 "e 0$ 但 $c \\cdot c$ 下溢为 $0$"
 
-#: manual/api/dual.md:258
+#: manual/api/dual.md:294
 msgid ""
 "the tangent division fails: `is_division_by_zero()` when $bc - ad \\n"
 "e 0$, `is_domain_error()` when $bc - ad = 0$"
@@ -635,309 +647,330 @@ msgstr ""
 "切向分量的除法失败：$bc - ad \\n"
 "e 0$ 时为 `is_division_by_zero()`，$bc - ad = 0$ 时为 `is_domain_error()`"
 
-#: manual/api/dual.md:259
+#: manual/api/dual.md:295
 msgid "$c \\cdot c$ overflows to $\\infty$"
 msgstr "$c \\cdot c$ 上溢为 $\\infty$"
 
-#: manual/api/dual.md:259
+#: manual/api/dual.md:295
 msgid "no error; see the warning below"
 msgstr "不报错；见下面的警告"
 
-#: manual/api/dual.md:261
-msgid "With the `arithmetic@0.2.1` pinned in `moon.mod`, every zero divisor, including $0/0$, gives `is_division_by_zero()`, and $\\infty/\\infty$ gives NaN without an error (see [versions of arithmetic](checked.md#versions-of-arithmetic))."
-msgstr "使用 `moon.mod` 中锁定的 `arithmetic@0.2.1` 时，所有零除数（包括 $0/0$）都给出 `is_division_by_zero()`，而 $\\infty/\\infty$ 不报错，直接给出 NaN（见 [arithmetic 的版本](checked.md#versions-of-arithmetic)）。"
-
-#: manual/api/dual.md:265
+#: manual/api/dual.md:297
 msgid "The context argument is passed through to `T`; the `Double` and `Float` instances of `arithmetic` ignore it."
 msgstr "上下文参数会被传递给 `T`；`arithmetic` 的 `Double` 与 `Float` 实例会忽略它。"
 
-#: manual/api/dual.md:284
+#: manual/api/dual.md:316
 msgid "[!WARNING] The tangent divides by $c^2$, which leaves the range of `Double` long before $c$ itself does."
 msgstr "[!WARNING] 切向分量除以 $c^2$，它远早于 $c$ 本身离开 `Double` 的范围。"
 
-#: manual/api/dual.md:288
+#: manual/api/dual.md:320
 msgid "For $|c| < 2^{-537.5} \\approx 1.57\\times10^{-162}$ the square rounds to zero. `div_checked` then reports an error although $a / c$ is finite and the true tangent may be finite too: $(0 + 1\\varepsilon) / (10^{-170} + 0\\varepsilon)$ has tangent $10^{170}$ but fails with a division by zero, and a constant divided by a tiny constant fails with a domain error instead of returning tangent $0$. `/` returns an infinity or NaN."
 msgstr "当 $|c| < 2^{-537.5} \\approx 1.57\\times10^{-162}$ 时，平方被舍入为零。此时即使 $a / c$ 有限、真实的切向分量也可能有限，`div_checked` 仍会报错：$(0 + 1\\varepsilon) / (10^{-170} + 0\\varepsilon)$ 的切向分量是 $10^{170}$，却以除以零失败；而常数除以极小的常数会以定义域错误失败，而不是返回切向分量 $0$。`/` 则返回无穷大或 NaN。"
 
-#: manual/api/dual.md:294
+#: manual/api/dual.md:326
 msgid "Between that bound and $2^{-511} \\approx 1.5\\times10^{-154}$ the square is subnormal and loses relative precision."
 msgstr "在该界与 $2^{-511} \\approx 1.5\\times10^{-154}$ 之间，平方是次正规数，会损失相对精度。"
 
-#: manual/api/dual.md:296
+#: manual/api/dual.md:328
 msgid "For $|c| > 2^{512} \\approx 1.34\\times10^{154}$ the square overflows to $\\infty$, and both `/` and `div_checked` silently return the tangent $0$ when $bc - ad$ is finite: $(0 + 1\\varepsilon)/(10^{155} + 0\\varepsilon)$ gives tangent $0$ instead of $10^{-155}$."
 msgstr "当 $|c| > 2^{512} \\approx 1.34\\times10^{154}$ 时，平方上溢为 $\\infty$；只要 $bc - ad$ 有限，`/` 和 `div_checked` 都会悄无声息地返回切向分量 $0$：$(0 + 1\\varepsilon)/(10^{155} + 0\\varepsilon)$ 给出切向分量 $0$，而不是 $10^{-155}$。"
 
-#: manual/api/dual.md:301
+#: manual/api/dual.md:333
 msgid "Rescale such divisors before dividing."
 msgstr "请在相除之前对这类除数做缩放。"
 
-#: manual/api/dual.md:305
+#: manual/api/dual.md:337
 msgid "Takes the square root with the rule $\\sqrt{a + b\\varepsilon} = \\sqrt a + \\dfrac{b}{2\\sqrt a}\\varepsilon$ and reports domain errors."
 msgstr "按法则 $\\sqrt{a + b\\varepsilon} = \\sqrt a + \\dfrac{b}{2\\sqrt a}\\varepsilon$ 求平方根，并报告定义域错误。"
 
-#: manual/api/dual.md:313
-msgid "The value is `T`'s `sqrt_checked(a)`; the tangent is `div_checked(b, 2 * root)`, where `2` comes from `IntegralHomomorphism::from_integral(2)`. For `Double`:"
-msgstr "值为 `T` 的 `sqrt_checked(a)`；切向分量为 `div_checked(b, 2 * root)`，其中 `2` 来自 `IntegralHomomorphism::from_integral(2)`。对于 `Double`："
+#: manual/api/dual.md:345
+msgid "The value is `T`'s `sqrt_checked(a)`; the tangent is `div_checked(b, 2 * root)`, where `2` comes from `lift_to(2)` (the `FromInteger` map). For `Double`:"
+msgstr "值为 `T` 的 `sqrt_checked(a)`；切向分量为 `div_checked(b, 2 * root)`，其中 `2` 来自 `lift_to(2)`（即 `FromInteger` 映射）。对于 `Double`："
 
-#: manual/api/dual.md:319
+#: manual/api/dual.md:351
 msgid "`is_domain_error()` from the square root"
 msgstr "来自平方根的 `is_domain_error()`"
 
-#: manual/api/dual.md:320
+#: manual/api/dual.md:352
 msgid "`is_division_by_zero()` from the tangent"
 msgstr "来自切向分量的 `is_division_by_zero()`"
 
-#: manual/api/dual.md:321
+#: manual/api/dual.md:353
 msgid "`is_domain_error()` (zero divided by zero) from the tangent"
 msgstr "来自切向分量的 `is_domain_error()`（零除以零）"
 
-#: manual/api/dual.md:323
-msgid "So `sqrt_checked` fails at $a = 0$ even for a constant input: $\\sqrt{\\cdot}$ has no derivative at $0$, and the checked form does not special-case a zero tangent. With the pinned `arithmetic@0.2.1`, `Double`'s `sqrt_checked` does not reject $a < 0$: the result is `Ok` with value and tangent NaN, and $a = 0$ always gives `is_division_by_zero()`."
-msgstr "因此即使输入是常数，`sqrt_checked` 在 $a = 0$ 处也会失败：$\\sqrt{\\cdot}$ 在 $0$ 处没有导数，而带检查的形式不会对零切向分量做特殊处理。使用锁定的 `arithmetic@0.2.1` 时，`Double` 的 `sqrt_checked` 不会拒绝 $a < 0$：结果是值与切向分量均为 NaN 的 `Ok`，而 $a = 0$ 总是给出 `is_division_by_zero()`。"
+#: manual/api/dual.md:355
+msgid "So `sqrt_checked` fails at $a = 0$ even for a constant input: $\\sqrt{\\cdot}$ has no derivative at $0$, and the checked form does not special-case a zero tangent."
+msgstr "因此即使输入是常数，`sqrt_checked` 在 $a = 0$ 处也会失败：$\\sqrt{\\cdot}$ 在 $0$ 处没有导数，而带检查的形式不会对零切向分量做特殊处理。"
 
-#: manual/api/dual.md:343
+#: manual/api/dual.md:373
 msgid "Elementary functions"
 msgstr "初等函数"
 
-#: manual/api/dual.md:345
+#: manual/api/dual.md:375
 msgid "Each elementary function is an inherent method and also the method of the matching `arithmetic` trait instance, so generic code written against `Sqrt`, `Exponential`, `Logarithmic` or `Trigonometric` differentiates through `Dual[T]` unchanged. All of them apply the rule $f(a + b\\varepsilon) = f(a) + f'(a)\\,b\\,\\varepsilon$ with the derivative below. None of them checks its domain: outside it the result is whatever `T` returns (for `Double`, NaN or an infinity)."
 msgstr "每个初等函数既是固有方法，也是对应 `arithmetic` trait 实例的方法，因此针对 `Sqrt`、`Exponential`、`Logarithmic` 或 `Trigonometric` 编写的泛型代码无需修改即可通过 `Dual[T]` 求导。它们都使用下表中的导数，应用法则 $f(a + b\\varepsilon) = f(a) + f'(a)\\,b\\,\\varepsilon$。它们都不检查定义域：超出定义域时，结果就是 `T` 返回的结果（对于 `Double`，是 NaN 或无穷大）。"
 
-#: manual/api/dual.md:353
-#: manual/api/dual.md:370
+#: manual/api/dual.md:383
+#: manual/api/dual.md:400
 msgid "Value"
 msgstr "值"
 
-#: manual/api/dual.md:353
+#: manual/api/dual.md:383
 #: manual/design/dual.md:134
 msgid "Tangent as computed"
 msgstr "切向分量的实际计算方式"
 
-#: manual/api/dual.md:353
+#: manual/api/dual.md:383
 msgid "Derivative"
 msgstr "导数"
 
-#: manual/api/dual.md:365
-msgid "The constants $2$ and $10$ come from `IntegralHomomorphism::from_integral`."
-msgstr "常数 $2$ 和 $10$ 来自 `IntegralHomomorphism::from_integral`。"
+#: manual/api/dual.md:395
+msgid "The constants $2$ and $10$ come from `lift_to`, that is, from `FromInteger`."
+msgstr "常数 $2$ 和 $10$ 来自 `lift_to`，也就是来自 `FromInteger`。"
 
-#: manual/api/dual.md:367
+#: manual/api/dual.md:397
 msgid "Outside the domain the two components do not fail together, because the tangent formula is evaluated as written:"
 msgstr "在定义域之外，两个分量并不会同时失败，因为切向分量的公式是照原样计算的："
 
-#: manual/api/dual.md:370
+#: manual/api/dual.md:400
 msgid "Input (`Double`)"
 msgstr "输入（`Double`）"
 
-#: manual/api/dual.md:370
+#: manual/api/dual.md:400
 msgid "Tangent"
 msgstr "切向分量"
 
-#: manual/api/dual.md:372
+#: manual/api/dual.md:402
 msgid "`ln`, `log2`, `log10` at $a < 0$"
 msgstr "$a < 0$ 处的 `ln`、`log2`、`log10`"
 
-#: manual/api/dual.md:372
-#: manual/api/dual.md:375
+#: manual/api/dual.md:402
+#: manual/api/dual.md:405
 msgid "NaN"
 msgstr "NaN"
 
-#: manual/api/dual.md:372
+#: manual/api/dual.md:402
 msgid "$b/a$ scaled, finite: the derivative of $\\ln\\lvert a\\rvert$"
 msgstr "按比例缩放的 $b/a$，有限：$\\ln\\lvert a\\rvert$ 的导数"
 
-#: manual/api/dual.md:373
+#: manual/api/dual.md:403
 msgid "`ln` at $a = 0$"
 msgstr "$a = 0$ 处的 `ln`"
 
-#: manual/api/dual.md:373
-#: manual/api/dual.md:374
+#: manual/api/dual.md:403
+#: manual/api/dual.md:404
 msgid "$b/0$: $\\pm\\infty$, or NaN when $b = 0$"
 msgstr "$b/0$：$\\pm\\infty$；当 $b = 0$ 时为 NaN"
 
-#: manual/api/dual.md:374
+#: manual/api/dual.md:404
 msgid "`sqrt` at $a = 0$"
 msgstr "$a = 0$ 处的 `sqrt`"
 
-#: manual/api/dual.md:375
+#: manual/api/dual.md:405
 msgid "`sqrt` at $a < 0$"
 msgstr "$a < 0$ 处的 `sqrt`"
 
-#: manual/api/dual.md:377
+#: manual/api/dual.md:407
 msgid "So a constant input (tangent $0$) at $a = 0$ produces a NaN tangent for `sqrt` and `ln`, although a constant has derivative $0$. Test the value, not only the tangent, when an input can leave the domain."
 msgstr "因此，常数输入（切向分量为 $0$）在 $a = 0$ 处会让 `sqrt` 和 `ln` 产生 NaN 切向分量，尽管常数的导数是 $0$。当输入可能离开定义域时，请检查值，而不只是切向分量。"
 
-#: manual/api/dual.md:393
+#: manual/api/dual.md:423
 msgid "Square root with the tangent $b / (2\\sqrt a)$."
 msgstr "平方根，切向分量为 $b / (2\\sqrt a)$。"
 
-#: manual/api/dual.md:402
+#: manual/api/dual.md:432
 msgid "Exponential with the tangent $b\\,e^a$; the value is computed once and reused."
 msgstr "指数函数，切向分量为 $b\\,e^a$；值只计算一次并被复用。"
 
-#: manual/api/dual.md:410
+#: manual/api/dual.md:440
 msgid "Base-2 exponential with the tangent $b \\cdot 2^a \\ln 2$."
 msgstr "以 2 为底的指数函数，切向分量为 $b \\cdot 2^a \\ln 2$。"
 
-#: manual/api/dual.md:417
+#: manual/api/dual.md:447
 msgid "The `Exponential` instance provides both `exp` and `exp2`, so it needs the bounds of `exp2`."
 msgstr "`Exponential` 实例同时提供 `exp` 和 `exp2`，因此需要 `exp2` 的约束。"
 
-#: manual/api/dual.md:422
+#: manual/api/dual.md:452
 msgid "Natural logarithm with the tangent $b / a$."
 msgstr "自然对数，切向分量为 $b / a$。"
 
-#: manual/api/dual.md:430
+#: manual/api/dual.md:460
 msgid "Base-2 logarithm with the tangent $b / (a \\ln 2)$."
 msgstr "以 2 为底的对数，切向分量为 $b / (a \\ln 2)$。"
 
-#: manual/api/dual.md:438
+#: manual/api/dual.md:468
 msgid "Base-10 logarithm with the tangent $b / (a \\ln 10)$."
 msgstr "以 10 为底的对数，切向分量为 $b / (a \\ln 10)$。"
 
-#: manual/api/dual.md:445
+#: manual/api/dual.md:475
 msgid "The `Logarithmic` instance provides `ln`, `log2` and `log10`."
 msgstr "`Logarithmic` 实例提供 `ln`、`log2` 和 `log10`。"
 
-#: manual/api/dual.md:449
+#: manual/api/dual.md:479
 msgid "Sine with the tangent $b \\cos a$."
 msgstr "正弦，切向分量为 $b \\cos a$。"
 
-#: manual/api/dual.md:457
+#: manual/api/dual.md:487
 msgid "Cosine with the tangent $-b \\sin a$."
 msgstr "余弦，切向分量为 $-b \\sin a$。"
 
-#: manual/api/dual.md:465
+#: manual/api/dual.md:495
 msgid "Tangent with the derivative $\\sec^2 a$, computed as $b / (\\cos a \\cdot \\cos a)$."
 msgstr "正切，导数为 $\\sec^2 a$，按 $b / (\\cos a \\cdot \\cos a)$ 计算。"
 
-#: manual/api/dual.md:472
+#: manual/api/dual.md:502
 msgid "The `Trigonometric` instance provides `sin`, `cos` and `tan`."
 msgstr "`Trigonometric` 实例提供 `sin`、`cos` 和 `tan`。"
 
-#: manual/api/dual.md:484
+#: manual/api/dual.md:514
 msgid "Trait instances"
 msgstr "Trait 实例"
 
-#: manual/api/dual.md:486
+#: manual/api/dual.md:516
 msgid "`Dual[T]` implements the Luna Flow structure traits that the algebra $T[\\varepsilon]/(\\varepsilon^2)$ satisfies, each under the matching bound on `T`. The laws are derived in the [dual design](../design/dual.md)."
 msgstr "`Dual[T]` 实现了代数 $T[\\varepsilon]/(\\varepsilon^2)$ 所满足的 Luna Flow 结构 trait，每个都要求 `T` 满足相应的约束。这些定律的推导见 [dual 设计](../design/dual.md)。"
 
-#: manual/api/dual.md:490
+#: manual/api/dual.md:520
 msgid "Instance"
 msgstr "实例"
 
-#: manual/api/dual.md:492
+#: manual/api/dual.md:522
 msgid "`zero()` is $0 + 0\\varepsilon$"
 msgstr "`zero()` 为 $0 + 0\\varepsilon$"
 
-#: manual/api/dual.md:493
+#: manual/api/dual.md:523
 msgid "`one()` is $1 + 0\\varepsilon$"
 msgstr "`one()` 为 $1 + 0\\varepsilon$"
 
-#: manual/api/dual.md:494
+#: manual/api/dual.md:524
 msgid "componentwise addition"
 msgstr "逐分量加法"
 
-#: manual/api/dual.md:495
+#: manual/api/dual.md:525
 msgid "componentwise negation"
 msgstr "逐分量取负"
 
-#: manual/api/dual.md:496
+#: manual/api/dual.md:526
 msgid "product rule multiplication"
 msgstr "按乘积法则的乘法"
 
-#: manual/api/dual.md:497
+#: manual/api/dual.md:527
 msgid "$T[\\varepsilon]$ is a semiring when `T` is"
 msgstr "当 `T` 是半环时 $T[\\varepsilon]$ 是半环"
 
-#: manual/api/dual.md:498
+#: manual/api/dual.md:528
 msgid "$T[\\varepsilon]$ is a ring when `T` is"
 msgstr "当 `T` 是环时 $T[\\varepsilon]$ 是环"
 
-#: manual/api/dual.md:499
-msgid "`from_nat(n)` is `Dual::constant(from_nat(n))`"
-msgstr "`from_nat(n)` 即 `Dual::constant(from_nat(n))`"
+#: manual/api/dual.md:529
+msgid "`from_natural(n)` is `Dual::constant(from_natural(n))`"
+msgstr "`from_natural(n)` 即 `Dual::constant(from_natural(n))`"
 
-#: manual/api/dual.md:500
-msgid "`from_integral(n)` is `Dual::constant(from_integral(n))`"
-msgstr "`from_integral(n)` 即 `Dual::constant(from_integral(n))`"
+#: manual/api/dual.md:530
+msgid "`from_integer(n)` is `Dual::constant(from_integer(n))`"
+msgstr "`from_integer(n)` 即 `Dual::constant(from_integer(n))`"
 
-#: manual/api/dual.md:501
+#: manual/api/dual.md:531
+#: manual/api/dual.md:580
+msgid "`NatHomomorphism`, `IntegralHomomorphism` (deprecated)"
+msgstr "`NatHomomorphism`、`IntegralHomomorphism`（已弃用）"
+
+#: manual/api/dual.md:531
+msgid "the same trait `+ Zero`"
+msgstr "同一 trait `+ Zero`"
+
+#: manual/api/dual.md:531
+msgid "compatibility shims, see below"
+msgstr "兼容层，见下文"
+
+#: manual/api/dual.md:532
 msgid "`pi()`, `tau()`, `e()` are constants"
 msgstr "`pi()`、`tau()`、`e()` 都是常数"
 
-#: manual/api/dual.md:502
+#: manual/api/dual.md:533
 msgid "see `Dual::div_checked`"
 msgstr "见 `Dual::div_checked`"
 
-#: manual/api/dual.md:503
+#: manual/api/dual.md:534
 msgid "see `Dual::sqrt_checked`"
 msgstr "见 `Dual::sqrt_checked`"
 
-#: manual/api/dual.md:504
+#: manual/api/dual.md:535
 msgid "see each method"
 msgstr "见各个方法"
 
-#: manual/api/dual.md:504
+#: manual/api/dual.md:535
 msgid "see [Elementary functions](#elementary-functions)"
 msgstr "见[初等函数](#elementary-functions)"
 
-#: manual/api/dual.md:506
+#: manual/api/dual.md:537
 msgid "The integer and natural-number embeddings and the constants produce tangent zero, because they do not depend on the differentiation variable."
 msgstr "整数与自然数的嵌入以及常数的切向分量都为零，因为它们不依赖于求导变量。"
 
-#: manual/api/dual.md:511
+#: manual/api/dual.md:542
 msgid "Componentwise addition, negation and subtraction make $T \\times T$ an additive monoid or group whenever `T` is one."
 msgstr "逐分量的加法、取负和减法使得只要 `T` 是加法幺半群或加法群，$T \\times T$ 也是。"
 
-#: manual/api/dual.md:521
+#: manual/api/dual.md:552
 msgid "Multiplication by the product rule, with unit $1 + 0\\varepsilon$, makes `Dual[T]` the ring $T[\\varepsilon]/(\\varepsilon^2)$."
 msgstr "以乘积法则做乘法、以 $1 + 0\\varepsilon$ 为单位元，使 `Dual[T]` 成为环 $T[\\varepsilon]/(\\varepsilon^2)$。"
 
-#: manual/api/dual.md:530
+#: manual/api/dual.md:561
 msgid "`MulMonoid` needs `T : Semiring`, not only `T : MulMonoid`, because the tangent $ad + bc$ uses the addition of `T`. Associativity and distributivity hold because the multiplication of `T` is commutative; the [dual design](../design/dual.md#ring-level-instances-only) checks the laws."
 msgstr "`MulMonoid` 需要 `T : Semiring`，而不仅是 `T : MulMonoid`，因为切向分量 $ad + bc$ 用到了 `T` 的加法。结合律和分配律成立，是因为 `T` 的乘法可交换；[dual 设计](../design/dual.md#ring-level-instances-only) 验证了这些定律。"
 
-#: manual/api/dual.md:537
+#: manual/api/dual.md:568
 msgid "The canonical maps from the natural numbers and the integers land on constants."
 msgstr "从自然数和整数出发的典范映射都落在常数上。"
 
-#: manual/api/dual.md:545
-msgid "`from_integral(n)` is `Dual::constant(from_integral(n))`, so integer literals in generic code have tangent zero."
-msgstr "`from_integral(n)` 就是 `Dual::constant(from_integral(n))`，因此泛型代码中的整数字面量切向分量为零。"
+#: manual/api/dual.md:576
+msgid "`from_integer(n)` is `Dual::constant(from_integer(n))`, so integer literals in generic code, written `FromInteger::from_integer(3N)` or `@lg.lift_to(3)`, have tangent zero."
+msgstr "`from_integer(n)` 就是 `Dual::constant(from_integer(n))`，因此泛型代码中的整数字面量（写作 `FromInteger::from_integer(3N)` 或 `@lg.lift_to(3)`）切向分量为零。"
 
-#: manual/api/dual.md:550
+#: manual/api/dual.md:582
+msgid "Compatibility shims for the traits that `luna-generic` 0.4.0 deprecates."
+msgstr "为 `luna-generic` 0.4.0 弃用的 trait 保留的兼容层。"
+
+#: manual/api/dual.md:589
+msgid "They exist because `luna-poly` 0.2.0 still requires `NatHomomorphism` in `DensePolynomial::derivative`; with them, a `DensePolynomial[Dual[T]]` keeps its formal derivative. Both produce constants, like `FromNat` and `FromInteger`. They will be removed once `luna-poly` moves to `FromNat`, so new code should not depend on them."
+msgstr "保留它们是因为 `luna-poly` 0.2.0 的 `DensePolynomial::derivative` 仍要求 `NatHomomorphism`；有了它们，`DensePolynomial[Dual[T]]` 仍能求形式导数。两者与 `FromNat`、`FromInteger` 一样产生常数。`luna-poly` 迁移到 `FromNat` 后它们将被删除，因此新代码不应依赖它们。"
+
+#: manual/api/dual.md:597
 msgid "$\\pi$, $\\tau$ and $e$ as constants."
 msgstr "作为常数的 $\\pi$、$\\tau$ 和 $e$。"
 
-#: manual/api/dual.md:556
+#: manual/api/dual.md:603
 msgid "The instances of `Sqrt`, `Exponential`, `Logarithmic`, `Trigonometric`, `DivChecked` and `SqrtChecked` are listed with their methods above."
 msgstr "`Sqrt`、`Exponential`、`Logarithmic`、`Trigonometric`、`DivChecked` 和 `SqrtChecked` 的实例已在上文随各自的方法列出。"
 
-#: manual/api/dual.md:571
+#: manual/api/dual.md:618
 msgid "Deprecated"
 msgstr "已弃用"
 
-#: manual/api/dual.md:573
+#: manual/api/dual.md:620
 msgid "`Dual` keeps a few method forms that MoonBit used to create implicitly from trait instances. They are hidden from the interface file and warn when used outside this package."
 msgstr "`Dual` 保留了几个方法形式，它们过去由 MoonBit 根据 trait 实例隐式生成。这些方法不会出现在接口文件中，在本包之外使用时会产生警告。"
 
-#: manual/api/dual.md:577
+#: manual/api/dual.md:624
 msgid "Deprecated method"
 msgstr "已弃用的方法"
 
-#: manual/api/dual.md:577
+#: manual/api/dual.md:624
 msgid "Replacement"
 msgstr "替代方式"
 
-#: manual/api/dual.md:580
+#: manual/api/dual.md:627
 msgid "`Repr(x)` or `@debug.Debug::to_repr(x)`"
 msgstr "`Repr(x)` 或 `@debug.Debug::to_repr(x)`"
 
-#: manual/api/dual.md:581
-msgid "`NatHomomorphism::from_nat(n)` from `Luna-Flow/luna-generic`"
-msgstr "来自 `Luna-Flow/luna-generic` 的 `NatHomomorphism::from_nat(n)`"
+#: manual/api/dual.md:628
+msgid "`@lg.lift_to(n)`, or `Dual::from_natural(n)` for a `BigInt`"
+msgstr "`@lg.lift_to(n)`；对 `BigInt` 可用 `Dual::from_natural(n)`"
+
+#: manual/api/dual.md:629
+msgid "`@lg.lift_to(n)`, or `Dual::from_integer(n)` for a `BigInt`"
+msgstr "`@lg.lift_to(n)`；对 `BigInt` 可用 `Dual::from_integer(n)`"
 
 #: manual/api/elementary.md:1
 msgid "elementary API"
@@ -972,12 +1005,12 @@ msgid "Square root returning `Result[Self, ArithmeticError]`; see the [checked A
 msgstr "返回 `Result[Self, ArithmeticError]` 的平方根；见 [checked API](checked.md#sqrtchecked)。"
 
 #: manual/api/elementary.md:62
-msgid "`exp` and `exp2`. The `Dual[T]` instance needs `T : Exponential + Logarithmic + IntegralHomomorphism + Mul`, because `exp2` uses $\\ln 2$."
-msgstr "`exp` 与 `exp2`。`Dual[T]` 实例要求 `T : Exponential + Logarithmic + IntegralHomomorphism + Mul`，因为 `exp2` 用到了 $\\ln 2$。"
+msgid "`exp` and `exp2`. The `Dual[T]` instance needs `T : Exponential + Logarithmic + FromInteger + Mul`, because `exp2` uses $\\ln 2$."
+msgstr "`exp` 与 `exp2`。`Dual[T]` 实例要求 `T : Exponential + Logarithmic + FromInteger + Mul`，因为 `exp2` 用到了 $\\ln 2$。"
 
 #: manual/api/elementary.md:71
-msgid "`ln`, `log2` and `log10`. The `Dual[T]` instance needs `T : Logarithmic + IntegralHomomorphism + Mul + Div`."
-msgstr "`ln`、`log2` 与 `log10`。`Dual[T]` 实例要求 `T : Logarithmic + IntegralHomomorphism + Mul + Div`。"
+msgid "`ln`, `log2` and `log10`. The `Dual[T]` instance needs `T : Logarithmic + FromInteger + Mul + Div`."
+msgstr "`ln`、`log2` 与 `log10`。`Dual[T]` 实例要求 `T : Logarithmic + FromInteger + Mul + Div`。"
 
 #: manual/api/elementary.md:80
 msgid "`sin`, `cos` and `tan`. The `Dual[T]` instance needs `T : Trigonometric + Mul + Neg + Div`."
@@ -1000,7 +1033,7 @@ msgid "Source: [`src/forward/forward.mbt`](../../../src/forward/forward.mbt)."
 msgstr "源码：[`src/forward/forward.mbt`](../../../src/forward/forward.mbt)。"
 
 #: manual/api/forward.md:21
-#: manual/index.md:90
+#: manual/index.md:81
 msgid "Drivers"
 msgstr "驱动函数"
 
@@ -1214,7 +1247,7 @@ msgid "Returns $p'(x)$ for a sparse polynomial in one variable."
 msgstr "对单变量稀疏多项式返回 $p'(x)$。"
 
 #: manual/api/poly.md:132
-#: manual/design/poly.md:105
+#: manual/design/poly.md:106
 msgid "Compatibility names"
 msgstr "兼容名称"
 
@@ -1449,8 +1482,8 @@ msgid "Mathematical background"
 msgstr "数学背景"
 
 #: manual/design/autodiff.md:22
-msgid "The root package adds no mathematics. Its content is the vocabulary of the [dual design](dual.md): the commutative ring $T[\\varepsilon]/(\\varepsilon^2)$ needs the structure traits `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring` and `Ring`; the elementary rules $f(a + b\\varepsilon) = f(a) + f'(a)\\,b\\,\\varepsilon$ need `Sqrt`, `Exponential`, `Logarithmic` and `Trigonometric` on `T` and the canonical map $\\mathbb Z \\to T$ (`IntegralHomomorphism`); the checked rules need `DivChecked`, `SqrtChecked` and the context and error values; and `Constants` provides $\\pi$, $\\tau$ and $e$ as dual constants."
-msgstr "根包没有引入任何数学内容。它的内容就是 [dual 设计](dual.md) 的词汇表：交换环 $T[\\varepsilon]/(\\varepsilon^2)$ 需要结构 trait `Zero`、`One`、`AddMonoid`、`AddGroup`、`MulMonoid`、`Semiring` 和 `Ring`；初等函数规则 $f(a + b\\varepsilon) = f(a) + f'(a)\\,b\\,\\varepsilon$ 需要 `T` 上的 `Sqrt`、`Exponential`、`Logarithmic` 和 `Trigonometric`，以及典范映射 $\\mathbb Z \\to T$（`IntegralHomomorphism`）；带检查的规则需要 `DivChecked`、`SqrtChecked` 以及上下文和错误值；`Constants` 则以对偶常数的形式提供 $\\pi$、$\\tau$ 和 $e$。"
+msgid "The root package adds no mathematics. Its content is the vocabulary of the [dual design](dual.md): the commutative ring $T[\\varepsilon]/(\\varepsilon^2)$ needs the structure traits `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring` and `Ring`; the elementary rules $f(a + b\\varepsilon) = f(a) + f'(a)\\,b\\,\\varepsilon$ need `Sqrt`, `Exponential`, `Logarithmic` and `Trigonometric` on `T` and the canonical map $\\mathbb Z \\to T$ (`FromInteger`); the checked rules need `DivChecked`, `SqrtChecked` and the context and error values; and `Constants` provides $\\pi$, $\\tau$ and $e$ as dual constants."
+msgstr "根包没有引入任何数学内容。它的内容就是 [dual 设计](dual.md) 的词汇表：交换环 $T[\\varepsilon]/(\\varepsilon^2)$ 需要结构 trait `Zero`、`One`、`AddMonoid`、`AddGroup`、`MulMonoid`、`Semiring` 和 `Ring`；初等函数规则 $f(a + b\\varepsilon) = f(a) + f'(a)\\,b\\,\\varepsilon$ 需要 `T` 上的 `Sqrt`、`Exponential`、`Logarithmic` 和 `Trigonometric`，以及典范映射 $\\mathbb Z \\to T$（`FromInteger`）；带检查的规则需要 `DivChecked`、`SqrtChecked` 以及上下文和错误值；`Constants` 则以对偶常数的形式提供 $\\pi$、$\\tau$ 和 $e$。"
 
 #: manual/design/autodiff.md:32
 #: manual/design/checked.md:68
@@ -1484,8 +1517,8 @@ msgid "Exactly the bounds of `Dual[T]`"
 msgstr "恰好覆盖 `Dual[T]` 的约束"
 
 #: manual/design/autodiff.md:51
-msgid "The root package re-exports the traits that occur in the bounds of the public `Dual` methods and instances, plus the error and context types of the checked methods. It does not re-export `Field`, `MulGroup` or `Inverse` (which `Dual[T]` deliberately lacks), nor the contextual or enclosure traits of `arithmetic`, which `Dual[T]` does not implement. `NatHomomorphism` is the one trait with an instance on `Dual[T]` that is left out: it occurs only in the bound of its own instance, no method needs it, and generic code reaches the natural numbers through `IntegralHomomorphism`, which extends it."
-msgstr "根包重新导出出现在公开 `Dual` 方法和实例约束中的 trait，以及带检查方法所用的错误与上下文类型。它不重新导出 `Field`、`MulGroup` 或 `Inverse`（`Dual[T]` 有意不实现它们），也不重新导出 `arithmetic` 中 `Dual[T]` 没有实现的上下文相关 trait 或区间包络 trait。`NatHomomorphism` 是唯一一个在 `Dual[T]` 上有实例却被排除在外的 trait：它只出现在自身实例的约束中，没有任何方法需要它，而泛型代码可以通过扩展了它的 `IntegralHomomorphism` 得到自然数。"
+msgid "The root package re-exports the traits that occur in the bounds of the public `Dual` methods and instances, plus the error and context types of the checked methods. It does not re-export `Field`, `MulGroup` or `Inverse` (which `Dual[T]` deliberately lacks), nor the contextual or enclosure traits of `arithmetic`, which `Dual[T]` does not implement. `FromNat` occurs in no method bound, but it is re-exported because `FromInteger` extends it. The deprecated `NatHomomorphism` and `IntegralHomomorphism` are left out: their instances on `Dual[T]` are compatibility shims for `luna-poly` 0.2.0, and new code should not name them."
+msgstr "根包重新导出出现在公开 `Dual` 方法和实例约束中的 trait，以及带检查方法所用的错误与上下文类型。它不重新导出 `Field`、`MulGroup` 或 `Inverse`（`Dual[T]` 有意不实现它们），也不重新导出 `arithmetic` 中 `Dual[T]` 没有实现的上下文相关 trait 或区间包络 trait。`FromNat` 不出现在任何方法约束中，但因为 `FromInteger` 扩展了它，所以也被重新导出。已弃用的 `NatHomomorphism` 和 `IntegralHomomorphism` 不重新导出：它们在 `Dual[T]` 上的实例只是为 `luna-poly` 0.2.0 保留的兼容层，新代码不应使用这些名字。"
 
 #: manual/design/autodiff.md:61
 msgid "Drivers but no bridges"
@@ -1496,13 +1529,13 @@ msgid "`diff` and `value_and_diff` are re-exported because they only need `dual`
 msgstr "`diff` 和 `value_and_diff` 被重新导出，因为它们只需要 `dual`。`linalg` 和 `poly` 的驱动函数则没有，因为重新导出它们会让根包的每个用户都依赖 `linear-algebra` 和 `luna-poly`。"
 
 #: manual/design/autodiff.md:67
-#: manual/design/checked.md:104
+#: manual/design/checked.md:103
 #: manual/design/core.md:74
-#: manual/design/dual.md:277
+#: manual/design/dual.md:289
 #: manual/design/elementary.md:66
 #: manual/design/forward.md:130
 #: manual/design/linalg.md:139
-#: manual/design/poly.md:113
+#: manual/design/poly.md:114
 msgid "Correctness and invariants"
 msgstr "正确性与不变量"
 
@@ -1519,13 +1552,13 @@ msgid "The root package depends on `dual`, `forward`, `luna-generic` and `arithm
 msgstr "根包只依赖 `dual`、`forward`、`luna-generic` 和 `arithmetic`。"
 
 #: manual/design/autodiff.md:78
-#: manual/design/checked.md:117
+#: manual/design/checked.md:112
 #: manual/design/core.md:82
-#: manual/design/dual.md:426
+#: manual/design/dual.md:439
 #: manual/design/elementary.md:78
 #: manual/design/forward.md:141
 #: manual/design/linalg.md:153
-#: manual/design/poly.md:168
+#: manual/design/poly.md:169
 msgid "Alternatives rejected"
 msgstr "被否决的方案"
 
@@ -1538,13 +1571,13 @@ msgid "**Moving the implementation to the root package.** It would force the hea
 msgstr "**把实现移到根包。** 这要么会把重量级的桥接与轻量的核心强行塞进同一个包，要么会与它们形成依赖循环。"
 
 #: manual/design/autodiff.md:86
-#: manual/design/checked.md:125
+#: manual/design/checked.md:120
 #: manual/design/core.md:89
-#: manual/design/dual.md:440
+#: manual/design/dual.md:453
 #: manual/design/elementary.md:87
 #: manual/design/forward.md:150
 #: manual/design/linalg.md:164
-#: manual/design/poly.md:179
+#: manual/design/poly.md:180
 msgid "Boundaries"
 msgstr "边界"
 
@@ -1557,8 +1590,8 @@ msgid "No re-export of `linalg`, `poly` or their container types."
 msgstr "不重新导出 `linalg`、`poly` 或它们的容器类型。"
 
 #: manual/design/autodiff.md:91
-msgid "No re-export of `Field`, `MulGroup`, `Inverse`, `NatHomomorphism` or the contextual arithmetic traits."
-msgstr "不重新导出 `Field`、`MulGroup`、`Inverse`、`NatHomomorphism` 或上下文相关的算术 trait。"
+msgid "No re-export of `Field`, `MulGroup`, `Inverse`, the deprecated `NatHomomorphism` / `IntegralHomomorphism` or the contextual arithmetic traits."
+msgstr "不重新导出 `Field`、`MulGroup`、`Inverse`、已弃用的 `NatHomomorphism` / `IntegralHomomorphism`，也不重新导出上下文相关的算术 trait。"
 
 #: manual/design/checked.md:1
 msgid "checked design"
@@ -1635,58 +1668,58 @@ msgid "No special case for a zero tangent"
 msgstr "不对零切向分量做特殊处理"
 
 #: manual/design/checked.md:82
-msgid "At $a = 0$ with $b = 0$ the tangent is the indeterminate $0/0$. One could return $0$ (a constant input has no derivative to report), but that would make the result depend on how a constant was produced. The implementation lets `T` decide: for `Double` this is a domain error with `arithmetic` 0.5, and a division by zero with the pinned `arithmetic@0.2.1`."
-msgstr "当 $a = 0$ 且 $b = 0$ 时，切向分量是不定式 $0/0$。可以返回 $0$（常数输入没有需要报告的导数），但那样会让结果取决于常数是如何产生的。实现交由 `T` 决定：对于 `Double`，使用 `arithmetic` 0.5 时这是定义域错误，使用锁定的 `arithmetic@0.2.1` 时则是除以零。"
+msgid "At $a = 0$ with $b = 0$ the tangent is the indeterminate $0/0$. One could return $0$ (a constant input has no derivative to report), but that would make the result depend on how a constant was produced. The implementation lets `T` decide: for `Double` this is a domain error."
+msgstr "当 $a = 0$ 且 $b = 0$ 时，切向分量是不定式 $0/0$。可以返回 $0$（常数输入没有需要报告的导数），但那样会让结果取决于常数是如何产生的。实现交由 `T` 决定：对于 `Double`，这是定义域错误。"
 
-#: manual/design/checked.md:88
+#: manual/design/checked.md:87
 msgid "Reuse `arithmetic`"
 msgstr "复用 `arithmetic`"
 
-#: manual/design/checked.md:90
+#: manual/design/checked.md:89
 msgid "`Dual[T]` implements `DivChecked` and `SqrtChecked` from `arithmetic`, and this facade re-exports exactly those traits with `ArithmeticContext`, `ArithmeticError`, `ArithmeticErrorKind` and `RoundingMode`. Generic checked code therefore runs on `Double` and on `Dual[Double]` without adaptation, and errors from both levels have one type."
 msgstr "`Dual[T]` 实现了 `arithmetic` 中的 `DivChecked` 和 `SqrtChecked`，本门面包恰好重新导出这两个 trait，以及 `ArithmeticContext`、`ArithmeticError`、`ArithmeticErrorKind` 和 `RoundingMode`。因此泛型的带检查代码无需改动即可在 `Double` 和 `Dual[Double]` 上运行，两个层次的错误也是同一类型。"
 
-#: manual/design/checked.md:96
+#: manual/design/checked.md:95
 msgid "Only division and square root"
 msgstr "只有除法和平方根"
 
-#: manual/design/checked.md:98
+#: manual/design/checked.md:97
 msgid "`arithmetic` defines checked traits for division, square root, comparison, parsing and integer powers. Of these, only division and square root are operations on $T[\\varepsilon]$ with a derivative rule in this repository, so only they have checked dual forms. Logarithms and trigonometric functions follow the unchecked semantics of `T`."
 msgstr "`arithmetic` 为除法、平方根、比较、解析和整数幂定义了带检查的 trait。其中只有除法和平方根是本仓库中具有求导规则的 $T[\\varepsilon]$ 运算，因此只有它们具有带检查的对偶形式。对数和三角函数沿用 `T` 不带检查的语义。"
 
-#: manual/design/checked.md:106
+#: manual/design/checked.md:105
 msgid "`div_checked(x, y)` succeeds exactly when `T`'s `div_checked` succeeds for both $a/c$ and $(bc - ad)/c^2$; then it equals `x / y` computed with the same operations."
 msgstr "`div_checked(x, y)` 恰好在 `T` 的 `div_checked` 对 $a/c$ 和 $(bc - ad)/c^2$ 都成功时成功；此时它等于用相同运算计算出的 `x / y`。"
 
-#: manual/design/checked.md:109
-msgid "`sqrt_checked(x)` succeeds exactly when `T`'s `sqrt_checked(a)` and `div_checked(b, 2√a)` succeed; for `Double` with `arithmetic` 0.5 that is $a > 0$, or $a$ NaN. With `arithmetic@0.2.1` it also succeeds, with NaN components, for $a < 0$, because that release does not check the domain of the square root (see [versions of arithmetic](../api/checked.md#versions-of-arithmetic))."
-msgstr "`sqrt_checked(x)` 成功，当且仅当 `T` 的 `sqrt_checked(a)` 和 `div_checked(b, 2√a)` 都成功；对于使用 `arithmetic` 0.5 的 `Double`，即 $a > 0$ 或 $a$ 为 NaN。使用 `arithmetic@0.2.1` 时，对于 $a < 0$ 它也会成功并给出 NaN 分量，因为该版本不检查平方根的定义域（见 [arithmetic 的版本](../api/checked.md#versions-of-arithmetic)）。"
+#: manual/design/checked.md:108
+msgid "`sqrt_checked(x)` succeeds exactly when `T`'s `sqrt_checked(a)` and `div_checked(b, 2√a)` succeed; for `Double` that is $a > 0$, or $a$ NaN."
+msgstr "`sqrt_checked(x)` 恰好在 `T` 的 `sqrt_checked(a)` 和 `div_checked(b, 2√a)` 都成功时成功；对于 `Double`，即 $a > 0$ 或 $a$ 为 NaN。"
 
-#: manual/design/checked.md:115
+#: manual/design/checked.md:110
 msgid "The context is passed to `T` unchanged and never modified."
 msgstr "上下文被原样传给 `T`，且从不被修改。"
 
-#: manual/design/checked.md:119
+#: manual/design/checked.md:114
 msgid "**A dedicated autodiff error type.** It would duplicate `ArithmeticError` and force conversions at every boundary."
 msgstr "**专门的 autodiff 错误类型。** 它会与 `ArithmeticError` 重复，并迫使每个边界处都进行转换。"
 
-#: manual/design/checked.md:121
+#: manual/design/checked.md:116
 msgid "**`Option` results.** They lose the reason for the failure."
 msgstr "**`Option` 结果。** 它会丢失失败的原因。"
 
-#: manual/design/checked.md:122
+#: manual/design/checked.md:117
 msgid "**Checking only the value.** It would return infinite or NaN derivatives from a \"checked\" operation."
 msgstr "**只检查值。** 这会让\"带检查的\"运算返回无穷大或 NaN 的导数。"
 
-#: manual/design/checked.md:127
+#: manual/design/checked.md:122
 msgid "No checked logarithm, exponential or trigonometric operations."
 msgstr "没有带检查的对数、指数或三角运算。"
 
-#: manual/design/checked.md:128
+#: manual/design/checked.md:123
 msgid "No contextual (`ArithmeticOutcome`) operations and no rounding diagnostics."
 msgstr "没有上下文相关（`ArithmeticOutcome`）的运算，也没有舍入诊断。"
 
-#: manual/design/checked.md:130
+#: manual/design/checked.md:125
 msgid "No automatic rescaling of tiny divisors."
 msgstr "不会自动重新缩放极小的除数。"
 
@@ -1715,8 +1748,8 @@ msgid "Many differentiable programs are polynomial: they use only $+$, $-$, $\\t
 msgstr "许多可微程序都是多项式形式的：它们只用到 $+$、$-$、$\\times$ 和整数常量。对于这类程序，[dual 设计](dual.md#polynomials-where-derivatives-come-from) 中的恒等式"
 
 #: manual/design/core.md:29
-msgid "holds in every commutative ring, so the traits `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring`, `Ring` and the canonical map $\\mathbb Z \\to T$ (`IntegralHomomorphism`) are all such code needs. The facade re-exports exactly these. In `luna-generic` each trait extends the ones before it,"
-msgstr "在任何交换环中都成立，因此这类代码所需要的就是 trait `Zero`、`One`、`AddMonoid`、`AddGroup`、`MulMonoid`、`Semiring`、`Ring` 以及典范映射 $\\mathbb Z \\to T$（`IntegralHomomorphism`）。门面包恰好重新导出这些。在 `luna-generic` 中，每个 trait 都扩展了它前面的 trait："
+msgid "holds in every commutative ring, so the traits `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring`, `Ring` and the canonical map $\\mathbb Z \\to T$ (`FromInteger`, with its supertrait `FromNat`) are all such code needs. The facade re-exports exactly these. In `luna-generic` each trait extends the ones before it,"
+msgstr "在任何交换环中都成立，因此这类代码所需要的就是 trait `Zero`、`One`、`AddMonoid`、`AddGroup`、`MulMonoid`、`Semiring`、`Ring` 以及典范映射 $\\mathbb Z \\to T$（`FromInteger` 及其超 trait `FromNat`）。门面包恰好重新导出这些。在 `luna-generic` 中，每个 trait 都扩展了它前面的 trait："
 
 #: manual/design/core.md:44
 msgid "so the classes of structures shrink as the traits grow: every ring is a semiring and an additive group, and every semiring and every additive group is an additive monoid,"
@@ -1771,8 +1804,8 @@ msgid "No analytic traits, no checked operations, no drivers."
 msgstr "没有解析 trait，没有带检查的运算，也没有驱动函数。"
 
 #: manual/design/core.md:92
-msgid "No `Field`, `MulGroup`, `Inverse` or `NatHomomorphism`."
-msgstr "没有 `Field`、`MulGroup`、`Inverse` 或 `NatHomomorphism`。"
+msgid "No `Field`, `MulGroup` or `Inverse`, and none of the `NatHomomorphism` / `IntegralHomomorphism` traits that `luna-generic` 0.4.0 deprecates."
+msgstr "没有 `Field`、`MulGroup` 或 `Inverse`，也没有 `luna-generic` 0.4.0 弃用的 `NatHomomorphism` / `IntegralHomomorphism`。"
 
 #: manual/design/dual.md:1
 msgid "dual design"
@@ -1787,8 +1820,8 @@ msgid "Compute exact first derivatives of ordinary programs, written against the
 msgstr "通过在另一种数值类型上运行同一个程序，计算针对 Luna Flow trait 编写的普通程序的精确一阶导数。该类型必须满足其实例所声明的代数定律，通过共享的 `arithmetic` 错误值报告定义域错误，并且不依赖任何容器库或多项式库。"
 
 #: manual/design/dual.md:18
-msgid "MoonBit has no operator overloading for mixed types, so a literal cannot be added to a `Dual[T]`; every constant enters through `Dual::constant` or a trait such as `IntegralHomomorphism`."
-msgstr "MoonBit 没有针对混合类型的运算符重载，因此字面量不能直接与 `Dual[T]` 相加；每个常数都要通过 `Dual::constant` 或 `IntegralHomomorphism` 之类的 trait 进入计算。"
+msgid "MoonBit has no operator overloading for mixed types, so a literal cannot be added to a `Dual[T]`; every constant enters through `Dual::constant` or a trait such as `FromInteger`."
+msgstr "MoonBit 没有针对混合类型的运算符重载，因此字面量不能直接与 `Dual[T]` 相加；每个常数都要通过 `Dual::constant` 或 `FromInteger` 之类的 trait 进入计算。"
 
 #: manual/design/dual.md:21
 msgid "Luna Flow traits are single-parameter traits on `Self`, so `Dual[T]` can only claim a structure for every `T` with a given bound, never for one particular `T`."
@@ -1903,8 +1936,8 @@ msgid "**Options.** A `Double`-only dual type; a generic `Dual[T]` whose operati
 msgstr "**选项。** 只支持 `Double` 的对偶类型；或者泛型的 `Dual[T]`，其每个运算只要求它用到的最小 trait 集合。"
 
 #: manual/design/dual.md:166
-msgid "**Choice.** `Dual[T]` is generic, and every method carries its own bound (`Dual::mul` needs only `Add + Mul`, `Dual::exp2` needs `Exponential + Logarithmic + IntegralHomomorphism + Mul`). This follows the Luna Flow rule of depending on the smallest trait composition. It also lets `T` itself be a dual number, which gives higher derivatives by nesting (see the [forward design](forward.md))."
-msgstr "**选择。** `Dual[T]` 是泛型的，每个方法都带有自己的约束（`Dual::mul` 只需要 `Add + Mul`，`Dual::exp2` 需要 `Exponential + Logarithmic + IntegralHomomorphism + Mul`）。这遵循了 Luna Flow 依赖最小 trait 组合的规则。它还允许 `T` 本身就是对偶数，从而通过嵌套得到高阶导数（见 [forward 设计](forward.md)）。"
+msgid "**Choice.** `Dual[T]` is generic, and every method carries its own bound (`Dual::mul` needs only `Add + Mul`, `Dual::exp2` needs `Exponential + Logarithmic + FromInteger + Mul`). This follows the Luna Flow rule of depending on the smallest trait composition. It also lets `T` itself be a dual number, which gives higher derivatives by nesting (see the [forward design](forward.md))."
+msgstr "**选择。** `Dual[T]` 是泛型的，每个方法都带有自己的约束（`Dual::mul` 只需要 `Add + Mul`，`Dual::exp2` 需要 `Exponential + Logarithmic + FromInteger + Mul`）。这遵循了 Luna Flow 依赖最小 trait 组合的规则。它还允许 `T` 本身就是对偶数，从而通过嵌套得到高阶导数（见 [forward 设计](forward.md)）。"
 
 #: manual/design/dual.md:173
 msgid "Ring-level instances only"
@@ -1983,42 +2016,50 @@ msgid "**Options.** Require a conversion from `Double`; build them as `one + one
 msgstr "**选项。** 要求提供从 `Double` 的转换；以 `one + one` 构造；使用从整数出发的典范映射。"
 
 #: manual/design/dual.md:248
-msgid "**Choice.** `IntegralHomomorphism::from_integral(2)` and `from_integral(10)`. The map $\\mathbb Z \\to T$ is the unique ring homomorphism, so it names the right constant in every ring, and small integers such as $2$ and $10$ are exact in every numeric instance. A `Double` conversion would not exist for exact types, and repeated addition costs more for $10$."
-msgstr "**选择。** `IntegralHomomorphism::from_integral(2)` 和 `from_integral(10)`。映射 $\\mathbb Z \\to T$ 是唯一的环同态，因此它在每个环中都给出正确的常数，而且像 $2$ 和 $10$ 这样的小整数在每个数值实例中都是精确的。精确类型不会有从 `Double` 的转换，而重复加法对 $10$ 来说开销更大。"
+msgid "**Choice.** `lift_to(2)` and `lift_to(10)` from `luna-generic`, which pass the `Int` through `BigInt` to `FromInteger::from_integer`. The map $\\mathbb Z \\to T$ is the unique ring homomorphism, so it names the right constant in every ring, and small integers such as $2$ and $10$ are exact in every numeric instance. A `Double` conversion would not exist for exact types, and repeated addition costs more for $10$."
+msgstr "**选择。** 使用 `luna-generic` 的 `lift_to(2)` 和 `lift_to(10)`，它们把 `Int` 经由 `BigInt` 交给 `FromInteger::from_integer`。映射 $\\mathbb Z \\to T$ 是唯一的环同态，因此它在每个环中都给出正确的常数，而且像 $2$ 和 $10$ 这样的小整数在每个数值实例中都是精确的。精确类型不会有从 `Double` 的转换，而重复加法对 $10$ 来说开销更大。"
 
-#: manual/design/dual.md:254
+#: manual/design/dual.md:255
 msgid "Reuse the computed value"
 msgstr "复用已计算的值"
 
-#: manual/design/dual.md:256
+#: manual/design/dual.md:257
 msgid "`exp` and `exp2` compute $v = f(a)$ once and form the tangent from $v$, because $f' = f$ (up to the factor $\\ln 2$). `sqrt` likewise divides by the computed root. This saves one elementary evaluation per call and makes the tangent consistent with the returned value."
 msgstr "`exp` 和 `exp2` 只计算一次 $v = f(a)$，并由 $v$ 构成切向分量，因为 $f' = f$（至多相差因子 $\\ln 2$）。`sqrt` 同样除以已计算出的根。这样每次调用可省去一次初等函数求值，并使切向分量与返回的值保持一致。"
 
-#: manual/design/dual.md:261
+#: manual/design/dual.md:262
 msgid "The derivative of `tan`"
 msgstr "`tan` 的导数"
 
-#: manual/design/dual.md:263
+#: manual/design/dual.md:264
 msgid "Two formulas give $\\tan' a$: $1 + \\tan^2 a$, which reuses the value, and $\\sec^2 a = 1/\\cos^2 a$, which needs one more cosine. The package uses $b / (\\cos a \\cdot \\cos a)$. Both are mathematically equal; the chosen form is undefined at exactly the same points as $\\tan$ itself."
 msgstr "有两个公式可以给出 $\\tan' a$：复用值的 $1 + \\tan^2 a$，以及需要多算一次余弦的 $\\sec^2 a = 1/\\cos^2 a$。本包使用 $b / (\\cos a \\cdot \\cos a)$。两者在数学上相等；所选形式恰好在与 $\\tan$ 本身相同的点上无定义。"
 
-#: manual/design/dual.md:268
+#: manual/design/dual.md:269
 msgid "Explicit method promotion"
 msgstr "显式方法提升"
 
-#: manual/design/dual.md:270
-msgid "With MoonBit 0.10, trait instances no longer create methods implicitly. [`src/dual/extends.mbt`](../../../src/dual/extends.mbt) promotes the arithmetic operators, `equal`, `zero`, `one` and `div_checked`, and keeps `not_equal`, `to_repr`, `from_nat`, `from_integral`, `pi`, `e` and `tau` as hidden deprecated forms for existing callers (see [Deprecated](../api/dual.md#deprecated))."
-msgstr "从 MoonBit 0.10 起，trait 实例不再隐式生成方法。[`src/dual/extends.mbt`](../../../src/dual/extends.mbt) 提升了算术运算符、`equal`、`zero`、`one` 和 `div_checked`，并为现有调用方保留 `not_equal`、`to_repr`、`from_nat`、`from_integral`、`pi`、`e` 和 `tau` 作为隐藏的已弃用形式（见[已弃用](../api/dual.md#deprecated)）。"
+#: manual/design/dual.md:271
+msgid "With MoonBit 0.10, trait instances no longer create methods implicitly. [`src/dual/extends.mbt`](../../../src/dual/extends.mbt) promotes the arithmetic operators, `equal`, `zero`, `one`, `from_natural`, `from_integer` and `div_checked`, and keeps `not_equal`, `to_repr`, `from_nat`, `from_integral`, `pi`, `e` and `tau` as hidden deprecated forms for existing callers (see [Deprecated](../api/dual.md#deprecated))."
+msgstr "从 MoonBit 0.10 起，trait 实例不再隐式生成方法。[`src/dual/extends.mbt`](../../../src/dual/extends.mbt) 提升了算术运算符、`equal`、`zero`、`one`、`from_natural`、`from_integer` 和 `div_checked`，并为现有调用方保留 `not_equal`、`to_repr`、`from_nat`、`from_integral`、`pi`、`e` 和 `tau` 作为隐藏的已弃用形式（见[已弃用](../api/dual.md#deprecated)）。"
 
-#: manual/design/dual.md:279
+#: manual/design/dual.md:278
+msgid "Compatibility shims for the deprecated homomorphism traits"
+msgstr "已弃用同态 trait 的兼容层"
+
+#: manual/design/dual.md:280
+msgid "`luna-generic` 0.4.0 deprecates `NatHomomorphism` and `IntegralHomomorphism`: they compose a lift to ℕ or ℤ with the canonical map, which is not a homomorphism for fixed-width sources. `Dual[T]` now implements `FromNat` and `FromInteger`. The old instances stay in [`src/dual/compat.mbt`](../../../src/dual/compat.mbt), because `luna-poly` 0.2.0 bounds `DensePolynomial::derivative` by `NatHomomorphism` and would otherwise reject dual coefficients. Each shim suppresses the deprecation warning locally, and all of them go once `luna-poly` moves to `FromNat`."
+msgstr "`luna-generic` 0.4.0 弃用了 `NatHomomorphism` 和 `IntegralHomomorphism`：它们先把值提升到 ℕ 或 ℤ，再接上典范映射，而对定宽的源类型来说这不是同态。`Dual[T]` 现在实现 `FromNat` 和 `FromInteger`。旧实例保留在 [`src/dual/compat.mbt`](../../../src/dual/compat.mbt) 中，因为 `luna-poly` 0.2.0 用 `NatHomomorphism` 约束 `DensePolynomial::derivative`，否则会拒绝对偶系数。每个兼容实现都在本地屏蔽弃用警告，`luna-poly` 迁移到 `FromNat` 后它们将全部删除。"
+
+#: manual/design/dual.md:291
 msgid "Derivatives of whole programs"
 msgstr "整个程序的导数"
 
-#: manual/design/dual.md:281
+#: manual/design/dual.md:293
 msgid "Let a program compute $y = f(x)$ by a finite sequence of steps, each a ring operation, a division or one of the elementary functions of the table. Run it on $x + 1\\varepsilon$ (`Dual::variable(x)`) with every other input a constant. Then every intermediate $v_k$ is represented as $v_k(x) + v_k'(x)\\,\\varepsilon$."
 msgstr "设一个程序通过有限步计算 $y = f(x)$，每一步都是环运算、除法或表中的某个初等函数。在 $x + 1\\varepsilon$（`Dual::variable(x)`）上运行它，其他所有输入都取常数。那么每个中间量 $v_k$ 都表示为 $v_k(x) + v_k'(x)\\,\\varepsilon$。"
 
-#: manual/design/dual.md:287
+#: manual/design/dual.md:299
 msgid ""
 "*Proof by induction on the steps.* Inputs: the variable is $x + 1\\varepsilon$ and $x' = 1$; a constant is $c + 0\\varepsilon$ and $c' = 0$. Step: let the operands be $u + u'\\varepsilon$ and $w + w'\\varepsilon$, where $u$ and $w$ are functions of $x$ differentiable at the point. For a binary operation $\\star \\in \\{+, -, \\times, /\\}$ (with $w(x) \\n"
 "e 0$ for $/$), the formulas derived above give"
@@ -2026,11 +2067,11 @@ msgstr ""
 "*对步骤作归纳证明。* 输入：变量为 $x + 1\\varepsilon$，且 $x' = 1$；常数为 $c + 0\\varepsilon$，且 $c' = 0$。归纳步：设操作数为 $u + u'\\varepsilon$ 和 $w + w'\\varepsilon$，其中 $u$ 和 $w$ 是在该点可微的 $x$ 的函数。对二元运算 $\\star \\in \\{+, -, \\times, /\\}$（对 $/$ 要求 $w(x) \\n"
 "e 0$），上面推导的公式给出"
 
-#: manual/design/dual.md:298
+#: manual/design/dual.md:310
 msgid "because they are exactly the sum, difference, product and quotient rules. An elementary function $g$, applied in the open set where it is differentiable, gives $g(u) + g'(u)\\,u'\\,\\varepsilon = g(u) + (g \\circ u)'\\varepsilon$ by the chain rule. The last intermediate is $y$, so `tangent` is $f'(x)$. $\\square$"
 msgstr "因为它们正是和、差、积、商的求导法则。初等函数 $g$ 在其可微的开集中使用时，由链式法则给出 $g(u) + g'(u)\\,u'\\,\\varepsilon = g(u) + (g \\circ u)'\\varepsilon$。最后一个中间量就是 $y$，所以 `tangent` 就是 $f'(x)$。$\\square$"
 
-#: manual/design/dual.md:304
+#: manual/design/dual.md:316
 msgid ""
 "The same argument with input tangent $b$ gives $f'(x)\\,b$, and with several inputs seeded by a vector $v$ it gives the directional derivative $\\n"
 "abla f(x) \\cdot v$ (see the [linalg design](linalg.md)). The derivative is that of the program, not of a mathematical function it approximates: a branch on `value()` differentiates the branch taken."
@@ -2038,120 +2079,120 @@ msgstr ""
 "同样的论证在输入切向分量为 $b$ 时给出 $f'(x)\\,b$；若用向量 $v$ 为多个输入设定种子，则给出方向导数 $\\n"
 "abla f(x) \\cdot v$（见 [linalg 设计](linalg.md)）。所得导数是程序的导数，而不是程序所近似的数学函数的导数：基于 `value()` 的分支只会对所走的那个分支求导。"
 
-#: manual/design/dual.md:310
+#: manual/design/dual.md:322
 msgid "Rounding error"
 msgstr "舍入误差"
 
-#: manual/design/dual.md:312
+#: manual/design/dual.md:324
 msgid "Write $\\mathrm{fl}(x \\circ y) = (x \\circ y)(1 + \\delta)$ with $|\\delta| \\le u$ for each floating-point operation ($u = 2^{-53}$ for `Double`), and use the standard lemma that a product of $k$ factors $(1 + \\delta_i)^{\\pm 1}$ equals $1 + \\theta_k$ with $|\\theta_k| \\le \\gamma_k = ku/(1 - ku)$.[^higham]"
 msgstr "对每个浮点运算记 $\\mathrm{fl}(x \\circ y) = (x \\circ y)(1 + \\delta)$，其中 $|\\delta| \\le u$（对于 `Double`，$u = 2^{-53}$），并使用标准引理：$k$ 个因子 $(1 + \\delta_i)^{\\pm 1}$ 之积等于 $1 + \\theta_k$，其中 $|\\theta_k| \\le \\gamma_k = ku/(1 - ku)$。[^higham]"
 
-#: manual/design/dual.md:317
+#: manual/design/dual.md:329
 msgid "N. J. Higham, *Accuracy and Stability of Numerical Algorithms*, 2nd ed., SIAM, 2002, Lemma 3.1."
 msgstr "N. J. Higham, *Accuracy and Stability of Numerical Algorithms*, 2nd ed., SIAM, 2002, Lemma 3.1."
 
-#: manual/design/dual.md:320
+#: manual/design/dual.md:332
 msgid "*Product tangent.* `Dual::mul` computes $\\mathrm{fl}(\\mathrm{fl}(ad) + \\mathrm{fl}(cb))$:"
 msgstr "*乘积的切向分量。* `Dual::mul` 计算 $\\mathrm{fl}(\\mathrm{fl}(ad) + \\mathrm{fl}(cb))$："
 
-#: manual/design/dual.md:331
+#: manual/design/dual.md:343
 msgid "*Quotient tangent.* `Dual::div` computes $\\mathrm{fl}\\big(\\mathrm{fl}(bc - ad) / \\mathrm{fl}(c \\cdot c)\\big)$, five roundings with one of them in the denominator:"
 msgstr "*商的切向分量。* `Dual::div` 计算 $\\mathrm{fl}\\big(\\mathrm{fl}(bc - ad) / \\mathrm{fl}(c \\cdot c)\\big)$，共五次舍入，其中一次在分母中："
 
-#: manual/design/dual.md:343
+#: manual/design/dual.md:355
 msgid "Both bounds have the shape of the error of evaluating the derivative formula directly; the relative error is only large when $ad$ and $bc$ cancel, which is the conditioning of the derivative itself. For an elementary rule the tangent error is the error of `T`'s implementation of $f'(a)$ (for example of `cos` in `sin`) plus at most two more roundings."
 msgstr "两个界的形式都与直接计算导数公式的误差相同；只有当 $ad$ 与 $bc$ 相互抵消时相对误差才会很大，而这正是导数本身的条件数所决定的。对于初等函数规则，切向分量的误差是 `T` 对 $f'(a)$ 的实现误差（例如 `sin` 中 `cos` 的误差），再加上至多两次舍入。"
 
-#: manual/design/dual.md:349
+#: manual/design/dual.md:361
 msgid "The model $\\mathrm{fl}(x \\circ y) = (x \\circ y)(1 + \\delta)$ only holds while no result leaves the normal range of `T`. For `Double` that range is $[2^{-1022}, 2^{1024})$ in magnitude, and the quotient tangent leaves it much earlier than the quotient, because it squares the divisor:"
 msgstr "模型 $\\mathrm{fl}(x \\circ y) = (x \\circ y)(1 + \\delta)$ 只在没有结果离开 `T` 的正规数范围时成立。对 `Double` 而言，该范围的绝对值为 $[2^{-1022}, 2^{1024})$，而商的切向分量由于对除数求平方，会比商本身早得多地离开这个范围："
 
-#: manual/design/dual.md:362
+#: manual/design/dual.md:374
 msgid "The first line holds because a square below half the smallest subnormal, $2^{-1075}$, rounds to zero. In the first case the tangent is a division by zero, in the second it carries a relative error up to $2^{-1075}/c^2$ instead of $u$, and in the third it is $0$ whenever $bc - ad$ is finite, although the true tangent $(bc - ad)/c^2$ can be a normal number: for $a = 0$, $b = 1$, $c = 10^{155}$ it is $10^{-155}$. Writing the tangent as $(b - q\\,d)/c$ with $q = a/c$, which is the same expression in exact arithmetic because $(bc - ad)/c^2 = (b - (a/c)\\,d)/c$, would avoid squaring $c$; the current code does not do this (see the warning on `Dual::div_checked`)."
 msgstr "第一行成立，是因为小于最小次正规数一半 $2^{-1075}$ 的平方会被舍入为零。第一种情况下切向分量是除以零；第二种情况下它的相对误差可达 $2^{-1075}/c^2$，而不是 $u$；第三种情况下只要 $bc - ad$ 有限，它就是 $0$，尽管真实的切向分量 $(bc - ad)/c^2$ 可能是正规数：当 $a = 0$、$b = 1$、$c = 10^{155}$ 时它等于 $10^{-155}$。把切向分量写成 $(b - q\\,d)/c$（其中 $q = a/c$）可以避免对 $c$ 求平方，在精确算术中这是同一个表达式，因为 $(bc - ad)/c^2 = (b - (a/c)\\,d)/c$；当前代码没有这样做（见 `Dual::div_checked` 的警告）。"
 
-#: manual/design/dual.md:373
+#: manual/design/dual.md:385
 msgid "Comparison with finite differences"
 msgstr "与有限差分的比较"
 
-#: manual/design/dual.md:375
+#: manual/design/dual.md:387
 msgid "The forward difference $D_h f(x) = (f(x + h) - f(x))/h$ has two error sources. Taylor's theorem gives the truncation error, and evaluating $f$ in floating point with error at most $u|f|$ adds a cancellation error:"
 msgstr "前向差分 $D_h f(x) = (f(x + h) - f(x))/h$ 有两个误差来源。泰勒定理给出截断误差，而在浮点数中以至多 $u|f|$ 的误差计算 $f$ 会带来抵消误差："
 
-#: manual/design/dual.md:383
+#: manual/design/dual.md:395
 msgid "Setting the derivative of the right-hand side with respect to $h$ to zero,"
 msgstr "令右端关于 $h$ 的导数为零，"
 
-#: manual/design/dual.md:392
+#: manual/design/dual.md:404
 msgid "so even the best step loses about half of the significant digits ($\\sqrt u \\approx 10^{-8}$ for `Double`). The central difference $(f(x + h) - f(x - h))/(2h)$ has truncation error $\\frac{h^2}{6}|f'''|$ and reaches about $u^{2/3} \\approx 10^{-11}$. Dual numbers have no truncation term at all: by the induction above they compute the exact derivative of the program, and the only error is rounding with the bounds of the previous section.[^griewank] The test suite and the [dual tutorial](../tutorial/dual.md) compare both methods."
 msgstr "因此即使是最佳步长也会损失约一半的有效数字（对 `Double` 而言 $\\sqrt u \\approx 10^{-8}$）。中心差分 $(f(x + h) - f(x - h))/(2h)$ 的截断误差为 $\\frac{h^2}{6}|f'''|$，可以达到约 $u^{2/3} \\approx 10^{-11}$。对偶数完全没有截断项：由上面的归纳可知，它计算的是程序的精确导数，唯一的误差是舍入误差，其界见上一节。[^griewank] 测试套件和 [dual 教程](../tutorial/dual.md) 对两种方法进行了比较。"
 
-#: manual/design/dual.md:401
+#: manual/design/dual.md:413
 msgid "A. Griewank and A. Walther, *Evaluating Derivatives*, 2nd ed., SIAM, 2008, chapters 2–3, treat forward mode and its error analysis in full."
 msgstr "A. Griewank 与 A. Walther 所著 *Evaluating Derivatives*（第 2 版，SIAM，2008）第 2–3 章完整论述了前向模式及其误差分析。"
 
-#: manual/design/dual.md:404
-#: manual/design/poly.md:161
+#: manual/design/dual.md:416
+#: manual/design/poly.md:162
 msgid "Cost"
 msgstr "代价"
 
-#: manual/design/dual.md:406
+#: manual/design/dual.md:418
 msgid "Addition, subtraction and negation cost two operations of `T` instead of one; multiplication costs three multiplications and one addition; division costs three multiplications, one subtraction and two divisions; an elementary function costs the function plus its derivative factor (for `sin`, one `sin`, one `cos` and one multiplication). Counted in operations of `T`, the ratio is $2$ for linear operations, $4$ for a product, $6$ for a quotient and about $2$ for an elementary function, so a program runs a small constant factor, at most about six, slower on `Dual[T]` than on `T`, and needs twice the memory for its numbers."
 msgstr "加法、减法和取负需要两次 `T` 运算而非一次；乘法需要三次乘法和一次加法；除法需要三次乘法、一次减法和两次除法；初等函数需要计算函数本身及其导数因子（对 `sin` 来说是一次 `sin`、一次 `cos` 和一次乘法）。按 `T` 的运算次数计，线性运算的比值为 $2$，乘积为 $4$，商为 $6$，初等函数约为 $2$，因此程序在 `Dual[T]` 上运行时比在 `T` 上慢一个较小的常数倍（至多约六倍），其中的数需要两倍内存。"
 
-#: manual/design/dual.md:416
+#: manual/design/dual.md:428
 msgid "Laws to keep"
 msgstr "需要保持的定律"
 
-#: manual/design/dual.md:418
+#: manual/design/dual.md:430
 msgid "`x.value()` of any result equals the same computation on values (the projection is a homomorphism)."
 msgstr "任何结果的 `x.value()` 都等于在值上进行同一计算的结果（投影是同态）。"
 
-#: manual/design/dual.md:420
-msgid "Constants, `zero()`, `one()`, `from_integral`, `from_nat` and the `Constants` instance have tangent zero."
-msgstr "常数、`zero()`、`one()`、`from_integral`、`from_nat` 以及 `Constants` 实例的切向分量都为零。"
+#: manual/design/dual.md:432
+msgid "Constants, `zero()`, `one()`, `from_natural`, `from_integer` (and the deprecated `from_nat`, `from_integral`) and the `Constants` instance have tangent zero."
+msgstr "常数、`zero()`、`one()`、`from_natural`、`from_integer`（以及已弃用的 `from_nat`、`from_integral`）和 `Constants` 实例的切向分量都为零。"
 
-#: manual/design/dual.md:422
+#: manual/design/dual.md:435
 msgid "Instances stop at `Ring`; no `Field`, `MulGroup`, `Inverse` or `Compare`."
 msgstr "实例止于 `Ring`；没有 `Field`、`MulGroup`、`Inverse` 或 `Compare`。"
 
-#: manual/design/dual.md:423
+#: manual/design/dual.md:436
 msgid "The product rule assumes commutative multiplication of `T`, which every numeric instance in Luna Flow has."
 msgstr "乘积法则假定 `T` 的乘法满足交换律，Luna Flow 中的所有数值实例都满足这一点。"
 
-#: manual/design/dual.md:428
+#: manual/design/dual.md:441
 msgid "**Finite differences.** Simple, but they lose half the digits or more, as derived above, and need a step size per problem."
 msgstr "**有限差分。** 简单，但如上所推导，它会损失一半甚至更多的有效数字，并且每个问题都需要选择步长。"
 
-#: manual/design/dual.md:430
+#: manual/design/dual.md:443
 msgid "**Symbolic differentiation.** Building derivative expressions needs a term language and simplification, and expressions can grow quickly; that belongs to a CAS layer, not to a scalar type."
 msgstr "**符号求导。** 构建导数表达式需要项语言和化简，而且表达式可能迅速膨胀；这属于 CAS 层，而不属于标量类型。"
 
-#: manual/design/dual.md:433
+#: manual/design/dual.md:446
 msgid "**Reverse mode.** Better for gradients of many inputs, but it needs a tape or closures that record the computation; it is not implemented."
 msgstr "**反向模式。** 对于多输入的梯度更有优势，但它需要记录计算过程的磁带（tape）或闭包；目前尚未实现。"
 
-#: manual/design/dual.md:435
+#: manual/design/dual.md:448
 msgid "**Storing a vector of tangents.** One pass would give a whole gradient, at the cost of a vector-valued type and allocation on every operation. The scalar tangent keeps `Dual[T]` a plain two-field value; vector tangents are future work."
 msgstr "**存储切向分量向量。** 一遍计算就能得到整个梯度，代价是引入向量值类型，并且每次运算都要分配内存。标量切向分量使 `Dual[T]` 保持为简单的双字段值；向量切向分量留待将来实现。"
 
-#: manual/design/dual.md:442
+#: manual/design/dual.md:455
 msgid "First derivatives only. Higher derivatives come from nesting `Dual[Dual[T]]`; the $k$-th derivative stores $2^k$ components and a product costs $3^k$ multiplications and $3^k - 2^k$ additions of `T` (see the [forward design](forward.md#higher-derivatives-by-nesting)). There is no truncated Taylor (jet) type."
 msgstr "只支持一阶导数。高阶导数通过嵌套 `Dual[Dual[T]]` 得到；$k$ 阶导数存储 $2^k$ 个分量，一次乘积需要 `T` 的 $3^k$ 次乘法和 $3^k - 2^k$ 次加法（见 [forward 设计](forward.md#higher-derivatives-by-nesting)）。没有截断 Taylor（jet）类型。"
 
-#: manual/design/dual.md:447
+#: manual/design/dual.md:460
 msgid "No reverse mode and no symbolic differentiation."
 msgstr "没有反向模式，也没有符号求导。"
 
-#: manual/design/dual.md:448
+#: manual/design/dual.md:461
 msgid "No `Field`, `MulGroup`, `Inverse` or order instance, and no `Show`."
 msgstr "没有 `Field`、`MulGroup`、`Inverse` 或序实例，也没有 `Show`。"
 
-#: manual/design/dual.md:449
+#: manual/design/dual.md:462
 msgid "Only `div_checked` and `sqrt_checked` check their domain. Logarithms, trigonometric functions and the unchecked operators follow `T`."
 msgstr "只有 `div_checked` 和 `sqrt_checked` 会检查定义域。对数、三角函数和不带检查的运算符都沿用 `T` 的行为。"
 
-#: manual/design/dual.md:451
+#: manual/design/dual.md:464
 msgid "No validated enclosures: the rounding bounds above are a priori, not computed at run time. Interval or ball scalars as `T` are neither tested nor documented by this repository."
 msgstr "没有经过验证的包络：上述舍入误差界是先验的，而不是在运行时计算的。本仓库既未测试、也未记录以区间或球标量作为 `T` 的用法。"
 
@@ -2200,8 +2241,8 @@ msgid "Instances need the whole trait"
 msgstr "实例需要整个 trait"
 
 #: manual/design/elementary.md:54
-msgid "A trait instance must provide all its methods. `Exponential` contains `exp2`, whose rule needs $\\ln 2$, so the instance needs `Logarithmic` and `IntegralHomomorphism` on `T` even if a caller only uses `exp`. The inherent method `Dual::exp` has the smaller bound `Exponential + Mul` for that case."
-msgstr "trait 实例必须提供它的所有方法。`Exponential` 包含 `exp2`，而其规则需要 $\\ln 2$，因此即使调用方只用到 `exp`，该实例也要求 `T` 实现 `Logarithmic` 和 `IntegralHomomorphism`。对于这种情况，固有方法 `Dual::exp` 只需较小的约束 `Exponential + Mul`。"
+msgid "A trait instance must provide all its methods. `Exponential` contains `exp2`, whose rule needs $\\ln 2$, so the instance needs `Logarithmic` and `FromInteger` on `T` even if a caller only uses `exp`. The inherent method `Dual::exp` has the smaller bound `Exponential + Mul` for that case."
+msgstr "trait 实例必须提供它的所有方法。`Exponential` 包含 `exp2`，而其规则需要 $\\ln 2$，因此即使调用方只用到 `exp`，该实例也要求 `T` 实现 `Logarithmic` 和 `FromInteger`。对于这种情况，固有方法 `Dual::exp` 只需较小的约束 `Exponential + Mul`。"
 
 #: manual/design/elementary.md:59
 msgid "Constants have tangent zero"
@@ -2624,94 +2665,94 @@ msgid "**Options.** Build the derivative polynomial with `DensePolynomial::deriv
 msgstr "**选项。** 用 `DensePolynomial::derivative` 构建导数多项式再求值；或在 `Dual[T]` 上对 $p$ 求值。"
 
 #: manual/design/poly.md:76
-msgid "**Choice.** Evaluate over `Dual[T]`. It returns $p(x)$ and $p'(x)$ from one pass, needs only `Semiring` (the formal derivative in `luna-poly` also needs `NatHomomorphism` to form $k\\,c_k$), does not allocate a second polynomial per derivative order, and composes with other dual computations through `eval_dual`. The formal derivative remains the right tool when the derivative polynomial itself is wanted; the test suite checks that the two agree."
-msgstr "**选择。** 在 `Dual[T]` 上求值。它一遍就返回 $p(x)$ 和 $p'(x)$，只需要 `Semiring`（`luna-poly` 中的形式导数还需要 `NatHomomorphism` 来构成 $k\\,c_k$），不会为每一阶导数额外分配一个多项式，并且可以通过 `eval_dual` 与其他对偶计算组合。当需要导数多项式本身时，形式导数仍是合适的工具；测试套件会检查两者是否一致。"
+msgid "**Choice.** Evaluate over `Dual[T]`. It returns $p(x)$ and $p'(x)$ from one pass, needs only `Semiring` (the formal derivative in `luna-poly` 0.2.0 also needs the deprecated `NatHomomorphism` to form $k\\,c_k$, which `Dual[T]` keeps as a compatibility shim), does not allocate a second polynomial per derivative order, and composes with other dual computations through `eval_dual`. The formal derivative remains the right tool when the derivative polynomial itself is wanted; the test suite checks that the two agree."
+msgstr "**选择。** 在 `Dual[T]` 上求值。它一遍就返回 $p(x)$ 和 $p'(x)$，只需要 `Semiring`（`luna-poly` 0.2.0 中的形式导数还需要已弃用的 `NatHomomorphism` 来构成 $k\\,c_k$，`Dual[T]` 以兼容层的形式保留了它），不会为每一阶导数额外分配一个多项式，并且可以通过 `eval_dual` 与其他对偶计算组合。当需要导数多项式本身时，形式导数仍是合适的工具；测试套件会检查两者是否一致。"
 
-#: manual/design/poly.md:84
+#: manual/design/poly.md:85
 msgid "Reuse `luna-poly` evaluation"
 msgstr "复用 `luna-poly` 的求值"
 
-#: manual/design/poly.md:86
+#: manual/design/poly.md:87
 msgid "The bridge lifts the coefficients with `Dual::constant`, builds a `DensePolynomial[Dual[T]]` or `SparsePolynomial[Dual[T]]` with the ordinary constructors, and calls `eval`. It does not reimplement Horner's rule, so any change to `luna-poly` evaluation (and its normalization of zero coefficients, which is why `T : Eq` is required) applies here too."
 msgstr "桥接用 `Dual::constant` 提升系数，用普通构造函数构建 `DensePolynomial[Dual[T]]` 或 `SparsePolynomial[Dual[T]]`，然后调用 `eval`。它并不重新实现 Horner 法则，因此 `luna-poly` 求值方式的任何改动（以及它对零系数的规范化，这也是需要 `T : Eq` 的原因）都会同样作用于这里。"
 
-#: manual/design/poly.md:92
+#: manual/design/poly.md:93
 msgid "One variable for sparse polynomials"
 msgstr "稀疏多项式仅限单变量"
 
-#: manual/design/poly.md:94
+#: manual/design/poly.md:95
 msgid "**Problem.** `SparsePolynomial` is multivariate, but a partial derivative needs a choice of variable, and variable identity lives in the contexts of `luna-poly` (`VariableContext`, `ContextPolynomial`)."
 msgstr "**问题。** `SparsePolynomial` 是多元的，但偏导数需要选定变量，而变量的身份存在于 `luna-poly` 的上下文中（`VariableContext`、`ContextPolynomial`）。"
 
-#: manual/design/poly.md:98
+#: manual/design/poly.md:99
 msgid "**Choice.** The sparse bridge evaluates with the single assignment `[x]` and is named `sparse_univariate_*`. A polynomial that uses another variable makes `eval` abort. A multivariate API would have to take a variable context and return a gradient; it is future work. Callers with a contextual polynomial can partially evaluate the other variables first, as the repository's integration test does."
 msgstr "**选择。** 稀疏桥接用单一赋值 `[x]` 求值，并命名为 `sparse_univariate_*`。使用了其他变量的多项式会使 `eval` 中止。多元 API 需要接受变量上下文并返回梯度，这留待将来实现。持有上下文多项式的调用方可以先对其他变量做部分求值，正如本仓库的集成测试那样。"
 
-#: manual/design/poly.md:107
+#: manual/design/poly.md:108
 msgid "The first release named the functions `derivative_at`, `value_and_derivative_at`, `eval_sparse_dual`, `sparse_derivative_at` and `sparse_value_and_derivative_at`. The `dense_` and `sparse_univariate_` names say which representation and which kind of derivative is meant; the old names stay as plain aliases so existing code keeps working."
 msgstr "首个版本将这些函数命名为 `derivative_at`、`value_and_derivative_at`、`eval_sparse_dual`、`sparse_derivative_at` 和 `sparse_value_and_derivative_at`。`dense_` 和 `sparse_univariate_` 名称表明了所针对的表示形式和导数种类；旧名称作为普通别名保留，以便现有代码继续工作。"
 
-#: manual/design/poly.md:115
+#: manual/design/poly.md:116
 msgid "Exactness in exact rings"
 msgstr "精确环中的精确性"
 
-#: manual/design/poly.md:117
+#: manual/design/poly.md:118
 msgid "For `T` with exact arithmetic (`Int`, `BigInt`, exact rationals) the results are exactly $p(x)$ and $p'(x)$, by the identities above."
 msgstr "对于具有精确算术的 `T`（`Int`、`BigInt`、精确有理数），由上述恒等式可知，结果恰好就是 $p(x)$ 和 $p'(x)$。"
 
-#: manual/design/poly.md:120
+#: manual/design/poly.md:121
 msgid "Rounding error of the dense evaluation"
 msgstr "稠密求值的舍入误差"
 
-#: manual/design/poly.md:122
+#: manual/design/poly.md:123
 msgid "Use $\\mathrm{fl}(x \\circ y) = (x \\circ y)(1 + \\delta)$, $|\\delta| \\le u$, and the product lemma $\\prod (1 + \\delta_i)^{\\pm1} = 1 + \\theta_k$, $|\\theta_k| \\le \\gamma_k = ku/(1 - ku)$.[^higham]"
 msgstr "使用 $\\mathrm{fl}(x \\circ y) = (x \\circ y)(1 + \\delta)$，$|\\delta| \\le u$，以及乘积引理 $\\prod (1 + \\delta_i)^{\\pm1} = 1 + \\theta_k$，$|\\theta_k| \\le \\gamma_k = ku/(1 - ku)$。[^higham]"
 
-#: manual/design/poly.md:126
+#: manual/design/poly.md:127
 msgid "N. J. Higham, *Accuracy and Stability of Numerical Algorithms*, 2nd ed., SIAM, 2002, Lemma 3.1 and chapter 5."
 msgstr "N. J. Higham, *Accuracy and Stability of Numerical Algorithms*, 2nd ed., SIAM, 2002, Lemma 3.1 and chapter 5."
 
-#: manual/design/poly.md:129
+#: manual/design/poly.md:130
 msgid "*Value.* By the [projection homomorphism](dual.md#the-value-projection-is-a-homomorphism) $\\hat p_0$ is the plain Horner result. Each step multiplies the running sum by $(1 + \\delta_{\\times})(1 + \\delta_{+})$ and adds $c_k$ once rounded, so $c_k a^k$ carries $2k + 1$ factors for $k < n$; the leading coefficient carries $2n$, because the first step $0 \\cdot a + c_n$ is exact:"
 msgstr "*值。* 根据[投影同态](dual.md#the-value-projection-is-a-homomorphism)，$\\hat p_0$ 就是普通 Horner 法则的结果。每一步都把累加和乘以 $(1 + \\delta_{\\times})(1 + \\delta_{+})$，并加上经过一次舍入的 $c_k$，因此当 $k < n$ 时 $c_k a^k$ 带有 $2k + 1$ 个因子；首项系数带有 $2n$ 个，因为第一步 $0 \\cdot a + c_n$ 是精确的："
 
-#: manual/design/poly.md:141
+#: manual/design/poly.md:142
 msgid "*Derivative ($b = 1$).* The tangent step computes $\\mathrm{fl}\\big(\\hat p_{k+1} \\cdot 1 + \\mathrm{fl}(a\\,\\hat q_{k+1})\\big)$, and adding the constant $c_k$ adds an exact zero to the tangent. The derivative contains $k$ copies of $c_k a^{k-1}$, one for each step $j < k$ at which $c_k$ moves from the value chain into the tangent chain. Along such a path $c_k$ is rounded once when it enters, twice per value step $k - 1, \\dots, j + 1$, once when it moves into the tangent, and twice per tangent step $j - 1, \\dots, 0$: $1 + 2(k - 1 - j) + 1 + 2j = 2k$ factors. Hence"
 msgstr "*导数（$b = 1$）。* 切向分量的每一步计算 $\\mathrm{fl}\\big(\\hat p_{k+1} \\cdot 1 + \\mathrm{fl}(a\\,\\hat q_{k+1})\\big)$，而加上常数 $c_k$ 只会给切向分量加上一个精确的零。导数包含 $k$ 份 $c_k a^{k-1}$，每一份对应一个步骤 $j < k$，在该步 $c_k$ 从值链转入切向链。沿这样一条路径，$c_k$ 在进入时舍入一次，在值的第 $k - 1, \\dots, j + 1$ 步中每步舍入两次，转入切向链时舍入一次，在切向的第 $j - 1, \\dots, 0$ 步中每步舍入两次：共 $1 + 2(k - 1 - j) + 1 + 2j = 2k$ 个因子。因此"
 
-#: manual/design/poly.md:154
+#: manual/design/poly.md:155
 msgid "essentially the bound for evaluating the formal derivative by Horner's rule, which is $\\gamma_{2n-2} \\sum_k k\\,|c_k|\\,|a|^{k-1}$ once the coefficients $k\\,c_k$ are formed exactly; the dual evaluation pays at most two more roundings per term. The relative error is small unless the terms cancel, that is unless $p'$ is ill-conditioned at $a$."
 msgstr "这基本上就是用 Horner 法则计算形式导数时的误差界：当系数 $k\\,c_k$ 被精确构造时，该界为 $\\gamma_{2n-2} \\sum_k k\\,|c_k|\\,|a|^{k-1}$；对偶求值每一项至多多付出两次舍入。除非各项相互抵消，即除非 $p'$ 在 $a$ 处是病态的，否则相对误差都很小。"
 
-#: manual/design/poly.md:163
+#: manual/design/poly.md:164
 msgid "Dense: $n + 1$ dual multiply-add steps, that is about $3n$ multiplications and $3n$ additions of `T`, plus one array of $n + 1$ lifted coefficients. Sparse: per term one binary powering, $O(\\log e)$ dual products, plus one dual product and one addition."
 msgstr "稠密：$n + 1$ 步对偶乘加，即 `T` 上约 $3n$ 次乘法和 $3n$ 次加法，外加一个存放 $n + 1$ 个提升后系数的数组。稀疏：每一项一次二进制快速幂，即 $O(\\log e)$ 次对偶乘法，外加一次对偶乘法和一次加法。"
 
-#: manual/design/poly.md:170
+#: manual/design/poly.md:171
 msgid "**Symbolic derivative then evaluation.** Two passes, an extra polynomial, and a stronger bound on `T`; kept as `luna-poly`'s own `DensePolynomial::derivative` for users who need the polynomial."
 msgstr "**先符号求导再求值。** 需要两遍计算、一个额外的多项式，以及对 `T` 更强的约束；为需要导数多项式的用户，它以 `luna-poly` 自身的 `DensePolynomial::derivative` 形式保留。"
 
-#: manual/design/poly.md:173
+#: manual/design/poly.md:174
 msgid "**A private Horner loop.** Faster by a constant, but it would duplicate `luna-poly` semantics and drift from them."
 msgstr "**私有的 Horner 循环。** 速度只快一个常数倍，但会重复 `luna-poly` 的语义，并逐渐与之偏离。"
 
-#: manual/design/poly.md:175
+#: manual/design/poly.md:176
 msgid "**Guessing a variable for multivariate sparse polynomials.** Silent partial derivatives with respect to \"the first variable\" would be easy to misuse; the bridge aborts instead."
 msgstr "**为多元稀疏多项式猜测变量。** 静默地对\"第一个变量\"求偏导很容易被误用；桥接会直接中止。"
 
-#: manual/design/poly.md:181
+#: manual/design/poly.md:182
 msgid "Univariate only: no partial derivatives or gradients of multivariate polynomials, no `ContextPolynomial` support."
 msgstr "仅支持一元：不支持多元多项式的偏导数或梯度，也不支持 `ContextPolynomial`。"
 
-#: manual/design/poly.md:183
+#: manual/design/poly.md:184
 msgid "First derivatives at points only; no derivative polynomials (use `luna-poly`), no higher derivatives."
 msgstr "仅支持在点处求一阶导数；不生成导数多项式（请使用 `luna-poly`），也不支持高阶导数。"
 
-#: manual/design/poly.md:185
+#: manual/design/poly.md:186
 msgid "No checked variants: dense and sparse evaluation do not fail except for the sparse abort described above."
 msgstr "没有带检查的变体：除了上面所述的稀疏中止情况外，稠密和稀疏求值都不会失败。"
 
-#: manual/design/poly.md:187
+#: manual/design/poly.md:188
 msgid "Dense and sparse `immut` representations only."
 msgstr "仅支持稠密和稀疏的 `immut` 表示。"
 
@@ -2720,8 +2761,8 @@ msgid "autodiff"
 msgstr "autodiff"
 
 #: manual/index.md:3
-msgid "This manual documents the unreleased `main` branch of `Luna-Flow/autodiff` (version `0.2.0` in `moon.mod`) after its migration to MoonBit 0.10."
-msgstr "本手册记录 `Luna-Flow/autodiff` 尚未发布的 `main` 分支（`moon.mod` 中的版本为 `0.2.0`），即迁移到 MoonBit 0.10 之后的状态。"
+msgid "This manual documents the unreleased `main` branch of `Luna-Flow/autodiff` (version `0.3.0` in `moon.mod`) after its migration to MoonBit 0.10."
+msgstr "本手册记录 `Luna-Flow/autodiff` 尚未发布的 `main` 分支（`moon.mod` 中的版本为 `0.3.0`），即迁移到 MoonBit 0.10 之后的状态。"
 
 #: manual/index.md:6
 msgid "Overview"
@@ -2756,254 +2797,250 @@ msgid "The bridges need their libraries too: `moon add Luna-Flow/linear-algebra`
 msgstr "桥接包还需要各自的库：`linalg` 需要 `moon add Luna-Flow/linear-algebra`，`poly` 需要 `moon add Luna-Flow/luna-poly`。代码需要 MoonBit 工具链 0.10 或更高版本（`moonc` ≥ 0.10）以及 `moon.mod` / `moon.pkg` 清单格式，测试套件在 `wasm-gc`、`wasm`、`js` 和 `native` 目标上运行。"
 
 #: manual/index.md:44
-msgid "[!IMPORTANT] The checked operations report the errors of `T`'s own `DivChecked` and `SqrtChecked`. This manual describes `Double` as implemented by `Luna-Flow/arithmetic` 0.5, the version the repository is developed against. `moon.mod` still pins `arithmetic@0.2.1`, whose `Double` `sqrt_checked` never fails (a negative input gives NaN) and whose `div_checked` reports every zero divisor, including $0/0$, as a division by zero. See the [checked API](api/checked.md#versions-of-arithmetic)."
-msgstr "[!IMPORTANT] 带检查的运算报告的是 `T` 自身 `DivChecked` 和 `SqrtChecked` 的错误。本手册按 `Luna-Flow/arithmetic` 0.5（本仓库开发所基于的版本）描述 `Double`。`moon.mod` 仍锁定 `arithmetic@0.2.1`，其中 `Double` 的 `sqrt_checked` 从不失败（负输入给出 NaN），而 `div_checked` 把所有零除数（包括 $0/0$）都报告为除以零。见 [checked API](api/checked.md#versions-of-arithmetic)。"
-
-#: manual/index.md:53
 msgid "Pages"
 msgstr "页面"
 
-#: manual/index.md:55
+#: manual/index.md:46
 msgid "The root package `Luna-Flow/autodiff` is documented as `autodiff`, because the name `core` belongs to the package `src/core`. Every other page is named after its directory under `src/`."
 msgstr "根包 `Luna-Flow/autodiff` 以 `autodiff` 为名记录，因为 `core` 这个名字属于 `src/core` 包。其他页面都以它在 `src/` 下的目录命名。"
 
-#: manual/index.md:59
+#: manual/index.md:50
 msgid "Part"
 msgstr "部分"
 
-#: manual/index.md:59
+#: manual/index.md:50
 msgid "Tutorial"
 msgstr "教程"
 
-#: manual/index.md:59
+#: manual/index.md:50
 msgid "API"
 msgstr "API"
 
-#: manual/index.md:59
+#: manual/index.md:50
 msgid "Design"
 msgstr "设计"
 
-#: manual/index.md:61
+#: manual/index.md:52
 msgid "`autodiff`: one-stop facade with `Dual`, `diff`, `value_and_diff` and the re-exported traits"
 msgstr "`autodiff`：一站式门面包，包含 `Dual`、`diff`、`value_and_diff` 以及重新导出的 trait"
 
-#: manual/index.md:61
+#: manual/index.md:52
 msgid "[tutorial](tutorial/autodiff.md)"
 msgstr "[教程](tutorial/autodiff.md)"
 
-#: manual/index.md:61
+#: manual/index.md:52
 msgid "[API](api/autodiff.md)"
 msgstr "[API](api/autodiff.md)"
 
-#: manual/index.md:61
+#: manual/index.md:52
 msgid "[design](design/autodiff.md)"
 msgstr "[设计](design/autodiff.md)"
 
-#: manual/index.md:62
+#: manual/index.md:53
 msgid "`dual`: the `Dual[T]` type, its arithmetic, derivative rules and instances"
 msgstr "`dual`：`Dual[T]` 类型及其算术运算、求导规则和实例"
 
-#: manual/index.md:62
+#: manual/index.md:53
 msgid "[tutorial](tutorial/dual.md)"
 msgstr "[教程](tutorial/dual.md)"
 
-#: manual/index.md:62
+#: manual/index.md:53
 msgid "[API](api/dual.md)"
 msgstr "[API](api/dual.md)"
 
-#: manual/index.md:62
+#: manual/index.md:53
 msgid "[design](design/dual.md)"
 msgstr "[设计](design/dual.md)"
 
-#: manual/index.md:63
+#: manual/index.md:54
 msgid "`forward`: scalar drivers `diff` and `value_and_diff`"
 msgstr "`forward`：标量驱动函数 `diff` 与 `value_and_diff`"
 
-#: manual/index.md:63
+#: manual/index.md:54
 msgid "[tutorial](tutorial/forward.md)"
 msgstr "[教程](tutorial/forward.md)"
 
-#: manual/index.md:63
+#: manual/index.md:54
 msgid "[API](api/forward.md)"
 msgstr "[API](api/forward.md)"
 
-#: manual/index.md:63
+#: manual/index.md:54
 msgid "[design](design/forward.md)"
 msgstr "[设计](design/forward.md)"
 
-#: manual/index.md:64
+#: manual/index.md:55
 msgid "`core`: algebraic facade, `Dual` and the `luna-generic` structure traits"
 msgstr "`core`：代数门面包，包含 `Dual` 与 `luna-generic` 结构 trait"
 
-#: manual/index.md:64
+#: manual/index.md:55
 msgid "[tutorial](tutorial/core.md)"
 msgstr "[教程](tutorial/core.md)"
 
-#: manual/index.md:64
+#: manual/index.md:55
 msgid "[API](api/core.md)"
 msgstr "[API](api/core.md)"
 
-#: manual/index.md:64
+#: manual/index.md:55
 msgid "[design](design/core.md)"
 msgstr "[设计](design/core.md)"
 
-#: manual/index.md:65
+#: manual/index.md:56
 msgid "`elementary`: analytic facade, `Dual` and the `arithmetic` function traits"
 msgstr "`elementary`：解析门面包，包含 `Dual` 与 `arithmetic` 函数 trait"
 
-#: manual/index.md:65
+#: manual/index.md:56
 msgid "[tutorial](tutorial/elementary.md)"
 msgstr "[教程](tutorial/elementary.md)"
 
-#: manual/index.md:65
+#: manual/index.md:56
 msgid "[API](api/elementary.md)"
 msgstr "[API](api/elementary.md)"
 
-#: manual/index.md:65
+#: manual/index.md:56
 msgid "[design](design/elementary.md)"
 msgstr "[设计](design/elementary.md)"
 
-#: manual/index.md:66
+#: manual/index.md:57
 msgid "`checked`: checked facade, `DivChecked`, `SqrtChecked`, context and errors"
 msgstr "`checked`：带检查的门面包，包含 `DivChecked`、`SqrtChecked`、上下文与错误"
 
-#: manual/index.md:66
+#: manual/index.md:57
 msgid "[tutorial](tutorial/checked.md)"
 msgstr "[教程](tutorial/checked.md)"
 
-#: manual/index.md:66
+#: manual/index.md:57
 msgid "[API](api/checked.md)"
 msgstr "[API](api/checked.md)"
 
-#: manual/index.md:66
+#: manual/index.md:57
 msgid "[design](design/checked.md)"
 msgstr "[设计](design/checked.md)"
 
-#: manual/index.md:67
+#: manual/index.md:58
 msgid "`linalg`: gradients and Jacobians over `linear-algebra/immut`"
 msgstr "`linalg`：基于 `linear-algebra/immut` 的梯度与雅可比矩阵"
 
-#: manual/index.md:67
+#: manual/index.md:58
 msgid "[tutorial](tutorial/linalg.md)"
 msgstr "[教程](tutorial/linalg.md)"
 
-#: manual/index.md:67
+#: manual/index.md:58
 msgid "[API](api/linalg.md)"
 msgstr "[API](api/linalg.md)"
 
-#: manual/index.md:67
+#: manual/index.md:58
 msgid "[design](design/linalg.md)"
 msgstr "[设计](design/linalg.md)"
 
-#: manual/index.md:68
+#: manual/index.md:59
 msgid "`poly`: derivatives of dense and univariate sparse `luna-poly` polynomials"
 msgstr "`poly`：`luna-poly` 稠密多项式与一元稀疏多项式的导数"
 
-#: manual/index.md:68
+#: manual/index.md:59
 msgid "[tutorial](tutorial/poly.md)"
 msgstr "[教程](tutorial/poly.md)"
 
-#: manual/index.md:68
+#: manual/index.md:59
 msgid "[API](api/poly.md)"
 msgstr "[API](api/poly.md)"
 
-#: manual/index.md:68
+#: manual/index.md:59
 msgid "[design](design/poly.md)"
 msgstr "[设计](design/poly.md)"
 
-#: manual/index.md:69
+#: manual/index.md:60
 msgid "Guides"
 msgstr "指南"
 
-#: manual/index.md:69
+#: manual/index.md:60
 msgid "[architecture](architecture.md)"
 msgstr "[架构](architecture.md)"
 
-#: manual/index.md:69
+#: manual/index.md:60
 msgid "[conventions](conventions.md)"
 msgstr "[约定](conventions.md)"
 
-#: manual/index.md:71
+#: manual/index.md:62
 msgid "Two more packages have no manual pages. `examples` holds five small functions (`basic_diff_example`, `square_diff_example`, `gradient_example`, `jacobian_example`, `polynomial_derivative_example`) that show each layer in a few lines; read [`src/examples/examples.mbt`](../../src/examples/examples.mbt). `tests` is the black-box test suite of all packages, including the `linear-algebra` and `luna-poly` integration tests."
 msgstr "另有两个包没有手册页面。`examples` 包含五个小函数（`basic_diff_example`、`square_diff_example`、`gradient_example`、`jacobian_example`、`polynomial_derivative_example`），用几行代码展示每一层；请阅读 [`src/examples/examples.mbt`](../../src/examples/examples.mbt)。`tests` 是所有包的黑盒测试套件，包括 `linear-algebra` 和 `luna-poly` 的集成测试。"
 
-#: manual/index.md:78
+#: manual/index.md:69
 msgid "Exported items"
 msgstr "导出项"
 
-#: manual/index.md:80
+#: manual/index.md:71
 msgid "The number type"
 msgstr "数值类型"
 
-#: manual/index.md:82
-msgid "`Dual[T]` with `Dual::new`, `constant`, `variable`, `value`, `tangent`, `zero` and `one`"
-msgstr "`Dual[T]`，包含 `Dual::new`、`constant`、`variable`、`value`、`tangent`、`zero` 和 `one`"
+#: manual/index.md:73
+msgid "`Dual[T]` with `Dual::new`, `constant`, `variable`, `value`, `tangent`, `zero`, `one`, `from_natural` and `from_integer`"
+msgstr "`Dual[T]`，包含 `Dual::new`、`constant`、`variable`、`value`、`tangent`、`zero`、`one`、`from_natural` 和 `from_integer`"
 
-#: manual/index.md:84
+#: manual/index.md:75
 msgid "Arithmetic: `add`, `sub`, `neg`, `mul`, `div` and `equal`, also as operators"
 msgstr "算术：`add`、`sub`、`neg`、`mul`、`div` 和 `equal`，也可作为运算符使用"
 
-#: manual/index.md:86
+#: manual/index.md:77
 msgid "Elementary rules: `sqrt`, `exp`, `exp2`, `ln`, `log2`, `log10`, `sin`, `cos`, `tan`"
 msgstr "初等函数规则：`sqrt`、`exp`、`exp2`、`ln`、`log2`、`log10`、`sin`、`cos`、`tan`"
 
-#: manual/index.md:88
+#: manual/index.md:79
 msgid "Checked forms: `div_checked`, `sqrt_checked`"
 msgstr "带检查的形式：`div_checked`、`sqrt_checked`"
 
-#: manual/index.md:92
+#: manual/index.md:83
 msgid "Scalar: `diff`, `value_and_diff`"
 msgstr "标量：`diff`、`value_and_diff`"
 
-#: manual/index.md:93
+#: manual/index.md:84
 msgid "Vector: `gradient`, `value_and_gradient`, `jacobian`, `value_and_jacobian`"
 msgstr "向量：`gradient`、`value_and_gradient`、`jacobian`、`value_and_jacobian`"
 
-#: manual/index.md:95
+#: manual/index.md:86
 msgid "Polynomial: `eval_dual`, `dense_value_and_derivative_at`, `dense_derivative_at`, the `sparse_univariate_*` functions and their compatibility names"
 msgstr "多项式：`eval_dual`、`dense_value_and_derivative_at`、`dense_derivative_at`、`sparse_univariate_*` 系列函数及其兼容名"
 
-#: manual/index.md:99
+#: manual/index.md:90
 msgid "Re-exported vocabulary"
 msgstr "重新导出的词汇"
 
-#: manual/index.md:101
-msgid "From `luna-generic`: `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring`, `Ring`, `IntegralHomomorphism`"
-msgstr "来自 `luna-generic`：`Zero`、`One`、`AddMonoid`、`AddGroup`、`MulMonoid`、`Semiring`、`Ring`、`IntegralHomomorphism`"
+#: manual/index.md:92
+msgid "From `luna-generic`: `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring`, `Ring`, `FromNat`, `FromInteger`"
+msgstr "来自 `luna-generic`：`Zero`、`One`、`AddMonoid`、`AddGroup`、`MulMonoid`、`Semiring`、`Ring`、`FromNat`、`FromInteger`"
 
-#: manual/index.md:103
+#: manual/index.md:94
 msgid "From `arithmetic`: `Sqrt`, `SqrtChecked`, `Exponential`, `Logarithmic`, `Trigonometric`, `Constants`, `DivChecked`, `ArithmeticContext`, `ArithmeticError`, `ArithmeticErrorKind`, `RoundingMode`"
 msgstr "来自 `arithmetic`：`Sqrt`、`SqrtChecked`、`Exponential`、`Logarithmic`、`Trigonometric`、`Constants`、`DivChecked`、`ArithmeticContext`、`ArithmeticError`、`ArithmeticErrorKind`、`RoundingMode`"
 
-#: manual/index.md:106
+#: manual/index.md:97
 msgid "From `linear-algebra` and `luna-poly`: `Vector`, `Matrix`, `DensePolynomial`, `SparsePolynomial` in the bridge packages"
 msgstr "来自 `linear-algebra` 和 `luna-poly`：桥接包中的 `Vector`、`Matrix`、`DensePolynomial`、`SparsePolynomial`"
 
-#: manual/index.md:109
+#: manual/index.md:100
 msgid "Where to read next"
 msgstr "接下来读什么"
 
-#: manual/index.md:111
+#: manual/index.md:102
 msgid "The [autodiff tutorial](tutorial/autodiff.md) differentiates a function with one import. The [dual API](api/dual.md) lists every rule and instance of the number type, and the [dual design](design/dual.md) derives them, with the rounding error bounds and the comparison with finite differences."
 msgstr "[autodiff 教程](tutorial/autodiff.md) 只用一次导入就对函数求导。[dual API](api/dual.md) 列出了该数值类型的所有规则和实例，[dual 设计](design/dual.md) 推导了它们，并给出舍入误差界以及与有限差分的比较。"
 
-#: manual/index.md:116
+#: manual/index.md:107
 msgid "New to automatic differentiation: read the [autodiff tutorial](tutorial/autodiff.md), then the [dual tutorial](tutorial/dual.md), which compares dual numbers with finite differences."
 msgstr "初次接触自动微分：先读 [autodiff 教程](tutorial/autodiff.md)，再读 [dual 教程](tutorial/dual.md)，其中将对偶数与有限差分进行了比较。"
 
-#: manual/index.md:120
+#: manual/index.md:111
 msgid "Using it in a library: import `Luna-Flow/autodiff` and keep the [autodiff API](api/autodiff.md) and the [dual API](api/dual.md) at hand; add the [linalg tutorial](tutorial/linalg.md) or the [poly tutorial](tutorial/poly.md) for vectors and polynomials, and the [checked tutorial](tutorial/checked.md) when failures must be values."
 msgstr "在库中使用：导入 `Luna-Flow/autodiff`，并将 [autodiff API](api/autodiff.md) 和 [dual API](api/dual.md) 放在手边；涉及向量和多项式时再阅读 [linalg 教程](tutorial/linalg.md) 或 [poly 教程](tutorial/poly.md)，需要把失败作为值处理时阅读 [checked 教程](tutorial/checked.md)。"
 
-#: manual/index.md:125
+#: manual/index.md:116
 msgid "Contributing: read the [dual design](design/dual.md) for the algebra, the derivative rules and the error bounds that every new operation must respect, then the [architecture guide](architecture.md), the [repository conventions](conventions.md) and the design page of the package you change."
 msgstr "参与贡献：阅读 [dual 设计](design/dual.md)，了解每个新运算都必须遵守的代数结构、求导规则和误差界，然后阅读 [架构指南](architecture.md)、[仓库约定](conventions.md) 以及你要修改的包的设计页面。"
 
-#: manual/index.md:131
+#: manual/index.md:122
 msgid "Validation"
 msgstr "验证"
 
-#: manual/index.md:133
+#: manual/index.md:124
 msgid "Recommended release checks:"
 msgstr "建议的发布前检查："
 
@@ -3113,7 +3150,7 @@ msgstr "处理带检查运算的失败"
 
 #: manual/tutorial/autodiff.md:119
 #: manual/tutorial/checked.md:144
-#: manual/tutorial/core.md:123
+#: manual/tutorial/core.md:126
 #: manual/tutorial/dual.md:221
 #: manual/tutorial/elementary.md:128
 #: manual/tutorial/forward.md:169
@@ -3144,7 +3181,7 @@ msgstr "深入了解带检查的运算：见 [checked 教程](checked.md)。"
 
 #: manual/tutorial/autodiff.md:128
 #: manual/tutorial/checked.md:154
-#: manual/tutorial/core.md:132
+#: manual/tutorial/core.md:135
 #: manual/tutorial/dual.md:275
 #: manual/tutorial/elementary.md:138
 #: manual/tutorial/forward.md:214
@@ -3162,12 +3199,12 @@ msgid "**Re-exported traits are the original traits.** An instance you write for
 msgstr "**重新导出的 trait 就是原始 trait。** 你为 `@lg.Ring` 编写的实例就是 `@autodiff.Ring` 的实例；不要两者都实现。"
 
 #: manual/tutorial/autodiff.md:134
-msgid "**Literals need `Dual::constant`** or `from_integral` inside differentiated code."
-msgstr "**在被求导的代码中，字面量需要用 `Dual::constant`** 或 `from_integral` 包装。"
+msgid "**Literals need `Dual::constant`** or `FromInteger::from_integer` inside differentiated code."
+msgstr "**在被求导的代码中，字面量需要用 `Dual::constant`** 或 `FromInteger::from_integer` 构造。"
 
 #: manual/tutorial/autodiff.md:137
-#: manual/tutorial/checked.md:170
-#: manual/tutorial/core.md:141
+#: manual/tutorial/checked.md:166
+#: manual/tutorial/core.md:144
 #: manual/tutorial/dual.md:298
 #: manual/tutorial/elementary.md:151
 #: manual/tutorial/forward.md:228
@@ -3265,22 +3302,18 @@ msgid "**Tiny and huge divisors.** $c^2$ rounds to zero for $|c| < 1.57 \\times 
 msgstr "**极小和极大的除数。** 当 $|c| < 1.57 \\times 10^{-162}$ 时 $c^2$ 被舍入为零，此时切向分量的除法失败（除以零；若分子也为零则为定义域错误）。当 $|c| > 1.34 \\times 10^{154}$ 时它上溢，`div_checked` 返回切向分量为 $0$ 的 `Ok`。请对这类除数做缩放。"
 
 #: manual/tutorial/checked.md:163
-msgid "**The pinned `arithmetic` does not check square roots.** With `arithmetic@0.2.1` from `moon.mod`, `sqrt_checked` of a negative `Double` returns NaN components instead of an error; see [versions of arithmetic](../api/checked.md#versions-of-arithmetic)."
-msgstr "**锁定的 `arithmetic` 不检查平方根。** 使用 `moon.mod` 中的 `arithmetic@0.2.1` 时，对负的 `Double` 调用 `sqrt_checked` 返回 NaN 分量而不是错误；见 [arithmetic 的版本](../api/checked.md#versions-of-arithmetic)。"
-
-#: manual/tutorial/checked.md:167
 msgid "**Unchecked operators stay unchecked.** `x / y` and `x.sqrt()` on dual numbers never return errors; use the `_checked` forms."
 msgstr "**不带检查的运算符仍然不带检查。** 对偶数上的 `x / y` 和 `x.sqrt()` 从不返回错误；请使用 `_checked` 形式。"
 
-#: manual/tutorial/checked.md:172
+#: manual/tutorial/checked.md:168
 msgid "The [checked API](../api/checked.md) lists the re-exported names."
 msgstr "[checked API](../api/checked.md) 列出了重新导出的名称。"
 
-#: manual/tutorial/checked.md:173
+#: manual/tutorial/checked.md:169
 msgid "The [dual API](../api/dual.md#checked-operations) gives the exact error table."
 msgstr "[dual API](../api/dual.md#checked-operations) 给出了精确的错误表。"
 
-#: manual/tutorial/checked.md:175
+#: manual/tutorial/checked.md:171
 msgid "[arithmetic](https://lunaflow.cn/en/arithmetic/) documents the error model."
 msgstr "[arithmetic](https://lunaflow.cn/en/arithmetic/) 记录了错误模型。"
 
@@ -3300,6 +3333,10 @@ msgstr "编写环层次的泛型代码"
 msgid "use an integer constant in generic code"
 msgstr "在泛型代码中使用整数常量"
 
+#: manual/tutorial/core.md:12
+msgid "`@ad_core.FromInteger::from_integer(n)`, or `@lg.lift_to(n)` for an `Int`"
+msgstr "`@ad_core.FromInteger::from_integer(n)`；对 `Int` 可用 `@lg.lift_to(n)`"
+
 #: manual/tutorial/core.md:13
 msgid "start a sum or a product"
 msgstr "开始一次求和或求积"
@@ -3317,62 +3354,62 @@ msgid "Integer constants in generic code"
 msgstr "泛型代码中的整数常量"
 
 #: manual/tutorial/core.md:51
-msgid "Literals have a fixed type; inside a generic function, make constants with `IntegralHomomorphism::from_integral`:"
-msgstr "字面量具有固定的类型；在泛型函数中，请用 `IntegralHomomorphism::from_integral` 构造常量："
+msgid "Literals have a fixed type; inside a generic function, make constants with `FromInteger::from_integer`, which takes a `BigInt` literal such as `2N`:"
+msgstr "字面量具有固定的类型；在泛型函数中，请用 `FromInteger::from_integer` 构造常量，它接受 `2N` 这样的 `BigInt` 字面量："
 
 #: manual/tutorial/core.md:71
-msgid "On `Dual[T]`, `from_integral` produces constants with tangent zero."
-msgstr "在 `Dual[T]` 上，`from_integral` 产生切向分量为零的常数。"
+msgid "On `Dual[T]`, `from_integer` produces constants with tangent zero. For an integer held in an `Int` (or another integral type), `@lg.lift_to(n)` from `Luna-Flow/luna-generic` converts it through the same map; the older `IntegralHomomorphism::from_integral` is deprecated."
+msgstr "在 `Dual[T]` 上，`from_integer` 产生切向分量为零的常数。对于存放在 `Int`（或其他整数类型）中的整数，`Luna-Flow/luna-generic` 中的 `@lg.lift_to(n)` 会通过同一个映射进行转换；旧的 `IntegralHomomorphism::from_integral` 已被弃用。"
 
-#: manual/tutorial/core.md:73
+#: manual/tutorial/core.md:76
 msgid "Identities"
 msgstr "单位元"
 
-#: manual/tutorial/core.md:75
+#: manual/tutorial/core.md:78
 msgid "`Zero::zero()` and `One::one()` are constants of any ring, including `Dual[T]`:"
 msgstr "`Zero::zero()` 和 `One::one()` 是任意环（包括 `Dual[T]`）中的常数："
 
-#: manual/tutorial/core.md:97
+#: manual/tutorial/core.md:100
 msgid "Generic code over a semiring"
 msgstr "基于半环的泛型代码"
 
-#: manual/tutorial/core.md:99
+#: manual/tutorial/core.md:102
 msgid "Code that needs no subtraction can ask for `Semiring` only, so it also accepts unsigned integers:"
 msgstr "不需要减法的代码可以只要求 `Semiring`，这样它也能接受无符号整数："
 
-#: manual/tutorial/core.md:125
+#: manual/tutorial/core.md:128
 msgid "The same generic functions can be passed to `@autodiff.diff`, see the [forward tutorial](forward.md)."
 msgstr "同样的泛型函数也可以传给 `@autodiff.diff`，见 [forward 教程](forward.md)。"
 
-#: manual/tutorial/core.md:127
+#: manual/tutorial/core.md:130
 msgid "For `sqrt`, `exp`, `sin` and friends you need the analytic traits; import [`elementary`](elementary.md) or the root package."
 msgstr "`sqrt`、`exp`、`sin` 等函数需要解析 trait；请导入 [`elementary`](elementary.md) 或根包。"
 
-#: manual/tutorial/core.md:129
+#: manual/tutorial/core.md:132
 msgid "Your own number type joins by implementing the `luna-generic` traits; it then works both directly and as the `T` of `Dual[T]`."
 msgstr "你自己的数值类型只需实现 `luna-generic` 的 trait 即可加入；之后它既能直接使用，也能作为 `Dual[T]` 中的 `T`。"
 
-#: manual/tutorial/core.md:134
+#: manual/tutorial/core.md:137
 msgid "**No division.** `core` has no `Field`; use the `Div` operator on concrete types or the [checked](checked.md) facade."
 msgstr "**没有除法。** `core` 不提供 `Field`；请在具体类型上使用 `Div` 运算符，或使用 [checked](checked.md) 门面包。"
 
-#: manual/tutorial/core.md:136
+#: manual/tutorial/core.md:139
 msgid "**`one()` is not the variable.** `One::one()` on `Dual[T]` has tangent zero; seed the variable with `Dual::variable`."
 msgstr "**`one()` 不是变量。** `Dual[T]` 上的 `One::one()` 切向分量为零；请用 `Dual::variable` 设定变量的种子。"
 
-#: manual/tutorial/core.md:138
+#: manual/tutorial/core.md:141
 msgid "**Unsigned types stop at `Semiring`.** `UInt` has no `Ring` instance, so functions bounded by `Ring` do not accept it."
 msgstr "**无符号类型止步于 `Semiring`。** `UInt` 没有 `Ring` 实例，因此以 `Ring` 为约束的函数不接受它。"
 
-#: manual/tutorial/core.md:143
+#: manual/tutorial/core.md:146
 msgid "The [core API](../api/core.md) lists the re-exported traits and their `Dual[T]` instances."
 msgstr "[core API](../api/core.md) 列出了重新导出的 trait 及其 `Dual[T]` 实例。"
 
-#: manual/tutorial/core.md:145
+#: manual/tutorial/core.md:148
 msgid "The [dual design](../design/dual.md) proves the ring laws of $T[\\varepsilon]$."
 msgstr "[dual 设计](../design/dual.md) 证明了 $T[\\varepsilon]$ 满足环的定律。"
 
-#: manual/tutorial/core.md:147
+#: manual/tutorial/core.md:150
 msgid "[luna-generic](https://lunaflow.cn/en/luna-generic/) documents the trait hierarchy."
 msgstr "[luna-generic](https://lunaflow.cn/en/luna-generic/) 记录了 trait 层次结构。"
 
@@ -3486,8 +3523,8 @@ msgid "Write one function for plain and dual numbers"
 msgstr "为普通数和对偶数编写同一个函数"
 
 #: manual/tutorial/dual.md:163
-msgid "Write the function against the traits it needs. The same code then runs on `Double` and, for derivatives, on `Dual[Double]`. Integer constants come from `IntegralHomomorphism::from_integral`:"
-msgstr "针对函数所需的 trait 编写它。这样同一份代码就能在 `Double` 上运行，求导时也能在 `Dual[Double]` 上运行。整数常量来自 `IntegralHomomorphism::from_integral`："
+msgid "Write the function against the traits it needs. The same code then runs on `Double` and, for derivatives, on `Dual[Double]`. Integer constants come from `FromInteger::from_integer`:"
+msgstr "针对函数所需的 trait 编写它。这样同一份代码就能在 `Double` 上运行，求导时也能在 `Dual[Double]` 上运行。整数常量来自 `FromInteger::from_integer`："
 
 #: manual/tutorial/dual.md:189
 msgid "The value computed on dual numbers is bit-for-bit the value computed on `Double`; the tangent is $6x - \\sin x$ at $0.5$."
@@ -3530,8 +3567,8 @@ msgid "To differentiate through `exp` or `sin` with your own type, implement `Ex
 msgstr "要让你自己的类型能通过 `exp` 或 `sin` 求导，请为它实现 `Luna-Flow/arithmetic` 中的 `Exponential` 或 `Trigonometric`。"
 
 #: manual/tutorial/dual.md:277
-msgid "**Literals are not dual numbers.** `x * 2.0` does not compile when `x` is a `Dual[Double]`. Write `x * @autodiff.Dual::constant(2.0)`, or use `IntegralHomomorphism::from_integral(2)` in generic code."
-msgstr "**字面量不是对偶数。** 当 `x` 是 `Dual[Double]` 时，`x * 2.0` 无法编译。请写成 `x * @autodiff.Dual::constant(2.0)`，或在泛型代码中使用 `IntegralHomomorphism::from_integral(2)`。"
+msgid "**Literals are not dual numbers.** `x * 2.0` does not compile when `x` is a `Dual[Double]`. Write `x * @autodiff.Dual::constant(2.0)`, or use `FromInteger::from_integer(2N)` in generic code."
+msgstr "**字面量不是对偶数。** 当 `x` 是 `Dual[Double]` 时，`x * 2.0` 无法编译。请写成 `x * @autodiff.Dual::constant(2.0)`，或在泛型代码中使用 `FromInteger::from_integer(2N)`。"
 
 #: manual/tutorial/dual.md:280
 msgid "**Comparisons see only what you compare.** `Dual[T]` has no `<`. Compare `x.value()`; the derivative is then the derivative of the branch taken, so functions such as `abs` written with a branch have the one-sided derivative at the kink."
@@ -3658,8 +3695,8 @@ msgid "**Outside the domain you get NaN or infinity.** `ln` of a non-positive nu
 msgstr "**超出定义域会得到 NaN 或无穷大。** 非正数的 `ln` 和零处的 `sqrt` 都不做检查。负数的 `ln` 值为 NaN，但切向分量有限，因此请检查值。"
 
 #: manual/tutorial/elementary.md:143
-msgid "**The trait instances need more than the method.** Calling `@elementary.Exponential::exp` on `Dual[T]` needs the full instance bound (`Logarithmic` and `IntegralHomomorphism` on `T`); the method `x.exp()` needs less."
-msgstr "**trait 实例需要的比方法更多。** 在 `Dual[T]` 上调用 `@elementary.Exponential::exp` 需要完整的实例约束（`T` 上的 `Logarithmic` 和 `IntegralHomomorphism`）；方法 `x.exp()` 需要的则更少。"
+msgid "**The trait instances need more than the method.** Calling `@elementary.Exponential::exp` on `Dual[T]` needs the full instance bound (`Logarithmic` and `FromInteger` on `T`); the method `x.exp()` needs less."
+msgstr "**trait 实例需要的比方法更多。** 在 `Dual[T]` 上调用 `@elementary.Exponential::exp` 需要完整的实例约束（`T` 上的 `Logarithmic` 和 `FromInteger`）；方法 `x.exp()` 需要的则更少。"
 
 #: manual/tutorial/elementary.md:147
 msgid "**No hyperbolic or inverse functions.** `sinh`, `asin`, `atan` and friends have no dual rule yet; compose them from the available functions if you need them."
@@ -4057,6 +4094,54 @@ msgstr "[poly 设计](../design/poly.md) 推导了对偶数上的 Horner 法则�
 msgid "[luna-poly](https://lunaflow.cn/en/luna-poly/) documents the polynomial types."
 msgstr "[luna-poly](https://lunaflow.cn/en/luna-poly/) 记录了多项式类型。"
 
+#~ msgid "Versions of `arithmetic`"
+#~ msgstr "`arithmetic` 的版本"
+
+#~ msgid "The checked rules of `Dual[T]` only call `T`'s `div_checked` and `sqrt_checked`, so the errors depend on the `arithmetic` release that provides the `Double` instances. This manual and its examples follow `arithmetic` 0.5, which the repository is developed against in a workspace. `moon.mod` still pins `arithmetic@0.2.1`, where `Double` behaves differently:"
+#~ msgstr "`Dual[T]` 的带检查规则只调用 `T` 的 `div_checked` 和 `sqrt_checked`，因此错误取决于提供 `Double` 实例的 `arithmetic` 版本。本手册及其示例以 `arithmetic` 0.5 为准，本仓库在工作区中正是基于该版本开发的。`moon.mod` 仍锁定 `arithmetic@0.2.1`，其中 `Double` 的行为有所不同："
+
+#~ msgid "Operation on `Double`"
+#~ msgstr "`Double` 上的运算"
+
+#~ msgid "exists"
+#~ msgstr "存在"
+
+#~ msgid "does not exist"
+#~ msgstr "不存在"
+
+#~ msgid "[!WARNING] With `arithmetic@0.2.1`, `Dual::sqrt_checked` of a negative `Double` returns `Ok` with value and tangent NaN instead of an error. Check `value().is_nan()` until the pin is raised."
+#~ msgstr "[!WARNING] 使用 `arithmetic@0.2.1` 时，对负的 `Double` 调用 `Dual::sqrt_checked` 会返回值与切向分量均为 NaN 的 `Ok`，而不是错误。在提高锁定版本之前，请检查 `value().is_nan()`。"
+
+#~ msgid "`from_integral` from integral types"
+#~ msgstr "从整数类型出发的 `from_integral`"
+
+#~ msgid "The canonical map from the integers, used for integer constants in generic code."
+#~ msgstr "从整数出发的典范映射，用于泛型代码中的整数常量。"
+
+#~ msgid "With the `arithmetic@0.2.1` pinned in `moon.mod`, every zero divisor, including $0/0$, gives `is_division_by_zero()`, and $\\infty/\\infty$ gives NaN without an error (see [versions of arithmetic](checked.md#versions-of-arithmetic))."
+#~ msgstr "使用 `moon.mod` 中锁定的 `arithmetic@0.2.1` 时，所有零除数（包括 $0/0$）都给出 `is_division_by_zero()`，而 $\\infty/\\infty$ 不报错，直接给出 NaN（见 [arithmetic 的版本](checked.md#versions-of-arithmetic)）。"
+
+#~ msgid "`from_integral(n)` is `Dual::constant(from_integral(n))`"
+#~ msgstr "`from_integral(n)` 即 `Dual::constant(from_integral(n))`"
+
+#~ msgid "`NatHomomorphism::from_nat(n)` from `Luna-Flow/luna-generic`"
+#~ msgstr "来自 `Luna-Flow/luna-generic` 的 `NatHomomorphism::from_nat(n)`"
+
+#~ msgid "`sqrt_checked(x)` succeeds exactly when `T`'s `sqrt_checked(a)` and `div_checked(b, 2√a)` succeed; for `Double` with `arithmetic` 0.5 that is $a > 0$, or $a$ NaN. With `arithmetic@0.2.1` it also succeeds, with NaN components, for $a < 0$, because that release does not check the domain of the square root (see [versions of arithmetic](../api/checked.md#versions-of-arithmetic))."
+#~ msgstr "`sqrt_checked(x)` 成功，当且仅当 `T` 的 `sqrt_checked(a)` 和 `div_checked(b, 2√a)` 都成功；对于使用 `arithmetic` 0.5 的 `Double`，即 $a > 0$ 或 $a$ 为 NaN。使用 `arithmetic@0.2.1` 时，对于 $a < 0$ 它也会成功并给出 NaN 分量，因为该版本不检查平方根的定义域（见 [arithmetic 的版本](../api/checked.md#versions-of-arithmetic)）。"
+
+#~ msgid "No `Field`, `MulGroup`, `Inverse` or `NatHomomorphism`."
+#~ msgstr "没有 `Field`、`MulGroup`、`Inverse` 或 `NatHomomorphism`。"
+
+#~ msgid "[!IMPORTANT] The checked operations report the errors of `T`'s own `DivChecked` and `SqrtChecked`. This manual describes `Double` as implemented by `Luna-Flow/arithmetic` 0.5, the version the repository is developed against. `moon.mod` still pins `arithmetic@0.2.1`, whose `Double` `sqrt_checked` never fails (a negative input gives NaN) and whose `div_checked` reports every zero divisor, including $0/0$, as a division by zero. See the [checked API](api/checked.md#versions-of-arithmetic)."
+#~ msgstr "[!IMPORTANT] 带检查的运算报告的是 `T` 自身 `DivChecked` 和 `SqrtChecked` 的错误。本手册按 `Luna-Flow/arithmetic` 0.5（本仓库开发所基于的版本）描述 `Double`。`moon.mod` 仍锁定 `arithmetic@0.2.1`，其中 `Double` 的 `sqrt_checked` 从不失败（负输入给出 NaN），而 `div_checked` 把所有零除数（包括 $0/0$）都报告为除以零。见 [checked API](api/checked.md#versions-of-arithmetic)。"
+
+#~ msgid "**The pinned `arithmetic` does not check square roots.** With `arithmetic@0.2.1` from `moon.mod`, `sqrt_checked` of a negative `Double` returns NaN components instead of an error; see [versions of arithmetic](../api/checked.md#versions-of-arithmetic)."
+#~ msgstr "**锁定的 `arithmetic` 不检查平方根。** 使用 `moon.mod` 中的 `arithmetic@0.2.1` 时，对负的 `Double` 调用 `sqrt_checked` 返回 NaN 分量而不是错误；见 [arithmetic 的版本](../api/checked.md#versions-of-arithmetic)。"
+
+#~ msgid "On `Dual[T]`, `from_integral` produces constants with tangent zero."
+#~ msgstr "在 `Dual[T]` 上，`from_integral` 产生切向分量为零的常数。"
+
 #~ msgid "the tangent division fails; see the pitfall below"
 #~ msgstr "切向分量的除法失败；见下方的陷阱说明"
 
@@ -4068,9 +4153,6 @@ msgstr "[luna-poly](https://lunaflow.cn/en/luna-poly/) 记录了多项式类型�
 
 #~ msgid "In `Double`, $c^2$ can be zero for non-zero $c$: $c^2$ underflows to $0$ for $|c| < 2^{-537}$ (rounding to nearest, with gradual underflow) even though $a/c$ may be finite. The checked quotient then reports a division by zero from the tangent. Such inputs are better rescaled; the [dual design](dual.md#rounding-error) assumes no underflow."
 #~ msgstr "在 `Double` 中，非零的 $c$ 也可能使 $c^2$ 为零：当 $|c| < 2^{-537}$ 时（采用就近舍入并支持渐进下溢），$c^2$ 会下溢为 $0$，即使 $a/c$ 可能是有限值。这时带检查的商会因切向分量而报告除以零。这类输入最好先重新缩放；[dual 设计](dual.md#rounding-error) 假定不发生下溢。"
-
-#~ msgid "`sqrt_checked(x)` succeeds exactly when `T`'s `sqrt_checked(a)` and `div_checked(b, 2√a)` succeed; for `Double` that is $a > 0$, or $a$ NaN."
-#~ msgstr "`sqrt_checked(x)` 恰好在 `T` 的 `sqrt_checked(a)` 和 `div_checked(b, 2√a)` 都成功时成功；对于 `Double`，即 $a > 0$ 或 $a$ 为 NaN。"
 
 #~ msgid "First derivatives only. Higher derivatives come from nesting `Dual[Dual[T]]`, which costs $2^k$ per order; there is no truncated Taylor (jet) type."
 #~ msgstr "只支持一阶导数。高阶导数通过嵌套 `Dual[Dual[T]]` 得到，其代价按阶数呈 $2^k$ 增长；没有截断泰勒（jet）类型。"

@@ -8,8 +8,9 @@ instances and the derivative rules of the elementary functions. Every other
 package of this repository re-exports or consumes this type. The
 mathematics behind the rules is in the [dual design](../design/dual.md).
 
-Source: [`src/dual/dual.mbt`](../../../src/dual/dual.mbt) and
-[`src/dual/extends.mbt`](../../../src/dual/extends.mbt).
+Source: [`src/dual/dual.mbt`](../../../src/dual/dual.mbt),
+[`src/dual/extends.mbt`](../../../src/dual/extends.mbt) and
+[`src/dual/compat.mbt`](../../../src/dual/compat.mbt).
 
 ## Importing
 
@@ -136,6 +137,41 @@ pub impl[T : @luna-generic.One + @luna-generic.Zero] @luna-generic.One for Dual[
 `one` is a constant, so its tangent is zero; it is not
 `Dual::variable(1)`. This is the promoted method of the `One` instance.
 
+### `Dual::from_natural`
+
+Embeds a natural number, given as a `BigInt`, as a constant.
+
+```mbti
+pub fn[T : @luna-generic.FromNat + @luna-generic.Zero] Dual::from_natural(@bigint.BigInt) -> Dual[T]
+pub impl[T : @luna-generic.FromNat + @luna-generic.Zero] @luna-generic.FromNat for Dual[T]
+```
+
+`from_natural(n)` is `Dual::constant(FromNat::from_natural(n))`. This is the
+promoted method of the `FromNat` instance.
+
+### `Dual::from_integer`
+
+Embeds an integer, given as a `BigInt`, as a constant.
+
+```mbti
+pub fn[T : @luna-generic.FromInteger + @luna-generic.Zero] Dual::from_integer(@bigint.BigInt) -> Dual[T]
+pub impl[T : @luna-generic.FromInteger + @luna-generic.Zero] @luna-generic.FromInteger for Dual[T]
+```
+
+`from_integer(n)` is `Dual::constant(FromInteger::from_integer(n))`, the
+canonical map $\mathbb Z \to T[\varepsilon]$. This is the promoted method of
+the `FromInteger` instance. To convert an `Int` or another integral type,
+use `@lg.lift_to(n)` from `Luna-Flow/luna-generic`.
+
+```moonbit
+test "integer constants" {
+  let c : @autodiff.Dual[Double] = @autodiff.Dual::from_integer(-3N)
+  assert_eq(c, @autodiff.Dual::new(-3.0, 0.0))
+  let d : @autodiff.Dual[Double] = @lg.lift_to(7)
+  assert_eq(d, @autodiff.Dual::new(7.0, 0.0))
+}
+```
+
 ## Arithmetic
 
 The four operators implement the sum, difference, product and quotient
@@ -248,7 +284,7 @@ pub impl[T : @arithmetic.DivChecked + Sub + Mul] @arithmetic.DivChecked for Dual
 The value $a / c$ is computed first with `T`'s `div_checked`; the tangent
 $(bc - ad) / c^2$ is then computed with a second `div_checked` call. The
 first error is returned unchanged, so the errors are exactly those of `T`.
-For `Double` with `arithmetic` 0.5 they are:
+For `Double` they are:
 
 | Condition | Error |
 | --- | --- |
@@ -257,10 +293,6 @@ For `Double` with `arithmetic` 0.5 they are:
 | both $a$ and $c$ infinite | `is_domain_error()` |
 | $c \ne 0$ but $c \cdot c$ underflows to $0$ | the tangent division fails: `is_division_by_zero()` when $bc - ad \ne 0$, `is_domain_error()` when $bc - ad = 0$ |
 | $c \cdot c$ overflows to $\infty$ | no error; see the warning below |
-
-With the `arithmetic@0.2.1` pinned in `moon.mod`, every zero divisor,
-including $0/0$, gives `is_division_by_zero()`, and $\infty/\infty$ gives
-NaN without an error (see [versions of arithmetic](checked.md#versions-of-arithmetic)).
 
 The context argument is passed through to `T`; the `Double` and `Float`
 instances of `arithmetic` ignore it.
@@ -306,12 +338,12 @@ Takes the square root with the rule $\sqrt{a + b\varepsilon} = \sqrt a +
 \dfrac{b}{2\sqrt a}\varepsilon$ and reports domain errors.
 
 ```mbti
-pub fn[T : @arithmetic.SqrtChecked + @arithmetic.DivChecked + @luna-generic.IntegralHomomorphism + Mul] Dual::sqrt_checked(Dual[T], @arithmetic.ArithmeticContext) -> Result[Dual[T], @arithmetic.ArithmeticError]
-pub impl[T : @arithmetic.SqrtChecked + @arithmetic.DivChecked + @luna-generic.IntegralHomomorphism + Mul] @arithmetic.SqrtChecked for Dual[T]
+pub fn[T : @arithmetic.SqrtChecked + @arithmetic.DivChecked + @luna-generic.FromInteger + Mul] Dual::sqrt_checked(Dual[T], @arithmetic.ArithmeticContext) -> Result[Dual[T], @arithmetic.ArithmeticError]
+pub impl[T : @arithmetic.SqrtChecked + @arithmetic.DivChecked + @luna-generic.FromInteger + Mul] @arithmetic.SqrtChecked for Dual[T]
 ```
 
 The value is `T`'s `sqrt_checked(a)`; the tangent is `div_checked(b, 2 *
-root)`, where `2` comes from `IntegralHomomorphism::from_integral(2)`. For
+root)`, where `2` comes from `lift_to(2)` (the `FromInteger` map). For
 `Double`:
 
 | Condition | Error |
@@ -322,9 +354,7 @@ root)`, where `2` comes from `IntegralHomomorphism::from_integral(2)`. For
 
 So `sqrt_checked` fails at $a = 0$ even for a constant input: $\sqrt{\cdot}$
 has no derivative at $0$, and the checked form does not special-case a zero
-tangent. With the pinned `arithmetic@0.2.1`, `Double`'s `sqrt_checked` does
-not reject $a < 0$: the result is `Ok` with value and tangent NaN, and
-$a = 0$ always gives `is_division_by_zero()`.
+tangent.
 
 ```moonbit
 test "checked dual square root" {
@@ -362,7 +392,7 @@ below. None of them checks its domain: outside it the result is whatever
 | `Dual::cos` | $\cos a$ | `-(b * sin(a))` | $-\sin a$ |
 | `Dual::tan` | $\tan a$ | `b / (cos(a) * cos(a))` | $\sec^2 a$ |
 
-The constants $2$ and $10$ come from `IntegralHomomorphism::from_integral`.
+The constants $2$ and $10$ come from `lift_to`, that is, from `FromInteger`.
 
 Outside the domain the two components do not fail together, because the
 tangent formula is evaluated as written:
@@ -393,8 +423,8 @@ test "elementary rules outside the domain" {
 Square root with the tangent $b / (2\sqrt a)$.
 
 ```mbti
-pub fn[T : @arithmetic.Sqrt + @luna-generic.IntegralHomomorphism + Mul + Div] Dual::sqrt(Dual[T]) -> Dual[T]
-pub impl[T : @arithmetic.Sqrt + @luna-generic.IntegralHomomorphism + Mul + Div] @arithmetic.Sqrt for Dual[T]
+pub fn[T : @arithmetic.Sqrt + @luna-generic.FromInteger + Mul + Div] Dual::sqrt(Dual[T]) -> Dual[T]
+pub impl[T : @arithmetic.Sqrt + @luna-generic.FromInteger + Mul + Div] @arithmetic.Sqrt for Dual[T]
 ```
 
 ### `Dual::exp`
@@ -410,8 +440,8 @@ pub fn[T : @arithmetic.Exponential + Mul] Dual::exp(Dual[T]) -> Dual[T]
 Base-2 exponential with the tangent $b \cdot 2^a \ln 2$.
 
 ```mbti
-pub fn[T : @arithmetic.Exponential + @arithmetic.Logarithmic + @luna-generic.IntegralHomomorphism + Mul] Dual::exp2(Dual[T]) -> Dual[T]
-pub impl[T : @arithmetic.Exponential + @arithmetic.Logarithmic + @luna-generic.IntegralHomomorphism + Mul] @arithmetic.Exponential for Dual[T]
+pub fn[T : @arithmetic.Exponential + @arithmetic.Logarithmic + @luna-generic.FromInteger + Mul] Dual::exp2(Dual[T]) -> Dual[T]
+pub impl[T : @arithmetic.Exponential + @arithmetic.Logarithmic + @luna-generic.FromInteger + Mul] @arithmetic.Exponential for Dual[T]
 ```
 
 The `Exponential` instance provides both `exp` and `exp2`, so it needs the
@@ -430,7 +460,7 @@ pub fn[T : @arithmetic.Logarithmic + Div] Dual::ln(Dual[T]) -> Dual[T]
 Base-2 logarithm with the tangent $b / (a \ln 2)$.
 
 ```mbti
-pub fn[T : @arithmetic.Logarithmic + @luna-generic.IntegralHomomorphism + Mul + Div] Dual::log2(Dual[T]) -> Dual[T]
+pub fn[T : @arithmetic.Logarithmic + @luna-generic.FromInteger + Mul + Div] Dual::log2(Dual[T]) -> Dual[T]
 ```
 
 ### `Dual::log10`
@@ -438,8 +468,8 @@ pub fn[T : @arithmetic.Logarithmic + @luna-generic.IntegralHomomorphism + Mul + 
 Base-10 logarithm with the tangent $b / (a \ln 10)$.
 
 ```mbti
-pub fn[T : @arithmetic.Logarithmic + @luna-generic.IntegralHomomorphism + Mul + Div] Dual::log10(Dual[T]) -> Dual[T]
-pub impl[T : @arithmetic.Logarithmic + @luna-generic.IntegralHomomorphism + Mul + Div] @arithmetic.Logarithmic for Dual[T]
+pub fn[T : @arithmetic.Logarithmic + @luna-generic.FromInteger + Mul + Div] Dual::log10(Dual[T]) -> Dual[T]
+pub impl[T : @arithmetic.Logarithmic + @luna-generic.FromInteger + Mul + Div] @arithmetic.Logarithmic for Dual[T]
 ```
 
 The `Logarithmic` instance provides `ln`, `log2` and `log10`.
@@ -496,8 +526,9 @@ $T[\varepsilon]/(\varepsilon^2)$ satisfies, each under the matching bound on
 | `MulMonoid` | `Semiring` | product rule multiplication |
 | `Semiring` | `Semiring` | $T[\varepsilon]$ is a semiring when `T` is |
 | `Ring` | `Ring` | $T[\varepsilon]$ is a ring when `T` is |
-| `NatHomomorphism` | `NatHomomorphism + Zero` | `from_nat(n)` is `Dual::constant(from_nat(n))` |
-| `IntegralHomomorphism` | `IntegralHomomorphism + Zero` | `from_integral(n)` is `Dual::constant(from_integral(n))` |
+| `FromNat` | `FromNat + Zero` | `from_natural(n)` is `Dual::constant(from_natural(n))` |
+| `FromInteger` | `FromInteger + Zero` | `from_integer(n)` is `Dual::constant(from_integer(n))` |
+| `NatHomomorphism`, `IntegralHomomorphism` (deprecated) | the same trait `+ Zero` | compatibility shims, see below |
 | `@arithmetic.Constants` | `Constants + Zero` | `pi()`, `tau()`, `e()` are constants |
 | `@arithmetic.DivChecked` | `DivChecked + Sub + Mul` | see `Dual::div_checked` |
 | `@arithmetic.SqrtChecked` | see `Dual::sqrt_checked` | see `Dual::sqrt_checked` |
@@ -532,18 +563,34 @@ tangent $ad + bc$ uses the addition of `T`. Associativity and
 distributivity hold because the multiplication of `T` is commutative; the
 [dual design](../design/dual.md#ring-level-instances-only) checks the laws.
 
-### `NatHomomorphism`, `IntegralHomomorphism`
+### `FromNat`, `FromInteger`
 
 The canonical maps from the natural numbers and the integers land on
 constants.
+
+```mbti
+pub impl[T : @luna-generic.FromNat + @luna-generic.Zero] @luna-generic.FromNat for Dual[T]
+pub impl[T : @luna-generic.FromInteger + @luna-generic.Zero] @luna-generic.FromInteger for Dual[T]
+```
+
+`from_integer(n)` is `Dual::constant(from_integer(n))`, so integer
+literals in generic code, written `FromInteger::from_integer(3N)` or
+`@lg.lift_to(3)`, have tangent zero.
+
+### `NatHomomorphism`, `IntegralHomomorphism` (deprecated)
+
+Compatibility shims for the traits that `luna-generic` 0.4.0 deprecates.
 
 ```mbti
 pub impl[T : @luna-generic.NatHomomorphism + @luna-generic.Zero] @luna-generic.NatHomomorphism for Dual[T]
 pub impl[T : @luna-generic.IntegralHomomorphism + @luna-generic.Zero] @luna-generic.IntegralHomomorphism for Dual[T]
 ```
 
-`from_integral(n)` is `Dual::constant(from_integral(n))`, so integer
-literals in generic code have tangent zero.
+They exist because `luna-poly` 0.2.0 still requires `NatHomomorphism` in
+`DensePolynomial::derivative`; with them, a `DensePolynomial[Dual[T]]` keeps
+its formal derivative. Both produce constants, like `FromNat` and
+`FromInteger`. They will be removed once `luna-poly` moves to `FromNat`, so
+new code should not depend on them.
 
 ### `Constants`
 
@@ -557,8 +604,8 @@ The instances of `Sqrt`, `Exponential`, `Logarithmic`, `Trigonometric`,
 `DivChecked` and `SqrtChecked` are listed with their methods above.
 
 ```moonbit
-fn[T : @autodiff.Ring + @autodiff.IntegralHomomorphism] three_x_squared(x : T) -> T {
-  let three : T = @autodiff.IntegralHomomorphism::from_integral(3)
+fn[T : @autodiff.Ring + @autodiff.FromInteger] three_x_squared(x : T) -> T {
+  let three : T = @autodiff.FromInteger::from_integer(3N)
   three * x * x
 }
 
@@ -578,6 +625,6 @@ outside this package.
 | --- | --- |
 | `x.not_equal(y)` | `x != y` |
 | `x.to_repr()` | `Repr(x)` or `@debug.Debug::to_repr(x)` |
-| `Dual::from_nat(n)` | `NatHomomorphism::from_nat(n)` from `Luna-Flow/luna-generic` |
-| `Dual::from_integral(n)` | `@autodiff.IntegralHomomorphism::from_integral(n)` |
+| `Dual::from_nat(n)` | `@lg.lift_to(n)`, or `Dual::from_natural(n)` for a `BigInt` |
+| `Dual::from_integral(n)` | `@lg.lift_to(n)`, or `Dual::from_integer(n)` for a `BigInt` |
 | `Dual::pi()`, `Dual::e()`, `Dual::tau()` | `@autodiff.Constants::pi()`, `e()`, `tau()` |

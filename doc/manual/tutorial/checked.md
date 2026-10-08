@@ -16,7 +16,7 @@ numbers. The reasoning is in the [checked design](../design/checked.md).
 ## Quick start
 
 ```bash
-moon add Luna-Flow/autodiff@0.2.0
+moon add Luna-Flow/autodiff@0.3.0
 ```
 
 ```moonbit nocheck
@@ -160,10 +160,6 @@ dual: 2, d/da 0.125
   division by zero, or a domain error when the numerator is zero too). For
   $|c| > 1.34 \times 10^{154}$ it overflows, and `div_checked` returns `Ok`
   with tangent $0$. Rescale such divisors.
-- **The pinned `arithmetic` does not check square roots.** With
-  `arithmetic@0.2.1` from `moon.mod`, `sqrt_checked` of a negative `Double`
-  returns NaN components instead of an error; see
-  [versions of arithmetic](../api/checked.md#versions-of-arithmetic).
 - **Unchecked operators stay unchecked.** `x / y` and `x.sqrt()` on dual
   numbers never return errors; use the `_checked` forms.
 

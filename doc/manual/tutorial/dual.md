@@ -21,7 +21,7 @@ division and square-root failures as data. The mathematics is in the
 Add the module to your project:
 
 ```bash
-moon add Luna-Flow/autodiff@0.2.0
+moon add Luna-Flow/autodiff@0.3.0
 ```
 
 Import the root package in your `moon.pkg`; it re-exports `Dual` and the
@@ -162,13 +162,13 @@ cancellation takes over, exactly as derived in the
 
 Write the function against the traits it needs. The same code then runs on
 `Double` and, for derivatives, on `Dual[Double]`. Integer constants come
-from `IntegralHomomorphism::from_integral`:
+from `FromInteger::from_integer`:
 
 ```moonbit
-fn[T : @autodiff.Ring + @autodiff.IntegralHomomorphism + @autodiff.Trigonometric] h(
+fn[T : @autodiff.Ring + @autodiff.FromInteger + @autodiff.Trigonometric] h(
   x : T,
 ) -> T {
-  let three : T = @autodiff.IntegralHomomorphism::from_integral(3)
+  let three : T = @autodiff.FromInteger::from_integer(3N)
   three * x * x + @autodiff.Trigonometric::cos(x)
 }
 
@@ -276,7 +276,7 @@ To differentiate through `exp` or `sin` with your own type, implement
 
 - **Literals are not dual numbers.** `x * 2.0` does not compile when `x` is
   a `Dual[Double]`. Write `x * @autodiff.Dual::constant(2.0)`, or use
-  `IntegralHomomorphism::from_integral(2)` in generic code.
+  `FromInteger::from_integer(2N)` in generic code.
 - **Comparisons see only what you compare.** `Dual[T]` has no `<`. Compare
   `x.value()`; the derivative is then the derivative of the branch taken, so
   functions such as `abs` written with a branch have the one-sided derivative

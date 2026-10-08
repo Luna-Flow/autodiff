@@ -37,7 +37,7 @@ msgstr ""
 #: manual/api/autodiff.md:14
 #: manual/api/checked.md:14
 #: manual/api/core.md:12
-#: manual/api/dual.md:14
+#: manual/api/dual.md:15
 #: manual/api/elementary.md:14
 #: manual/api/forward.md:13
 #: manual/api/linalg.md:14
@@ -78,14 +78,14 @@ msgid "These traits come from [luna-generic](https://lunaflow.cn/en/luna-generic
 msgstr ""
 
 #: manual/api/autodiff.md:68
-#: manual/api/autodiff.md:141
+#: manual/api/autodiff.md:150
 #: manual/api/core.md:39
 #: manual/api/elementary.md:34
 msgid "Trait"
 msgstr ""
 
 #: manual/api/autodiff.md:68
-#: manual/api/dual.md:490
+#: manual/api/dual.md:520
 msgid "Meaning"
 msgstr ""
 
@@ -127,124 +127,136 @@ msgid "typical bound of generic differentiable code"
 msgstr ""
 
 #: manual/api/autodiff.md:77
-msgid "`from_integral(n)`, the map from the integers"
+msgid "`from_natural(n)`, the map from the natural numbers"
 msgstr ""
 
 #: manual/api/autodiff.md:77
+msgid "supertrait of `FromInteger`"
+msgstr ""
+
+#: manual/api/autodiff.md:78
+msgid "`from_integer(n)`, the map from the integers"
+msgstr ""
+
+#: manual/api/autodiff.md:78
 msgid "constants $2$ and $10$ in the elementary rules; integer literals in generic code"
 msgstr ""
 
-#: manual/api/autodiff.md:92
+#: manual/api/autodiff.md:94
 msgid "The additive identity; `Dual` implements it as $0 + 0\\varepsilon$."
 msgstr ""
 
-#: manual/api/autodiff.md:96
+#: manual/api/autodiff.md:98
 msgid "The multiplicative identity; `Dual` implements it as $1 + 0\\varepsilon$."
 msgstr ""
 
-#: manual/api/autodiff.md:100
+#: manual/api/autodiff.md:102
 msgid "Addition with a zero. `Dual[T]` is an additive monoid when `T` is."
 msgstr ""
 
-#: manual/api/autodiff.md:104
+#: manual/api/autodiff.md:106
 msgid "An additive monoid with negation and subtraction."
 msgstr ""
 
-#: manual/api/autodiff.md:108
+#: manual/api/autodiff.md:110
 msgid "Multiplication with a one."
 msgstr ""
 
-#: manual/api/autodiff.md:112
+#: manual/api/autodiff.md:114
 msgid "Additive and multiplicative monoids with distributivity."
 msgstr ""
 
-#: manual/api/autodiff.md:116
+#: manual/api/autodiff.md:118
 msgid "A semiring with negation and subtraction."
 msgstr ""
 
-#: manual/api/autodiff.md:120
-msgid "The canonical map from integral types; `from_integral(n)` on `Dual[T]` is `Dual::constant(from_integral(n))`."
+#: manual/api/autodiff.md:122
+msgid "The canonical map from the natural numbers, taking a `BigInt`; `from_natural(n)` on `Dual[T]` is `Dual::constant(from_natural(n))`."
 msgstr ""
 
-#: manual/api/autodiff.md:135
+#: manual/api/autodiff.md:127
+msgid "The canonical map from the integers, taking a `BigInt`; `from_integer(n)` on `Dual[T]` is `Dual::constant(from_integer(n))`. It extends `FromNat`. To convert an `Int` or another integral value, use `@lg.lift_to` from `Luna-Flow/luna-generic`, which is not re-exported."
+msgstr ""
+
+#: manual/api/autodiff.md:144
 msgid "Arithmetic traits"
 msgstr ""
 
-#: manual/api/autodiff.md:137
+#: manual/api/autodiff.md:146
 msgid "These traits come from [arithmetic](https://lunaflow.cn/en/arithmetic/). `Dual[T]` implements each of them under the bounds listed in the [dual API](dual.md#trait-instances)."
 msgstr ""
 
-#: manual/api/autodiff.md:141
+#: manual/api/autodiff.md:150
 #: manual/api/elementary.md:34
 msgid "Methods"
 msgstr ""
 
-#: manual/api/autodiff.md:141
+#: manual/api/autodiff.md:150
 msgid "Dual rule"
 msgstr ""
 
-#: manual/api/autodiff.md:147
+#: manual/api/autodiff.md:156
 msgid "constants, tangent zero"
 msgstr ""
 
-#: manual/api/autodiff.md:148
+#: manual/api/autodiff.md:157
 msgid "quotient rule, both parts checked"
 msgstr ""
 
-#: manual/api/autodiff.md:149
+#: manual/api/autodiff.md:158
 msgid "square-root rule, both parts checked"
 msgstr ""
 
-#: manual/api/autodiff.md:163
+#: manual/api/autodiff.md:172
 #: manual/api/elementary.md:45
 msgid "Unchecked square root."
 msgstr ""
 
-#: manual/api/autodiff.md:167
+#: manual/api/autodiff.md:176
 msgid "Square root returning `Result[Self, ArithmeticError]`."
 msgstr ""
 
-#: manual/api/autodiff.md:171
+#: manual/api/autodiff.md:180
 msgid "`exp` and `exp2`."
 msgstr ""
 
-#: manual/api/autodiff.md:175
+#: manual/api/autodiff.md:184
 msgid "`ln`, `log2` and `log10`."
 msgstr ""
 
-#: manual/api/autodiff.md:179
+#: manual/api/autodiff.md:188
 msgid "`sin`, `cos` and `tan`."
 msgstr ""
 
-#: manual/api/autodiff.md:183
+#: manual/api/autodiff.md:192
 msgid "$\\pi$, $\\tau = 2\\pi$ and $e$."
 msgstr ""
 
-#: manual/api/autodiff.md:187
+#: manual/api/autodiff.md:196
 msgid "Division returning `Result[Self, ArithmeticError]`."
 msgstr ""
 
-#: manual/api/autodiff.md:198
+#: manual/api/autodiff.md:207
 msgid "Arithmetic error types"
 msgstr ""
 
-#: manual/api/autodiff.md:200
+#: manual/api/autodiff.md:209
 msgid "The checked operations take an `ArithmeticContext` and return an `ArithmeticError`. Both are defined in `arithmetic`; the [checked API](checked.md) describes how `Dual[T]` uses them."
 msgstr ""
 
-#: manual/api/autodiff.md:213
+#: manual/api/autodiff.md:222
 msgid "The explicit numeric context: precision, `RoundingMode` and optional exponent range, built with `ArithmeticContext::new(precision)`. The `Double` and `Float` instances of the checked traits ignore it."
 msgstr ""
 
-#: manual/api/autodiff.md:219
+#: manual/api/autodiff.md:228
 msgid "A structured error with a `kind` and a `message`; test it with `is_division_by_zero()`, `is_domain_error()` and the other predicates."
 msgstr ""
 
-#: manual/api/autodiff.md:224
+#: manual/api/autodiff.md:233
 msgid "The enumeration behind `ArithmeticError::kind`: `DivisionByZero`, `DomainError`, `ParseError`, `FormatError`, `UnsupportedOperation`, `UnorderedComparison` and `CertificationFailure`."
 msgstr ""
 
-#: manual/api/autodiff.md:230
+#: manual/api/autodiff.md:239
 msgid "The rounding direction of a context: `ToNearestEven`, `TowardZero`, `TowardPositive`, `TowardNegative` and `AwayFromZero`."
 msgstr ""
 
@@ -281,7 +293,7 @@ msgstr ""
 
 #: manual/api/checked.md:43
 msgid ""
-"On `Dual[T]` (for `T : DivChecked + Sub + Mul`) it computes $a/c$ and $(bc - ad)/c^2$ with `T`'s `div_checked` and returns the first error. For `Double` (with `arithmetic` 0.5) it fails with `is_division_by_zero()` when $c = 0 \\n"
+"On `Dual[T]` (for `T : DivChecked + Sub + Mul`) it computes $a/c$ and $(bc - ad)/c^2$ with `T`'s `div_checked` and returns the first error. For `Double` it fails with `is_division_by_zero()` when $c = 0 \\n"
 "e a$ and with `is_domain_error()` for $0/0$ and $\\infty/\\infty$."
 msgstr ""
 
@@ -290,59 +302,35 @@ msgid "Square root that returns `Result[Self, ArithmeticError]`."
 msgstr ""
 
 #: manual/api/checked.md:56
-msgid "On `Dual[T]` it computes $\\sqrt a$ with `T`'s `sqrt_checked` and the tangent $b/(2\\sqrt a)$ with `div_checked`. For `Double` (with `arithmetic` 0.5) it fails for $a < 0$ (domain error) and for $a = 0$ (division by zero, or $0/0$ when $b = 0$)."
+msgid "On `Dual[T]` it computes $\\sqrt a$ with `T`'s `sqrt_checked` and the tangent $b/(2\\sqrt a)$ with `div_checked`. For `Double` it fails for $a < 0$ (domain error) and for $a = 0$ (division by zero, or $0/0$ when $b = 0$)."
 msgstr ""
 
-#: manual/api/checked.md:74
+#: manual/api/checked.md:73
 msgid "Context and errors"
 msgstr ""
 
-#: manual/api/checked.md:78
+#: manual/api/checked.md:77
 msgid "The explicit numeric context passed to every checked call."
 msgstr ""
 
-#: manual/api/checked.md:84
+#: manual/api/checked.md:83
 msgid "Build it with `ArithmeticContext::new(precision, rounding?, e_min?, e_max?, clamp?)`. `Dual[T]` passes it to `T` unchanged; the `Double` and `Float` instances ignore it."
 msgstr ""
 
-#: manual/api/checked.md:90
+#: manual/api/checked.md:89
 msgid "The rounding direction stored in a context."
 msgstr ""
 
-#: manual/api/checked.md:98
+#: manual/api/checked.md:97
 msgid "The structured error returned by checked operations: a `kind` and a human-readable `message`."
 msgstr ""
 
-#: manual/api/checked.md:105
+#: manual/api/checked.md:104
 msgid "The predicates `is_division_by_zero()` and `is_domain_error()` cover every error that the checked `Dual` operations produce for `Double`."
 msgstr ""
 
-#: manual/api/checked.md:110
+#: manual/api/checked.md:109
 msgid "The kind of an `ArithmeticError`."
-msgstr ""
-
-#: manual/api/checked.md:131
-msgid "Versions of `arithmetic`"
-msgstr ""
-
-#: manual/api/checked.md:133
-msgid "The checked rules of `Dual[T]` only call `T`'s `div_checked` and `sqrt_checked`, so the errors depend on the `arithmetic` release that provides the `Double` instances. This manual and its examples follow `arithmetic` 0.5, which the repository is developed against in a workspace. `moon.mod` still pins `arithmetic@0.2.1`, where `Double` behaves differently:"
-msgstr ""
-
-#: manual/api/checked.md:140
-msgid "Operation on `Double`"
-msgstr ""
-
-#: manual/api/checked.md:146
-msgid "exists"
-msgstr ""
-
-#: manual/api/checked.md:146
-msgid "does not exist"
-msgstr ""
-
-#: manual/api/checked.md:149
-msgid "[!WARNING] With `arithmetic@0.2.1`, `Dual::sqrt_checked` of a negative `Double` returns `Ok` with value and tangent NaN instead of an error. Check `value().is_nan()` until the pin is raised."
 msgstr ""
 
 #: manual/api/core.md:1
@@ -382,39 +370,47 @@ msgid "`Dual[T]` instance when"
 msgstr ""
 
 #: manual/api/core.md:48
-msgid "`from_integral` from integral types"
+msgid "`from_natural` from the natural numbers"
 msgstr ""
 
-#: manual/api/core.md:63
+#: manual/api/core.md:49
+msgid "`from_integer` from the integers"
+msgstr ""
+
+#: manual/api/core.md:65
 msgid "Additive identity."
 msgstr ""
 
-#: manual/api/core.md:67
+#: manual/api/core.md:69
 msgid "Multiplicative identity."
 msgstr ""
 
-#: manual/api/core.md:71
+#: manual/api/core.md:73
 msgid "Addition with an identity."
 msgstr ""
 
-#: manual/api/core.md:75
+#: manual/api/core.md:77
 msgid "Addition with negation and subtraction."
 msgstr ""
 
-#: manual/api/core.md:79
+#: manual/api/core.md:81
 msgid "Multiplication with an identity."
 msgstr ""
 
-#: manual/api/core.md:83
+#: manual/api/core.md:85
 msgid "Both monoids with distributivity."
 msgstr ""
 
-#: manual/api/core.md:87
+#: manual/api/core.md:89
 msgid "A semiring with additive inverses."
 msgstr ""
 
-#: manual/api/core.md:91
-msgid "The canonical map from the integers, used for integer constants in generic code."
+#: manual/api/core.md:93
+msgid "The canonical map from the natural numbers, `from_natural(n)` for a `BigInt` $n \\ge 0$."
+msgstr ""
+
+#: manual/api/core.md:98
+msgid "The canonical map from the integers, `from_integer(n)` for a `BigInt`, used for integer constants in generic code. It extends `FromNat`; `@lg.lift_to` from `Luna-Flow/luna-generic` converts other integral types through it."
 msgstr ""
 
 #: manual/api/dual.md:1
@@ -426,507 +422,544 @@ msgid "The `dual` package owns `Dual[T]`, the dual number $a + b\\varepsilon$ wi
 msgstr ""
 
 #: manual/api/dual.md:11
-msgid "Source: [`src/dual/dual.mbt`](../../../src/dual/dual.mbt) and [`src/dual/extends.mbt`](../../../src/dual/extends.mbt)."
+msgid "Source: [`src/dual/dual.mbt`](../../../src/dual/dual.mbt), [`src/dual/extends.mbt`](../../../src/dual/extends.mbt) and [`src/dual/compat.mbt`](../../../src/dual/compat.mbt)."
 msgstr ""
 
-#: manual/api/dual.md:22
+#: manual/api/dual.md:23
 msgid "Most programs import the root package `Luna-Flow/autodiff` instead, which re-exports `Dual` as `@autodiff.Dual` (see the [autodiff API](autodiff.md)). The examples on this page use the root alias."
 msgstr ""
 
-#: manual/api/dual.md:26
+#: manual/api/dual.md:27
 msgid "The type"
 msgstr ""
 
-#: manual/api/dual.md:30
+#: manual/api/dual.md:31
 msgid "`Dual[T]` stores a primal value and a first-order tangent."
 msgstr ""
 
-#: manual/api/dual.md:39
+#: manual/api/dual.md:40
 msgid "The pair `(value, tangent)` represents $a + b\\varepsilon$ with $a$ = `value` and $b$ = `tangent`. When a computation starts from `Dual::variable(x)`, the tangent of every intermediate result is the derivative of that intermediate with respect to `x`. The fields are read-only outside the package; build values with the constructors below."
 msgstr ""
 
-#: manual/api/dual.md:45
+#: manual/api/dual.md:46
 msgid "`derive(Eq)` compares both components, so two dual numbers with the same value and different tangents are not equal. `derive(Debug)` prints the record form `{ value: …, tangent: … }`, which `debug_inspect` and `assert_eq` use."
 msgstr ""
 
-#: manual/api/dual.md:50
+#: manual/api/dual.md:51
 msgid "`Dual[T]` deliberately has no `Compare`, `Field`, `MulGroup`, `Inverse` or `Show` instance; see [Design decisions](../design/dual.md#design-decisions)."
 msgstr ""
 
-#: manual/api/dual.md:53
+#: manual/api/dual.md:54
 msgid "Construction and access"
 msgstr ""
 
-#: manual/api/dual.md:57
+#: manual/api/dual.md:58
 msgid "Builds $a + b\\varepsilon$ from an explicit value and tangent."
 msgstr ""
 
-#: manual/api/dual.md:63
+#: manual/api/dual.md:64
 msgid ""
 "Use it to seed a direction other than $1$, for example a directional derivative $\\n"
 "abla f(x) \\cdot v$ where each input coordinate gets the tangent $v_i$."
 msgstr ""
 
-#: manual/api/dual.md:69
+#: manual/api/dual.md:70
 msgid "Embeds a value with tangent zero: $c \\mapsto c + 0\\varepsilon$."
 msgstr ""
 
-#: manual/api/dual.md:75
+#: manual/api/dual.md:76
 msgid "Constants do not depend on the differentiation variable, so their derivative is $0$. Use it for every literal or captured value that enters a differentiated computation."
 msgstr ""
 
-#: manual/api/dual.md:81
+#: manual/api/dual.md:82
 msgid "Embeds the differentiation variable with tangent one: $x \\mapsto x + 1\\varepsilon$."
 msgstr ""
 
-#: manual/api/dual.md:90
+#: manual/api/dual.md:91
 msgid "Returns the primal component $a$."
 msgstr ""
 
-#: manual/api/dual.md:98
+#: manual/api/dual.md:99
 msgid "Returns the tangent component $b$."
 msgstr ""
 
-#: manual/api/dual.md:118
+#: manual/api/dual.md:119
 msgid "Returns the additive identity $0 + 0\\varepsilon$."
 msgstr ""
 
-#: manual/api/dual.md:125
+#: manual/api/dual.md:126
 msgid "This is the promoted method of the `Zero` instance."
 msgstr ""
 
-#: manual/api/dual.md:129
+#: manual/api/dual.md:130
 msgid "Returns the multiplicative identity $1 + 0\\varepsilon$."
 msgstr ""
 
-#: manual/api/dual.md:136
+#: manual/api/dual.md:137
 msgid "`one` is a constant, so its tangent is zero; it is not `Dual::variable(1)`. This is the promoted method of the `One` instance."
 msgstr ""
 
-#: manual/api/dual.md:139
-msgid "Arithmetic"
+#: manual/api/dual.md:142
+msgid "Embeds a natural number, given as a `BigInt`, as a constant."
 msgstr ""
 
-#: manual/api/dual.md:141
-msgid "The four operators implement the sum, difference, product and quotient rules. They are available both as operators and as promoted methods."
-msgstr ""
-
-#: manual/api/dual.md:144
-#: manual/api/dual.md:353
-msgid "Item"
-msgstr ""
-
-#: manual/api/dual.md:144
-msgid "Operator"
-msgstr ""
-
-#: manual/api/dual.md:144
-msgid "Rule"
-msgstr ""
-
-#: manual/api/dual.md:144
-#: manual/api/dual.md:490
-msgid "Bound on `T`"
+#: manual/api/dual.md:149
+msgid "`from_natural(n)` is `Dual::constant(FromNat::from_natural(n))`. This is the promoted method of the `FromNat` instance."
 msgstr ""
 
 #: manual/api/dual.md:154
+msgid "Embeds an integer, given as a `BigInt`, as a constant."
+msgstr ""
+
+#: manual/api/dual.md:161
+msgid "`from_integer(n)` is `Dual::constant(FromInteger::from_integer(n))`, the canonical map $\\mathbb Z \\to T[\\varepsilon]$. This is the promoted method of the `FromInteger` instance. To convert an `Int` or another integral type, use `@lg.lift_to(n)` from `Luna-Flow/luna-generic`."
+msgstr ""
+
+#: manual/api/dual.md:175
+msgid "Arithmetic"
+msgstr ""
+
+#: manual/api/dual.md:177
+msgid "The four operators implement the sum, difference, product and quotient rules. They are available both as operators and as promoted methods."
+msgstr ""
+
+#: manual/api/dual.md:180
+#: manual/api/dual.md:383
+msgid "Item"
+msgstr ""
+
+#: manual/api/dual.md:180
+msgid "Operator"
+msgstr ""
+
+#: manual/api/dual.md:180
+msgid "Rule"
+msgstr ""
+
+#: manual/api/dual.md:180
+#: manual/api/dual.md:520
+msgid "Bound on `T`"
+msgstr ""
+
+#: manual/api/dual.md:190
 msgid "Adds componentwise."
 msgstr ""
 
-#: manual/api/dual.md:163
+#: manual/api/dual.md:199
 msgid "Subtracts componentwise."
 msgstr ""
 
-#: manual/api/dual.md:172
+#: manual/api/dual.md:208
 msgid "Negates both components."
 msgstr ""
 
-#: manual/api/dual.md:181
+#: manual/api/dual.md:217
 msgid "Multiplies with the product rule."
 msgstr ""
 
-#: manual/api/dual.md:188
+#: manual/api/dual.md:224
 msgid "The tangent is computed as `self.value * other.tangent + other.value * self.tangent`, that is $ad + cb$. This equals the product rule $ad + bc$ because the multiplication of every numeric `T` is commutative."
 msgstr ""
 
-#: manual/api/dual.md:194
+#: manual/api/dual.md:230
 msgid "Divides with the quotient rule, without any domain check."
 msgstr ""
 
-#: manual/api/dual.md:201
+#: manual/api/dual.md:237
 msgid "The tangent is `(self.tangent * other.value - self.value * other.tangent) / (other.value * other.value)`. A zero divisor value gives whatever `T`'s division gives (for `Double`, an infinity or NaN). Use `Dual::div_checked` to get an error instead."
 msgstr ""
 
-#: manual/api/dual.md:206
+#: manual/api/dual.md:242
 msgid "Because the tangent divides by $c^2$ rather than by $c$ twice, it leaves the range of `Double` long before the quotient does; see the warning under `Dual::div_checked`, which applies to `/` as well."
 msgstr ""
 
-#: manual/api/dual.md:224
+#: manual/api/dual.md:260
 msgid "Tests both components for equality."
 msgstr ""
 
-#: manual/api/dual.md:230
+#: manual/api/dual.md:266
 msgid "This is the promoted method of the derived `Eq` instance; prefer `==`."
 msgstr ""
 
-#: manual/api/dual.md:232
+#: manual/api/dual.md:268
 msgid "Checked operations"
 msgstr ""
 
-#: manual/api/dual.md:234
+#: manual/api/dual.md:270
 msgid "The checked forms return `Result[Dual[T], ArithmeticError]` from [`Luna-Flow/arithmetic`](https://lunaflow.cn/en/arithmetic/) instead of producing infinities or NaN. The [checked API](checked.md) re-exports the types they use."
 msgstr ""
 
-#: manual/api/dual.md:241
+#: manual/api/dual.md:277
 msgid "Divides with the quotient rule and reports invalid divisions as errors."
 msgstr ""
 
-#: manual/api/dual.md:248
-msgid "The value $a / c$ is computed first with `T`'s `div_checked`; the tangent $(bc - ad) / c^2$ is then computed with a second `div_checked` call. The first error is returned unchanged, so the errors are exactly those of `T`. For `Double` with `arithmetic` 0.5 they are:"
+#: manual/api/dual.md:284
+msgid "The value $a / c$ is computed first with `T`'s `div_checked`; the tangent $(bc - ad) / c^2$ is then computed with a second `div_checked` call. The first error is returned unchanged, so the errors are exactly those of `T`. For `Double` they are:"
 msgstr ""
 
-#: manual/api/dual.md:253
-#: manual/api/dual.md:317
+#: manual/api/dual.md:289
+#: manual/api/dual.md:349
 msgid "Condition"
 msgstr ""
 
-#: manual/api/dual.md:253
-#: manual/api/dual.md:317
+#: manual/api/dual.md:289
+#: manual/api/dual.md:349
 msgid "Error"
 msgstr ""
 
-#: manual/api/dual.md:255
+#: manual/api/dual.md:291
 msgid ""
 "$c = 0$ and $a \\n"
 "e 0$"
 msgstr ""
 
-#: manual/api/dual.md:256
+#: manual/api/dual.md:292
 msgid "$a = 0$ and $c = 0$"
 msgstr ""
 
-#: manual/api/dual.md:256
+#: manual/api/dual.md:292
 msgid "`is_domain_error()` (zero divided by zero)"
 msgstr ""
 
-#: manual/api/dual.md:257
+#: manual/api/dual.md:293
 msgid "both $a$ and $c$ infinite"
 msgstr ""
 
-#: manual/api/dual.md:258
+#: manual/api/dual.md:294
 msgid ""
 "$c \\n"
 "e 0$ but $c \\cdot c$ underflows to $0$"
 msgstr ""
 
-#: manual/api/dual.md:258
+#: manual/api/dual.md:294
 msgid ""
 "the tangent division fails: `is_division_by_zero()` when $bc - ad \\n"
 "e 0$, `is_domain_error()` when $bc - ad = 0$"
 msgstr ""
 
-#: manual/api/dual.md:259
+#: manual/api/dual.md:295
 msgid "$c \\cdot c$ overflows to $\\infty$"
 msgstr ""
 
-#: manual/api/dual.md:259
+#: manual/api/dual.md:295
 msgid "no error; see the warning below"
 msgstr ""
 
-#: manual/api/dual.md:261
-msgid "With the `arithmetic@0.2.1` pinned in `moon.mod`, every zero divisor, including $0/0$, gives `is_division_by_zero()`, and $\\infty/\\infty$ gives NaN without an error (see [versions of arithmetic](checked.md#versions-of-arithmetic))."
-msgstr ""
-
-#: manual/api/dual.md:265
+#: manual/api/dual.md:297
 msgid "The context argument is passed through to `T`; the `Double` and `Float` instances of `arithmetic` ignore it."
 msgstr ""
 
-#: manual/api/dual.md:284
+#: manual/api/dual.md:316
 msgid "[!WARNING] The tangent divides by $c^2$, which leaves the range of `Double` long before $c$ itself does."
 msgstr ""
 
-#: manual/api/dual.md:288
+#: manual/api/dual.md:320
 msgid "For $|c| < 2^{-537.5} \\approx 1.57\\times10^{-162}$ the square rounds to zero. `div_checked` then reports an error although $a / c$ is finite and the true tangent may be finite too: $(0 + 1\\varepsilon) / (10^{-170} + 0\\varepsilon)$ has tangent $10^{170}$ but fails with a division by zero, and a constant divided by a tiny constant fails with a domain error instead of returning tangent $0$. `/` returns an infinity or NaN."
 msgstr ""
 
-#: manual/api/dual.md:294
+#: manual/api/dual.md:326
 msgid "Between that bound and $2^{-511} \\approx 1.5\\times10^{-154}$ the square is subnormal and loses relative precision."
 msgstr ""
 
-#: manual/api/dual.md:296
+#: manual/api/dual.md:328
 msgid "For $|c| > 2^{512} \\approx 1.34\\times10^{154}$ the square overflows to $\\infty$, and both `/` and `div_checked` silently return the tangent $0$ when $bc - ad$ is finite: $(0 + 1\\varepsilon)/(10^{155} + 0\\varepsilon)$ gives tangent $0$ instead of $10^{-155}$."
 msgstr ""
 
-#: manual/api/dual.md:301
+#: manual/api/dual.md:333
 msgid "Rescale such divisors before dividing."
 msgstr ""
 
-#: manual/api/dual.md:305
+#: manual/api/dual.md:337
 msgid "Takes the square root with the rule $\\sqrt{a + b\\varepsilon} = \\sqrt a + \\dfrac{b}{2\\sqrt a}\\varepsilon$ and reports domain errors."
 msgstr ""
 
-#: manual/api/dual.md:313
-msgid "The value is `T`'s `sqrt_checked(a)`; the tangent is `div_checked(b, 2 * root)`, where `2` comes from `IntegralHomomorphism::from_integral(2)`. For `Double`:"
+#: manual/api/dual.md:345
+msgid "The value is `T`'s `sqrt_checked(a)`; the tangent is `div_checked(b, 2 * root)`, where `2` comes from `lift_to(2)` (the `FromInteger` map). For `Double`:"
 msgstr ""
 
-#: manual/api/dual.md:319
+#: manual/api/dual.md:351
 msgid "`is_domain_error()` from the square root"
 msgstr ""
 
-#: manual/api/dual.md:320
+#: manual/api/dual.md:352
 msgid "`is_division_by_zero()` from the tangent"
 msgstr ""
 
-#: manual/api/dual.md:321
+#: manual/api/dual.md:353
 msgid "`is_domain_error()` (zero divided by zero) from the tangent"
 msgstr ""
 
-#: manual/api/dual.md:323
-msgid "So `sqrt_checked` fails at $a = 0$ even for a constant input: $\\sqrt{\\cdot}$ has no derivative at $0$, and the checked form does not special-case a zero tangent. With the pinned `arithmetic@0.2.1`, `Double`'s `sqrt_checked` does not reject $a < 0$: the result is `Ok` with value and tangent NaN, and $a = 0$ always gives `is_division_by_zero()`."
+#: manual/api/dual.md:355
+msgid "So `sqrt_checked` fails at $a = 0$ even for a constant input: $\\sqrt{\\cdot}$ has no derivative at $0$, and the checked form does not special-case a zero tangent."
 msgstr ""
 
-#: manual/api/dual.md:343
+#: manual/api/dual.md:373
 msgid "Elementary functions"
 msgstr ""
 
-#: manual/api/dual.md:345
+#: manual/api/dual.md:375
 msgid "Each elementary function is an inherent method and also the method of the matching `arithmetic` trait instance, so generic code written against `Sqrt`, `Exponential`, `Logarithmic` or `Trigonometric` differentiates through `Dual[T]` unchanged. All of them apply the rule $f(a + b\\varepsilon) = f(a) + f'(a)\\,b\\,\\varepsilon$ with the derivative below. None of them checks its domain: outside it the result is whatever `T` returns (for `Double`, NaN or an infinity)."
 msgstr ""
 
-#: manual/api/dual.md:353
-#: manual/api/dual.md:370
+#: manual/api/dual.md:383
+#: manual/api/dual.md:400
 msgid "Value"
 msgstr ""
 
-#: manual/api/dual.md:353
+#: manual/api/dual.md:383
 #: manual/design/dual.md:134
 msgid "Tangent as computed"
 msgstr ""
 
-#: manual/api/dual.md:353
+#: manual/api/dual.md:383
 msgid "Derivative"
 msgstr ""
 
-#: manual/api/dual.md:365
-msgid "The constants $2$ and $10$ come from `IntegralHomomorphism::from_integral`."
+#: manual/api/dual.md:395
+msgid "The constants $2$ and $10$ come from `lift_to`, that is, from `FromInteger`."
 msgstr ""
 
-#: manual/api/dual.md:367
+#: manual/api/dual.md:397
 msgid "Outside the domain the two components do not fail together, because the tangent formula is evaluated as written:"
 msgstr ""
 
-#: manual/api/dual.md:370
+#: manual/api/dual.md:400
 msgid "Input (`Double`)"
 msgstr ""
 
-#: manual/api/dual.md:370
+#: manual/api/dual.md:400
 msgid "Tangent"
 msgstr ""
 
-#: manual/api/dual.md:372
+#: manual/api/dual.md:402
 msgid "`ln`, `log2`, `log10` at $a < 0$"
 msgstr ""
 
-#: manual/api/dual.md:372
-#: manual/api/dual.md:375
+#: manual/api/dual.md:402
+#: manual/api/dual.md:405
 msgid "NaN"
 msgstr ""
 
-#: manual/api/dual.md:372
+#: manual/api/dual.md:402
 msgid "$b/a$ scaled, finite: the derivative of $\\ln\\lvert a\\rvert$"
 msgstr ""
 
-#: manual/api/dual.md:373
+#: manual/api/dual.md:403
 msgid "`ln` at $a = 0$"
 msgstr ""
 
-#: manual/api/dual.md:373
-#: manual/api/dual.md:374
+#: manual/api/dual.md:403
+#: manual/api/dual.md:404
 msgid "$b/0$: $\\pm\\infty$, or NaN when $b = 0$"
 msgstr ""
 
-#: manual/api/dual.md:374
+#: manual/api/dual.md:404
 msgid "`sqrt` at $a = 0$"
 msgstr ""
 
-#: manual/api/dual.md:375
+#: manual/api/dual.md:405
 msgid "`sqrt` at $a < 0$"
 msgstr ""
 
-#: manual/api/dual.md:377
+#: manual/api/dual.md:407
 msgid "So a constant input (tangent $0$) at $a = 0$ produces a NaN tangent for `sqrt` and `ln`, although a constant has derivative $0$. Test the value, not only the tangent, when an input can leave the domain."
 msgstr ""
 
-#: manual/api/dual.md:393
+#: manual/api/dual.md:423
 msgid "Square root with the tangent $b / (2\\sqrt a)$."
 msgstr ""
 
-#: manual/api/dual.md:402
+#: manual/api/dual.md:432
 msgid "Exponential with the tangent $b\\,e^a$; the value is computed once and reused."
 msgstr ""
 
-#: manual/api/dual.md:410
+#: manual/api/dual.md:440
 msgid "Base-2 exponential with the tangent $b \\cdot 2^a \\ln 2$."
 msgstr ""
 
-#: manual/api/dual.md:417
+#: manual/api/dual.md:447
 msgid "The `Exponential` instance provides both `exp` and `exp2`, so it needs the bounds of `exp2`."
 msgstr ""
 
-#: manual/api/dual.md:422
+#: manual/api/dual.md:452
 msgid "Natural logarithm with the tangent $b / a$."
 msgstr ""
 
-#: manual/api/dual.md:430
+#: manual/api/dual.md:460
 msgid "Base-2 logarithm with the tangent $b / (a \\ln 2)$."
 msgstr ""
 
-#: manual/api/dual.md:438
+#: manual/api/dual.md:468
 msgid "Base-10 logarithm with the tangent $b / (a \\ln 10)$."
 msgstr ""
 
-#: manual/api/dual.md:445
+#: manual/api/dual.md:475
 msgid "The `Logarithmic` instance provides `ln`, `log2` and `log10`."
 msgstr ""
 
-#: manual/api/dual.md:449
+#: manual/api/dual.md:479
 msgid "Sine with the tangent $b \\cos a$."
 msgstr ""
 
-#: manual/api/dual.md:457
+#: manual/api/dual.md:487
 msgid "Cosine with the tangent $-b \\sin a$."
 msgstr ""
 
-#: manual/api/dual.md:465
+#: manual/api/dual.md:495
 msgid "Tangent with the derivative $\\sec^2 a$, computed as $b / (\\cos a \\cdot \\cos a)$."
 msgstr ""
 
-#: manual/api/dual.md:472
+#: manual/api/dual.md:502
 msgid "The `Trigonometric` instance provides `sin`, `cos` and `tan`."
 msgstr ""
 
-#: manual/api/dual.md:484
+#: manual/api/dual.md:514
 msgid "Trait instances"
 msgstr ""
 
-#: manual/api/dual.md:486
+#: manual/api/dual.md:516
 msgid "`Dual[T]` implements the Luna Flow structure traits that the algebra $T[\\varepsilon]/(\\varepsilon^2)$ satisfies, each under the matching bound on `T`. The laws are derived in the [dual design](../design/dual.md)."
 msgstr ""
 
-#: manual/api/dual.md:490
+#: manual/api/dual.md:520
 msgid "Instance"
 msgstr ""
 
-#: manual/api/dual.md:492
+#: manual/api/dual.md:522
 msgid "`zero()` is $0 + 0\\varepsilon$"
 msgstr ""
 
-#: manual/api/dual.md:493
+#: manual/api/dual.md:523
 msgid "`one()` is $1 + 0\\varepsilon$"
 msgstr ""
 
-#: manual/api/dual.md:494
+#: manual/api/dual.md:524
 msgid "componentwise addition"
 msgstr ""
 
-#: manual/api/dual.md:495
+#: manual/api/dual.md:525
 msgid "componentwise negation"
 msgstr ""
 
-#: manual/api/dual.md:496
+#: manual/api/dual.md:526
 msgid "product rule multiplication"
 msgstr ""
 
-#: manual/api/dual.md:497
+#: manual/api/dual.md:527
 msgid "$T[\\varepsilon]$ is a semiring when `T` is"
 msgstr ""
 
-#: manual/api/dual.md:498
+#: manual/api/dual.md:528
 msgid "$T[\\varepsilon]$ is a ring when `T` is"
 msgstr ""
 
-#: manual/api/dual.md:499
-msgid "`from_nat(n)` is `Dual::constant(from_nat(n))`"
-msgstr ""
-
-#: manual/api/dual.md:500
-msgid "`from_integral(n)` is `Dual::constant(from_integral(n))`"
-msgstr ""
-
-#: manual/api/dual.md:501
-msgid "`pi()`, `tau()`, `e()` are constants"
-msgstr ""
-
-#: manual/api/dual.md:502
-msgid "see `Dual::div_checked`"
-msgstr ""
-
-#: manual/api/dual.md:503
-msgid "see `Dual::sqrt_checked`"
-msgstr ""
-
-#: manual/api/dual.md:504
-msgid "see each method"
-msgstr ""
-
-#: manual/api/dual.md:504
-msgid "see [Elementary functions](#elementary-functions)"
-msgstr ""
-
-#: manual/api/dual.md:506
-msgid "The integer and natural-number embeddings and the constants produce tangent zero, because they do not depend on the differentiation variable."
-msgstr ""
-
-#: manual/api/dual.md:511
-msgid "Componentwise addition, negation and subtraction make $T \\times T$ an additive monoid or group whenever `T` is one."
-msgstr ""
-
-#: manual/api/dual.md:521
-msgid "Multiplication by the product rule, with unit $1 + 0\\varepsilon$, makes `Dual[T]` the ring $T[\\varepsilon]/(\\varepsilon^2)$."
+#: manual/api/dual.md:529
+msgid "`from_natural(n)` is `Dual::constant(from_natural(n))`"
 msgstr ""
 
 #: manual/api/dual.md:530
-msgid "`MulMonoid` needs `T : Semiring`, not only `T : MulMonoid`, because the tangent $ad + bc$ uses the addition of `T`. Associativity and distributivity hold because the multiplication of `T` is commutative; the [dual design](../design/dual.md#ring-level-instances-only) checks the laws."
+msgid "`from_integer(n)` is `Dual::constant(from_integer(n))`"
+msgstr ""
+
+#: manual/api/dual.md:531
+#: manual/api/dual.md:580
+msgid "`NatHomomorphism`, `IntegralHomomorphism` (deprecated)"
+msgstr ""
+
+#: manual/api/dual.md:531
+msgid "the same trait `+ Zero`"
+msgstr ""
+
+#: manual/api/dual.md:531
+msgid "compatibility shims, see below"
+msgstr ""
+
+#: manual/api/dual.md:532
+msgid "`pi()`, `tau()`, `e()` are constants"
+msgstr ""
+
+#: manual/api/dual.md:533
+msgid "see `Dual::div_checked`"
+msgstr ""
+
+#: manual/api/dual.md:534
+msgid "see `Dual::sqrt_checked`"
+msgstr ""
+
+#: manual/api/dual.md:535
+msgid "see each method"
+msgstr ""
+
+#: manual/api/dual.md:535
+msgid "see [Elementary functions](#elementary-functions)"
 msgstr ""
 
 #: manual/api/dual.md:537
+msgid "The integer and natural-number embeddings and the constants produce tangent zero, because they do not depend on the differentiation variable."
+msgstr ""
+
+#: manual/api/dual.md:542
+msgid "Componentwise addition, negation and subtraction make $T \\times T$ an additive monoid or group whenever `T` is one."
+msgstr ""
+
+#: manual/api/dual.md:552
+msgid "Multiplication by the product rule, with unit $1 + 0\\varepsilon$, makes `Dual[T]` the ring $T[\\varepsilon]/(\\varepsilon^2)$."
+msgstr ""
+
+#: manual/api/dual.md:561
+msgid "`MulMonoid` needs `T : Semiring`, not only `T : MulMonoid`, because the tangent $ad + bc$ uses the addition of `T`. Associativity and distributivity hold because the multiplication of `T` is commutative; the [dual design](../design/dual.md#ring-level-instances-only) checks the laws."
+msgstr ""
+
+#: manual/api/dual.md:568
 msgid "The canonical maps from the natural numbers and the integers land on constants."
 msgstr ""
 
-#: manual/api/dual.md:545
-msgid "`from_integral(n)` is `Dual::constant(from_integral(n))`, so integer literals in generic code have tangent zero."
+#: manual/api/dual.md:576
+msgid "`from_integer(n)` is `Dual::constant(from_integer(n))`, so integer literals in generic code, written `FromInteger::from_integer(3N)` or `@lg.lift_to(3)`, have tangent zero."
 msgstr ""
 
-#: manual/api/dual.md:550
+#: manual/api/dual.md:582
+msgid "Compatibility shims for the traits that `luna-generic` 0.4.0 deprecates."
+msgstr ""
+
+#: manual/api/dual.md:589
+msgid "They exist because `luna-poly` 0.2.0 still requires `NatHomomorphism` in `DensePolynomial::derivative`; with them, a `DensePolynomial[Dual[T]]` keeps its formal derivative. Both produce constants, like `FromNat` and `FromInteger`. They will be removed once `luna-poly` moves to `FromNat`, so new code should not depend on them."
+msgstr ""
+
+#: manual/api/dual.md:597
 msgid "$\\pi$, $\\tau$ and $e$ as constants."
 msgstr ""
 
-#: manual/api/dual.md:556
+#: manual/api/dual.md:603
 msgid "The instances of `Sqrt`, `Exponential`, `Logarithmic`, `Trigonometric`, `DivChecked` and `SqrtChecked` are listed with their methods above."
 msgstr ""
 
-#: manual/api/dual.md:571
+#: manual/api/dual.md:618
 msgid "Deprecated"
 msgstr ""
 
-#: manual/api/dual.md:573
+#: manual/api/dual.md:620
 msgid "`Dual` keeps a few method forms that MoonBit used to create implicitly from trait instances. They are hidden from the interface file and warn when used outside this package."
 msgstr ""
 
-#: manual/api/dual.md:577
+#: manual/api/dual.md:624
 msgid "Deprecated method"
 msgstr ""
 
-#: manual/api/dual.md:577
+#: manual/api/dual.md:624
 msgid "Replacement"
 msgstr ""
 
-#: manual/api/dual.md:580
+#: manual/api/dual.md:627
 msgid "`Repr(x)` or `@debug.Debug::to_repr(x)`"
 msgstr ""
 
-#: manual/api/dual.md:581
-msgid "`NatHomomorphism::from_nat(n)` from `Luna-Flow/luna-generic`"
+#: manual/api/dual.md:628
+msgid "`@lg.lift_to(n)`, or `Dual::from_natural(n)` for a `BigInt`"
+msgstr ""
+
+#: manual/api/dual.md:629
+msgid "`@lg.lift_to(n)`, or `Dual::from_integer(n)` for a `BigInt`"
 msgstr ""
 
 #: manual/api/elementary.md:1
@@ -962,11 +995,11 @@ msgid "Square root returning `Result[Self, ArithmeticError]`; see the [checked A
 msgstr ""
 
 #: manual/api/elementary.md:62
-msgid "`exp` and `exp2`. The `Dual[T]` instance needs `T : Exponential + Logarithmic + IntegralHomomorphism + Mul`, because `exp2` uses $\\ln 2$."
+msgid "`exp` and `exp2`. The `Dual[T]` instance needs `T : Exponential + Logarithmic + FromInteger + Mul`, because `exp2` uses $\\ln 2$."
 msgstr ""
 
 #: manual/api/elementary.md:71
-msgid "`ln`, `log2` and `log10`. The `Dual[T]` instance needs `T : Logarithmic + IntegralHomomorphism + Mul + Div`."
+msgid "`ln`, `log2` and `log10`. The `Dual[T]` instance needs `T : Logarithmic + FromInteger + Mul + Div`."
 msgstr ""
 
 #: manual/api/elementary.md:80
@@ -990,7 +1023,7 @@ msgid "Source: [`src/forward/forward.mbt`](../../../src/forward/forward.mbt)."
 msgstr ""
 
 #: manual/api/forward.md:21
-#: manual/index.md:90
+#: manual/index.md:81
 msgid "Drivers"
 msgstr ""
 
@@ -1200,7 +1233,7 @@ msgid "Returns $p'(x)$ for a sparse polynomial in one variable."
 msgstr ""
 
 #: manual/api/poly.md:132
-#: manual/design/poly.md:105
+#: manual/design/poly.md:106
 msgid "Compatibility names"
 msgstr ""
 
@@ -1435,7 +1468,7 @@ msgid "Mathematical background"
 msgstr ""
 
 #: manual/design/autodiff.md:22
-msgid "The root package adds no mathematics. Its content is the vocabulary of the [dual design](dual.md): the commutative ring $T[\\varepsilon]/(\\varepsilon^2)$ needs the structure traits `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring` and `Ring`; the elementary rules $f(a + b\\varepsilon) = f(a) + f'(a)\\,b\\,\\varepsilon$ need `Sqrt`, `Exponential`, `Logarithmic` and `Trigonometric` on `T` and the canonical map $\\mathbb Z \\to T$ (`IntegralHomomorphism`); the checked rules need `DivChecked`, `SqrtChecked` and the context and error values; and `Constants` provides $\\pi$, $\\tau$ and $e$ as dual constants."
+msgid "The root package adds no mathematics. Its content is the vocabulary of the [dual design](dual.md): the commutative ring $T[\\varepsilon]/(\\varepsilon^2)$ needs the structure traits `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring` and `Ring`; the elementary rules $f(a + b\\varepsilon) = f(a) + f'(a)\\,b\\,\\varepsilon$ need `Sqrt`, `Exponential`, `Logarithmic` and `Trigonometric` on `T` and the canonical map $\\mathbb Z \\to T$ (`FromInteger`); the checked rules need `DivChecked`, `SqrtChecked` and the context and error values; and `Constants` provides $\\pi$, $\\tau$ and $e$ as dual constants."
 msgstr ""
 
 #: manual/design/autodiff.md:32
@@ -1470,7 +1503,7 @@ msgid "Exactly the bounds of `Dual[T]`"
 msgstr ""
 
 #: manual/design/autodiff.md:51
-msgid "The root package re-exports the traits that occur in the bounds of the public `Dual` methods and instances, plus the error and context types of the checked methods. It does not re-export `Field`, `MulGroup` or `Inverse` (which `Dual[T]` deliberately lacks), nor the contextual or enclosure traits of `arithmetic`, which `Dual[T]` does not implement. `NatHomomorphism` is the one trait with an instance on `Dual[T]` that is left out: it occurs only in the bound of its own instance, no method needs it, and generic code reaches the natural numbers through `IntegralHomomorphism`, which extends it."
+msgid "The root package re-exports the traits that occur in the bounds of the public `Dual` methods and instances, plus the error and context types of the checked methods. It does not re-export `Field`, `MulGroup` or `Inverse` (which `Dual[T]` deliberately lacks), nor the contextual or enclosure traits of `arithmetic`, which `Dual[T]` does not implement. `FromNat` occurs in no method bound, but it is re-exported because `FromInteger` extends it. The deprecated `NatHomomorphism` and `IntegralHomomorphism` are left out: their instances on `Dual[T]` are compatibility shims for `luna-poly` 0.2.0, and new code should not name them."
 msgstr ""
 
 #: manual/design/autodiff.md:61
@@ -1482,13 +1515,13 @@ msgid "`diff` and `value_and_diff` are re-exported because they only need `dual`
 msgstr ""
 
 #: manual/design/autodiff.md:67
-#: manual/design/checked.md:104
+#: manual/design/checked.md:103
 #: manual/design/core.md:74
-#: manual/design/dual.md:277
+#: manual/design/dual.md:289
 #: manual/design/elementary.md:66
 #: manual/design/forward.md:130
 #: manual/design/linalg.md:139
-#: manual/design/poly.md:113
+#: manual/design/poly.md:114
 msgid "Correctness and invariants"
 msgstr ""
 
@@ -1505,13 +1538,13 @@ msgid "The root package depends on `dual`, `forward`, `luna-generic` and `arithm
 msgstr ""
 
 #: manual/design/autodiff.md:78
-#: manual/design/checked.md:117
+#: manual/design/checked.md:112
 #: manual/design/core.md:82
-#: manual/design/dual.md:426
+#: manual/design/dual.md:439
 #: manual/design/elementary.md:78
 #: manual/design/forward.md:141
 #: manual/design/linalg.md:153
-#: manual/design/poly.md:168
+#: manual/design/poly.md:169
 msgid "Alternatives rejected"
 msgstr ""
 
@@ -1524,13 +1557,13 @@ msgid "**Moving the implementation to the root package.** It would force the hea
 msgstr ""
 
 #: manual/design/autodiff.md:86
-#: manual/design/checked.md:125
+#: manual/design/checked.md:120
 #: manual/design/core.md:89
-#: manual/design/dual.md:440
+#: manual/design/dual.md:453
 #: manual/design/elementary.md:87
 #: manual/design/forward.md:150
 #: manual/design/linalg.md:164
-#: manual/design/poly.md:179
+#: manual/design/poly.md:180
 msgid "Boundaries"
 msgstr ""
 
@@ -1543,7 +1576,7 @@ msgid "No re-export of `linalg`, `poly` or their container types."
 msgstr ""
 
 #: manual/design/autodiff.md:91
-msgid "No re-export of `Field`, `MulGroup`, `Inverse`, `NatHomomorphism` or the contextual arithmetic traits."
+msgid "No re-export of `Field`, `MulGroup`, `Inverse`, the deprecated `NatHomomorphism` / `IntegralHomomorphism` or the contextual arithmetic traits."
 msgstr ""
 
 #: manual/design/checked.md:1
@@ -1616,58 +1649,58 @@ msgid "No special case for a zero tangent"
 msgstr ""
 
 #: manual/design/checked.md:82
-msgid "At $a = 0$ with $b = 0$ the tangent is the indeterminate $0/0$. One could return $0$ (a constant input has no derivative to report), but that would make the result depend on how a constant was produced. The implementation lets `T` decide: for `Double` this is a domain error with `arithmetic` 0.5, and a division by zero with the pinned `arithmetic@0.2.1`."
+msgid "At $a = 0$ with $b = 0$ the tangent is the indeterminate $0/0$. One could return $0$ (a constant input has no derivative to report), but that would make the result depend on how a constant was produced. The implementation lets `T` decide: for `Double` this is a domain error."
 msgstr ""
 
-#: manual/design/checked.md:88
+#: manual/design/checked.md:87
 msgid "Reuse `arithmetic`"
 msgstr ""
 
-#: manual/design/checked.md:90
+#: manual/design/checked.md:89
 msgid "`Dual[T]` implements `DivChecked` and `SqrtChecked` from `arithmetic`, and this facade re-exports exactly those traits with `ArithmeticContext`, `ArithmeticError`, `ArithmeticErrorKind` and `RoundingMode`. Generic checked code therefore runs on `Double` and on `Dual[Double]` without adaptation, and errors from both levels have one type."
 msgstr ""
 
-#: manual/design/checked.md:96
+#: manual/design/checked.md:95
 msgid "Only division and square root"
 msgstr ""
 
-#: manual/design/checked.md:98
+#: manual/design/checked.md:97
 msgid "`arithmetic` defines checked traits for division, square root, comparison, parsing and integer powers. Of these, only division and square root are operations on $T[\\varepsilon]$ with a derivative rule in this repository, so only they have checked dual forms. Logarithms and trigonometric functions follow the unchecked semantics of `T`."
 msgstr ""
 
-#: manual/design/checked.md:106
+#: manual/design/checked.md:105
 msgid "`div_checked(x, y)` succeeds exactly when `T`'s `div_checked` succeeds for both $a/c$ and $(bc - ad)/c^2$; then it equals `x / y` computed with the same operations."
 msgstr ""
 
-#: manual/design/checked.md:109
-msgid "`sqrt_checked(x)` succeeds exactly when `T`'s `sqrt_checked(a)` and `div_checked(b, 2√a)` succeed; for `Double` with `arithmetic` 0.5 that is $a > 0$, or $a$ NaN. With `arithmetic@0.2.1` it also succeeds, with NaN components, for $a < 0$, because that release does not check the domain of the square root (see [versions of arithmetic](../api/checked.md#versions-of-arithmetic))."
+#: manual/design/checked.md:108
+msgid "`sqrt_checked(x)` succeeds exactly when `T`'s `sqrt_checked(a)` and `div_checked(b, 2√a)` succeed; for `Double` that is $a > 0$, or $a$ NaN."
 msgstr ""
 
-#: manual/design/checked.md:115
+#: manual/design/checked.md:110
 msgid "The context is passed to `T` unchanged and never modified."
 msgstr ""
 
-#: manual/design/checked.md:119
+#: manual/design/checked.md:114
 msgid "**A dedicated autodiff error type.** It would duplicate `ArithmeticError` and force conversions at every boundary."
 msgstr ""
 
-#: manual/design/checked.md:121
+#: manual/design/checked.md:116
 msgid "**`Option` results.** They lose the reason for the failure."
 msgstr ""
 
-#: manual/design/checked.md:122
+#: manual/design/checked.md:117
 msgid "**Checking only the value.** It would return infinite or NaN derivatives from a \"checked\" operation."
 msgstr ""
 
-#: manual/design/checked.md:127
+#: manual/design/checked.md:122
 msgid "No checked logarithm, exponential or trigonometric operations."
 msgstr ""
 
-#: manual/design/checked.md:128
+#: manual/design/checked.md:123
 msgid "No contextual (`ArithmeticOutcome`) operations and no rounding diagnostics."
 msgstr ""
 
-#: manual/design/checked.md:130
+#: manual/design/checked.md:125
 msgid "No automatic rescaling of tiny divisors."
 msgstr ""
 
@@ -1696,7 +1729,7 @@ msgid "Many differentiable programs are polynomial: they use only $+$, $-$, $\\t
 msgstr ""
 
 #: manual/design/core.md:29
-msgid "holds in every commutative ring, so the traits `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring`, `Ring` and the canonical map $\\mathbb Z \\to T$ (`IntegralHomomorphism`) are all such code needs. The facade re-exports exactly these. In `luna-generic` each trait extends the ones before it,"
+msgid "holds in every commutative ring, so the traits `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring`, `Ring` and the canonical map $\\mathbb Z \\to T$ (`FromInteger`, with its supertrait `FromNat`) are all such code needs. The facade re-exports exactly these. In `luna-generic` each trait extends the ones before it,"
 msgstr ""
 
 #: manual/design/core.md:44
@@ -1752,7 +1785,7 @@ msgid "No analytic traits, no checked operations, no drivers."
 msgstr ""
 
 #: manual/design/core.md:92
-msgid "No `Field`, `MulGroup`, `Inverse` or `NatHomomorphism`."
+msgid "No `Field`, `MulGroup` or `Inverse`, and none of the `NatHomomorphism` / `IntegralHomomorphism` traits that `luna-generic` 0.4.0 deprecates."
 msgstr ""
 
 #: manual/design/dual.md:1
@@ -1768,7 +1801,7 @@ msgid "Compute exact first derivatives of ordinary programs, written against the
 msgstr ""
 
 #: manual/design/dual.md:18
-msgid "MoonBit has no operator overloading for mixed types, so a literal cannot be added to a `Dual[T]`; every constant enters through `Dual::constant` or a trait such as `IntegralHomomorphism`."
+msgid "MoonBit has no operator overloading for mixed types, so a literal cannot be added to a `Dual[T]`; every constant enters through `Dual::constant` or a trait such as `FromInteger`."
 msgstr ""
 
 #: manual/design/dual.md:21
@@ -1884,7 +1917,7 @@ msgid "**Options.** A `Double`-only dual type; a generic `Dual[T]` whose operati
 msgstr ""
 
 #: manual/design/dual.md:166
-msgid "**Choice.** `Dual[T]` is generic, and every method carries its own bound (`Dual::mul` needs only `Add + Mul`, `Dual::exp2` needs `Exponential + Logarithmic + IntegralHomomorphism + Mul`). This follows the Luna Flow rule of depending on the smallest trait composition. It also lets `T` itself be a dual number, which gives higher derivatives by nesting (see the [forward design](forward.md))."
+msgid "**Choice.** `Dual[T]` is generic, and every method carries its own bound (`Dual::mul` needs only `Add + Mul`, `Dual::exp2` needs `Exponential + Logarithmic + FromInteger + Mul`). This follows the Luna Flow rule of depending on the smallest trait composition. It also lets `T` itself be a dual number, which gives higher derivatives by nesting (see the [forward design](forward.md))."
 msgstr ""
 
 #: manual/design/dual.md:173
@@ -1962,171 +1995,179 @@ msgid "**Options.** Require a conversion from `Double`; build them as `one + one
 msgstr ""
 
 #: manual/design/dual.md:248
-msgid "**Choice.** `IntegralHomomorphism::from_integral(2)` and `from_integral(10)`. The map $\\mathbb Z \\to T$ is the unique ring homomorphism, so it names the right constant in every ring, and small integers such as $2$ and $10$ are exact in every numeric instance. A `Double` conversion would not exist for exact types, and repeated addition costs more for $10$."
+msgid "**Choice.** `lift_to(2)` and `lift_to(10)` from `luna-generic`, which pass the `Int` through `BigInt` to `FromInteger::from_integer`. The map $\\mathbb Z \\to T$ is the unique ring homomorphism, so it names the right constant in every ring, and small integers such as $2$ and $10$ are exact in every numeric instance. A `Double` conversion would not exist for exact types, and repeated addition costs more for $10$."
 msgstr ""
 
-#: manual/design/dual.md:254
+#: manual/design/dual.md:255
 msgid "Reuse the computed value"
 msgstr ""
 
-#: manual/design/dual.md:256
+#: manual/design/dual.md:257
 msgid "`exp` and `exp2` compute $v = f(a)$ once and form the tangent from $v$, because $f' = f$ (up to the factor $\\ln 2$). `sqrt` likewise divides by the computed root. This saves one elementary evaluation per call and makes the tangent consistent with the returned value."
 msgstr ""
 
-#: manual/design/dual.md:261
+#: manual/design/dual.md:262
 msgid "The derivative of `tan`"
 msgstr ""
 
-#: manual/design/dual.md:263
+#: manual/design/dual.md:264
 msgid "Two formulas give $\\tan' a$: $1 + \\tan^2 a$, which reuses the value, and $\\sec^2 a = 1/\\cos^2 a$, which needs one more cosine. The package uses $b / (\\cos a \\cdot \\cos a)$. Both are mathematically equal; the chosen form is undefined at exactly the same points as $\\tan$ itself."
 msgstr ""
 
-#: manual/design/dual.md:268
+#: manual/design/dual.md:269
 msgid "Explicit method promotion"
 msgstr ""
 
-#: manual/design/dual.md:270
-msgid "With MoonBit 0.10, trait instances no longer create methods implicitly. [`src/dual/extends.mbt`](../../../src/dual/extends.mbt) promotes the arithmetic operators, `equal`, `zero`, `one` and `div_checked`, and keeps `not_equal`, `to_repr`, `from_nat`, `from_integral`, `pi`, `e` and `tau` as hidden deprecated forms for existing callers (see [Deprecated](../api/dual.md#deprecated))."
+#: manual/design/dual.md:271
+msgid "With MoonBit 0.10, trait instances no longer create methods implicitly. [`src/dual/extends.mbt`](../../../src/dual/extends.mbt) promotes the arithmetic operators, `equal`, `zero`, `one`, `from_natural`, `from_integer` and `div_checked`, and keeps `not_equal`, `to_repr`, `from_nat`, `from_integral`, `pi`, `e` and `tau` as hidden deprecated forms for existing callers (see [Deprecated](../api/dual.md#deprecated))."
 msgstr ""
 
-#: manual/design/dual.md:279
+#: manual/design/dual.md:278
+msgid "Compatibility shims for the deprecated homomorphism traits"
+msgstr ""
+
+#: manual/design/dual.md:280
+msgid "`luna-generic` 0.4.0 deprecates `NatHomomorphism` and `IntegralHomomorphism`: they compose a lift to ℕ or ℤ with the canonical map, which is not a homomorphism for fixed-width sources. `Dual[T]` now implements `FromNat` and `FromInteger`. The old instances stay in [`src/dual/compat.mbt`](../../../src/dual/compat.mbt), because `luna-poly` 0.2.0 bounds `DensePolynomial::derivative` by `NatHomomorphism` and would otherwise reject dual coefficients. Each shim suppresses the deprecation warning locally, and all of them go once `luna-poly` moves to `FromNat`."
+msgstr ""
+
+#: manual/design/dual.md:291
 msgid "Derivatives of whole programs"
 msgstr ""
 
-#: manual/design/dual.md:281
+#: manual/design/dual.md:293
 msgid "Let a program compute $y = f(x)$ by a finite sequence of steps, each a ring operation, a division or one of the elementary functions of the table. Run it on $x + 1\\varepsilon$ (`Dual::variable(x)`) with every other input a constant. Then every intermediate $v_k$ is represented as $v_k(x) + v_k'(x)\\,\\varepsilon$."
 msgstr ""
 
-#: manual/design/dual.md:287
+#: manual/design/dual.md:299
 msgid ""
 "*Proof by induction on the steps.* Inputs: the variable is $x + 1\\varepsilon$ and $x' = 1$; a constant is $c + 0\\varepsilon$ and $c' = 0$. Step: let the operands be $u + u'\\varepsilon$ and $w + w'\\varepsilon$, where $u$ and $w$ are functions of $x$ differentiable at the point. For a binary operation $\\star \\in \\{+, -, \\times, /\\}$ (with $w(x) \\n"
 "e 0$ for $/$), the formulas derived above give"
 msgstr ""
 
-#: manual/design/dual.md:298
+#: manual/design/dual.md:310
 msgid "because they are exactly the sum, difference, product and quotient rules. An elementary function $g$, applied in the open set where it is differentiable, gives $g(u) + g'(u)\\,u'\\,\\varepsilon = g(u) + (g \\circ u)'\\varepsilon$ by the chain rule. The last intermediate is $y$, so `tangent` is $f'(x)$. $\\square$"
 msgstr ""
 
-#: manual/design/dual.md:304
+#: manual/design/dual.md:316
 msgid ""
 "The same argument with input tangent $b$ gives $f'(x)\\,b$, and with several inputs seeded by a vector $v$ it gives the directional derivative $\\n"
 "abla f(x) \\cdot v$ (see the [linalg design](linalg.md)). The derivative is that of the program, not of a mathematical function it approximates: a branch on `value()` differentiates the branch taken."
 msgstr ""
 
-#: manual/design/dual.md:310
+#: manual/design/dual.md:322
 msgid "Rounding error"
 msgstr ""
 
-#: manual/design/dual.md:312
+#: manual/design/dual.md:324
 msgid "Write $\\mathrm{fl}(x \\circ y) = (x \\circ y)(1 + \\delta)$ with $|\\delta| \\le u$ for each floating-point operation ($u = 2^{-53}$ for `Double`), and use the standard lemma that a product of $k$ factors $(1 + \\delta_i)^{\\pm 1}$ equals $1 + \\theta_k$ with $|\\theta_k| \\le \\gamma_k = ku/(1 - ku)$.[^higham]"
 msgstr ""
 
-#: manual/design/dual.md:317
+#: manual/design/dual.md:329
 msgid "N. J. Higham, *Accuracy and Stability of Numerical Algorithms*, 2nd ed., SIAM, 2002, Lemma 3.1."
 msgstr ""
 
-#: manual/design/dual.md:320
+#: manual/design/dual.md:332
 msgid "*Product tangent.* `Dual::mul` computes $\\mathrm{fl}(\\mathrm{fl}(ad) + \\mathrm{fl}(cb))$:"
 msgstr ""
 
-#: manual/design/dual.md:331
+#: manual/design/dual.md:343
 msgid "*Quotient tangent.* `Dual::div` computes $\\mathrm{fl}\\big(\\mathrm{fl}(bc - ad) / \\mathrm{fl}(c \\cdot c)\\big)$, five roundings with one of them in the denominator:"
 msgstr ""
 
-#: manual/design/dual.md:343
+#: manual/design/dual.md:355
 msgid "Both bounds have the shape of the error of evaluating the derivative formula directly; the relative error is only large when $ad$ and $bc$ cancel, which is the conditioning of the derivative itself. For an elementary rule the tangent error is the error of `T`'s implementation of $f'(a)$ (for example of `cos` in `sin`) plus at most two more roundings."
 msgstr ""
 
-#: manual/design/dual.md:349
+#: manual/design/dual.md:361
 msgid "The model $\\mathrm{fl}(x \\circ y) = (x \\circ y)(1 + \\delta)$ only holds while no result leaves the normal range of `T`. For `Double` that range is $[2^{-1022}, 2^{1024})$ in magnitude, and the quotient tangent leaves it much earlier than the quotient, because it squares the divisor:"
 msgstr ""
 
-#: manual/design/dual.md:362
+#: manual/design/dual.md:374
 msgid "The first line holds because a square below half the smallest subnormal, $2^{-1075}$, rounds to zero. In the first case the tangent is a division by zero, in the second it carries a relative error up to $2^{-1075}/c^2$ instead of $u$, and in the third it is $0$ whenever $bc - ad$ is finite, although the true tangent $(bc - ad)/c^2$ can be a normal number: for $a = 0$, $b = 1$, $c = 10^{155}$ it is $10^{-155}$. Writing the tangent as $(b - q\\,d)/c$ with $q = a/c$, which is the same expression in exact arithmetic because $(bc - ad)/c^2 = (b - (a/c)\\,d)/c$, would avoid squaring $c$; the current code does not do this (see the warning on `Dual::div_checked`)."
 msgstr ""
 
-#: manual/design/dual.md:373
+#: manual/design/dual.md:385
 msgid "Comparison with finite differences"
 msgstr ""
 
-#: manual/design/dual.md:375
+#: manual/design/dual.md:387
 msgid "The forward difference $D_h f(x) = (f(x + h) - f(x))/h$ has two error sources. Taylor's theorem gives the truncation error, and evaluating $f$ in floating point with error at most $u|f|$ adds a cancellation error:"
 msgstr ""
 
-#: manual/design/dual.md:383
+#: manual/design/dual.md:395
 msgid "Setting the derivative of the right-hand side with respect to $h$ to zero,"
 msgstr ""
 
-#: manual/design/dual.md:392
+#: manual/design/dual.md:404
 msgid "so even the best step loses about half of the significant digits ($\\sqrt u \\approx 10^{-8}$ for `Double`). The central difference $(f(x + h) - f(x - h))/(2h)$ has truncation error $\\frac{h^2}{6}|f'''|$ and reaches about $u^{2/3} \\approx 10^{-11}$. Dual numbers have no truncation term at all: by the induction above they compute the exact derivative of the program, and the only error is rounding with the bounds of the previous section.[^griewank] The test suite and the [dual tutorial](../tutorial/dual.md) compare both methods."
 msgstr ""
 
-#: manual/design/dual.md:401
+#: manual/design/dual.md:413
 msgid "A. Griewank and A. Walther, *Evaluating Derivatives*, 2nd ed., SIAM, 2008, chapters 2–3, treat forward mode and its error analysis in full."
 msgstr ""
 
-#: manual/design/dual.md:404
-#: manual/design/poly.md:161
+#: manual/design/dual.md:416
+#: manual/design/poly.md:162
 msgid "Cost"
 msgstr ""
 
-#: manual/design/dual.md:406
+#: manual/design/dual.md:418
 msgid "Addition, subtraction and negation cost two operations of `T` instead of one; multiplication costs three multiplications and one addition; division costs three multiplications, one subtraction and two divisions; an elementary function costs the function plus its derivative factor (for `sin`, one `sin`, one `cos` and one multiplication). Counted in operations of `T`, the ratio is $2$ for linear operations, $4$ for a product, $6$ for a quotient and about $2$ for an elementary function, so a program runs a small constant factor, at most about six, slower on `Dual[T]` than on `T`, and needs twice the memory for its numbers."
 msgstr ""
 
-#: manual/design/dual.md:416
+#: manual/design/dual.md:428
 msgid "Laws to keep"
 msgstr ""
 
-#: manual/design/dual.md:418
+#: manual/design/dual.md:430
 msgid "`x.value()` of any result equals the same computation on values (the projection is a homomorphism)."
 msgstr ""
 
-#: manual/design/dual.md:420
-msgid "Constants, `zero()`, `one()`, `from_integral`, `from_nat` and the `Constants` instance have tangent zero."
-msgstr ""
-
-#: manual/design/dual.md:422
-msgid "Instances stop at `Ring`; no `Field`, `MulGroup`, `Inverse` or `Compare`."
-msgstr ""
-
-#: manual/design/dual.md:423
-msgid "The product rule assumes commutative multiplication of `T`, which every numeric instance in Luna Flow has."
-msgstr ""
-
-#: manual/design/dual.md:428
-msgid "**Finite differences.** Simple, but they lose half the digits or more, as derived above, and need a step size per problem."
-msgstr ""
-
-#: manual/design/dual.md:430
-msgid "**Symbolic differentiation.** Building derivative expressions needs a term language and simplification, and expressions can grow quickly; that belongs to a CAS layer, not to a scalar type."
-msgstr ""
-
-#: manual/design/dual.md:433
-msgid "**Reverse mode.** Better for gradients of many inputs, but it needs a tape or closures that record the computation; it is not implemented."
+#: manual/design/dual.md:432
+msgid "Constants, `zero()`, `one()`, `from_natural`, `from_integer` (and the deprecated `from_nat`, `from_integral`) and the `Constants` instance have tangent zero."
 msgstr ""
 
 #: manual/design/dual.md:435
-msgid "**Storing a vector of tangents.** One pass would give a whole gradient, at the cost of a vector-valued type and allocation on every operation. The scalar tangent keeps `Dual[T]` a plain two-field value; vector tangents are future work."
+msgid "Instances stop at `Ring`; no `Field`, `MulGroup`, `Inverse` or `Compare`."
 msgstr ""
 
-#: manual/design/dual.md:442
-msgid "First derivatives only. Higher derivatives come from nesting `Dual[Dual[T]]`; the $k$-th derivative stores $2^k$ components and a product costs $3^k$ multiplications and $3^k - 2^k$ additions of `T` (see the [forward design](forward.md#higher-derivatives-by-nesting)). There is no truncated Taylor (jet) type."
+#: manual/design/dual.md:436
+msgid "The product rule assumes commutative multiplication of `T`, which every numeric instance in Luna Flow has."
 msgstr ""
 
-#: manual/design/dual.md:447
-msgid "No reverse mode and no symbolic differentiation."
+#: manual/design/dual.md:441
+msgid "**Finite differences.** Simple, but they lose half the digits or more, as derived above, and need a step size per problem."
+msgstr ""
+
+#: manual/design/dual.md:443
+msgid "**Symbolic differentiation.** Building derivative expressions needs a term language and simplification, and expressions can grow quickly; that belongs to a CAS layer, not to a scalar type."
+msgstr ""
+
+#: manual/design/dual.md:446
+msgid "**Reverse mode.** Better for gradients of many inputs, but it needs a tape or closures that record the computation; it is not implemented."
 msgstr ""
 
 #: manual/design/dual.md:448
+msgid "**Storing a vector of tangents.** One pass would give a whole gradient, at the cost of a vector-valued type and allocation on every operation. The scalar tangent keeps `Dual[T]` a plain two-field value; vector tangents are future work."
+msgstr ""
+
+#: manual/design/dual.md:455
+msgid "First derivatives only. Higher derivatives come from nesting `Dual[Dual[T]]`; the $k$-th derivative stores $2^k$ components and a product costs $3^k$ multiplications and $3^k - 2^k$ additions of `T` (see the [forward design](forward.md#higher-derivatives-by-nesting)). There is no truncated Taylor (jet) type."
+msgstr ""
+
+#: manual/design/dual.md:460
+msgid "No reverse mode and no symbolic differentiation."
+msgstr ""
+
+#: manual/design/dual.md:461
 msgid "No `Field`, `MulGroup`, `Inverse` or order instance, and no `Show`."
 msgstr ""
 
-#: manual/design/dual.md:449
+#: manual/design/dual.md:462
 msgid "Only `div_checked` and `sqrt_checked` check their domain. Logarithms, trigonometric functions and the unchecked operators follow `T`."
 msgstr ""
 
-#: manual/design/dual.md:451
+#: manual/design/dual.md:464
 msgid "No validated enclosures: the rounding bounds above are a priori, not computed at run time. Interval or ball scalars as `T` are neither tested nor documented by this repository."
 msgstr ""
 
@@ -2173,7 +2214,7 @@ msgid "Instances need the whole trait"
 msgstr ""
 
 #: manual/design/elementary.md:54
-msgid "A trait instance must provide all its methods. `Exponential` contains `exp2`, whose rule needs $\\ln 2$, so the instance needs `Logarithmic` and `IntegralHomomorphism` on `T` even if a caller only uses `exp`. The inherent method `Dual::exp` has the smaller bound `Exponential + Mul` for that case."
+msgid "A trait instance must provide all its methods. `Exponential` contains `exp2`, whose rule needs $\\ln 2$, so the instance needs `Logarithmic` and `FromInteger` on `T` even if a caller only uses `exp`. The inherent method `Dual::exp` has the smaller bound `Exponential + Mul` for that case."
 msgstr ""
 
 #: manual/design/elementary.md:59
@@ -2591,94 +2632,94 @@ msgid "**Options.** Build the derivative polynomial with `DensePolynomial::deriv
 msgstr ""
 
 #: manual/design/poly.md:76
-msgid "**Choice.** Evaluate over `Dual[T]`. It returns $p(x)$ and $p'(x)$ from one pass, needs only `Semiring` (the formal derivative in `luna-poly` also needs `NatHomomorphism` to form $k\\,c_k$), does not allocate a second polynomial per derivative order, and composes with other dual computations through `eval_dual`. The formal derivative remains the right tool when the derivative polynomial itself is wanted; the test suite checks that the two agree."
+msgid "**Choice.** Evaluate over `Dual[T]`. It returns $p(x)$ and $p'(x)$ from one pass, needs only `Semiring` (the formal derivative in `luna-poly` 0.2.0 also needs the deprecated `NatHomomorphism` to form $k\\,c_k$, which `Dual[T]` keeps as a compatibility shim), does not allocate a second polynomial per derivative order, and composes with other dual computations through `eval_dual`. The formal derivative remains the right tool when the derivative polynomial itself is wanted; the test suite checks that the two agree."
 msgstr ""
 
-#: manual/design/poly.md:84
+#: manual/design/poly.md:85
 msgid "Reuse `luna-poly` evaluation"
 msgstr ""
 
-#: manual/design/poly.md:86
+#: manual/design/poly.md:87
 msgid "The bridge lifts the coefficients with `Dual::constant`, builds a `DensePolynomial[Dual[T]]` or `SparsePolynomial[Dual[T]]` with the ordinary constructors, and calls `eval`. It does not reimplement Horner's rule, so any change to `luna-poly` evaluation (and its normalization of zero coefficients, which is why `T : Eq` is required) applies here too."
 msgstr ""
 
-#: manual/design/poly.md:92
+#: manual/design/poly.md:93
 msgid "One variable for sparse polynomials"
 msgstr ""
 
-#: manual/design/poly.md:94
+#: manual/design/poly.md:95
 msgid "**Problem.** `SparsePolynomial` is multivariate, but a partial derivative needs a choice of variable, and variable identity lives in the contexts of `luna-poly` (`VariableContext`, `ContextPolynomial`)."
 msgstr ""
 
-#: manual/design/poly.md:98
+#: manual/design/poly.md:99
 msgid "**Choice.** The sparse bridge evaluates with the single assignment `[x]` and is named `sparse_univariate_*`. A polynomial that uses another variable makes `eval` abort. A multivariate API would have to take a variable context and return a gradient; it is future work. Callers with a contextual polynomial can partially evaluate the other variables first, as the repository's integration test does."
 msgstr ""
 
-#: manual/design/poly.md:107
+#: manual/design/poly.md:108
 msgid "The first release named the functions `derivative_at`, `value_and_derivative_at`, `eval_sparse_dual`, `sparse_derivative_at` and `sparse_value_and_derivative_at`. The `dense_` and `sparse_univariate_` names say which representation and which kind of derivative is meant; the old names stay as plain aliases so existing code keeps working."
 msgstr ""
 
-#: manual/design/poly.md:115
+#: manual/design/poly.md:116
 msgid "Exactness in exact rings"
 msgstr ""
 
-#: manual/design/poly.md:117
+#: manual/design/poly.md:118
 msgid "For `T` with exact arithmetic (`Int`, `BigInt`, exact rationals) the results are exactly $p(x)$ and $p'(x)$, by the identities above."
 msgstr ""
 
-#: manual/design/poly.md:120
+#: manual/design/poly.md:121
 msgid "Rounding error of the dense evaluation"
 msgstr ""
 
-#: manual/design/poly.md:122
+#: manual/design/poly.md:123
 msgid "Use $\\mathrm{fl}(x \\circ y) = (x \\circ y)(1 + \\delta)$, $|\\delta| \\le u$, and the product lemma $\\prod (1 + \\delta_i)^{\\pm1} = 1 + \\theta_k$, $|\\theta_k| \\le \\gamma_k = ku/(1 - ku)$.[^higham]"
 msgstr ""
 
-#: manual/design/poly.md:126
+#: manual/design/poly.md:127
 msgid "N. J. Higham, *Accuracy and Stability of Numerical Algorithms*, 2nd ed., SIAM, 2002, Lemma 3.1 and chapter 5."
 msgstr ""
 
-#: manual/design/poly.md:129
+#: manual/design/poly.md:130
 msgid "*Value.* By the [projection homomorphism](dual.md#the-value-projection-is-a-homomorphism) $\\hat p_0$ is the plain Horner result. Each step multiplies the running sum by $(1 + \\delta_{\\times})(1 + \\delta_{+})$ and adds $c_k$ once rounded, so $c_k a^k$ carries $2k + 1$ factors for $k < n$; the leading coefficient carries $2n$, because the first step $0 \\cdot a + c_n$ is exact:"
 msgstr ""
 
-#: manual/design/poly.md:141
+#: manual/design/poly.md:142
 msgid "*Derivative ($b = 1$).* The tangent step computes $\\mathrm{fl}\\big(\\hat p_{k+1} \\cdot 1 + \\mathrm{fl}(a\\,\\hat q_{k+1})\\big)$, and adding the constant $c_k$ adds an exact zero to the tangent. The derivative contains $k$ copies of $c_k a^{k-1}$, one for each step $j < k$ at which $c_k$ moves from the value chain into the tangent chain. Along such a path $c_k$ is rounded once when it enters, twice per value step $k - 1, \\dots, j + 1$, once when it moves into the tangent, and twice per tangent step $j - 1, \\dots, 0$: $1 + 2(k - 1 - j) + 1 + 2j = 2k$ factors. Hence"
 msgstr ""
 
-#: manual/design/poly.md:154
+#: manual/design/poly.md:155
 msgid "essentially the bound for evaluating the formal derivative by Horner's rule, which is $\\gamma_{2n-2} \\sum_k k\\,|c_k|\\,|a|^{k-1}$ once the coefficients $k\\,c_k$ are formed exactly; the dual evaluation pays at most two more roundings per term. The relative error is small unless the terms cancel, that is unless $p'$ is ill-conditioned at $a$."
 msgstr ""
 
-#: manual/design/poly.md:163
+#: manual/design/poly.md:164
 msgid "Dense: $n + 1$ dual multiply-add steps, that is about $3n$ multiplications and $3n$ additions of `T`, plus one array of $n + 1$ lifted coefficients. Sparse: per term one binary powering, $O(\\log e)$ dual products, plus one dual product and one addition."
 msgstr ""
 
-#: manual/design/poly.md:170
+#: manual/design/poly.md:171
 msgid "**Symbolic derivative then evaluation.** Two passes, an extra polynomial, and a stronger bound on `T`; kept as `luna-poly`'s own `DensePolynomial::derivative` for users who need the polynomial."
 msgstr ""
 
-#: manual/design/poly.md:173
+#: manual/design/poly.md:174
 msgid "**A private Horner loop.** Faster by a constant, but it would duplicate `luna-poly` semantics and drift from them."
 msgstr ""
 
-#: manual/design/poly.md:175
+#: manual/design/poly.md:176
 msgid "**Guessing a variable for multivariate sparse polynomials.** Silent partial derivatives with respect to \"the first variable\" would be easy to misuse; the bridge aborts instead."
 msgstr ""
 
-#: manual/design/poly.md:181
+#: manual/design/poly.md:182
 msgid "Univariate only: no partial derivatives or gradients of multivariate polynomials, no `ContextPolynomial` support."
 msgstr ""
 
-#: manual/design/poly.md:183
+#: manual/design/poly.md:184
 msgid "First derivatives at points only; no derivative polynomials (use `luna-poly`), no higher derivatives."
 msgstr ""
 
-#: manual/design/poly.md:185
+#: manual/design/poly.md:186
 msgid "No checked variants: dense and sparse evaluation do not fail except for the sparse abort described above."
 msgstr ""
 
-#: manual/design/poly.md:187
+#: manual/design/poly.md:188
 msgid "Dense and sparse `immut` representations only."
 msgstr ""
 
@@ -2687,7 +2728,7 @@ msgid "autodiff"
 msgstr ""
 
 #: manual/index.md:3
-msgid "This manual documents the unreleased `main` branch of `Luna-Flow/autodiff` (version `0.2.0` in `moon.mod`) after its migration to MoonBit 0.10."
+msgid "This manual documents the unreleased `main` branch of `Luna-Flow/autodiff` (version `0.3.0` in `moon.mod`) after its migration to MoonBit 0.10."
 msgstr ""
 
 #: manual/index.md:6
@@ -2723,254 +2764,250 @@ msgid "The bridges need their libraries too: `moon add Luna-Flow/linear-algebra`
 msgstr ""
 
 #: manual/index.md:44
-msgid "[!IMPORTANT] The checked operations report the errors of `T`'s own `DivChecked` and `SqrtChecked`. This manual describes `Double` as implemented by `Luna-Flow/arithmetic` 0.5, the version the repository is developed against. `moon.mod` still pins `arithmetic@0.2.1`, whose `Double` `sqrt_checked` never fails (a negative input gives NaN) and whose `div_checked` reports every zero divisor, including $0/0$, as a division by zero. See the [checked API](api/checked.md#versions-of-arithmetic)."
-msgstr ""
-
-#: manual/index.md:53
 msgid "Pages"
 msgstr ""
 
-#: manual/index.md:55
+#: manual/index.md:46
 msgid "The root package `Luna-Flow/autodiff` is documented as `autodiff`, because the name `core` belongs to the package `src/core`. Every other page is named after its directory under `src/`."
 msgstr ""
 
-#: manual/index.md:59
+#: manual/index.md:50
 msgid "Part"
 msgstr ""
 
-#: manual/index.md:59
+#: manual/index.md:50
 msgid "Tutorial"
 msgstr ""
 
-#: manual/index.md:59
+#: manual/index.md:50
 msgid "API"
 msgstr ""
 
-#: manual/index.md:59
+#: manual/index.md:50
 msgid "Design"
 msgstr ""
 
-#: manual/index.md:61
+#: manual/index.md:52
 msgid "`autodiff`: one-stop facade with `Dual`, `diff`, `value_and_diff` and the re-exported traits"
 msgstr ""
 
-#: manual/index.md:61
+#: manual/index.md:52
 msgid "[tutorial](tutorial/autodiff.md)"
 msgstr ""
 
-#: manual/index.md:61
+#: manual/index.md:52
 msgid "[API](api/autodiff.md)"
 msgstr ""
 
-#: manual/index.md:61
+#: manual/index.md:52
 msgid "[design](design/autodiff.md)"
 msgstr ""
 
-#: manual/index.md:62
+#: manual/index.md:53
 msgid "`dual`: the `Dual[T]` type, its arithmetic, derivative rules and instances"
 msgstr ""
 
-#: manual/index.md:62
+#: manual/index.md:53
 msgid "[tutorial](tutorial/dual.md)"
 msgstr ""
 
-#: manual/index.md:62
+#: manual/index.md:53
 msgid "[API](api/dual.md)"
 msgstr ""
 
-#: manual/index.md:62
+#: manual/index.md:53
 msgid "[design](design/dual.md)"
 msgstr ""
 
-#: manual/index.md:63
+#: manual/index.md:54
 msgid "`forward`: scalar drivers `diff` and `value_and_diff`"
 msgstr ""
 
-#: manual/index.md:63
+#: manual/index.md:54
 msgid "[tutorial](tutorial/forward.md)"
 msgstr ""
 
-#: manual/index.md:63
+#: manual/index.md:54
 msgid "[API](api/forward.md)"
 msgstr ""
 
-#: manual/index.md:63
+#: manual/index.md:54
 msgid "[design](design/forward.md)"
 msgstr ""
 
-#: manual/index.md:64
+#: manual/index.md:55
 msgid "`core`: algebraic facade, `Dual` and the `luna-generic` structure traits"
 msgstr ""
 
-#: manual/index.md:64
+#: manual/index.md:55
 msgid "[tutorial](tutorial/core.md)"
 msgstr ""
 
-#: manual/index.md:64
+#: manual/index.md:55
 msgid "[API](api/core.md)"
 msgstr ""
 
-#: manual/index.md:64
+#: manual/index.md:55
 msgid "[design](design/core.md)"
 msgstr ""
 
-#: manual/index.md:65
+#: manual/index.md:56
 msgid "`elementary`: analytic facade, `Dual` and the `arithmetic` function traits"
 msgstr ""
 
-#: manual/index.md:65
+#: manual/index.md:56
 msgid "[tutorial](tutorial/elementary.md)"
 msgstr ""
 
-#: manual/index.md:65
+#: manual/index.md:56
 msgid "[API](api/elementary.md)"
 msgstr ""
 
-#: manual/index.md:65
+#: manual/index.md:56
 msgid "[design](design/elementary.md)"
 msgstr ""
 
-#: manual/index.md:66
+#: manual/index.md:57
 msgid "`checked`: checked facade, `DivChecked`, `SqrtChecked`, context and errors"
 msgstr ""
 
-#: manual/index.md:66
+#: manual/index.md:57
 msgid "[tutorial](tutorial/checked.md)"
 msgstr ""
 
-#: manual/index.md:66
+#: manual/index.md:57
 msgid "[API](api/checked.md)"
 msgstr ""
 
-#: manual/index.md:66
+#: manual/index.md:57
 msgid "[design](design/checked.md)"
 msgstr ""
 
-#: manual/index.md:67
+#: manual/index.md:58
 msgid "`linalg`: gradients and Jacobians over `linear-algebra/immut`"
 msgstr ""
 
-#: manual/index.md:67
+#: manual/index.md:58
 msgid "[tutorial](tutorial/linalg.md)"
 msgstr ""
 
-#: manual/index.md:67
+#: manual/index.md:58
 msgid "[API](api/linalg.md)"
 msgstr ""
 
-#: manual/index.md:67
+#: manual/index.md:58
 msgid "[design](design/linalg.md)"
 msgstr ""
 
-#: manual/index.md:68
+#: manual/index.md:59
 msgid "`poly`: derivatives of dense and univariate sparse `luna-poly` polynomials"
 msgstr ""
 
-#: manual/index.md:68
+#: manual/index.md:59
 msgid "[tutorial](tutorial/poly.md)"
 msgstr ""
 
-#: manual/index.md:68
+#: manual/index.md:59
 msgid "[API](api/poly.md)"
 msgstr ""
 
-#: manual/index.md:68
+#: manual/index.md:59
 msgid "[design](design/poly.md)"
 msgstr ""
 
-#: manual/index.md:69
+#: manual/index.md:60
 msgid "Guides"
 msgstr ""
 
-#: manual/index.md:69
+#: manual/index.md:60
 msgid "[architecture](architecture.md)"
 msgstr ""
 
-#: manual/index.md:69
+#: manual/index.md:60
 msgid "[conventions](conventions.md)"
 msgstr ""
 
-#: manual/index.md:71
+#: manual/index.md:62
 msgid "Two more packages have no manual pages. `examples` holds five small functions (`basic_diff_example`, `square_diff_example`, `gradient_example`, `jacobian_example`, `polynomial_derivative_example`) that show each layer in a few lines; read [`src/examples/examples.mbt`](../../src/examples/examples.mbt). `tests` is the black-box test suite of all packages, including the `linear-algebra` and `luna-poly` integration tests."
 msgstr ""
 
-#: manual/index.md:78
+#: manual/index.md:69
 msgid "Exported items"
 msgstr ""
 
-#: manual/index.md:80
+#: manual/index.md:71
 msgid "The number type"
 msgstr ""
 
-#: manual/index.md:82
-msgid "`Dual[T]` with `Dual::new`, `constant`, `variable`, `value`, `tangent`, `zero` and `one`"
+#: manual/index.md:73
+msgid "`Dual[T]` with `Dual::new`, `constant`, `variable`, `value`, `tangent`, `zero`, `one`, `from_natural` and `from_integer`"
 msgstr ""
 
-#: manual/index.md:84
+#: manual/index.md:75
 msgid "Arithmetic: `add`, `sub`, `neg`, `mul`, `div` and `equal`, also as operators"
 msgstr ""
 
-#: manual/index.md:86
+#: manual/index.md:77
 msgid "Elementary rules: `sqrt`, `exp`, `exp2`, `ln`, `log2`, `log10`, `sin`, `cos`, `tan`"
 msgstr ""
 
-#: manual/index.md:88
+#: manual/index.md:79
 msgid "Checked forms: `div_checked`, `sqrt_checked`"
 msgstr ""
 
-#: manual/index.md:92
+#: manual/index.md:83
 msgid "Scalar: `diff`, `value_and_diff`"
 msgstr ""
 
-#: manual/index.md:93
+#: manual/index.md:84
 msgid "Vector: `gradient`, `value_and_gradient`, `jacobian`, `value_and_jacobian`"
 msgstr ""
 
-#: manual/index.md:95
+#: manual/index.md:86
 msgid "Polynomial: `eval_dual`, `dense_value_and_derivative_at`, `dense_derivative_at`, the `sparse_univariate_*` functions and their compatibility names"
 msgstr ""
 
-#: manual/index.md:99
+#: manual/index.md:90
 msgid "Re-exported vocabulary"
 msgstr ""
 
-#: manual/index.md:101
-msgid "From `luna-generic`: `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring`, `Ring`, `IntegralHomomorphism`"
+#: manual/index.md:92
+msgid "From `luna-generic`: `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring`, `Ring`, `FromNat`, `FromInteger`"
 msgstr ""
 
-#: manual/index.md:103
+#: manual/index.md:94
 msgid "From `arithmetic`: `Sqrt`, `SqrtChecked`, `Exponential`, `Logarithmic`, `Trigonometric`, `Constants`, `DivChecked`, `ArithmeticContext`, `ArithmeticError`, `ArithmeticErrorKind`, `RoundingMode`"
 msgstr ""
 
-#: manual/index.md:106
+#: manual/index.md:97
 msgid "From `linear-algebra` and `luna-poly`: `Vector`, `Matrix`, `DensePolynomial`, `SparsePolynomial` in the bridge packages"
 msgstr ""
 
-#: manual/index.md:109
+#: manual/index.md:100
 msgid "Where to read next"
 msgstr ""
 
-#: manual/index.md:111
+#: manual/index.md:102
 msgid "The [autodiff tutorial](tutorial/autodiff.md) differentiates a function with one import. The [dual API](api/dual.md) lists every rule and instance of the number type, and the [dual design](design/dual.md) derives them, with the rounding error bounds and the comparison with finite differences."
 msgstr ""
 
-#: manual/index.md:116
+#: manual/index.md:107
 msgid "New to automatic differentiation: read the [autodiff tutorial](tutorial/autodiff.md), then the [dual tutorial](tutorial/dual.md), which compares dual numbers with finite differences."
 msgstr ""
 
-#: manual/index.md:120
+#: manual/index.md:111
 msgid "Using it in a library: import `Luna-Flow/autodiff` and keep the [autodiff API](api/autodiff.md) and the [dual API](api/dual.md) at hand; add the [linalg tutorial](tutorial/linalg.md) or the [poly tutorial](tutorial/poly.md) for vectors and polynomials, and the [checked tutorial](tutorial/checked.md) when failures must be values."
 msgstr ""
 
-#: manual/index.md:125
+#: manual/index.md:116
 msgid "Contributing: read the [dual design](design/dual.md) for the algebra, the derivative rules and the error bounds that every new operation must respect, then the [architecture guide](architecture.md), the [repository conventions](conventions.md) and the design page of the package you change."
 msgstr ""
 
-#: manual/index.md:131
+#: manual/index.md:122
 msgid "Validation"
 msgstr ""
 
-#: manual/index.md:133
+#: manual/index.md:124
 msgid "Recommended release checks:"
 msgstr ""
 
@@ -3080,7 +3117,7 @@ msgstr ""
 
 #: manual/tutorial/autodiff.md:119
 #: manual/tutorial/checked.md:144
-#: manual/tutorial/core.md:123
+#: manual/tutorial/core.md:126
 #: manual/tutorial/dual.md:221
 #: manual/tutorial/elementary.md:128
 #: manual/tutorial/forward.md:169
@@ -3111,7 +3148,7 @@ msgstr ""
 
 #: manual/tutorial/autodiff.md:128
 #: manual/tutorial/checked.md:154
-#: manual/tutorial/core.md:132
+#: manual/tutorial/core.md:135
 #: manual/tutorial/dual.md:275
 #: manual/tutorial/elementary.md:138
 #: manual/tutorial/forward.md:214
@@ -3129,12 +3166,12 @@ msgid "**Re-exported traits are the original traits.** An instance you write for
 msgstr ""
 
 #: manual/tutorial/autodiff.md:134
-msgid "**Literals need `Dual::constant`** or `from_integral` inside differentiated code."
+msgid "**Literals need `Dual::constant`** or `FromInteger::from_integer` inside differentiated code."
 msgstr ""
 
 #: manual/tutorial/autodiff.md:137
-#: manual/tutorial/checked.md:170
-#: manual/tutorial/core.md:141
+#: manual/tutorial/checked.md:166
+#: manual/tutorial/core.md:144
 #: manual/tutorial/dual.md:298
 #: manual/tutorial/elementary.md:151
 #: manual/tutorial/forward.md:228
@@ -3232,22 +3269,18 @@ msgid "**Tiny and huge divisors.** $c^2$ rounds to zero for $|c| < 1.57 \\times 
 msgstr ""
 
 #: manual/tutorial/checked.md:163
-msgid "**The pinned `arithmetic` does not check square roots.** With `arithmetic@0.2.1` from `moon.mod`, `sqrt_checked` of a negative `Double` returns NaN components instead of an error; see [versions of arithmetic](../api/checked.md#versions-of-arithmetic)."
-msgstr ""
-
-#: manual/tutorial/checked.md:167
 msgid "**Unchecked operators stay unchecked.** `x / y` and `x.sqrt()` on dual numbers never return errors; use the `_checked` forms."
 msgstr ""
 
-#: manual/tutorial/checked.md:172
+#: manual/tutorial/checked.md:168
 msgid "The [checked API](../api/checked.md) lists the re-exported names."
 msgstr ""
 
-#: manual/tutorial/checked.md:173
+#: manual/tutorial/checked.md:169
 msgid "The [dual API](../api/dual.md#checked-operations) gives the exact error table."
 msgstr ""
 
-#: manual/tutorial/checked.md:175
+#: manual/tutorial/checked.md:171
 msgid "[arithmetic](https://lunaflow.cn/en/arithmetic/) documents the error model."
 msgstr ""
 
@@ -3267,6 +3300,10 @@ msgstr ""
 msgid "use an integer constant in generic code"
 msgstr ""
 
+#: manual/tutorial/core.md:12
+msgid "`@ad_core.FromInteger::from_integer(n)`, or `@lg.lift_to(n)` for an `Int`"
+msgstr ""
+
 #: manual/tutorial/core.md:13
 msgid "start a sum or a product"
 msgstr ""
@@ -3284,62 +3321,62 @@ msgid "Integer constants in generic code"
 msgstr ""
 
 #: manual/tutorial/core.md:51
-msgid "Literals have a fixed type; inside a generic function, make constants with `IntegralHomomorphism::from_integral`:"
+msgid "Literals have a fixed type; inside a generic function, make constants with `FromInteger::from_integer`, which takes a `BigInt` literal such as `2N`:"
 msgstr ""
 
 #: manual/tutorial/core.md:71
-msgid "On `Dual[T]`, `from_integral` produces constants with tangent zero."
+msgid "On `Dual[T]`, `from_integer` produces constants with tangent zero. For an integer held in an `Int` (or another integral type), `@lg.lift_to(n)` from `Luna-Flow/luna-generic` converts it through the same map; the older `IntegralHomomorphism::from_integral` is deprecated."
 msgstr ""
 
-#: manual/tutorial/core.md:73
+#: manual/tutorial/core.md:76
 msgid "Identities"
 msgstr ""
 
-#: manual/tutorial/core.md:75
+#: manual/tutorial/core.md:78
 msgid "`Zero::zero()` and `One::one()` are constants of any ring, including `Dual[T]`:"
 msgstr ""
 
-#: manual/tutorial/core.md:97
+#: manual/tutorial/core.md:100
 msgid "Generic code over a semiring"
 msgstr ""
 
-#: manual/tutorial/core.md:99
+#: manual/tutorial/core.md:102
 msgid "Code that needs no subtraction can ask for `Semiring` only, so it also accepts unsigned integers:"
 msgstr ""
 
-#: manual/tutorial/core.md:125
+#: manual/tutorial/core.md:128
 msgid "The same generic functions can be passed to `@autodiff.diff`, see the [forward tutorial](forward.md)."
 msgstr ""
 
-#: manual/tutorial/core.md:127
+#: manual/tutorial/core.md:130
 msgid "For `sqrt`, `exp`, `sin` and friends you need the analytic traits; import [`elementary`](elementary.md) or the root package."
 msgstr ""
 
-#: manual/tutorial/core.md:129
+#: manual/tutorial/core.md:132
 msgid "Your own number type joins by implementing the `luna-generic` traits; it then works both directly and as the `T` of `Dual[T]`."
 msgstr ""
 
-#: manual/tutorial/core.md:134
+#: manual/tutorial/core.md:137
 msgid "**No division.** `core` has no `Field`; use the `Div` operator on concrete types or the [checked](checked.md) facade."
 msgstr ""
 
-#: manual/tutorial/core.md:136
+#: manual/tutorial/core.md:139
 msgid "**`one()` is not the variable.** `One::one()` on `Dual[T]` has tangent zero; seed the variable with `Dual::variable`."
 msgstr ""
 
-#: manual/tutorial/core.md:138
+#: manual/tutorial/core.md:141
 msgid "**Unsigned types stop at `Semiring`.** `UInt` has no `Ring` instance, so functions bounded by `Ring` do not accept it."
 msgstr ""
 
-#: manual/tutorial/core.md:143
+#: manual/tutorial/core.md:146
 msgid "The [core API](../api/core.md) lists the re-exported traits and their `Dual[T]` instances."
 msgstr ""
 
-#: manual/tutorial/core.md:145
+#: manual/tutorial/core.md:148
 msgid "The [dual design](../design/dual.md) proves the ring laws of $T[\\varepsilon]$."
 msgstr ""
 
-#: manual/tutorial/core.md:147
+#: manual/tutorial/core.md:150
 msgid "[luna-generic](https://lunaflow.cn/en/luna-generic/) documents the trait hierarchy."
 msgstr ""
 
@@ -3451,7 +3488,7 @@ msgid "Write one function for plain and dual numbers"
 msgstr ""
 
 #: manual/tutorial/dual.md:163
-msgid "Write the function against the traits it needs. The same code then runs on `Double` and, for derivatives, on `Dual[Double]`. Integer constants come from `IntegralHomomorphism::from_integral`:"
+msgid "Write the function against the traits it needs. The same code then runs on `Double` and, for derivatives, on `Dual[Double]`. Integer constants come from `FromInteger::from_integer`:"
 msgstr ""
 
 #: manual/tutorial/dual.md:189
@@ -3495,7 +3532,7 @@ msgid "To differentiate through `exp` or `sin` with your own type, implement `Ex
 msgstr ""
 
 #: manual/tutorial/dual.md:277
-msgid "**Literals are not dual numbers.** `x * 2.0` does not compile when `x` is a `Dual[Double]`. Write `x * @autodiff.Dual::constant(2.0)`, or use `IntegralHomomorphism::from_integral(2)` in generic code."
+msgid "**Literals are not dual numbers.** `x * 2.0` does not compile when `x` is a `Dual[Double]`. Write `x * @autodiff.Dual::constant(2.0)`, or use `FromInteger::from_integer(2N)` in generic code."
 msgstr ""
 
 #: manual/tutorial/dual.md:280
@@ -3623,7 +3660,7 @@ msgid "**Outside the domain you get NaN or infinity.** `ln` of a non-positive nu
 msgstr ""
 
 #: manual/tutorial/elementary.md:143
-msgid "**The trait instances need more than the method.** Calling `@elementary.Exponential::exp` on `Dual[T]` needs the full instance bound (`Logarithmic` and `IntegralHomomorphism` on `T`); the method `x.exp()` needs less."
+msgid "**The trait instances need more than the method.** Calling `@elementary.Exponential::exp` on `Dual[T]` needs the full instance bound (`Logarithmic` and `FromInteger` on `T`); the method `x.exp()` needs less."
 msgstr ""
 
 #: manual/tutorial/elementary.md:147

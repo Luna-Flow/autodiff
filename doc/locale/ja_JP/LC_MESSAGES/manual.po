@@ -37,7 +37,7 @@ msgstr "ソース：[`src/alias.mbt`](../../../src/alias.mbt)。"
 #: manual/api/autodiff.md:14
 #: manual/api/checked.md:14
 #: manual/api/core.md:12
-#: manual/api/dual.md:14
+#: manual/api/dual.md:15
 #: manual/api/elementary.md:14
 #: manual/api/forward.md:13
 #: manual/api/linalg.md:14
@@ -78,14 +78,14 @@ msgid "These traits come from [luna-generic](https://lunaflow.cn/en/luna-generic
 msgstr "これらのトレイトは [luna-generic](https://lunaflow.cn/en/luna-generic/) に由来します。ジェネリックなコードが 1 つのインポートで境界を指定できるよう再エクスポートされています。`Dual[T]` は、`T` が実装していればそれぞれを実装します。"
 
 #: manual/api/autodiff.md:68
-#: manual/api/autodiff.md:141
+#: manual/api/autodiff.md:150
 #: manual/api/core.md:39
 #: manual/api/elementary.md:34
 msgid "Trait"
 msgstr "トレイト"
 
 #: manual/api/autodiff.md:68
-#: manual/api/dual.md:490
+#: manual/api/dual.md:520
 msgid "Meaning"
 msgstr "意味"
 
@@ -127,124 +127,136 @@ msgid "typical bound of generic differentiable code"
 msgstr "微分可能なジェネリックコードの典型的な境界"
 
 #: manual/api/autodiff.md:77
-msgid "`from_integral(n)`, the map from the integers"
-msgstr "`from_integral(n)`、整数からの写像"
+msgid "`from_natural(n)`, the map from the natural numbers"
+msgstr "`from_natural(n)`、自然数からの写像"
 
 #: manual/api/autodiff.md:77
+msgid "supertrait of `FromInteger`"
+msgstr "`FromInteger` のスーパートレイト"
+
+#: manual/api/autodiff.md:78
+msgid "`from_integer(n)`, the map from the integers"
+msgstr "`from_integer(n)`、整数からの写像"
+
+#: manual/api/autodiff.md:78
 msgid "constants $2$ and $10$ in the elementary rules; integer literals in generic code"
 msgstr "初等関数の規則における定数 $2$ と $10$、ジェネリックコード中の整数リテラル"
 
-#: manual/api/autodiff.md:92
+#: manual/api/autodiff.md:94
 msgid "The additive identity; `Dual` implements it as $0 + 0\\varepsilon$."
 msgstr "加法単位元です。`Dual` はこれを $0 + 0\\varepsilon$ として実装します。"
 
-#: manual/api/autodiff.md:96
+#: manual/api/autodiff.md:98
 msgid "The multiplicative identity; `Dual` implements it as $1 + 0\\varepsilon$."
 msgstr "乗法単位元です。`Dual` はこれを $1 + 0\\varepsilon$ として実装します。"
 
-#: manual/api/autodiff.md:100
+#: manual/api/autodiff.md:102
 msgid "Addition with a zero. `Dual[T]` is an additive monoid when `T` is."
 msgstr "零元を持つ加法です。`T` が加法モノイドであれば `Dual[T]` も加法モノイドです。"
 
-#: manual/api/autodiff.md:104
+#: manual/api/autodiff.md:106
 msgid "An additive monoid with negation and subtraction."
 msgstr "符号反転と減算を備えた加法モノイドです。"
 
-#: manual/api/autodiff.md:108
+#: manual/api/autodiff.md:110
 msgid "Multiplication with a one."
 msgstr "単位元を持つ乗法です。"
 
-#: manual/api/autodiff.md:112
+#: manual/api/autodiff.md:114
 msgid "Additive and multiplicative monoids with distributivity."
 msgstr "分配法則を満たす加法モノイドと乗法モノイドです。"
 
-#: manual/api/autodiff.md:116
+#: manual/api/autodiff.md:118
 msgid "A semiring with negation and subtraction."
 msgstr "符号反転と減算を備えた半環です。"
 
-#: manual/api/autodiff.md:120
-msgid "The canonical map from integral types; `from_integral(n)` on `Dual[T]` is `Dual::constant(from_integral(n))`."
-msgstr "整数型からの標準的な写像です。`Dual[T]` 上の `from_integral(n)` は `Dual::constant(from_integral(n))` です。"
+#: manual/api/autodiff.md:122
+msgid "The canonical map from the natural numbers, taking a `BigInt`; `from_natural(n)` on `Dual[T]` is `Dual::constant(from_natural(n))`."
+msgstr "自然数からの標準的な写像で、`BigInt` を引数に取ります。`Dual[T]` 上の `from_natural(n)` は `Dual::constant(from_natural(n))` です。"
 
-#: manual/api/autodiff.md:135
+#: manual/api/autodiff.md:127
+msgid "The canonical map from the integers, taking a `BigInt`; `from_integer(n)` on `Dual[T]` is `Dual::constant(from_integer(n))`. It extends `FromNat`. To convert an `Int` or another integral value, use `@lg.lift_to` from `Luna-Flow/luna-generic`, which is not re-exported."
+msgstr "整数からの標準的な写像で、`BigInt` を引数に取ります。`Dual[T]` 上の `from_integer(n)` は `Dual::constant(from_integer(n))` です。`FromNat` を拡張します。`Int` などの整数型の値を変換するには、`Luna-Flow/luna-generic` の `@lg.lift_to` を使います。これは再エクスポートされていません。"
+
+#: manual/api/autodiff.md:144
 msgid "Arithmetic traits"
 msgstr "算術トレイト"
 
-#: manual/api/autodiff.md:137
+#: manual/api/autodiff.md:146
 msgid "These traits come from [arithmetic](https://lunaflow.cn/en/arithmetic/). `Dual[T]` implements each of them under the bounds listed in the [dual API](dual.md#trait-instances)."
 msgstr "これらのトレイトは [arithmetic](https://lunaflow.cn/en/arithmetic/) に由来します。`Dual[T]` は [dual API](dual.md#trait-instances) に記載された境界のもとでそれぞれを実装します。"
 
-#: manual/api/autodiff.md:141
+#: manual/api/autodiff.md:150
 #: manual/api/elementary.md:34
 msgid "Methods"
 msgstr "メソッド"
 
-#: manual/api/autodiff.md:141
+#: manual/api/autodiff.md:150
 msgid "Dual rule"
 msgstr "双対数での規則"
 
-#: manual/api/autodiff.md:147
+#: manual/api/autodiff.md:156
 msgid "constants, tangent zero"
 msgstr "定数、接成分は 0"
 
-#: manual/api/autodiff.md:148
+#: manual/api/autodiff.md:157
 msgid "quotient rule, both parts checked"
 msgstr "商の規則、両成分ともチェック付き"
 
-#: manual/api/autodiff.md:149
+#: manual/api/autodiff.md:158
 msgid "square-root rule, both parts checked"
 msgstr "平方根の規則、両成分ともチェック付き"
 
-#: manual/api/autodiff.md:163
+#: manual/api/autodiff.md:172
 #: manual/api/elementary.md:45
 msgid "Unchecked square root."
 msgstr "チェックなしの平方根です。"
 
-#: manual/api/autodiff.md:167
+#: manual/api/autodiff.md:176
 msgid "Square root returning `Result[Self, ArithmeticError]`."
 msgstr "`Result[Self, ArithmeticError]` を返す平方根です。"
 
-#: manual/api/autodiff.md:171
+#: manual/api/autodiff.md:180
 msgid "`exp` and `exp2`."
 msgstr "`exp` と `exp2`。"
 
-#: manual/api/autodiff.md:175
+#: manual/api/autodiff.md:184
 msgid "`ln`, `log2` and `log10`."
 msgstr "`ln`、`log2`、`log10`。"
 
-#: manual/api/autodiff.md:179
+#: manual/api/autodiff.md:188
 msgid "`sin`, `cos` and `tan`."
 msgstr "`sin`、`cos`、`tan`。"
 
-#: manual/api/autodiff.md:183
+#: manual/api/autodiff.md:192
 msgid "$\\pi$, $\\tau = 2\\pi$ and $e$."
 msgstr "$\\pi$、$\\tau = 2\\pi$、$e$。"
 
-#: manual/api/autodiff.md:187
+#: manual/api/autodiff.md:196
 msgid "Division returning `Result[Self, ArithmeticError]`."
 msgstr "`Result[Self, ArithmeticError]` を返す除算です。"
 
-#: manual/api/autodiff.md:198
+#: manual/api/autodiff.md:207
 msgid "Arithmetic error types"
 msgstr "算術エラー型"
 
-#: manual/api/autodiff.md:200
+#: manual/api/autodiff.md:209
 msgid "The checked operations take an `ArithmeticContext` and return an `ArithmeticError`. Both are defined in `arithmetic`; the [checked API](checked.md) describes how `Dual[T]` uses them."
 msgstr "チェック付き演算は `ArithmeticContext` を受け取り、`ArithmeticError` を返します。どちらも `arithmetic` で定義されています。`Dual[T]` がこれらをどう使うかは [checked API](checked.md) で説明しています。"
 
-#: manual/api/autodiff.md:213
+#: manual/api/autodiff.md:222
 msgid "The explicit numeric context: precision, `RoundingMode` and optional exponent range, built with `ArithmeticContext::new(precision)`. The `Double` and `Float` instances of the checked traits ignore it."
 msgstr "明示的な数値コンテキストです。精度、`RoundingMode`、および任意の指数範囲を持ち、`ArithmeticContext::new(precision)` で構築します。チェック付きトレイトの `Double` と `Float` のインスタンスはこれを無視します。"
 
-#: manual/api/autodiff.md:219
+#: manual/api/autodiff.md:228
 msgid "A structured error with a `kind` and a `message`; test it with `is_division_by_zero()`, `is_domain_error()` and the other predicates."
 msgstr "`kind` と `message` を持つ構造化エラーです。`is_division_by_zero()`、`is_domain_error()` などの述語で判定します。"
 
-#: manual/api/autodiff.md:224
+#: manual/api/autodiff.md:233
 msgid "The enumeration behind `ArithmeticError::kind`: `DivisionByZero`, `DomainError`, `ParseError`, `FormatError`, `UnsupportedOperation`, `UnorderedComparison` and `CertificationFailure`."
 msgstr "`ArithmeticError::kind` の背後にある列挙型です：`DivisionByZero`、`DomainError`、`ParseError`、`FormatError`、`UnsupportedOperation`、`UnorderedComparison`、`CertificationFailure`。"
 
-#: manual/api/autodiff.md:230
+#: manual/api/autodiff.md:239
 msgid "The rounding direction of a context: `ToNearestEven`, `TowardZero`, `TowardPositive`, `TowardNegative` and `AwayFromZero`."
 msgstr "コンテキストの丸め方向です：`ToNearestEven`、`TowardZero`、`TowardPositive`、`TowardNegative`、`AwayFromZero`。"
 
@@ -281,10 +293,10 @@ msgstr "`Result[Self, ArithmeticError]` を返す除算です。"
 
 #: manual/api/checked.md:43
 msgid ""
-"On `Dual[T]` (for `T : DivChecked + Sub + Mul`) it computes $a/c$ and $(bc - ad)/c^2$ with `T`'s `div_checked` and returns the first error. For `Double` (with `arithmetic` 0.5) it fails with `is_division_by_zero()` when $c = 0 \\n"
+"On `Dual[T]` (for `T : DivChecked + Sub + Mul`) it computes $a/c$ and $(bc - ad)/c^2$ with `T`'s `div_checked` and returns the first error. For `Double` it fails with `is_division_by_zero()` when $c = 0 \\n"
 "e a$ and with `is_domain_error()` for $0/0$ and $\\infty/\\infty$."
 msgstr ""
-"`Dual[T]` 上では（`T : DivChecked + Sub + Mul` のとき）、`T` の `div_checked` で $a/c$ と $(bc - ad)/c^2$ を計算し、最初のエラーを返します。`Double`（`arithmetic` 0.5 の場合）では、$c = 0 \\n"
+"`Dual[T]` 上では（`T : DivChecked + Sub + Mul` のとき）、`T` の `div_checked` で $a/c$ と $(bc - ad)/c^2$ を計算し、最初のエラーを返します。`Double` では、$c = 0 \\n"
 "e a$ のとき `is_division_by_zero()` で、$0/0$ と $\\infty/\\infty$ のとき `is_domain_error()` で失敗します。"
 
 #: manual/api/checked.md:50
@@ -292,60 +304,36 @@ msgid "Square root that returns `Result[Self, ArithmeticError]`."
 msgstr "`Result[Self, ArithmeticError]` を返す平方根です。"
 
 #: manual/api/checked.md:56
-msgid "On `Dual[T]` it computes $\\sqrt a$ with `T`'s `sqrt_checked` and the tangent $b/(2\\sqrt a)$ with `div_checked`. For `Double` (with `arithmetic` 0.5) it fails for $a < 0$ (domain error) and for $a = 0$ (division by zero, or $0/0$ when $b = 0$)."
-msgstr "`Dual[T]` 上では、`T` の `sqrt_checked` で $\\sqrt a$ を計算し、`div_checked` で接成分 $b/(2\\sqrt a)$ を計算します。`Double`（`arithmetic` 0.5 の場合）では、$a < 0$ のとき（定義域エラー）と $a = 0$ のとき（ゼロ除算、$b = 0$ なら $0/0$）に失敗します。"
+msgid "On `Dual[T]` it computes $\\sqrt a$ with `T`'s `sqrt_checked` and the tangent $b/(2\\sqrt a)$ with `div_checked`. For `Double` it fails for $a < 0$ (domain error) and for $a = 0$ (division by zero, or $0/0$ when $b = 0$)."
+msgstr "`Dual[T]` 上では、`T` の `sqrt_checked` で $\\sqrt a$ を計算し、`div_checked` で接成分 $b/(2\\sqrt a)$ を計算します。`Double` では、$a < 0$ のとき（定義域エラー）と $a = 0$ のとき（ゼロ除算、$b = 0$ なら $0/0$）に失敗します。"
 
-#: manual/api/checked.md:74
+#: manual/api/checked.md:73
 msgid "Context and errors"
 msgstr "コンテキストとエラー"
 
-#: manual/api/checked.md:78
+#: manual/api/checked.md:77
 msgid "The explicit numeric context passed to every checked call."
 msgstr "すべてのチェック付き呼び出しに渡される明示的な数値コンテキストです。"
 
-#: manual/api/checked.md:84
+#: manual/api/checked.md:83
 msgid "Build it with `ArithmeticContext::new(precision, rounding?, e_min?, e_max?, clamp?)`. `Dual[T]` passes it to `T` unchanged; the `Double` and `Float` instances ignore it."
 msgstr "`ArithmeticContext::new(precision, rounding?, e_min?, e_max?, clamp?)` で構築します。`Dual[T]` はこれをそのまま `T` に渡します。`Double` と `Float` のインスタンスはこれを無視します。"
 
-#: manual/api/checked.md:90
+#: manual/api/checked.md:89
 msgid "The rounding direction stored in a context."
 msgstr "コンテキストに格納される丸め方向です。"
 
-#: manual/api/checked.md:98
+#: manual/api/checked.md:97
 msgid "The structured error returned by checked operations: a `kind` and a human-readable `message`."
 msgstr "チェック付き演算が返す構造化エラーです。`kind` と人間が読める `message` を持ちます。"
 
-#: manual/api/checked.md:105
+#: manual/api/checked.md:104
 msgid "The predicates `is_division_by_zero()` and `is_domain_error()` cover every error that the checked `Dual` operations produce for `Double`."
 msgstr "述語 `is_division_by_zero()` と `is_domain_error()` で、チェック付き `Dual` 演算が `Double` に対して生成するすべてのエラーを判定できます。"
 
-#: manual/api/checked.md:110
+#: manual/api/checked.md:109
 msgid "The kind of an `ArithmeticError`."
 msgstr "`ArithmeticError` の種類です。"
-
-#: manual/api/checked.md:131
-msgid "Versions of `arithmetic`"
-msgstr "`arithmetic` のバージョン"
-
-#: manual/api/checked.md:133
-msgid "The checked rules of `Dual[T]` only call `T`'s `div_checked` and `sqrt_checked`, so the errors depend on the `arithmetic` release that provides the `Double` instances. This manual and its examples follow `arithmetic` 0.5, which the repository is developed against in a workspace. `moon.mod` still pins `arithmetic@0.2.1`, where `Double` behaves differently:"
-msgstr "`Dual[T]` のチェック付き規則は `T` の `div_checked` と `sqrt_checked` を呼ぶだけなので、エラーは `Double` のインスタンスを提供する `arithmetic` のリリースに依存します。このマニュアルとその例は、リポジトリがワークスペースで開発に使っている `arithmetic` 0.5 に従います。`moon.mod` はまだ `arithmetic@0.2.1` に固定されており、そこでは `Double` の振る舞いが異なります。"
-
-#: manual/api/checked.md:140
-msgid "Operation on `Double`"
-msgstr "`Double` 上の演算"
-
-#: manual/api/checked.md:146
-msgid "exists"
-msgstr "あり"
-
-#: manual/api/checked.md:146
-msgid "does not exist"
-msgstr "なし"
-
-#: manual/api/checked.md:149
-msgid "[!WARNING] With `arithmetic@0.2.1`, `Dual::sqrt_checked` of a negative `Double` returns `Ok` with value and tangent NaN instead of an error. Check `value().is_nan()` until the pin is raised."
-msgstr "[!WARNING] `arithmetic@0.2.1` では、負の `Double` に対する `Dual::sqrt_checked` はエラーではなく、値と接成分がともに NaN の `Ok` を返します。固定バージョンが引き上げられるまでは `value().is_nan()` を確認してください。"
 
 #: manual/api/core.md:1
 msgid "core API"
@@ -384,40 +372,48 @@ msgid "`Dual[T]` instance when"
 msgstr "`Dual[T]` がインスタンスを持つ条件"
 
 #: manual/api/core.md:48
-msgid "`from_integral` from integral types"
-msgstr "整数型からの `from_integral`"
+msgid "`from_natural` from the natural numbers"
+msgstr "自然数からの `from_natural`"
 
-#: manual/api/core.md:63
+#: manual/api/core.md:49
+msgid "`from_integer` from the integers"
+msgstr "整数からの `from_integer`"
+
+#: manual/api/core.md:65
 msgid "Additive identity."
 msgstr "加法単位元。"
 
-#: manual/api/core.md:67
+#: manual/api/core.md:69
 msgid "Multiplicative identity."
 msgstr "乗法単位元。"
 
-#: manual/api/core.md:71
+#: manual/api/core.md:73
 msgid "Addition with an identity."
 msgstr "単位元を持つ加法。"
 
-#: manual/api/core.md:75
+#: manual/api/core.md:77
 msgid "Addition with negation and subtraction."
 msgstr "符号反転と減算を備えた加法。"
 
-#: manual/api/core.md:79
+#: manual/api/core.md:81
 msgid "Multiplication with an identity."
 msgstr "単位元を持つ乗法。"
 
-#: manual/api/core.md:83
+#: manual/api/core.md:85
 msgid "Both monoids with distributivity."
 msgstr "分配法則を満たす両モノイド。"
 
-#: manual/api/core.md:87
+#: manual/api/core.md:89
 msgid "A semiring with additive inverses."
 msgstr "加法逆元を持つ半環。"
 
-#: manual/api/core.md:91
-msgid "The canonical map from the integers, used for integer constants in generic code."
-msgstr "整数からの標準的な写像です。ジェネリックコード中の整数定数に使います。"
+#: manual/api/core.md:93
+msgid "The canonical map from the natural numbers, `from_natural(n)` for a `BigInt` $n \\ge 0$."
+msgstr "自然数からの標準的な写像で、`BigInt` $n \\ge 0$ に対する `from_natural(n)` です。"
+
+#: manual/api/core.md:98
+msgid "The canonical map from the integers, `from_integer(n)` for a `BigInt`, used for integer constants in generic code. It extends `FromNat`; `@lg.lift_to` from `Luna-Flow/luna-generic` converts other integral types through it."
+msgstr "整数からの標準的な写像で、`BigInt` に対する `from_integer(n)` です。ジェネリックなコードで整数定数を作るのに使います。`FromNat` を拡張し、`Luna-Flow/luna-generic` の `@lg.lift_to` はこれを通じて他の整数型を変換します。"
 
 #: manual/api/dual.md:1
 msgid "dual API"
@@ -428,42 +424,42 @@ msgid "The `dual` package owns `Dual[T]`, the dual number $a + b\\varepsilon$ wi
 msgstr "`dual` パッケージは `Dual[T]`、すなわち $\\varepsilon^2 = 0$ を満たす双対数 $a + b\\varepsilon$ を、その算術、Luna Flow のトレイトインスタンス、初等関数の微分規則とともに所有しています。このリポジトリの他のすべてのパッケージは、この型を再エクスポートするか利用します。規則の背後にある数学は [dual の設計](../design/dual.md) にあります。"
 
 #: manual/api/dual.md:11
-msgid "Source: [`src/dual/dual.mbt`](../../../src/dual/dual.mbt) and [`src/dual/extends.mbt`](../../../src/dual/extends.mbt)."
-msgstr "ソース：[`src/dual/dual.mbt`](../../../src/dual/dual.mbt) と [`src/dual/extends.mbt`](../../../src/dual/extends.mbt)。"
+msgid "Source: [`src/dual/dual.mbt`](../../../src/dual/dual.mbt), [`src/dual/extends.mbt`](../../../src/dual/extends.mbt) and [`src/dual/compat.mbt`](../../../src/dual/compat.mbt)."
+msgstr "ソース：[`src/dual/dual.mbt`](../../../src/dual/dual.mbt)、[`src/dual/extends.mbt`](../../../src/dual/extends.mbt)、[`src/dual/compat.mbt`](../../../src/dual/compat.mbt)。"
 
-#: manual/api/dual.md:22
+#: manual/api/dual.md:23
 msgid "Most programs import the root package `Luna-Flow/autodiff` instead, which re-exports `Dual` as `@autodiff.Dual` (see the [autodiff API](autodiff.md)). The examples on this page use the root alias."
 msgstr "ほとんどのプログラムは代わりにルートパッケージ `Luna-Flow/autodiff` をインポートします。これは `Dual` を `@autodiff.Dual` として再エクスポートしています（[autodiff API](autodiff.md) を参照）。このページの例はルートのエイリアスを使います。"
 
-#: manual/api/dual.md:26
+#: manual/api/dual.md:27
 msgid "The type"
 msgstr "型"
 
-#: manual/api/dual.md:30
+#: manual/api/dual.md:31
 msgid "`Dual[T]` stores a primal value and a first-order tangent."
 msgstr "`Dual[T]` はプライマル値と 1 階の接成分を格納します。"
 
-#: manual/api/dual.md:39
+#: manual/api/dual.md:40
 msgid "The pair `(value, tangent)` represents $a + b\\varepsilon$ with $a$ = `value` and $b$ = `tangent`. When a computation starts from `Dual::variable(x)`, the tangent of every intermediate result is the derivative of that intermediate with respect to `x`. The fields are read-only outside the package; build values with the constructors below."
 msgstr "組 `(value, tangent)` は、$a$ = `value`、$b$ = `tangent` として $a + b\\varepsilon$ を表します。計算を `Dual::variable(x)` から始めると、すべての中間結果の接成分は、その中間値の `x` に関する導関数になります。フィールドはパッケージ外からは読み取り専用です。値は以下のコンストラクタで構築してください。"
 
-#: manual/api/dual.md:45
+#: manual/api/dual.md:46
 msgid "`derive(Eq)` compares both components, so two dual numbers with the same value and different tangents are not equal. `derive(Debug)` prints the record form `{ value: …, tangent: … }`, which `debug_inspect` and `assert_eq` use."
 msgstr "`derive(Eq)` は両成分を比較するため、値が同じでも接成分が異なる 2 つの双対数は等しくありません。`derive(Debug)` はレコード形式 `{ value: …, tangent: … }` を出力し、`debug_inspect` と `assert_eq` がこれを使います。"
 
-#: manual/api/dual.md:50
+#: manual/api/dual.md:51
 msgid "`Dual[T]` deliberately has no `Compare`, `Field`, `MulGroup`, `Inverse` or `Show` instance; see [Design decisions](../design/dual.md#design-decisions)."
 msgstr "`Dual[T]` は意図的に `Compare`、`Field`、`MulGroup`、`Inverse`、`Show` のインスタンスを持ちません。[設計上の判断](../design/dual.md#design-decisions) を参照してください。"
 
-#: manual/api/dual.md:53
+#: manual/api/dual.md:54
 msgid "Construction and access"
 msgstr "構築とアクセス"
 
-#: manual/api/dual.md:57
+#: manual/api/dual.md:58
 msgid "Builds $a + b\\varepsilon$ from an explicit value and tangent."
 msgstr "明示的な値と接成分から $a + b\\varepsilon$ を構築します。"
 
-#: manual/api/dual.md:63
+#: manual/api/dual.md:64
 msgid ""
 "Use it to seed a direction other than $1$, for example a directional derivative $\\n"
 "abla f(x) \\cdot v$ where each input coordinate gets the tangent $v_i$."
@@ -471,135 +467,151 @@ msgstr ""
 "$1$ 以外の方向をシードするときに使います。たとえば方向微分 $\\n"
 "abla f(x) \\cdot v$ では、各入力座標に接成分 $v_i$ を与えます。"
 
-#: manual/api/dual.md:69
+#: manual/api/dual.md:70
 msgid "Embeds a value with tangent zero: $c \\mapsto c + 0\\varepsilon$."
 msgstr "接成分 0 で値を埋め込みます：$c \\mapsto c + 0\\varepsilon$。"
 
-#: manual/api/dual.md:75
+#: manual/api/dual.md:76
 msgid "Constants do not depend on the differentiation variable, so their derivative is $0$. Use it for every literal or captured value that enters a differentiated computation."
 msgstr "定数は微分変数に依存しないので、その導関数は $0$ です。微分される計算に入るすべてのリテラルやキャプチャされた値に使ってください。"
 
-#: manual/api/dual.md:81
+#: manual/api/dual.md:82
 msgid "Embeds the differentiation variable with tangent one: $x \\mapsto x + 1\\varepsilon$."
 msgstr "接成分 1 で微分変数を埋め込みます：$x \\mapsto x + 1\\varepsilon$。"
 
-#: manual/api/dual.md:90
+#: manual/api/dual.md:91
 msgid "Returns the primal component $a$."
 msgstr "プライマル成分 $a$ を返します。"
 
-#: manual/api/dual.md:98
+#: manual/api/dual.md:99
 msgid "Returns the tangent component $b$."
 msgstr "接成分 $b$ を返します。"
 
-#: manual/api/dual.md:118
+#: manual/api/dual.md:119
 msgid "Returns the additive identity $0 + 0\\varepsilon$."
 msgstr "加法単位元 $0 + 0\\varepsilon$ を返します。"
 
-#: manual/api/dual.md:125
+#: manual/api/dual.md:126
 msgid "This is the promoted method of the `Zero` instance."
 msgstr "これは `Zero` インスタンスの昇格されたメソッドです。"
 
-#: manual/api/dual.md:129
+#: manual/api/dual.md:130
 msgid "Returns the multiplicative identity $1 + 0\\varepsilon$."
 msgstr "乗法単位元 $1 + 0\\varepsilon$ を返します。"
 
-#: manual/api/dual.md:136
+#: manual/api/dual.md:137
 msgid "`one` is a constant, so its tangent is zero; it is not `Dual::variable(1)`. This is the promoted method of the `One` instance."
 msgstr "`one` は定数なので、その接成分は 0 です。`Dual::variable(1)` ではありません。これは `One` インスタンスの昇格されたメソッドです。"
 
-#: manual/api/dual.md:139
+#: manual/api/dual.md:142
+msgid "Embeds a natural number, given as a `BigInt`, as a constant."
+msgstr "`BigInt` で与えた自然数を定数として埋め込みます。"
+
+#: manual/api/dual.md:149
+msgid "`from_natural(n)` is `Dual::constant(FromNat::from_natural(n))`. This is the promoted method of the `FromNat` instance."
+msgstr "`from_natural(n)` は `Dual::constant(FromNat::from_natural(n))` です。`FromNat` インスタンスから昇格したメソッドです。"
+
+#: manual/api/dual.md:154
+msgid "Embeds an integer, given as a `BigInt`, as a constant."
+msgstr "`BigInt` で与えた整数を定数として埋め込みます。"
+
+#: manual/api/dual.md:161
+msgid "`from_integer(n)` is `Dual::constant(FromInteger::from_integer(n))`, the canonical map $\\mathbb Z \\to T[\\varepsilon]$. This is the promoted method of the `FromInteger` instance. To convert an `Int` or another integral type, use `@lg.lift_to(n)` from `Luna-Flow/luna-generic`."
+msgstr "`from_integer(n)` は `Dual::constant(FromInteger::from_integer(n))`、つまり標準写像 $\\mathbb Z \\to T[\\varepsilon]$ です。`FromInteger` インスタンスから昇格したメソッドです。`Int` などの整数型を変換するには、`Luna-Flow/luna-generic` の `@lg.lift_to(n)` を使います。"
+
+#: manual/api/dual.md:175
 msgid "Arithmetic"
 msgstr "算術"
 
-#: manual/api/dual.md:141
+#: manual/api/dual.md:177
 msgid "The four operators implement the sum, difference, product and quotient rules. They are available both as operators and as promoted methods."
 msgstr "4 つの演算子は和・差・積・商の規則を実装します。演算子としても、昇格されたメソッドとしても利用できます。"
 
-#: manual/api/dual.md:144
-#: manual/api/dual.md:353
+#: manual/api/dual.md:180
+#: manual/api/dual.md:383
 msgid "Item"
 msgstr "項目"
 
-#: manual/api/dual.md:144
+#: manual/api/dual.md:180
 msgid "Operator"
 msgstr "演算子"
 
-#: manual/api/dual.md:144
+#: manual/api/dual.md:180
 msgid "Rule"
 msgstr "規則"
 
-#: manual/api/dual.md:144
-#: manual/api/dual.md:490
+#: manual/api/dual.md:180
+#: manual/api/dual.md:520
 msgid "Bound on `T`"
 msgstr "`T` の境界"
 
-#: manual/api/dual.md:154
+#: manual/api/dual.md:190
 msgid "Adds componentwise."
 msgstr "成分ごとに加算します。"
 
-#: manual/api/dual.md:163
+#: manual/api/dual.md:199
 msgid "Subtracts componentwise."
 msgstr "成分ごとに減算します。"
 
-#: manual/api/dual.md:172
+#: manual/api/dual.md:208
 msgid "Negates both components."
 msgstr "両成分の符号を反転します。"
 
-#: manual/api/dual.md:181
+#: manual/api/dual.md:217
 msgid "Multiplies with the product rule."
 msgstr "積の規則で乗算します。"
 
-#: manual/api/dual.md:188
+#: manual/api/dual.md:224
 msgid "The tangent is computed as `self.value * other.tangent + other.value * self.tangent`, that is $ad + cb$. This equals the product rule $ad + bc$ because the multiplication of every numeric `T` is commutative."
 msgstr "接成分は `self.value * other.tangent + other.value * self.tangent`、すなわち $ad + cb$ として計算されます。数値型 `T` の乗算はいずれも可換なので、これは積の規則 $ad + bc$ に等しくなります。"
 
-#: manual/api/dual.md:194
+#: manual/api/dual.md:230
 msgid "Divides with the quotient rule, without any domain check."
 msgstr "定義域チェックなしで、商の規則により除算します。"
 
-#: manual/api/dual.md:201
+#: manual/api/dual.md:237
 msgid "The tangent is `(self.tangent * other.value - self.value * other.tangent) / (other.value * other.value)`. A zero divisor value gives whatever `T`'s division gives (for `Double`, an infinity or NaN). Use `Dual::div_checked` to get an error instead."
 msgstr "接成分は `(self.tangent * other.value - self.value * other.tangent) / (other.value * other.value)` です。除数の値が 0 の場合の結果は `T` の除算の結果に従います（`Double` では無限大または NaN）。代わりにエラーを得たい場合は `Dual::div_checked` を使ってください。"
 
-#: manual/api/dual.md:206
+#: manual/api/dual.md:242
 msgid "Because the tangent divides by $c^2$ rather than by $c$ twice, it leaves the range of `Double` long before the quotient does; see the warning under `Dual::div_checked`, which applies to `/` as well."
 msgstr "接成分は $c$ で 2 回割るのではなく $c^2$ で割るため、商そのものよりずっと早く `Double` の範囲を外れます。`Dual::div_checked` の警告を参照してください。この警告は `/` にも当てはまります。"
 
-#: manual/api/dual.md:224
+#: manual/api/dual.md:260
 msgid "Tests both components for equality."
 msgstr "両成分が等しいかを判定します。"
 
-#: manual/api/dual.md:230
+#: manual/api/dual.md:266
 msgid "This is the promoted method of the derived `Eq` instance; prefer `==`."
 msgstr "これは導出された `Eq` インスタンスの昇格されたメソッドです。`==` を使うことを推奨します。"
 
-#: manual/api/dual.md:232
+#: manual/api/dual.md:268
 msgid "Checked operations"
 msgstr "チェック付き演算"
 
-#: manual/api/dual.md:234
+#: manual/api/dual.md:270
 msgid "The checked forms return `Result[Dual[T], ArithmeticError]` from [`Luna-Flow/arithmetic`](https://lunaflow.cn/en/arithmetic/) instead of producing infinities or NaN. The [checked API](checked.md) re-exports the types they use."
 msgstr "チェック付きの形式は、無限大や NaN を生成する代わりに [`Luna-Flow/arithmetic`](https://lunaflow.cn/en/arithmetic/) の `Result[Dual[T], ArithmeticError]` を返します。使用する型は [checked API](checked.md) が再エクスポートしています。"
 
-#: manual/api/dual.md:241
+#: manual/api/dual.md:277
 msgid "Divides with the quotient rule and reports invalid divisions as errors."
 msgstr "商の規則で除算し、不正な除算をエラーとして報告します。"
 
-#: manual/api/dual.md:248
-msgid "The value $a / c$ is computed first with `T`'s `div_checked`; the tangent $(bc - ad) / c^2$ is then computed with a second `div_checked` call. The first error is returned unchanged, so the errors are exactly those of `T`. For `Double` with `arithmetic` 0.5 they are:"
-msgstr "まず `T` の `div_checked` で値 $a / c$ を計算し、続いて 2 回目の `div_checked` 呼び出しで接成分 $(bc - ad) / c^2$ を計算します。最初のエラーはそのまま返されるので、エラーは `T` のエラーそのものです。`arithmetic` 0.5 の `Double` では次のとおりです。"
+#: manual/api/dual.md:284
+msgid "The value $a / c$ is computed first with `T`'s `div_checked`; the tangent $(bc - ad) / c^2$ is then computed with a second `div_checked` call. The first error is returned unchanged, so the errors are exactly those of `T`. For `Double` they are:"
+msgstr "まず `T` の `div_checked` で値 $a / c$ を計算し、続いて 2 回目の `div_checked` 呼び出しで接成分 $(bc - ad) / c^2$ を計算します。最初のエラーはそのまま返されるので、エラーは `T` のエラーそのものです。`Double` では次のとおりです。"
 
-#: manual/api/dual.md:253
-#: manual/api/dual.md:317
+#: manual/api/dual.md:289
+#: manual/api/dual.md:349
 msgid "Condition"
 msgstr "条件"
 
-#: manual/api/dual.md:253
-#: manual/api/dual.md:317
+#: manual/api/dual.md:289
+#: manual/api/dual.md:349
 msgid "Error"
 msgstr "エラー"
 
-#: manual/api/dual.md:255
+#: manual/api/dual.md:291
 msgid ""
 "$c = 0$ and $a \\n"
 "e 0$"
@@ -607,19 +619,19 @@ msgstr ""
 "$c = 0$ かつ $a \\n"
 "e 0$"
 
-#: manual/api/dual.md:256
+#: manual/api/dual.md:292
 msgid "$a = 0$ and $c = 0$"
 msgstr "$a = 0$ かつ $c = 0$"
 
-#: manual/api/dual.md:256
+#: manual/api/dual.md:292
 msgid "`is_domain_error()` (zero divided by zero)"
 msgstr "`is_domain_error()`（ゼロをゼロで割る）"
 
-#: manual/api/dual.md:257
+#: manual/api/dual.md:293
 msgid "both $a$ and $c$ infinite"
 msgstr "$a$ と $c$ がともに無限大"
 
-#: manual/api/dual.md:258
+#: manual/api/dual.md:294
 msgid ""
 "$c \\n"
 "e 0$ but $c \\cdot c$ underflows to $0$"
@@ -627,7 +639,7 @@ msgstr ""
 "$c \\n"
 "e 0$ だが $c \\cdot c$ がアンダーフローして $0$ になる"
 
-#: manual/api/dual.md:258
+#: manual/api/dual.md:294
 msgid ""
 "the tangent division fails: `is_division_by_zero()` when $bc - ad \\n"
 "e 0$, `is_domain_error()` when $bc - ad = 0$"
@@ -635,309 +647,330 @@ msgstr ""
 "接成分の除算が失敗する：$bc - ad \\n"
 "e 0$ なら `is_division_by_zero()`、$bc - ad = 0$ なら `is_domain_error()`"
 
-#: manual/api/dual.md:259
+#: manual/api/dual.md:295
 msgid "$c \\cdot c$ overflows to $\\infty$"
 msgstr "$c \\cdot c$ が $\\infty$ にオーバーフローする"
 
-#: manual/api/dual.md:259
+#: manual/api/dual.md:295
 msgid "no error; see the warning below"
 msgstr "エラーなし。下の警告を参照"
 
-#: manual/api/dual.md:261
-msgid "With the `arithmetic@0.2.1` pinned in `moon.mod`, every zero divisor, including $0/0$, gives `is_division_by_zero()`, and $\\infty/\\infty$ gives NaN without an error (see [versions of arithmetic](checked.md#versions-of-arithmetic))."
-msgstr "`moon.mod` で固定されている `arithmetic@0.2.1` では、$0/0$ を含むすべてのゼロ除数が `is_division_by_zero()` を返し、$\\infty/\\infty$ はエラーなしで NaN になります（[arithmetic のバージョン](checked.md#versions-of-arithmetic) を参照）。"
-
-#: manual/api/dual.md:265
+#: manual/api/dual.md:297
 msgid "The context argument is passed through to `T`; the `Double` and `Float` instances of `arithmetic` ignore it."
 msgstr "コンテキスト引数はそのまま `T` に渡されます。`arithmetic` の `Double` と `Float` のインスタンスはこれを無視します。"
 
-#: manual/api/dual.md:284
+#: manual/api/dual.md:316
 msgid "[!WARNING] The tangent divides by $c^2$, which leaves the range of `Double` long before $c$ itself does."
 msgstr "[!WARNING] 接成分は $c^2$ で割るため、$c$ そのものよりずっと早く `Double` の範囲を外れます。"
 
-#: manual/api/dual.md:288
+#: manual/api/dual.md:320
 msgid "For $|c| < 2^{-537.5} \\approx 1.57\\times10^{-162}$ the square rounds to zero. `div_checked` then reports an error although $a / c$ is finite and the true tangent may be finite too: $(0 + 1\\varepsilon) / (10^{-170} + 0\\varepsilon)$ has tangent $10^{170}$ but fails with a division by zero, and a constant divided by a tiny constant fails with a domain error instead of returning tangent $0$. `/` returns an infinity or NaN."
 msgstr "$|c| < 2^{-537.5} \\approx 1.57\\times10^{-162}$ では平方がゼロに丸められます。このとき $a / c$ が有限で、真の接成分も有限でありうるのに `div_checked` はエラーを返します。$(0 + 1\\varepsilon) / (10^{-170} + 0\\varepsilon)$ の接成分は $10^{170}$ ですがゼロ除算で失敗し、定数を極小の定数で割ると接成分 $0$ を返す代わりに定義域エラーで失敗します。`/` は無限大か NaN を返します。"
 
-#: manual/api/dual.md:294
+#: manual/api/dual.md:326
 msgid "Between that bound and $2^{-511} \\approx 1.5\\times10^{-154}$ the square is subnormal and loses relative precision."
 msgstr "その境界と $2^{-511} \\approx 1.5\\times10^{-154}$ の間では平方が非正規数になり、相対精度が失われます。"
 
-#: manual/api/dual.md:296
+#: manual/api/dual.md:328
 msgid "For $|c| > 2^{512} \\approx 1.34\\times10^{154}$ the square overflows to $\\infty$, and both `/` and `div_checked` silently return the tangent $0$ when $bc - ad$ is finite: $(0 + 1\\varepsilon)/(10^{155} + 0\\varepsilon)$ gives tangent $0$ instead of $10^{-155}$."
 msgstr "$|c| > 2^{512} \\approx 1.34\\times10^{154}$ では平方が $\\infty$ にオーバーフローし、$bc - ad$ が有限なら `/` も `div_checked` も黙って接成分 $0$ を返します。$(0 + 1\\varepsilon)/(10^{155} + 0\\varepsilon)$ の接成分は $10^{-155}$ ではなく $0$ になります。"
 
-#: manual/api/dual.md:301
+#: manual/api/dual.md:333
 msgid "Rescale such divisors before dividing."
 msgstr "このような除数は割る前にスケーリングしてください。"
 
-#: manual/api/dual.md:305
+#: manual/api/dual.md:337
 msgid "Takes the square root with the rule $\\sqrt{a + b\\varepsilon} = \\sqrt a + \\dfrac{b}{2\\sqrt a}\\varepsilon$ and reports domain errors."
 msgstr "規則 $\\sqrt{a + b\\varepsilon} = \\sqrt a + \\dfrac{b}{2\\sqrt a}\\varepsilon$ で平方根を取り、定義域エラーを報告します。"
 
-#: manual/api/dual.md:313
-msgid "The value is `T`'s `sqrt_checked(a)`; the tangent is `div_checked(b, 2 * root)`, where `2` comes from `IntegralHomomorphism::from_integral(2)`. For `Double`:"
-msgstr "値は `T` の `sqrt_checked(a)`、接成分は `div_checked(b, 2 * root)` です。ここで `2` は `IntegralHomomorphism::from_integral(2)` から得られます。`Double` では："
+#: manual/api/dual.md:345
+msgid "The value is `T`'s `sqrt_checked(a)`; the tangent is `div_checked(b, 2 * root)`, where `2` comes from `lift_to(2)` (the `FromInteger` map). For `Double`:"
+msgstr "値は `T` の `sqrt_checked(a)`、接成分は `div_checked(b, 2 * root)` です。ここで `2` は `lift_to(2)`（`FromInteger` の写像）から得られます。`Double` では："
 
-#: manual/api/dual.md:319
+#: manual/api/dual.md:351
 msgid "`is_domain_error()` from the square root"
 msgstr "平方根からの `is_domain_error()`"
 
-#: manual/api/dual.md:320
+#: manual/api/dual.md:352
 msgid "`is_division_by_zero()` from the tangent"
 msgstr "接成分からの `is_division_by_zero()`"
 
-#: manual/api/dual.md:321
+#: manual/api/dual.md:353
 msgid "`is_domain_error()` (zero divided by zero) from the tangent"
 msgstr "接成分からの `is_domain_error()`（ゼロをゼロで割る）"
 
-#: manual/api/dual.md:323
-msgid "So `sqrt_checked` fails at $a = 0$ even for a constant input: $\\sqrt{\\cdot}$ has no derivative at $0$, and the checked form does not special-case a zero tangent. With the pinned `arithmetic@0.2.1`, `Double`'s `sqrt_checked` does not reject $a < 0$: the result is `Ok` with value and tangent NaN, and $a = 0$ always gives `is_division_by_zero()`."
-msgstr "したがって入力が定数でも、`sqrt_checked` は $a = 0$ で失敗します。$\\sqrt{\\cdot}$ は $0$ で微分可能でなく、チェック付きの形はゼロの接成分を特別扱いしません。固定されている `arithmetic@0.2.1` では、`Double` の `sqrt_checked` は $a < 0$ を拒否しません。結果は値と接成分がともに NaN の `Ok` で、$a = 0$ は常に `is_division_by_zero()` になります。"
+#: manual/api/dual.md:355
+msgid "So `sqrt_checked` fails at $a = 0$ even for a constant input: $\\sqrt{\\cdot}$ has no derivative at $0$, and the checked form does not special-case a zero tangent."
+msgstr "したがって入力が定数でも、`sqrt_checked` は $a = 0$ で失敗します。$\\sqrt{\\cdot}$ は $0$ で微分可能でなく、チェック付きの形はゼロの接成分を特別扱いしません。"
 
-#: manual/api/dual.md:343
+#: manual/api/dual.md:373
 msgid "Elementary functions"
 msgstr "初等関数"
 
-#: manual/api/dual.md:345
+#: manual/api/dual.md:375
 msgid "Each elementary function is an inherent method and also the method of the matching `arithmetic` trait instance, so generic code written against `Sqrt`, `Exponential`, `Logarithmic` or `Trigonometric` differentiates through `Dual[T]` unchanged. All of them apply the rule $f(a + b\\varepsilon) = f(a) + f'(a)\\,b\\,\\varepsilon$ with the derivative below. None of them checks its domain: outside it the result is whatever `T` returns (for `Double`, NaN or an infinity)."
 msgstr "各初等関数は固有メソッドであると同時に、対応する `arithmetic` トレイトインスタンスのメソッドでもあります。そのため `Sqrt`、`Exponential`、`Logarithmic`、`Trigonometric` に対して書かれたジェネリックなコードは、変更なしで `Dual[T]` を通して微分できます。いずれも、下記の導関数を用いて規則 $f(a + b\\varepsilon) = f(a) + f'(a)\\,b\\,\\varepsilon$ を適用します。いずれも定義域をチェックしません。定義域の外では結果は `T` が返すものになります（`Double` では NaN または無限大）。"
 
-#: manual/api/dual.md:353
-#: manual/api/dual.md:370
+#: manual/api/dual.md:383
+#: manual/api/dual.md:400
 msgid "Value"
 msgstr "値"
 
-#: manual/api/dual.md:353
+#: manual/api/dual.md:383
 #: manual/design/dual.md:134
 msgid "Tangent as computed"
 msgstr "実際に計算される接成分"
 
-#: manual/api/dual.md:353
+#: manual/api/dual.md:383
 msgid "Derivative"
 msgstr "導関数"
 
-#: manual/api/dual.md:365
-msgid "The constants $2$ and $10$ come from `IntegralHomomorphism::from_integral`."
-msgstr "定数 $2$ と $10$ は `IntegralHomomorphism::from_integral` から得られます。"
+#: manual/api/dual.md:395
+msgid "The constants $2$ and $10$ come from `lift_to`, that is, from `FromInteger`."
+msgstr "定数 $2$ と $10$ は `lift_to`、つまり `FromInteger` から得られます。"
 
-#: manual/api/dual.md:367
+#: manual/api/dual.md:397
 msgid "Outside the domain the two components do not fail together, because the tangent formula is evaluated as written:"
 msgstr "定義域の外では、接成分の式が書かれたとおりに評価されるため、2 つの成分は同時には失敗しません。"
 
-#: manual/api/dual.md:370
+#: manual/api/dual.md:400
 msgid "Input (`Double`)"
 msgstr "入力（`Double`）"
 
-#: manual/api/dual.md:370
+#: manual/api/dual.md:400
 msgid "Tangent"
 msgstr "接成分"
 
-#: manual/api/dual.md:372
+#: manual/api/dual.md:402
 msgid "`ln`, `log2`, `log10` at $a < 0$"
 msgstr "$a < 0$ での `ln`、`log2`、`log10`"
 
-#: manual/api/dual.md:372
-#: manual/api/dual.md:375
+#: manual/api/dual.md:402
+#: manual/api/dual.md:405
 msgid "NaN"
 msgstr "NaN"
 
-#: manual/api/dual.md:372
+#: manual/api/dual.md:402
 msgid "$b/a$ scaled, finite: the derivative of $\\ln\\lvert a\\rvert$"
 msgstr "定数倍した $b/a$、有限：$\\ln\\lvert a\\rvert$ の導関数"
 
-#: manual/api/dual.md:373
+#: manual/api/dual.md:403
 msgid "`ln` at $a = 0$"
 msgstr "$a = 0$ での `ln`"
 
-#: manual/api/dual.md:373
-#: manual/api/dual.md:374
+#: manual/api/dual.md:403
+#: manual/api/dual.md:404
 msgid "$b/0$: $\\pm\\infty$, or NaN when $b = 0$"
 msgstr "$b/0$：$\\pm\\infty$、$b = 0$ なら NaN"
 
-#: manual/api/dual.md:374
+#: manual/api/dual.md:404
 msgid "`sqrt` at $a = 0$"
 msgstr "$a = 0$ での `sqrt`"
 
-#: manual/api/dual.md:375
+#: manual/api/dual.md:405
 msgid "`sqrt` at $a < 0$"
 msgstr "$a < 0$ での `sqrt`"
 
-#: manual/api/dual.md:377
+#: manual/api/dual.md:407
 msgid "So a constant input (tangent $0$) at $a = 0$ produces a NaN tangent for `sqrt` and `ln`, although a constant has derivative $0$. Test the value, not only the tangent, when an input can leave the domain."
 msgstr "したがって、定数の導関数は $0$ であるにもかかわらず、$a = 0$ での定数入力（接成分 $0$）は `sqrt` と `ln` で NaN の接成分を生みます。入力が定義域を外れうるときは、接成分だけでなく値も確認してください。"
 
-#: manual/api/dual.md:393
+#: manual/api/dual.md:423
 msgid "Square root with the tangent $b / (2\\sqrt a)$."
 msgstr "接成分 $b / (2\\sqrt a)$ を持つ平方根です。"
 
-#: manual/api/dual.md:402
+#: manual/api/dual.md:432
 msgid "Exponential with the tangent $b\\,e^a$; the value is computed once and reused."
 msgstr "接成分 $b\\,e^a$ を持つ指数関数です。値は 1 回だけ計算して再利用します。"
 
-#: manual/api/dual.md:410
+#: manual/api/dual.md:440
 msgid "Base-2 exponential with the tangent $b \\cdot 2^a \\ln 2$."
 msgstr "接成分 $b \\cdot 2^a \\ln 2$ を持つ底 2 の指数関数です。"
 
-#: manual/api/dual.md:417
+#: manual/api/dual.md:447
 msgid "The `Exponential` instance provides both `exp` and `exp2`, so it needs the bounds of `exp2`."
 msgstr "`Exponential` インスタンスは `exp` と `exp2` の両方を提供するため、`exp2` の境界が必要です。"
 
-#: manual/api/dual.md:422
+#: manual/api/dual.md:452
 msgid "Natural logarithm with the tangent $b / a$."
 msgstr "接成分 $b / a$ を持つ自然対数です。"
 
-#: manual/api/dual.md:430
+#: manual/api/dual.md:460
 msgid "Base-2 logarithm with the tangent $b / (a \\ln 2)$."
 msgstr "接成分 $b / (a \\ln 2)$ を持つ底 2 の対数です。"
 
-#: manual/api/dual.md:438
+#: manual/api/dual.md:468
 msgid "Base-10 logarithm with the tangent $b / (a \\ln 10)$."
 msgstr "接成分 $b / (a \\ln 10)$ を持つ底 10 の対数です。"
 
-#: manual/api/dual.md:445
+#: manual/api/dual.md:475
 msgid "The `Logarithmic` instance provides `ln`, `log2` and `log10`."
 msgstr "`Logarithmic` インスタンスは `ln`、`log2`、`log10` を提供します。"
 
-#: manual/api/dual.md:449
+#: manual/api/dual.md:479
 msgid "Sine with the tangent $b \\cos a$."
 msgstr "接成分 $b \\cos a$ を持つ正弦関数です。"
 
-#: manual/api/dual.md:457
+#: manual/api/dual.md:487
 msgid "Cosine with the tangent $-b \\sin a$."
 msgstr "接成分 $-b \\sin a$ を持つ余弦関数です。"
 
-#: manual/api/dual.md:465
+#: manual/api/dual.md:495
 msgid "Tangent with the derivative $\\sec^2 a$, computed as $b / (\\cos a \\cdot \\cos a)$."
 msgstr "導関数 $\\sec^2 a$ を持つ正接関数です。$b / (\\cos a \\cdot \\cos a)$ として計算します。"
 
-#: manual/api/dual.md:472
+#: manual/api/dual.md:502
 msgid "The `Trigonometric` instance provides `sin`, `cos` and `tan`."
 msgstr "`Trigonometric` インスタンスは `sin`、`cos`、`tan` を提供します。"
 
-#: manual/api/dual.md:484
+#: manual/api/dual.md:514
 msgid "Trait instances"
 msgstr "トレイトインスタンス"
 
-#: manual/api/dual.md:486
+#: manual/api/dual.md:516
 msgid "`Dual[T]` implements the Luna Flow structure traits that the algebra $T[\\varepsilon]/(\\varepsilon^2)$ satisfies, each under the matching bound on `T`. The laws are derived in the [dual design](../design/dual.md)."
 msgstr "`Dual[T]` は、代数 $T[\\varepsilon]/(\\varepsilon^2)$ が満たす Luna Flow の構造トレイトを、それぞれ `T` に対する対応する境界のもとで実装します。法則は [dual の設計](../design/dual.md) で導出しています。"
 
-#: manual/api/dual.md:490
+#: manual/api/dual.md:520
 msgid "Instance"
 msgstr "インスタンス"
 
-#: manual/api/dual.md:492
+#: manual/api/dual.md:522
 msgid "`zero()` is $0 + 0\\varepsilon$"
 msgstr "`zero()` は $0 + 0\\varepsilon$"
 
-#: manual/api/dual.md:493
+#: manual/api/dual.md:523
 msgid "`one()` is $1 + 0\\varepsilon$"
 msgstr "`one()` は $1 + 0\\varepsilon$"
 
-#: manual/api/dual.md:494
+#: manual/api/dual.md:524
 msgid "componentwise addition"
 msgstr "成分ごとの加算"
 
-#: manual/api/dual.md:495
+#: manual/api/dual.md:525
 msgid "componentwise negation"
 msgstr "成分ごとの符号反転"
 
-#: manual/api/dual.md:496
+#: manual/api/dual.md:526
 msgid "product rule multiplication"
 msgstr "積の規則による乗算"
 
-#: manual/api/dual.md:497
+#: manual/api/dual.md:527
 msgid "$T[\\varepsilon]$ is a semiring when `T` is"
 msgstr "`T` が半環なら $T[\\varepsilon]$ も半環"
 
-#: manual/api/dual.md:498
+#: manual/api/dual.md:528
 msgid "$T[\\varepsilon]$ is a ring when `T` is"
 msgstr "`T` が環なら $T[\\varepsilon]$ も環"
 
-#: manual/api/dual.md:499
-msgid "`from_nat(n)` is `Dual::constant(from_nat(n))`"
-msgstr "`from_nat(n)` は `Dual::constant(from_nat(n))`"
+#: manual/api/dual.md:529
+msgid "`from_natural(n)` is `Dual::constant(from_natural(n))`"
+msgstr "`from_natural(n)` は `Dual::constant(from_natural(n))`"
 
-#: manual/api/dual.md:500
-msgid "`from_integral(n)` is `Dual::constant(from_integral(n))`"
-msgstr "`from_integral(n)` は `Dual::constant(from_integral(n))`"
+#: manual/api/dual.md:530
+msgid "`from_integer(n)` is `Dual::constant(from_integer(n))`"
+msgstr "`from_integer(n)` は `Dual::constant(from_integer(n))`"
 
-#: manual/api/dual.md:501
+#: manual/api/dual.md:531
+#: manual/api/dual.md:580
+msgid "`NatHomomorphism`, `IntegralHomomorphism` (deprecated)"
+msgstr "`NatHomomorphism`、`IntegralHomomorphism`（非推奨）"
+
+#: manual/api/dual.md:531
+msgid "the same trait `+ Zero`"
+msgstr "同じトレイト `+ Zero`"
+
+#: manual/api/dual.md:531
+msgid "compatibility shims, see below"
+msgstr "互換シム、下記を参照"
+
+#: manual/api/dual.md:532
 msgid "`pi()`, `tau()`, `e()` are constants"
 msgstr "`pi()`、`tau()`、`e()` は定数"
 
-#: manual/api/dual.md:502
+#: manual/api/dual.md:533
 msgid "see `Dual::div_checked`"
 msgstr "`Dual::div_checked` を参照"
 
-#: manual/api/dual.md:503
+#: manual/api/dual.md:534
 msgid "see `Dual::sqrt_checked`"
 msgstr "`Dual::sqrt_checked` を参照"
 
-#: manual/api/dual.md:504
+#: manual/api/dual.md:535
 msgid "see each method"
 msgstr "各メソッドを参照"
 
-#: manual/api/dual.md:504
+#: manual/api/dual.md:535
 msgid "see [Elementary functions](#elementary-functions)"
 msgstr "[初等関数](#elementary-functions) を参照"
 
-#: manual/api/dual.md:506
+#: manual/api/dual.md:537
 msgid "The integer and natural-number embeddings and the constants produce tangent zero, because they do not depend on the differentiation variable."
 msgstr "整数と自然数の埋め込み、および定数は、微分変数に依存しないため接成分 0 を生成します。"
 
-#: manual/api/dual.md:511
+#: manual/api/dual.md:542
 msgid "Componentwise addition, negation and subtraction make $T \\times T$ an additive monoid or group whenever `T` is one."
 msgstr "成分ごとの加法・符号反転・減法により、`T` が加法モノイドまたは加法群であれば $T \\times T$ もそうなります。"
 
-#: manual/api/dual.md:521
+#: manual/api/dual.md:552
 msgid "Multiplication by the product rule, with unit $1 + 0\\varepsilon$, makes `Dual[T]` the ring $T[\\varepsilon]/(\\varepsilon^2)$."
 msgstr "積の規則による乗法と単位元 $1 + 0\\varepsilon$ によって、`Dual[T]` は環 $T[\\varepsilon]/(\\varepsilon^2)$ になります。"
 
-#: manual/api/dual.md:530
+#: manual/api/dual.md:561
 msgid "`MulMonoid` needs `T : Semiring`, not only `T : MulMonoid`, because the tangent $ad + bc$ uses the addition of `T`. Associativity and distributivity hold because the multiplication of `T` is commutative; the [dual design](../design/dual.md#ring-level-instances-only) checks the laws."
 msgstr "`MulMonoid` には `T : MulMonoid` だけでなく `T : Semiring` が必要です。接成分 $ad + bc$ が `T` の加法を使うからです。結合律と分配律は `T` の乗法が可換であるため成り立ちます。法則の確認は [dual の設計](../design/dual.md#ring-level-instances-only) にあります。"
 
-#: manual/api/dual.md:537
+#: manual/api/dual.md:568
 msgid "The canonical maps from the natural numbers and the integers land on constants."
 msgstr "自然数と整数からの標準写像は定数に移ります。"
 
-#: manual/api/dual.md:545
-msgid "`from_integral(n)` is `Dual::constant(from_integral(n))`, so integer literals in generic code have tangent zero."
-msgstr "`from_integral(n)` は `Dual::constant(from_integral(n))` なので、ジェネリックなコードの整数リテラルの接成分はゼロです。"
+#: manual/api/dual.md:576
+msgid "`from_integer(n)` is `Dual::constant(from_integer(n))`, so integer literals in generic code, written `FromInteger::from_integer(3N)` or `@lg.lift_to(3)`, have tangent zero."
+msgstr "`from_integer(n)` は `Dual::constant(from_integer(n))` なので、ジェネリックなコードの整数リテラル（`FromInteger::from_integer(3N)` や `@lg.lift_to(3)` と書く）の接成分はゼロです。"
 
-#: manual/api/dual.md:550
+#: manual/api/dual.md:582
+msgid "Compatibility shims for the traits that `luna-generic` 0.4.0 deprecates."
+msgstr "`luna-generic` 0.4.0 で非推奨になったトレイトのための互換シムです。"
+
+#: manual/api/dual.md:589
+msgid "They exist because `luna-poly` 0.2.0 still requires `NatHomomorphism` in `DensePolynomial::derivative`; with them, a `DensePolynomial[Dual[T]]` keeps its formal derivative. Both produce constants, like `FromNat` and `FromInteger`. They will be removed once `luna-poly` moves to `FromNat`, so new code should not depend on them."
+msgstr "`luna-poly` 0.2.0 の `DensePolynomial::derivative` がまだ `NatHomomorphism` を要求するので残しています。これにより `DensePolynomial[Dual[T]]` は形式的導関数を保ちます。どちらも `FromNat`、`FromInteger` と同じく定数を作ります。`luna-poly` が `FromNat` に移行したら削除するので、新しいコードはこれらに依存しないでください。"
+
+#: manual/api/dual.md:597
 msgid "$\\pi$, $\\tau$ and $e$ as constants."
 msgstr "定数としての $\\pi$、$\\tau$、$e$。"
 
-#: manual/api/dual.md:556
+#: manual/api/dual.md:603
 msgid "The instances of `Sqrt`, `Exponential`, `Logarithmic`, `Trigonometric`, `DivChecked` and `SqrtChecked` are listed with their methods above."
 msgstr "`Sqrt`、`Exponential`、`Logarithmic`、`Trigonometric`、`DivChecked`、`SqrtChecked` のインスタンスは、上でそれぞれのメソッドとともに挙げています。"
 
-#: manual/api/dual.md:571
+#: manual/api/dual.md:618
 msgid "Deprecated"
 msgstr "非推奨"
 
-#: manual/api/dual.md:573
+#: manual/api/dual.md:620
 msgid "`Dual` keeps a few method forms that MoonBit used to create implicitly from trait instances. They are hidden from the interface file and warn when used outside this package."
 msgstr "`Dual` は、かつて MoonBit がトレイトインスタンスから暗黙的に生成していたメソッド形式をいくつか残しています。これらはインターフェースファイルから隠されており、このパッケージの外で使うと警告が出ます。"
 
-#: manual/api/dual.md:577
+#: manual/api/dual.md:624
 msgid "Deprecated method"
 msgstr "非推奨のメソッド"
 
-#: manual/api/dual.md:577
+#: manual/api/dual.md:624
 msgid "Replacement"
 msgstr "代替"
 
-#: manual/api/dual.md:580
+#: manual/api/dual.md:627
 msgid "`Repr(x)` or `@debug.Debug::to_repr(x)`"
 msgstr "`Repr(x)` または `@debug.Debug::to_repr(x)`"
 
-#: manual/api/dual.md:581
-msgid "`NatHomomorphism::from_nat(n)` from `Luna-Flow/luna-generic`"
-msgstr "`Luna-Flow/luna-generic` の `NatHomomorphism::from_nat(n)`"
+#: manual/api/dual.md:628
+msgid "`@lg.lift_to(n)`, or `Dual::from_natural(n)` for a `BigInt`"
+msgstr "`@lg.lift_to(n)`、`BigInt` なら `Dual::from_natural(n)`"
+
+#: manual/api/dual.md:629
+msgid "`@lg.lift_to(n)`, or `Dual::from_integer(n)` for a `BigInt`"
+msgstr "`@lg.lift_to(n)`、`BigInt` なら `Dual::from_integer(n)`"
 
 #: manual/api/elementary.md:1
 msgid "elementary API"
@@ -972,12 +1005,12 @@ msgid "Square root returning `Result[Self, ArithmeticError]`; see the [checked A
 msgstr "`Result[Self, ArithmeticError]` を返す平方根です。[checked API](checked.md#sqrtchecked) を参照してください。"
 
 #: manual/api/elementary.md:62
-msgid "`exp` and `exp2`. The `Dual[T]` instance needs `T : Exponential + Logarithmic + IntegralHomomorphism + Mul`, because `exp2` uses $\\ln 2$."
-msgstr "`exp` と `exp2`。`exp2` は $\\ln 2$ を使うため、`Dual[T]` のインスタンスには `T : Exponential + Logarithmic + IntegralHomomorphism + Mul` が必要です。"
+msgid "`exp` and `exp2`. The `Dual[T]` instance needs `T : Exponential + Logarithmic + FromInteger + Mul`, because `exp2` uses $\\ln 2$."
+msgstr "`exp` と `exp2`。`exp2` は $\\ln 2$ を使うため、`Dual[T]` のインスタンスには `T : Exponential + Logarithmic + FromInteger + Mul` が必要です。"
 
 #: manual/api/elementary.md:71
-msgid "`ln`, `log2` and `log10`. The `Dual[T]` instance needs `T : Logarithmic + IntegralHomomorphism + Mul + Div`."
-msgstr "`ln`、`log2`、`log10`。`Dual[T]` のインスタンスには `T : Logarithmic + IntegralHomomorphism + Mul + Div` が必要です。"
+msgid "`ln`, `log2` and `log10`. The `Dual[T]` instance needs `T : Logarithmic + FromInteger + Mul + Div`."
+msgstr "`ln`、`log2`、`log10`。`Dual[T]` のインスタンスには `T : Logarithmic + FromInteger + Mul + Div` が必要です。"
 
 #: manual/api/elementary.md:80
 msgid "`sin`, `cos` and `tan`. The `Dual[T]` instance needs `T : Trigonometric + Mul + Neg + Div`."
@@ -1000,7 +1033,7 @@ msgid "Source: [`src/forward/forward.mbt`](../../../src/forward/forward.mbt)."
 msgstr "ソース：[`src/forward/forward.mbt`](../../../src/forward/forward.mbt)。"
 
 #: manual/api/forward.md:21
-#: manual/index.md:90
+#: manual/index.md:81
 msgid "Drivers"
 msgstr "ドライバー"
 
@@ -1214,7 +1247,7 @@ msgid "Returns $p'(x)$ for a sparse polynomial in one variable."
 msgstr "1 変数の疎な多項式について $p'(x)$ を返します。"
 
 #: manual/api/poly.md:132
-#: manual/design/poly.md:105
+#: manual/design/poly.md:106
 msgid "Compatibility names"
 msgstr "互換用の名前"
 
@@ -1449,8 +1482,8 @@ msgid "Mathematical background"
 msgstr "数学的背景"
 
 #: manual/design/autodiff.md:22
-msgid "The root package adds no mathematics. Its content is the vocabulary of the [dual design](dual.md): the commutative ring $T[\\varepsilon]/(\\varepsilon^2)$ needs the structure traits `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring` and `Ring`; the elementary rules $f(a + b\\varepsilon) = f(a) + f'(a)\\,b\\,\\varepsilon$ need `Sqrt`, `Exponential`, `Logarithmic` and `Trigonometric` on `T` and the canonical map $\\mathbb Z \\to T$ (`IntegralHomomorphism`); the checked rules need `DivChecked`, `SqrtChecked` and the context and error values; and `Constants` provides $\\pi$, $\\tau$ and $e$ as dual constants."
-msgstr "ルートパッケージは数学を何も追加しません。その内容は [dual の設計](dual.md) の語彙です。可換環 $T[\\varepsilon]/(\\varepsilon^2)$ には構造トレイト `Zero`、`One`、`AddMonoid`、`AddGroup`、`MulMonoid`、`Semiring`、`Ring` が必要です。初等関数の規則 $f(a + b\\varepsilon) = f(a) + f'(a)\\,b\\,\\varepsilon$ には `T` 上の `Sqrt`、`Exponential`、`Logarithmic`、`Trigonometric` と標準的な写像 $\\mathbb Z \\to T$（`IntegralHomomorphism`）が必要です。チェック付きの規則には `DivChecked`、`SqrtChecked` とコンテキストおよびエラーの値が必要です。そして `Constants` は $\\pi$、$\\tau$、$e$ を双対数の定数として提供します。"
+msgid "The root package adds no mathematics. Its content is the vocabulary of the [dual design](dual.md): the commutative ring $T[\\varepsilon]/(\\varepsilon^2)$ needs the structure traits `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring` and `Ring`; the elementary rules $f(a + b\\varepsilon) = f(a) + f'(a)\\,b\\,\\varepsilon$ need `Sqrt`, `Exponential`, `Logarithmic` and `Trigonometric` on `T` and the canonical map $\\mathbb Z \\to T$ (`FromInteger`); the checked rules need `DivChecked`, `SqrtChecked` and the context and error values; and `Constants` provides $\\pi$, $\\tau$ and $e$ as dual constants."
+msgstr "ルートパッケージは数学を何も追加しません。その内容は [dual の設計](dual.md) の語彙です。可換環 $T[\\varepsilon]/(\\varepsilon^2)$ には構造トレイト `Zero`、`One`、`AddMonoid`、`AddGroup`、`MulMonoid`、`Semiring`、`Ring` が必要です。初等関数の規則 $f(a + b\\varepsilon) = f(a) + f'(a)\\,b\\,\\varepsilon$ には `T` 上の `Sqrt`、`Exponential`、`Logarithmic`、`Trigonometric` と標準的な写像 $\\mathbb Z \\to T$（`FromInteger`）が必要です。チェック付きの規則には `DivChecked`、`SqrtChecked` とコンテキストおよびエラーの値が必要です。そして `Constants` は $\\pi$、$\\tau$、$e$ を双対数の定数として提供します。"
 
 #: manual/design/autodiff.md:32
 #: manual/design/checked.md:68
@@ -1484,8 +1517,8 @@ msgid "Exactly the bounds of `Dual[T]`"
 msgstr "`Dual[T]` の境界とちょうど一致させる"
 
 #: manual/design/autodiff.md:51
-msgid "The root package re-exports the traits that occur in the bounds of the public `Dual` methods and instances, plus the error and context types of the checked methods. It does not re-export `Field`, `MulGroup` or `Inverse` (which `Dual[T]` deliberately lacks), nor the contextual or enclosure traits of `arithmetic`, which `Dual[T]` does not implement. `NatHomomorphism` is the one trait with an instance on `Dual[T]` that is left out: it occurs only in the bound of its own instance, no method needs it, and generic code reaches the natural numbers through `IntegralHomomorphism`, which extends it."
-msgstr "ルートパッケージは、公開されている `Dual` のメソッドとインスタンスの境界に現れるトレイトと、チェック付きメソッドのエラー型・コンテキスト型を再エクスポートします。`Field`、`MulGroup`、`Inverse`（`Dual[T]` が意図的に実装しないもの）や、`Dual[T]` が実装しない `arithmetic` のコンテキスト付きトレイト・包含トレイトは再エクスポートしません。`NatHomomorphism` は `Dual[T]` にインスタンスがあるのに除外される唯一のトレイトです。それは自身のインスタンスの境界にしか現れず、どのメソッドも必要とせず、ジェネリックなコードはそれを拡張する `IntegralHomomorphism` を通じて自然数に到達できるからです。"
+msgid "The root package re-exports the traits that occur in the bounds of the public `Dual` methods and instances, plus the error and context types of the checked methods. It does not re-export `Field`, `MulGroup` or `Inverse` (which `Dual[T]` deliberately lacks), nor the contextual or enclosure traits of `arithmetic`, which `Dual[T]` does not implement. `FromNat` occurs in no method bound, but it is re-exported because `FromInteger` extends it. The deprecated `NatHomomorphism` and `IntegralHomomorphism` are left out: their instances on `Dual[T]` are compatibility shims for `luna-poly` 0.2.0, and new code should not name them."
+msgstr "ルートパッケージは、公開されている `Dual` のメソッドとインスタンスの境界に現れるトレイトと、チェック付きメソッドのエラー型・コンテキスト型を再エクスポートします。`Field`、`MulGroup`、`Inverse`（`Dual[T]` が意図的に実装しないもの）や、`Dual[T]` が実装しない `arithmetic` のコンテキスト付きトレイト・包含トレイトは再エクスポートしません。`FromNat` はどのメソッドの境界にも現れませんが、`FromInteger` がそれを拡張するので再エクスポートします。非推奨の `NatHomomorphism` と `IntegralHomomorphism` は除外します。`Dual[T]` 上のそれらのインスタンスは `luna-poly` 0.2.0 のための互換シムであり、新しいコードはこれらの名前を使うべきではありません。"
 
 #: manual/design/autodiff.md:61
 msgid "Drivers but no bridges"
@@ -1496,13 +1529,13 @@ msgid "`diff` and `value_and_diff` are re-exported because they only need `dual`
 msgstr "`diff` と `value_and_diff` は `dual` だけを必要とするので再エクスポートします。`linalg` と `poly` のドライバーは再エクスポートしません。再エクスポートすると、ルートパッケージのすべてのユーザーが `linear-algebra` と `luna-poly` に依存することになるためです。"
 
 #: manual/design/autodiff.md:67
-#: manual/design/checked.md:104
+#: manual/design/checked.md:103
 #: manual/design/core.md:74
-#: manual/design/dual.md:277
+#: manual/design/dual.md:289
 #: manual/design/elementary.md:66
 #: manual/design/forward.md:130
 #: manual/design/linalg.md:139
-#: manual/design/poly.md:113
+#: manual/design/poly.md:114
 msgid "Correctness and invariants"
 msgstr "正しさと不変条件"
 
@@ -1519,13 +1552,13 @@ msgid "The root package depends on `dual`, `forward`, `luna-generic` and `arithm
 msgstr "ルートパッケージは `dual`、`forward`、`luna-generic`、`arithmetic` にのみ依存します。"
 
 #: manual/design/autodiff.md:78
-#: manual/design/checked.md:117
+#: manual/design/checked.md:112
 #: manual/design/core.md:82
-#: manual/design/dual.md:426
+#: manual/design/dual.md:439
 #: manual/design/elementary.md:78
 #: manual/design/forward.md:141
 #: manual/design/linalg.md:153
-#: manual/design/poly.md:168
+#: manual/design/poly.md:169
 msgid "Alternatives rejected"
 msgstr "却下した代替案"
 
@@ -1538,13 +1571,13 @@ msgid "**Moving the implementation to the root package.** It would force the hea
 msgstr "**実装をルートパッケージに移す。** 重いブリッジと軽量なコアを 1 つのパッケージにまとめざるを得なくなるか、それらとの依存関係の循環が生じます。"
 
 #: manual/design/autodiff.md:86
-#: manual/design/checked.md:125
+#: manual/design/checked.md:120
 #: manual/design/core.md:89
-#: manual/design/dual.md:440
+#: manual/design/dual.md:453
 #: manual/design/elementary.md:87
 #: manual/design/forward.md:150
 #: manual/design/linalg.md:164
-#: manual/design/poly.md:179
+#: manual/design/poly.md:180
 msgid "Boundaries"
 msgstr "境界"
 
@@ -1557,8 +1590,8 @@ msgid "No re-export of `linalg`, `poly` or their container types."
 msgstr "`linalg`、`poly` およびそれらのコンテナ型は再エクスポートしません。"
 
 #: manual/design/autodiff.md:91
-msgid "No re-export of `Field`, `MulGroup`, `Inverse`, `NatHomomorphism` or the contextual arithmetic traits."
-msgstr "`Field`、`MulGroup`、`Inverse`、`NatHomomorphism`、およびコンテキスト付きの算術トレイトは再エクスポートしません。"
+msgid "No re-export of `Field`, `MulGroup`, `Inverse`, the deprecated `NatHomomorphism` / `IntegralHomomorphism` or the contextual arithmetic traits."
+msgstr "`Field`、`MulGroup`、`Inverse`、非推奨の `NatHomomorphism` / `IntegralHomomorphism`、およびコンテキスト付きの算術トレイトは再エクスポートしません。"
 
 #: manual/design/checked.md:1
 msgid "checked design"
@@ -1635,58 +1668,58 @@ msgid "No special case for a zero tangent"
 msgstr "接成分が 0 の場合を特別扱いしない"
 
 #: manual/design/checked.md:82
-msgid "At $a = 0$ with $b = 0$ the tangent is the indeterminate $0/0$. One could return $0$ (a constant input has no derivative to report), but that would make the result depend on how a constant was produced. The implementation lets `T` decide: for `Double` this is a domain error with `arithmetic` 0.5, and a division by zero with the pinned `arithmetic@0.2.1`."
-msgstr "$a = 0$ かつ $b = 0$ のとき、接成分は不定形 $0/0$ です。$0$ を返す（定数入力には報告すべき導関数がない）こともできますが、そうすると結果が定数の作られ方に依存してしまいます。実装は `T` に判断を任せます。`Double` では、`arithmetic` 0.5 なら定義域エラー、固定されている `arithmetic@0.2.1` ならゼロ除算です。"
+msgid "At $a = 0$ with $b = 0$ the tangent is the indeterminate $0/0$. One could return $0$ (a constant input has no derivative to report), but that would make the result depend on how a constant was produced. The implementation lets `T` decide: for `Double` this is a domain error."
+msgstr "$a = 0$ かつ $b = 0$ のとき、接成分は不定形 $0/0$ です。$0$ を返す（定数入力には報告すべき導関数がない）こともできますが、そうすると結果が定数の作られ方に依存してしまいます。実装は `T` に判断を任せます。`Double` では定義域エラーです。"
 
-#: manual/design/checked.md:88
+#: manual/design/checked.md:87
 msgid "Reuse `arithmetic`"
 msgstr "`arithmetic` を再利用する"
 
-#: manual/design/checked.md:90
+#: manual/design/checked.md:89
 msgid "`Dual[T]` implements `DivChecked` and `SqrtChecked` from `arithmetic`, and this facade re-exports exactly those traits with `ArithmeticContext`, `ArithmeticError`, `ArithmeticErrorKind` and `RoundingMode`. Generic checked code therefore runs on `Double` and on `Dual[Double]` without adaptation, and errors from both levels have one type."
 msgstr "`Dual[T]` は `arithmetic` の `DivChecked` と `SqrtChecked` を実装し、このファサードはまさにそれらのトレイトを `ArithmeticContext`、`ArithmeticError`、`ArithmeticErrorKind`、`RoundingMode` とともに再エクスポートします。そのため、ジェネリックなチェック付きコードは手を加えることなく `Double` 上でも `Dual[Double]` 上でも動作し、両方のレベルのエラーは 1 つの型になります。"
 
-#: manual/design/checked.md:96
+#: manual/design/checked.md:95
 msgid "Only division and square root"
 msgstr "除算と平方根のみ"
 
-#: manual/design/checked.md:98
+#: manual/design/checked.md:97
 msgid "`arithmetic` defines checked traits for division, square root, comparison, parsing and integer powers. Of these, only division and square root are operations on $T[\\varepsilon]$ with a derivative rule in this repository, so only they have checked dual forms. Logarithms and trigonometric functions follow the unchecked semantics of `T`."
 msgstr "`arithmetic` は除算、平方根、比較、パース、整数べきに対するチェック付きトレイトを定義しています。このうち、このリポジトリで微分規則を持つ $T[\\varepsilon]$ 上の演算は除算と平方根だけなので、チェック付きの双対数形式を持つのもこの 2 つだけです。対数関数と三角関数は `T` のチェックなしの意味論に従います。"
 
-#: manual/design/checked.md:106
+#: manual/design/checked.md:105
 msgid "`div_checked(x, y)` succeeds exactly when `T`'s `div_checked` succeeds for both $a/c$ and $(bc - ad)/c^2$; then it equals `x / y` computed with the same operations."
 msgstr "`div_checked(x, y)` は、`T` の `div_checked` が $a/c$ と $(bc - ad)/c^2$ の両方で成功するときにちょうど成功します。そのとき結果は、同じ演算で計算した `x / y` に等しくなります。"
 
-#: manual/design/checked.md:109
-msgid "`sqrt_checked(x)` succeeds exactly when `T`'s `sqrt_checked(a)` and `div_checked(b, 2√a)` succeed; for `Double` with `arithmetic` 0.5 that is $a > 0$, or $a$ NaN. With `arithmetic@0.2.1` it also succeeds, with NaN components, for $a < 0$, because that release does not check the domain of the square root (see [versions of arithmetic](../api/checked.md#versions-of-arithmetic))."
-msgstr "`sqrt_checked(x)` が成功するのは、`T` の `sqrt_checked(a)` と `div_checked(b, 2√a)` がともに成功するときに限ります。`arithmetic` 0.5 の `Double` では $a > 0$ または $a$ が NaN の場合です。`arithmetic@0.2.1` では平方根の定義域をチェックしないため、$a < 0$ でも NaN 成分で成功します（[arithmetic のバージョン](../api/checked.md#versions-of-arithmetic) を参照）。"
+#: manual/design/checked.md:108
+msgid "`sqrt_checked(x)` succeeds exactly when `T`'s `sqrt_checked(a)` and `div_checked(b, 2√a)` succeed; for `Double` that is $a > 0$, or $a$ NaN."
+msgstr "`sqrt_checked(x)` は、`T` の `sqrt_checked(a)` と `div_checked(b, 2√a)` が成功するときにちょうど成功します。`Double` ではそれは $a > 0$、または $a$ が NaN の場合です。"
 
-#: manual/design/checked.md:115
+#: manual/design/checked.md:110
 msgid "The context is passed to `T` unchanged and never modified."
 msgstr "コンテキストはそのまま `T` に渡され、変更されることはありません。"
 
-#: manual/design/checked.md:119
+#: manual/design/checked.md:114
 msgid "**A dedicated autodiff error type.** It would duplicate `ArithmeticError` and force conversions at every boundary."
 msgstr "**autodiff 専用のエラー型。** `ArithmeticError` と重複し、あらゆる境界で変換が必要になります。"
 
-#: manual/design/checked.md:121
+#: manual/design/checked.md:116
 msgid "**`Option` results.** They lose the reason for the failure."
 msgstr "**`Option` による結果。** 失敗の理由が失われます。"
 
-#: manual/design/checked.md:122
+#: manual/design/checked.md:117
 msgid "**Checking only the value.** It would return infinite or NaN derivatives from a \"checked\" operation."
 msgstr "**値だけをチェックする。** 「チェック付き」演算から無限大や NaN の導関数が返ることになります。"
 
-#: manual/design/checked.md:127
+#: manual/design/checked.md:122
 msgid "No checked logarithm, exponential or trigonometric operations."
 msgstr "チェック付きの対数・指数・三角関数の演算はありません。"
 
-#: manual/design/checked.md:128
+#: manual/design/checked.md:123
 msgid "No contextual (`ArithmeticOutcome`) operations and no rounding diagnostics."
 msgstr "コンテキスト付き（`ArithmeticOutcome`）の演算や丸めの診断はありません。"
 
-#: manual/design/checked.md:130
+#: manual/design/checked.md:125
 msgid "No automatic rescaling of tiny divisors."
 msgstr "非常に小さい除数の自動的なスケーリングは行いません。"
 
@@ -1715,8 +1748,8 @@ msgid "Many differentiable programs are polynomial: they use only $+$, $-$, $\\t
 msgstr "微分可能なプログラムの多くは多項式的です。すなわち $+$、$-$、$\\times$ と整数定数だけを使います。そのようなプログラムについては、[dual の設計](dual.md#polynomials-where-derivatives-come-from) の恒等式"
 
 #: manual/design/core.md:29
-msgid "holds in every commutative ring, so the traits `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring`, `Ring` and the canonical map $\\mathbb Z \\to T$ (`IntegralHomomorphism`) are all such code needs. The facade re-exports exactly these. In `luna-generic` each trait extends the ones before it,"
-msgstr "はすべての可換環で成り立つので、そのようなコードに必要なのはトレイト `Zero`、`One`、`AddMonoid`、`AddGroup`、`MulMonoid`、`Semiring`、`Ring` と標準写像 $\\mathbb Z \\to T$（`IntegralHomomorphism`）だけです。ファサードはちょうどこれらを再エクスポートします。`luna-generic` では各トレイトがその前のものを拡張します。"
+msgid "holds in every commutative ring, so the traits `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring`, `Ring` and the canonical map $\\mathbb Z \\to T$ (`FromInteger`, with its supertrait `FromNat`) are all such code needs. The facade re-exports exactly these. In `luna-generic` each trait extends the ones before it,"
+msgstr "はすべての可換環で成り立つので、そのようなコードに必要なのはトレイト `Zero`、`One`、`AddMonoid`、`AddGroup`、`MulMonoid`、`Semiring`、`Ring` と標準写像 $\\mathbb Z \\to T$（`FromInteger` とそのスーパートレイト `FromNat`）だけです。ファサードはちょうどこれらを再エクスポートします。`luna-generic` では各トレイトがその前のものを拡張します。"
 
 #: manual/design/core.md:44
 msgid "so the classes of structures shrink as the traits grow: every ring is a semiring and an additive group, and every semiring and every additive group is an additive monoid,"
@@ -1771,8 +1804,8 @@ msgid "No analytic traits, no checked operations, no drivers."
 msgstr "解析的トレイト、チェック付き演算、ドライバーは含みません。"
 
 #: manual/design/core.md:92
-msgid "No `Field`, `MulGroup`, `Inverse` or `NatHomomorphism`."
-msgstr "`Field`、`MulGroup`、`Inverse`、`NatHomomorphism` は含みません。"
+msgid "No `Field`, `MulGroup` or `Inverse`, and none of the `NatHomomorphism` / `IntegralHomomorphism` traits that `luna-generic` 0.4.0 deprecates."
+msgstr "`Field`、`MulGroup`、`Inverse` はなく、`luna-generic` 0.4.0 で非推奨になった `NatHomomorphism` / `IntegralHomomorphism` もありません。"
 
 #: manual/design/dual.md:1
 msgid "dual design"
@@ -1787,8 +1820,8 @@ msgid "Compute exact first derivatives of ordinary programs, written against the
 msgstr "Luna Flow のトレイトに対して書かれた通常のプログラムを、別の数値型の上で実行することで、その正確な 1 階導関数を計算します。この型は、インスタンスが表明する代数法則を満たし、定義域の失敗を共有の `arithmetic` エラー値で報告し、コンテナや多項式のライブラリから独立していなければなりません。"
 
 #: manual/design/dual.md:18
-msgid "MoonBit has no operator overloading for mixed types, so a literal cannot be added to a `Dual[T]`; every constant enters through `Dual::constant` or a trait such as `IntegralHomomorphism`."
-msgstr "MoonBit には型をまたぐ演算子オーバーロードがないため、リテラルを `Dual[T]` に直接足すことはできません。定数はすべて `Dual::constant` や `IntegralHomomorphism` のようなトレイトを通じて入ります。"
+msgid "MoonBit has no operator overloading for mixed types, so a literal cannot be added to a `Dual[T]`; every constant enters through `Dual::constant` or a trait such as `FromInteger`."
+msgstr "MoonBit には型をまたぐ演算子オーバーロードがないため、リテラルを `Dual[T]` に直接足すことはできません。定数はすべて `Dual::constant` や `FromInteger` のようなトレイトを通じて入ります。"
 
 #: manual/design/dual.md:21
 msgid "Luna Flow traits are single-parameter traits on `Self`, so `Dual[T]` can only claim a structure for every `T` with a given bound, never for one particular `T`."
@@ -1903,8 +1936,8 @@ msgid "**Options.** A `Double`-only dual type; a generic `Dual[T]` whose operati
 msgstr "**選択肢。** `Double` 専用の双対数型、または各演算が使う最小のトレイト集合を要求するジェネリックな `Dual[T]`。"
 
 #: manual/design/dual.md:166
-msgid "**Choice.** `Dual[T]` is generic, and every method carries its own bound (`Dual::mul` needs only `Add + Mul`, `Dual::exp2` needs `Exponential + Logarithmic + IntegralHomomorphism + Mul`). This follows the Luna Flow rule of depending on the smallest trait composition. It also lets `T` itself be a dual number, which gives higher derivatives by nesting (see the [forward design](forward.md))."
-msgstr "**選択。** `Dual[T]` はジェネリックであり、各メソッドが独自の境界を持ちます（`Dual::mul` は `Add + Mul` だけを、`Dual::exp2` は `Exponential + Logarithmic + IntegralHomomorphism + Mul` を必要とします）。これは最小のトレイト合成に依存するという Luna Flow の規則に従っています。また `T` 自体を双対数にすることもでき、入れ子にすることで高階導関数が得られます（[forward の設計](forward.md) を参照）。"
+msgid "**Choice.** `Dual[T]` is generic, and every method carries its own bound (`Dual::mul` needs only `Add + Mul`, `Dual::exp2` needs `Exponential + Logarithmic + FromInteger + Mul`). This follows the Luna Flow rule of depending on the smallest trait composition. It also lets `T` itself be a dual number, which gives higher derivatives by nesting (see the [forward design](forward.md))."
+msgstr "**選択。** `Dual[T]` はジェネリックであり、各メソッドが独自の境界を持ちます（`Dual::mul` は `Add + Mul` だけを、`Dual::exp2` は `Exponential + Logarithmic + FromInteger + Mul` を必要とします）。これは最小のトレイト合成に依存するという Luna Flow の規則に従っています。また `T` 自体を双対数にすることもでき、入れ子にすることで高階導関数が得られます（[forward の設計](forward.md) を参照）。"
 
 #: manual/design/dual.md:173
 msgid "Ring-level instances only"
@@ -1983,42 +2016,50 @@ msgid "**Options.** Require a conversion from `Double`; build them as `one + one
 msgstr "**選択肢。** `Double` からの変換を要求する、`one + one` として構築する、整数からの標準的な写像を使う。"
 
 #: manual/design/dual.md:248
-msgid "**Choice.** `IntegralHomomorphism::from_integral(2)` and `from_integral(10)`. The map $\\mathbb Z \\to T$ is the unique ring homomorphism, so it names the right constant in every ring, and small integers such as $2$ and $10$ are exact in every numeric instance. A `Double` conversion would not exist for exact types, and repeated addition costs more for $10$."
-msgstr "**選択。** `IntegralHomomorphism::from_integral(2)` と `from_integral(10)` です。写像 $\\mathbb Z \\to T$ は唯一の環準同型なので、どの環でも正しい定数を指し、$2$ や $10$ のような小さな整数はどの数値インスタンスでも厳密に表せます。`Double` からの変換は厳密な型には存在せず、繰り返しの加算は $10$ に対してはコストが大きくなります。"
+msgid "**Choice.** `lift_to(2)` and `lift_to(10)` from `luna-generic`, which pass the `Int` through `BigInt` to `FromInteger::from_integer`. The map $\\mathbb Z \\to T$ is the unique ring homomorphism, so it names the right constant in every ring, and small integers such as $2$ and $10$ are exact in every numeric instance. A `Double` conversion would not exist for exact types, and repeated addition costs more for $10$."
+msgstr "**選択。** `luna-generic` の `lift_to(2)` と `lift_to(10)` です。これらは `Int` を `BigInt` 経由で `FromInteger::from_integer` に渡します。写像 $\\mathbb Z \\to T$ は唯一の環準同型なので、どの環でも正しい定数を指し、$2$ や $10$ のような小さな整数はどの数値インスタンスでも厳密に表せます。`Double` からの変換は厳密な型には存在せず、繰り返しの加算は $10$ に対してはコストが大きくなります。"
 
-#: manual/design/dual.md:254
+#: manual/design/dual.md:255
 msgid "Reuse the computed value"
 msgstr "計算した値を再利用する"
 
-#: manual/design/dual.md:256
+#: manual/design/dual.md:257
 msgid "`exp` and `exp2` compute $v = f(a)$ once and form the tangent from $v$, because $f' = f$ (up to the factor $\\ln 2$). `sqrt` likewise divides by the computed root. This saves one elementary evaluation per call and makes the tangent consistent with the returned value."
 msgstr "`exp` と `exp2` は $v = f(a)$ を 1 回計算し、$f' = f$（係数 $\\ln 2$ を除いて）なので $v$ から接成分を作ります。`sqrt` も同様に計算した平方根で割ります。これにより 1 回の呼び出しにつき初等関数の評価が 1 回節約され、接成分が返される値と整合します。"
 
-#: manual/design/dual.md:261
+#: manual/design/dual.md:262
 msgid "The derivative of `tan`"
 msgstr "`tan` の導関数"
 
-#: manual/design/dual.md:263
+#: manual/design/dual.md:264
 msgid "Two formulas give $\\tan' a$: $1 + \\tan^2 a$, which reuses the value, and $\\sec^2 a = 1/\\cos^2 a$, which needs one more cosine. The package uses $b / (\\cos a \\cdot \\cos a)$. Both are mathematically equal; the chosen form is undefined at exactly the same points as $\\tan$ itself."
 msgstr "$\\tan' a$ を与える式は 2 つあります。値を再利用する $1 + \\tan^2 a$ と、余弦をもう 1 回必要とする $\\sec^2 a = 1/\\cos^2 a$ です。パッケージは $b / (\\cos a \\cdot \\cos a)$ を使います。両者は数学的には等しく、選んだ形式は $\\tan$ 自体とちょうど同じ点で未定義になります。"
 
-#: manual/design/dual.md:268
+#: manual/design/dual.md:269
 msgid "Explicit method promotion"
 msgstr "明示的なメソッド昇格"
 
-#: manual/design/dual.md:270
-msgid "With MoonBit 0.10, trait instances no longer create methods implicitly. [`src/dual/extends.mbt`](../../../src/dual/extends.mbt) promotes the arithmetic operators, `equal`, `zero`, `one` and `div_checked`, and keeps `not_equal`, `to_repr`, `from_nat`, `from_integral`, `pi`, `e` and `tau` as hidden deprecated forms for existing callers (see [Deprecated](../api/dual.md#deprecated))."
-msgstr "MoonBit 0.10 では、トレイトインスタンスはもはや暗黙的にメソッドを生成しません。[`src/dual/extends.mbt`](../../../src/dual/extends.mbt) は算術演算子、`equal`、`zero`、`one`、`div_checked` を昇格し、既存の呼び出し側のために `not_equal`、`to_repr`、`from_nat`、`from_integral`、`pi`、`e`、`tau` を隠された非推奨の形式として残しています（[非推奨](../api/dual.md#deprecated) を参照）。"
+#: manual/design/dual.md:271
+msgid "With MoonBit 0.10, trait instances no longer create methods implicitly. [`src/dual/extends.mbt`](../../../src/dual/extends.mbt) promotes the arithmetic operators, `equal`, `zero`, `one`, `from_natural`, `from_integer` and `div_checked`, and keeps `not_equal`, `to_repr`, `from_nat`, `from_integral`, `pi`, `e` and `tau` as hidden deprecated forms for existing callers (see [Deprecated](../api/dual.md#deprecated))."
+msgstr "MoonBit 0.10 では、トレイトインスタンスはもはや暗黙的にメソッドを生成しません。[`src/dual/extends.mbt`](../../../src/dual/extends.mbt) は算術演算子、`equal`、`zero`、`one`、`from_natural`、`from_integer`、`div_checked` を昇格し、既存の呼び出し側のために `not_equal`、`to_repr`、`from_nat`、`from_integral`、`pi`、`e`、`tau` を隠された非推奨の形式として残しています（[非推奨](../api/dual.md#deprecated) を参照）。"
 
-#: manual/design/dual.md:279
+#: manual/design/dual.md:278
+msgid "Compatibility shims for the deprecated homomorphism traits"
+msgstr "非推奨の準同型トレイトのための互換シム"
+
+#: manual/design/dual.md:280
+msgid "`luna-generic` 0.4.0 deprecates `NatHomomorphism` and `IntegralHomomorphism`: they compose a lift to ℕ or ℤ with the canonical map, which is not a homomorphism for fixed-width sources. `Dual[T]` now implements `FromNat` and `FromInteger`. The old instances stay in [`src/dual/compat.mbt`](../../../src/dual/compat.mbt), because `luna-poly` 0.2.0 bounds `DensePolynomial::derivative` by `NatHomomorphism` and would otherwise reject dual coefficients. Each shim suppresses the deprecation warning locally, and all of them go once `luna-poly` moves to `FromNat`."
+msgstr "`luna-generic` 0.4.0 は `NatHomomorphism` と `IntegralHomomorphism` を非推奨にしました。これらは ℕ または ℤ への持ち上げと標準写像を合成したもので、固定幅の型を元にすると準同型になりません。`Dual[T]` は現在 `FromNat` と `FromInteger` を実装します。古いインスタンスは [`src/dual/compat.mbt`](../../../src/dual/compat.mbt) に残してあります。`luna-poly` 0.2.0 が `DensePolynomial::derivative` を `NatHomomorphism` で制約しており、これがないと双対数の係数を受け付けないからです。各シムは非推奨警告をその場で抑制しており、`luna-poly` が `FromNat` に移行した時点ですべて削除します。"
+
+#: manual/design/dual.md:291
 msgid "Derivatives of whole programs"
 msgstr "プログラム全体の導関数"
 
-#: manual/design/dual.md:281
+#: manual/design/dual.md:293
 msgid "Let a program compute $y = f(x)$ by a finite sequence of steps, each a ring operation, a division or one of the elementary functions of the table. Run it on $x + 1\\varepsilon$ (`Dual::variable(x)`) with every other input a constant. Then every intermediate $v_k$ is represented as $v_k(x) + v_k'(x)\\,\\varepsilon$."
 msgstr "プログラムが有限個のステップで $y = f(x)$ を計算するとし、各ステップは環演算、除算、または表中の初等関数のいずれかであるとします。これを $x + 1\\varepsilon$（`Dual::variable(x)`）上で、他の入力はすべて定数として実行します。すると、すべての中間値 $v_k$ は $v_k(x) + v_k'(x)\\,\\varepsilon$ として表されます。"
 
-#: manual/design/dual.md:287
+#: manual/design/dual.md:299
 msgid ""
 "*Proof by induction on the steps.* Inputs: the variable is $x + 1\\varepsilon$ and $x' = 1$; a constant is $c + 0\\varepsilon$ and $c' = 0$. Step: let the operands be $u + u'\\varepsilon$ and $w + w'\\varepsilon$, where $u$ and $w$ are functions of $x$ differentiable at the point. For a binary operation $\\star \\in \\{+, -, \\times, /\\}$ (with $w(x) \\n"
 "e 0$ for $/$), the formulas derived above give"
@@ -2026,11 +2067,11 @@ msgstr ""
 "*ステップに関する帰納法による証明。* 入力：変数は $x + 1\\varepsilon$ で $x' = 1$、定数は $c + 0\\varepsilon$ で $c' = 0$ です。帰納段階：オペランドを $u + u'\\varepsilon$ と $w + w'\\varepsilon$ とし、$u$ と $w$ はその点で微分可能な $x$ の関数とします。二項演算 $\\star \\in \\{+, -, \\times, /\\}$（$/$ では $w(x) \\n"
 "e 0$）について、上で導いた式から"
 
-#: manual/design/dual.md:298
+#: manual/design/dual.md:310
 msgid "because they are exactly the sum, difference, product and quotient rules. An elementary function $g$, applied in the open set where it is differentiable, gives $g(u) + g'(u)\\,u'\\,\\varepsilon = g(u) + (g \\circ u)'\\varepsilon$ by the chain rule. The last intermediate is $y$, so `tangent` is $f'(x)$. $\\square$"
 msgstr "が得られます。これらはまさに和・差・積・商の微分規則だからです。初等関数 $g$ を微分可能な開集合で適用すると、連鎖律により $g(u) + g'(u)\\,u'\\,\\varepsilon = g(u) + (g \\circ u)'\\varepsilon$ となります。最後の中間値は $y$ なので、`tangent` は $f'(x)$ です。$\\square$"
 
-#: manual/design/dual.md:304
+#: manual/design/dual.md:316
 msgid ""
 "The same argument with input tangent $b$ gives $f'(x)\\,b$, and with several inputs seeded by a vector $v$ it gives the directional derivative $\\n"
 "abla f(x) \\cdot v$ (see the [linalg design](linalg.md)). The derivative is that of the program, not of a mathematical function it approximates: a branch on `value()` differentiates the branch taken."
@@ -2038,120 +2079,120 @@ msgstr ""
 "入力の接成分を $b$ とした同じ議論により $f'(x)\\,b$ が得られ、複数の入力をベクトル $v$ でシードすると方向微分 $\\n"
 "abla f(x) \\cdot v$ が得られます（[linalg の設計](linalg.md) を参照）。得られる導関数はプログラムの導関数であって、それが近似する数学的関数の導関数ではありません。`value()` に基づく分岐では、選ばれた分岐が微分されます。"
 
-#: manual/design/dual.md:310
+#: manual/design/dual.md:322
 msgid "Rounding error"
 msgstr "丸め誤差"
 
-#: manual/design/dual.md:312
+#: manual/design/dual.md:324
 msgid "Write $\\mathrm{fl}(x \\circ y) = (x \\circ y)(1 + \\delta)$ with $|\\delta| \\le u$ for each floating-point operation ($u = 2^{-53}$ for `Double`), and use the standard lemma that a product of $k$ factors $(1 + \\delta_i)^{\\pm 1}$ equals $1 + \\theta_k$ with $|\\theta_k| \\le \\gamma_k = ku/(1 - ku)$.[^higham]"
 msgstr "各浮動小数点演算について $|\\delta| \\le u$ として $\\mathrm{fl}(x \\circ y) = (x \\circ y)(1 + \\delta)$ と書き（`Double` では $u = 2^{-53}$）、$k$ 個の因子 $(1 + \\delta_i)^{\\pm 1}$ の積は $|\\theta_k| \\le \\gamma_k = ku/(1 - ku)$ を満たす $1 + \\theta_k$ に等しいという標準的な補題を用います。[^higham]"
 
-#: manual/design/dual.md:317
+#: manual/design/dual.md:329
 msgid "N. J. Higham, *Accuracy and Stability of Numerical Algorithms*, 2nd ed., SIAM, 2002, Lemma 3.1."
 msgstr "N. J. Higham, *Accuracy and Stability of Numerical Algorithms*, 2nd ed., SIAM, 2002, Lemma 3.1."
 
-#: manual/design/dual.md:320
+#: manual/design/dual.md:332
 msgid "*Product tangent.* `Dual::mul` computes $\\mathrm{fl}(\\mathrm{fl}(ad) + \\mathrm{fl}(cb))$:"
 msgstr "*積の接成分。* `Dual::mul` は $\\mathrm{fl}(\\mathrm{fl}(ad) + \\mathrm{fl}(cb))$ を計算します："
 
-#: manual/design/dual.md:331
+#: manual/design/dual.md:343
 msgid "*Quotient tangent.* `Dual::div` computes $\\mathrm{fl}\\big(\\mathrm{fl}(bc - ad) / \\mathrm{fl}(c \\cdot c)\\big)$, five roundings with one of them in the denominator:"
 msgstr "*商の接成分。* `Dual::div` は $\\mathrm{fl}\\big(\\mathrm{fl}(bc - ad) / \\mathrm{fl}(c \\cdot c)\\big)$ を計算します。丸めは 5 回で、そのうち 1 回は分母にあります："
 
-#: manual/design/dual.md:343
+#: manual/design/dual.md:355
 msgid "Both bounds have the shape of the error of evaluating the derivative formula directly; the relative error is only large when $ad$ and $bc$ cancel, which is the conditioning of the derivative itself. For an elementary rule the tangent error is the error of `T`'s implementation of $f'(a)$ (for example of `cos` in `sin`) plus at most two more roundings."
 msgstr "どちらの上界も、導関数の式を直接評価したときの誤差と同じ形をしています。相対誤差が大きくなるのは $ad$ と $bc$ が打ち消し合うときだけで、それは導関数そのものの条件数です。初等関数の規則では、接成分の誤差は `T` による $f'(a)$ の実装の誤差（例えば `sin` における `cos` の誤差）に高々 2 回の丸めを加えたものです。"
 
-#: manual/design/dual.md:349
+#: manual/design/dual.md:361
 msgid "The model $\\mathrm{fl}(x \\circ y) = (x \\circ y)(1 + \\delta)$ only holds while no result leaves the normal range of `T`. For `Double` that range is $[2^{-1022}, 2^{1024})$ in magnitude, and the quotient tangent leaves it much earlier than the quotient, because it squares the divisor:"
 msgstr "モデル $\\mathrm{fl}(x \\circ y) = (x \\circ y)(1 + \\delta)$ は、どの結果も `T` の正規数の範囲を外れない間しか成り立ちません。`Double` ではその範囲は絶対値で $[2^{-1022}, 2^{1024})$ であり、商の接成分は除数を平方するため、商よりずっと早くこの範囲を外れます。"
 
-#: manual/design/dual.md:362
+#: manual/design/dual.md:374
 msgid "The first line holds because a square below half the smallest subnormal, $2^{-1075}$, rounds to zero. In the first case the tangent is a division by zero, in the second it carries a relative error up to $2^{-1075}/c^2$ instead of $u$, and in the third it is $0$ whenever $bc - ad$ is finite, although the true tangent $(bc - ad)/c^2$ can be a normal number: for $a = 0$, $b = 1$, $c = 10^{155}$ it is $10^{-155}$. Writing the tangent as $(b - q\\,d)/c$ with $q = a/c$, which is the same expression in exact arithmetic because $(bc - ad)/c^2 = (b - (a/c)\\,d)/c$, would avoid squaring $c$; the current code does not do this (see the warning on `Dual::div_checked`)."
 msgstr "1 行目が成り立つのは、最小の非正規数の半分 $2^{-1075}$ より小さい平方はゼロに丸められるからです。1 つ目の場合、接成分はゼロ除算になります。2 つ目の場合、相対誤差は $u$ ではなく最大 $2^{-1075}/c^2$ になります。3 つ目の場合、$bc - ad$ が有限なら接成分は $0$ になりますが、真の接成分 $(bc - ad)/c^2$ は正規数でありえます。$a = 0$、$b = 1$、$c = 10^{155}$ ではそれは $10^{-155}$ です。接成分を $q = a/c$ として $(b - q\\,d)/c$ と書けば $c$ の平方を避けられます。$(bc - ad)/c^2 = (b - (a/c)\\,d)/c$ なので、厳密な算術では同じ式です。現在のコードはそうしていません（`Dual::div_checked` の警告を参照）。"
 
-#: manual/design/dual.md:373
+#: manual/design/dual.md:385
 msgid "Comparison with finite differences"
 msgstr "有限差分との比較"
 
-#: manual/design/dual.md:375
+#: manual/design/dual.md:387
 msgid "The forward difference $D_h f(x) = (f(x + h) - f(x))/h$ has two error sources. Taylor's theorem gives the truncation error, and evaluating $f$ in floating point with error at most $u|f|$ adds a cancellation error:"
 msgstr "前進差分 $D_h f(x) = (f(x + h) - f(x))/h$ には 2 つの誤差要因があります。テイラーの定理から打ち切り誤差が生じ、さらに浮動小数点で誤差高々 $u|f|$ で $f$ を評価することで桁落ち誤差が加わります："
 
-#: manual/design/dual.md:383
+#: manual/design/dual.md:395
 msgid "Setting the derivative of the right-hand side with respect to $h$ to zero,"
 msgstr "右辺の $h$ に関する導関数を 0 とおくと、"
 
-#: manual/design/dual.md:392
+#: manual/design/dual.md:404
 msgid "so even the best step loses about half of the significant digits ($\\sqrt u \\approx 10^{-8}$ for `Double`). The central difference $(f(x + h) - f(x - h))/(2h)$ has truncation error $\\frac{h^2}{6}|f'''|$ and reaches about $u^{2/3} \\approx 10^{-11}$. Dual numbers have no truncation term at all: by the induction above they compute the exact derivative of the program, and the only error is rounding with the bounds of the previous section.[^griewank] The test suite and the [dual tutorial](../tutorial/dual.md) compare both methods."
 msgstr "そのため最良の刻み幅でも有効数字の約半分が失われます(`Double` では $\\sqrt u \\approx 10^{-8}$)。中心差分 $(f(x + h) - f(x - h))/(2h)$ の打ち切り誤差は $\\frac{h^2}{6}|f'''|$ で、約 $u^{2/3} \\approx 10^{-11}$ に達します。双対数には打ち切り項がまったくありません。上の帰納法により、双対数はプログラムの正確な導関数を計算し、唯一の誤差は前節の上界に従う丸めだけです。[^griewank] テストスイートと [dual チュートリアル](../tutorial/dual.md) で両方の手法を比較しています。"
 
-#: manual/design/dual.md:401
+#: manual/design/dual.md:413
 msgid "A. Griewank and A. Walther, *Evaluating Derivatives*, 2nd ed., SIAM, 2008, chapters 2–3, treat forward mode and its error analysis in full."
 msgstr "A. Griewank and A. Walther, *Evaluating Derivatives*, 2nd ed., SIAM, 2008 の第 2–3 章では、フォワードモードとその誤差解析を詳しく扱っています。"
 
-#: manual/design/dual.md:404
-#: manual/design/poly.md:161
+#: manual/design/dual.md:416
+#: manual/design/poly.md:162
 msgid "Cost"
 msgstr "コスト"
 
-#: manual/design/dual.md:406
+#: manual/design/dual.md:418
 msgid "Addition, subtraction and negation cost two operations of `T` instead of one; multiplication costs three multiplications and one addition; division costs three multiplications, one subtraction and two divisions; an elementary function costs the function plus its derivative factor (for `sin`, one `sin`, one `cos` and one multiplication). Counted in operations of `T`, the ratio is $2$ for linear operations, $4$ for a product, $6$ for a quotient and about $2$ for an elementary function, so a program runs a small constant factor, at most about six, slower on `Dual[T]` than on `T`, and needs twice the memory for its numbers."
 msgstr "加法・減法・符号反転は `T` の演算 1 回ではなく 2 回、乗法は乗算 3 回と加算 1 回、除法は乗算 3 回、減算 1 回、除算 2 回、初等関数は関数本体とその導関数の因子（`sin` なら `sin` 1 回、`cos` 1 回、乗算 1 回）を要します。`T` の演算回数で数えると、比は線形演算で $2$、積で $4$、商で $6$、初等関数で約 $2$ なので、プログラムは `Dual[T]` 上では `T` 上より小さな定数倍（高々約 6 倍）遅くなり、数値には 2 倍のメモリが必要です。"
 
-#: manual/design/dual.md:416
+#: manual/design/dual.md:428
 msgid "Laws to keep"
 msgstr "守るべき法則"
 
-#: manual/design/dual.md:418
+#: manual/design/dual.md:430
 msgid "`x.value()` of any result equals the same computation on values (the projection is a homomorphism)."
 msgstr "任意の結果の `x.value()` は、値に対して同じ計算を行った結果に等しい（射影は準同型である）。"
 
-#: manual/design/dual.md:420
-msgid "Constants, `zero()`, `one()`, `from_integral`, `from_nat` and the `Constants` instance have tangent zero."
-msgstr "定数、`zero()`、`one()`、`from_integral`、`from_nat`、および `Constants` インスタンスの接成分は 0 である。"
+#: manual/design/dual.md:432
+msgid "Constants, `zero()`, `one()`, `from_natural`, `from_integer` (and the deprecated `from_nat`, `from_integral`) and the `Constants` instance have tangent zero."
+msgstr "定数、`zero()`、`one()`、`from_natural`、`from_integer`（および非推奨の `from_nat`、`from_integral`）、そして `Constants` インスタンスの接成分は 0 である。"
 
-#: manual/design/dual.md:422
+#: manual/design/dual.md:435
 msgid "Instances stop at `Ring`; no `Field`, `MulGroup`, `Inverse` or `Compare`."
 msgstr "インスタンスは `Ring` までで、`Field`、`MulGroup`、`Inverse`、`Compare` はない。"
 
-#: manual/design/dual.md:423
+#: manual/design/dual.md:436
 msgid "The product rule assumes commutative multiplication of `T`, which every numeric instance in Luna Flow has."
 msgstr "積の規則は `T` の乗算が可換であることを仮定しており、Luna Flow のすべての数値インスタンスはこれを満たす。"
 
-#: manual/design/dual.md:428
+#: manual/design/dual.md:441
 msgid "**Finite differences.** Simple, but they lose half the digits or more, as derived above, and need a step size per problem."
 msgstr "**有限差分。** 単純ですが、上で導いたように桁の半分以上を失い、問題ごとに刻み幅が必要です。"
 
-#: manual/design/dual.md:430
+#: manual/design/dual.md:443
 msgid "**Symbolic differentiation.** Building derivative expressions needs a term language and simplification, and expressions can grow quickly; that belongs to a CAS layer, not to a scalar type."
 msgstr "**記号微分。** 導関数の式を構築するには項の言語と簡約が必要で、式は急速に膨らむことがあります。これは CAS のレイヤーに属するもので、スカラー型の役割ではありません。"
 
-#: manual/design/dual.md:433
+#: manual/design/dual.md:446
 msgid "**Reverse mode.** Better for gradients of many inputs, but it needs a tape or closures that record the computation; it is not implemented."
 msgstr "**リバースモード。** 多数の入力に対する勾配には適していますが、計算を記録するテープやクロージャが必要です。実装されていません。"
 
-#: manual/design/dual.md:435
+#: manual/design/dual.md:448
 msgid "**Storing a vector of tangents.** One pass would give a whole gradient, at the cost of a vector-valued type and allocation on every operation. The scalar tangent keeps `Dual[T]` a plain two-field value; vector tangents are future work."
 msgstr "**接成分のベクトルを格納する。** 1 回のパスで勾配全体が得られますが、ベクトル値の型と、演算ごとのメモリ確保というコストがかかります。スカラーの接成分にすることで `Dual[T]` は単純な 2 フィールドの値に保たれます。ベクトルの接成分は今後の課題です。"
 
-#: manual/design/dual.md:442
+#: manual/design/dual.md:455
 msgid "First derivatives only. Higher derivatives come from nesting `Dual[Dual[T]]`; the $k$-th derivative stores $2^k$ components and a product costs $3^k$ multiplications and $3^k - 2^k$ additions of `T` (see the [forward design](forward.md#higher-derivatives-by-nesting)). There is no truncated Taylor (jet) type."
 msgstr "一階導関数のみです。高階導関数は `Dual[Dual[T]]` を入れ子にして得ます。$k$ 階導関数は $2^k$ 個の成分を保持し、積 1 回に `T` の乗算 $3^k$ 回と加算 $3^k - 2^k$ 回を要します（[forward の設計](forward.md#higher-derivatives-by-nesting) を参照）。打ち切り Taylor（jet）型はありません。"
 
-#: manual/design/dual.md:447
+#: manual/design/dual.md:460
 msgid "No reverse mode and no symbolic differentiation."
 msgstr "リバースモードも記号微分もありません。"
 
-#: manual/design/dual.md:448
+#: manual/design/dual.md:461
 msgid "No `Field`, `MulGroup`, `Inverse` or order instance, and no `Show`."
 msgstr "`Field`、`MulGroup`、`Inverse`、順序のインスタンスはなく、`Show` もありません。"
 
-#: manual/design/dual.md:449
+#: manual/design/dual.md:462
 msgid "Only `div_checked` and `sqrt_checked` check their domain. Logarithms, trigonometric functions and the unchecked operators follow `T`."
 msgstr "定義域をチェックするのは `div_checked` と `sqrt_checked` だけです。対数関数、三角関数、チェックなしの演算子は `T` に従います。"
 
-#: manual/design/dual.md:451
+#: manual/design/dual.md:464
 msgid "No validated enclosures: the rounding bounds above are a priori, not computed at run time. Interval or ball scalars as `T` are neither tested nor documented by this repository."
 msgstr "検証付きの包含はありません。上記の丸めの上界は事前評価であり、実行時に計算されるものではありません。`T` としての区間やボールのスカラーは、このリポジトリではテストも文書化もされていません。"
 
@@ -2200,8 +2241,8 @@ msgid "Instances need the whole trait"
 msgstr "インスタンスにはトレイト全体が必要"
 
 #: manual/design/elementary.md:54
-msgid "A trait instance must provide all its methods. `Exponential` contains `exp2`, whose rule needs $\\ln 2$, so the instance needs `Logarithmic` and `IntegralHomomorphism` on `T` even if a caller only uses `exp`. The inherent method `Dual::exp` has the smaller bound `Exponential + Mul` for that case."
-msgstr "トレイトインスタンスはそのすべてのメソッドを提供しなければなりません。`Exponential` には `exp2` が含まれ、その規則には $\\ln 2$ が必要なので、呼び出し側が `exp` しか使わない場合でも、インスタンスには `T` 上の `Logarithmic` と `IntegralHomomorphism` が必要です。その場合のために、固有メソッド `Dual::exp` はより小さな境界 `Exponential + Mul` を持っています。"
+msgid "A trait instance must provide all its methods. `Exponential` contains `exp2`, whose rule needs $\\ln 2$, so the instance needs `Logarithmic` and `FromInteger` on `T` even if a caller only uses `exp`. The inherent method `Dual::exp` has the smaller bound `Exponential + Mul` for that case."
+msgstr "トレイトインスタンスはそのすべてのメソッドを提供しなければなりません。`Exponential` には `exp2` が含まれ、その規則には $\\ln 2$ が必要なので、呼び出し側が `exp` しか使わない場合でも、インスタンスには `T` 上の `Logarithmic` と `FromInteger` が必要です。その場合のために、固有メソッド `Dual::exp` はより小さな境界 `Exponential + Mul` を持っています。"
 
 #: manual/design/elementary.md:59
 msgid "Constants have tangent zero"
@@ -2624,94 +2665,94 @@ msgid "**Options.** Build the derivative polynomial with `DensePolynomial::deriv
 msgstr "**選択肢。** `DensePolynomial::derivative` で導関数の多項式を構築して評価する、または `Dual[T]` 上で $p$ を評価する。"
 
 #: manual/design/poly.md:76
-msgid "**Choice.** Evaluate over `Dual[T]`. It returns $p(x)$ and $p'(x)$ from one pass, needs only `Semiring` (the formal derivative in `luna-poly` also needs `NatHomomorphism` to form $k\\,c_k$), does not allocate a second polynomial per derivative order, and composes with other dual computations through `eval_dual`. The formal derivative remains the right tool when the derivative polynomial itself is wanted; the test suite checks that the two agree."
-msgstr "**選択。** `Dual[T]` 上で評価します。1 回のパスで $p(x)$ と $p'(x)$ を返し、`Semiring` だけを必要とし（`luna-poly` の形式的導関数は $k\\,c_k$ を作るために `NatHomomorphism` も必要とします）、導関数の階数ごとに 2 つ目の多項式を確保することもなく、`eval_dual` を通じて他の双対数計算と合成できます。導関数の多項式そのものが欲しい場合は形式的導関数が引き続き適した手法であり、テストスイートは両者が一致することを確認しています。"
+msgid "**Choice.** Evaluate over `Dual[T]`. It returns $p(x)$ and $p'(x)$ from one pass, needs only `Semiring` (the formal derivative in `luna-poly` 0.2.0 also needs the deprecated `NatHomomorphism` to form $k\\,c_k$, which `Dual[T]` keeps as a compatibility shim), does not allocate a second polynomial per derivative order, and composes with other dual computations through `eval_dual`. The formal derivative remains the right tool when the derivative polynomial itself is wanted; the test suite checks that the two agree."
+msgstr "**選択。** `Dual[T]` 上で評価します。1 回のパスで $p(x)$ と $p'(x)$ を返し、`Semiring` だけを必要とし（`luna-poly` 0.2.0 の形式的導関数は $k\\,c_k$ を作るために非推奨の `NatHomomorphism` も必要とし、`Dual[T]` はそれを互換シムとして残しています）、導関数の階数ごとに 2 つ目の多項式を確保することもなく、`eval_dual` を通じて他の双対数計算と合成できます。導関数の多項式そのものが欲しい場合は形式的導関数が引き続き適した手法であり、テストスイートは両者が一致することを確認しています。"
 
-#: manual/design/poly.md:84
+#: manual/design/poly.md:85
 msgid "Reuse `luna-poly` evaluation"
 msgstr "`luna-poly` の評価を再利用する"
 
-#: manual/design/poly.md:86
+#: manual/design/poly.md:87
 msgid "The bridge lifts the coefficients with `Dual::constant`, builds a `DensePolynomial[Dual[T]]` or `SparsePolynomial[Dual[T]]` with the ordinary constructors, and calls `eval`. It does not reimplement Horner's rule, so any change to `luna-poly` evaluation (and its normalization of zero coefficients, which is why `T : Eq` is required) applies here too."
 msgstr "ブリッジは係数を `Dual::constant` で持ち上げ、通常のコンストラクタで `DensePolynomial[Dual[T]]` または `SparsePolynomial[Dual[T]]` を構築し、`eval` を呼び出します。ホーナー法を再実装しないので、`luna-poly` の評価（および 0 係数の正規化。これが `T : Eq` が必要な理由です）への変更はここにもそのまま反映されます。"
 
-#: manual/design/poly.md:92
+#: manual/design/poly.md:93
 msgid "One variable for sparse polynomials"
 msgstr "疎な多項式は 1 変数"
 
-#: manual/design/poly.md:94
+#: manual/design/poly.md:95
 msgid "**Problem.** `SparsePolynomial` is multivariate, but a partial derivative needs a choice of variable, and variable identity lives in the contexts of `luna-poly` (`VariableContext`, `ContextPolynomial`)."
 msgstr "**問題。** `SparsePolynomial` は多変数ですが、偏導関数には変数の選択が必要であり、変数の同一性は `luna-poly` のコンテキスト（`VariableContext`、`ContextPolynomial`）の中にあります。"
 
-#: manual/design/poly.md:98
+#: manual/design/poly.md:99
 msgid "**Choice.** The sparse bridge evaluates with the single assignment `[x]` and is named `sparse_univariate_*`. A polynomial that uses another variable makes `eval` abort. A multivariate API would have to take a variable context and return a gradient; it is future work. Callers with a contextual polynomial can partially evaluate the other variables first, as the repository's integration test does."
 msgstr "**選択。** 疎な多項式のブリッジは単一の代入 `[x]` で評価し、`sparse_univariate_*` と命名されています。他の変数を使う多項式では `eval` が中断します。多変数の API は変数コンテキストを受け取って勾配を返す必要があり、今後の課題です。コンテキスト付きの多項式を持つ呼び出し側は、リポジトリの統合テストのように、まず他の変数を部分評価しておくことができます。"
 
-#: manual/design/poly.md:107
+#: manual/design/poly.md:108
 msgid "The first release named the functions `derivative_at`, `value_and_derivative_at`, `eval_sparse_dual`, `sparse_derivative_at` and `sparse_value_and_derivative_at`. The `dense_` and `sparse_univariate_` names say which representation and which kind of derivative is meant; the old names stay as plain aliases so existing code keeps working."
 msgstr "最初のリリースでは関数名を `derivative_at`、`value_and_derivative_at`、`eval_sparse_dual`、`sparse_derivative_at`、`sparse_value_and_derivative_at` としていました。`dense_` と `sparse_univariate_` の名前は、どの表現とどの種類の導関数を意味するかを示します。既存のコードが動作し続けるよう、古い名前は単純なエイリアスとして残しています。"
 
-#: manual/design/poly.md:115
+#: manual/design/poly.md:116
 msgid "Exactness in exact rings"
 msgstr "厳密な環での厳密性"
 
-#: manual/design/poly.md:117
+#: manual/design/poly.md:118
 msgid "For `T` with exact arithmetic (`Int`, `BigInt`, exact rationals) the results are exactly $p(x)$ and $p'(x)$, by the identities above."
 msgstr "厳密な算術を持つ `T`（`Int`、`BigInt`、厳密な有理数）では、上の恒等式により結果はちょうど $p(x)$ と $p'(x)$ になります。"
 
-#: manual/design/poly.md:120
+#: manual/design/poly.md:121
 msgid "Rounding error of the dense evaluation"
 msgstr "密な評価の丸め誤差"
 
-#: manual/design/poly.md:122
+#: manual/design/poly.md:123
 msgid "Use $\\mathrm{fl}(x \\circ y) = (x \\circ y)(1 + \\delta)$, $|\\delta| \\le u$, and the product lemma $\\prod (1 + \\delta_i)^{\\pm1} = 1 + \\theta_k$, $|\\theta_k| \\le \\gamma_k = ku/(1 - ku)$.[^higham]"
 msgstr "$\\mathrm{fl}(x \\circ y) = (x \\circ y)(1 + \\delta)$、$|\\delta| \\le u$ と、積の補題 $\\prod (1 + \\delta_i)^{\\pm1} = 1 + \\theta_k$、$|\\theta_k| \\le \\gamma_k = ku/(1 - ku)$ を用います。[^higham]"
 
-#: manual/design/poly.md:126
+#: manual/design/poly.md:127
 msgid "N. J. Higham, *Accuracy and Stability of Numerical Algorithms*, 2nd ed., SIAM, 2002, Lemma 3.1 and chapter 5."
 msgstr "N. J. Higham, *Accuracy and Stability of Numerical Algorithms*, 2nd ed., SIAM, 2002, Lemma 3.1 and chapter 5."
 
-#: manual/design/poly.md:129
+#: manual/design/poly.md:130
 msgid "*Value.* By the [projection homomorphism](dual.md#the-value-projection-is-a-homomorphism) $\\hat p_0$ is the plain Horner result. Each step multiplies the running sum by $(1 + \\delta_{\\times})(1 + \\delta_{+})$ and adds $c_k$ once rounded, so $c_k a^k$ carries $2k + 1$ factors for $k < n$; the leading coefficient carries $2n$, because the first step $0 \\cdot a + c_n$ is exact:"
 msgstr "*値。* [射影準同型](dual.md#the-value-projection-is-a-homomorphism) により、$\\hat p_0$ は通常のホーナー法の結果です。各ステップは累積和に $(1 + \\delta_{\\times})(1 + \\delta_{+})$ を掛け、1 回丸めて $c_k$ を加えるので、$k < n$ では $c_k a^k$ は $2k + 1$ 個の因子を持ちます。最初のステップ $0 \\cdot a + c_n$ は厳密なので、最高次の係数は $2n$ 個の因子を持ちます："
 
-#: manual/design/poly.md:141
+#: manual/design/poly.md:142
 msgid "*Derivative ($b = 1$).* The tangent step computes $\\mathrm{fl}\\big(\\hat p_{k+1} \\cdot 1 + \\mathrm{fl}(a\\,\\hat q_{k+1})\\big)$, and adding the constant $c_k$ adds an exact zero to the tangent. The derivative contains $k$ copies of $c_k a^{k-1}$, one for each step $j < k$ at which $c_k$ moves from the value chain into the tangent chain. Along such a path $c_k$ is rounded once when it enters, twice per value step $k - 1, \\dots, j + 1$, once when it moves into the tangent, and twice per tangent step $j - 1, \\dots, 0$: $1 + 2(k - 1 - j) + 1 + 2j = 2k$ factors. Hence"
 msgstr "*導関数（$b = 1$）。* 接成分のステップは $\\mathrm{fl}\\big(\\hat p_{k+1} \\cdot 1 + \\mathrm{fl}(a\\,\\hat q_{k+1})\\big)$ を計算し、定数 $c_k$ の加算は接成分に厳密な 0 を加えます。導関数には $c_k a^{k-1}$ が $k$ 個含まれ、それぞれは $c_k$ が値の連鎖から接成分の連鎖に移るステップ $j < k$ に対応します。そのような経路に沿って、$c_k$ は入るときに 1 回、値のステップ $k - 1, \\dots, j + 1$ ごとに 2 回、接成分に移るときに 1 回、接成分のステップ $j - 1, \\dots, 0$ ごとに 2 回丸められます。すなわち $1 + 2(k - 1 - j) + 1 + 2j = 2k$ 個の因子です。したがって"
 
-#: manual/design/poly.md:154
+#: manual/design/poly.md:155
 msgid "essentially the bound for evaluating the formal derivative by Horner's rule, which is $\\gamma_{2n-2} \\sum_k k\\,|c_k|\\,|a|^{k-1}$ once the coefficients $k\\,c_k$ are formed exactly; the dual evaluation pays at most two more roundings per term. The relative error is small unless the terms cancel, that is unless $p'$ is ill-conditioned at $a$."
 msgstr "これは、係数 $k\\,c_k$ を厳密に作った場合に Horner 法で形式的導関数を評価するときの上界 $\\gamma_{2n-2} \\sum_k k\\,|c_k|\\,|a|^{k-1}$ とほぼ同じです。双対数による評価では各項につき高々 2 回丸めが増えます。項が打ち消し合わない限り、すなわち $p'$ が $a$ で悪条件でない限り、相対誤差は小さくなります。"
 
-#: manual/design/poly.md:163
+#: manual/design/poly.md:164
 msgid "Dense: $n + 1$ dual multiply-add steps, that is about $3n$ multiplications and $3n$ additions of `T`, plus one array of $n + 1$ lifted coefficients. Sparse: per term one binary powering, $O(\\log e)$ dual products, plus one dual product and one addition."
 msgstr "密：双対数の積和ステップが $n + 1$ 回、すなわち `T` の乗算約 $3n$ 回と加算約 $3n$ 回に加え、持ち上げた $n + 1$ 個の係数の配列 1 つ。疎：項ごとに二分累乗 1 回（$O(\\log e)$ 回の双対数の積）に加え、双対数の積 1 回と加算 1 回。"
 
-#: manual/design/poly.md:170
+#: manual/design/poly.md:171
 msgid "**Symbolic derivative then evaluation.** Two passes, an extra polynomial, and a stronger bound on `T`; kept as `luna-poly`'s own `DensePolynomial::derivative` for users who need the polynomial."
 msgstr "**記号的に微分してから評価する。** パスが 2 回、余分な多項式が 1 つ必要で、`T` に対してより強い境界が必要です。多項式そのものが必要なユーザー向けには、`luna-poly` 自身の `DensePolynomial::derivative` として残っています。"
 
-#: manual/design/poly.md:173
+#: manual/design/poly.md:174
 msgid "**A private Horner loop.** Faster by a constant, but it would duplicate `luna-poly` semantics and drift from them."
 msgstr "**独自のホーナー法のループ。** 定数倍だけ速くなりますが、`luna-poly` の意味論と重複し、やがて食い違っていきます。"
 
-#: manual/design/poly.md:175
+#: manual/design/poly.md:176
 msgid "**Guessing a variable for multivariate sparse polynomials.** Silent partial derivatives with respect to \"the first variable\" would be easy to misuse; the bridge aborts instead."
 msgstr "**多変数の疎な多項式で変数を推測する。** 「第 1 変数」に関する偏導関数を黙って返すと誤用されやすいため、ブリッジは代わりに中断します。"
 
-#: manual/design/poly.md:181
+#: manual/design/poly.md:182
 msgid "Univariate only: no partial derivatives or gradients of multivariate polynomials, no `ContextPolynomial` support."
 msgstr "1 変数のみです。多変数多項式の偏導関数や勾配はなく、`ContextPolynomial` のサポートもありません。"
 
-#: manual/design/poly.md:183
+#: manual/design/poly.md:184
 msgid "First derivatives at points only; no derivative polynomials (use `luna-poly`), no higher derivatives."
 msgstr "各点での 1 階導関数のみです。導関数の多項式（`luna-poly` を使ってください）や高階導関数はありません。"
 
-#: manual/design/poly.md:185
+#: manual/design/poly.md:186
 msgid "No checked variants: dense and sparse evaluation do not fail except for the sparse abort described above."
 msgstr "チェック付きの版はありません。密な評価と疎な評価は、上で説明した疎な多項式の中断を除いて失敗しません。"
 
-#: manual/design/poly.md:187
+#: manual/design/poly.md:188
 msgid "Dense and sparse `immut` representations only."
 msgstr "密と疎の `immut` 表現のみです。"
 
@@ -2720,8 +2761,8 @@ msgid "autodiff"
 msgstr "autodiff"
 
 #: manual/index.md:3
-msgid "This manual documents the unreleased `main` branch of `Luna-Flow/autodiff` (version `0.2.0` in `moon.mod`) after its migration to MoonBit 0.10."
-msgstr "このマニュアルは、MoonBit 0.10 への移行後の、未リリースの `Luna-Flow/autodiff` の `main` ブランチ（`moon.mod` のバージョンは `0.2.0`）を記述します。"
+msgid "This manual documents the unreleased `main` branch of `Luna-Flow/autodiff` (version `0.3.0` in `moon.mod`) after its migration to MoonBit 0.10."
+msgstr "このマニュアルは、MoonBit 0.10 への移行後の、未リリースの `Luna-Flow/autodiff` の `main` ブランチ（`moon.mod` のバージョンは `0.3.0`）を記述します。"
 
 #: manual/index.md:6
 msgid "Overview"
@@ -2756,254 +2797,250 @@ msgid "The bridges need their libraries too: `moon add Luna-Flow/linear-algebra`
 msgstr "ブリッジにはそれぞれのライブラリも必要です。`linalg` には `moon add Luna-Flow/linear-algebra`、`poly` には `moon add Luna-Flow/luna-poly` を実行します。コードには MoonBit ツールチェーン 0.10 以降（`moonc` ≥ 0.10）と `moon.mod` / `moon.pkg` マニフェストが必要で、テストスイートは `wasm-gc`、`wasm`、`js`、`native` の各ターゲットで実行されます。"
 
 #: manual/index.md:44
-msgid "[!IMPORTANT] The checked operations report the errors of `T`'s own `DivChecked` and `SqrtChecked`. This manual describes `Double` as implemented by `Luna-Flow/arithmetic` 0.5, the version the repository is developed against. `moon.mod` still pins `arithmetic@0.2.1`, whose `Double` `sqrt_checked` never fails (a negative input gives NaN) and whose `div_checked` reports every zero divisor, including $0/0$, as a division by zero. See the [checked API](api/checked.md#versions-of-arithmetic)."
-msgstr "[!IMPORTANT] チェック付き演算が報告するのは `T` 自身の `DivChecked` と `SqrtChecked` のエラーです。このマニュアルは、リポジトリの開発に使われている `Luna-Flow/arithmetic` 0.5 の実装に従って `Double` を説明します。`moon.mod` はまだ `arithmetic@0.2.1` に固定されており、その `Double` の `sqrt_checked` は決して失敗せず（負の入力は NaN になる）、`div_checked` は $0/0$ を含むすべてのゼロ除数をゼロ除算として報告します。[checked API](api/checked.md#versions-of-arithmetic) を参照してください。"
-
-#: manual/index.md:53
 msgid "Pages"
 msgstr "ページ"
 
-#: manual/index.md:55
+#: manual/index.md:46
 msgid "The root package `Luna-Flow/autodiff` is documented as `autodiff`, because the name `core` belongs to the package `src/core`. Every other page is named after its directory under `src/`."
 msgstr "`core` という名前は `src/core` パッケージのものなので、ルートパッケージ `Luna-Flow/autodiff` は `autodiff` として記述します。その他のページは `src/` 以下のディレクトリ名に従います。"
 
-#: manual/index.md:59
+#: manual/index.md:50
 msgid "Part"
 msgstr "部分"
 
-#: manual/index.md:59
+#: manual/index.md:50
 msgid "Tutorial"
 msgstr "チュートリアル"
 
-#: manual/index.md:59
+#: manual/index.md:50
 msgid "API"
 msgstr "API"
 
-#: manual/index.md:59
+#: manual/index.md:50
 msgid "Design"
 msgstr "設計"
 
-#: manual/index.md:61
+#: manual/index.md:52
 msgid "`autodiff`: one-stop facade with `Dual`, `diff`, `value_and_diff` and the re-exported traits"
 msgstr "`autodiff`：`Dual`、`diff`、`value_and_diff` と再エクスポートしたトレイトをまとめたファサード"
 
-#: manual/index.md:61
+#: manual/index.md:52
 msgid "[tutorial](tutorial/autodiff.md)"
 msgstr "[チュートリアル](tutorial/autodiff.md)"
 
-#: manual/index.md:61
+#: manual/index.md:52
 msgid "[API](api/autodiff.md)"
 msgstr "[API](api/autodiff.md)"
 
-#: manual/index.md:61
+#: manual/index.md:52
 msgid "[design](design/autodiff.md)"
 msgstr "[設計](design/autodiff.md)"
 
-#: manual/index.md:62
+#: manual/index.md:53
 msgid "`dual`: the `Dual[T]` type, its arithmetic, derivative rules and instances"
 msgstr "`dual`：`Dual[T]` 型、その算術、微分規則、インスタンス"
 
-#: manual/index.md:62
+#: manual/index.md:53
 msgid "[tutorial](tutorial/dual.md)"
 msgstr "[チュートリアル](tutorial/dual.md)"
 
-#: manual/index.md:62
+#: manual/index.md:53
 msgid "[API](api/dual.md)"
 msgstr "[API](api/dual.md)"
 
-#: manual/index.md:62
+#: manual/index.md:53
 msgid "[design](design/dual.md)"
 msgstr "[設計](design/dual.md)"
 
-#: manual/index.md:63
+#: manual/index.md:54
 msgid "`forward`: scalar drivers `diff` and `value_and_diff`"
 msgstr "`forward`：スカラードライバ `diff` と `value_and_diff`"
 
-#: manual/index.md:63
+#: manual/index.md:54
 msgid "[tutorial](tutorial/forward.md)"
 msgstr "[チュートリアル](tutorial/forward.md)"
 
-#: manual/index.md:63
+#: manual/index.md:54
 msgid "[API](api/forward.md)"
 msgstr "[API](api/forward.md)"
 
-#: manual/index.md:63
+#: manual/index.md:54
 msgid "[design](design/forward.md)"
 msgstr "[設計](design/forward.md)"
 
-#: manual/index.md:64
+#: manual/index.md:55
 msgid "`core`: algebraic facade, `Dual` and the `luna-generic` structure traits"
 msgstr "`core`：代数ファサード、`Dual` と `luna-generic` の構造トレイト"
 
-#: manual/index.md:64
+#: manual/index.md:55
 msgid "[tutorial](tutorial/core.md)"
 msgstr "[チュートリアル](tutorial/core.md)"
 
-#: manual/index.md:64
+#: manual/index.md:55
 msgid "[API](api/core.md)"
 msgstr "[API](api/core.md)"
 
-#: manual/index.md:64
+#: manual/index.md:55
 msgid "[design](design/core.md)"
 msgstr "[設計](design/core.md)"
 
-#: manual/index.md:65
+#: manual/index.md:56
 msgid "`elementary`: analytic facade, `Dual` and the `arithmetic` function traits"
 msgstr "`elementary`：解析ファサード、`Dual` と `arithmetic` の関数トレイト"
 
-#: manual/index.md:65
+#: manual/index.md:56
 msgid "[tutorial](tutorial/elementary.md)"
 msgstr "[チュートリアル](tutorial/elementary.md)"
 
-#: manual/index.md:65
+#: manual/index.md:56
 msgid "[API](api/elementary.md)"
 msgstr "[API](api/elementary.md)"
 
-#: manual/index.md:65
+#: manual/index.md:56
 msgid "[design](design/elementary.md)"
 msgstr "[設計](design/elementary.md)"
 
-#: manual/index.md:66
+#: manual/index.md:57
 msgid "`checked`: checked facade, `DivChecked`, `SqrtChecked`, context and errors"
 msgstr "`checked`：チェック付きファサード、`DivChecked`、`SqrtChecked`、コンテキストとエラー"
 
-#: manual/index.md:66
+#: manual/index.md:57
 msgid "[tutorial](tutorial/checked.md)"
 msgstr "[チュートリアル](tutorial/checked.md)"
 
-#: manual/index.md:66
+#: manual/index.md:57
 msgid "[API](api/checked.md)"
 msgstr "[API](api/checked.md)"
 
-#: manual/index.md:66
+#: manual/index.md:57
 msgid "[design](design/checked.md)"
 msgstr "[設計](design/checked.md)"
 
-#: manual/index.md:67
+#: manual/index.md:58
 msgid "`linalg`: gradients and Jacobians over `linear-algebra/immut`"
 msgstr "`linalg`：`linear-algebra/immut` 上の勾配とヤコビ行列"
 
-#: manual/index.md:67
+#: manual/index.md:58
 msgid "[tutorial](tutorial/linalg.md)"
 msgstr "[チュートリアル](tutorial/linalg.md)"
 
-#: manual/index.md:67
+#: manual/index.md:58
 msgid "[API](api/linalg.md)"
 msgstr "[API](api/linalg.md)"
 
-#: manual/index.md:67
+#: manual/index.md:58
 msgid "[design](design/linalg.md)"
 msgstr "[設計](design/linalg.md)"
 
-#: manual/index.md:68
+#: manual/index.md:59
 msgid "`poly`: derivatives of dense and univariate sparse `luna-poly` polynomials"
 msgstr "`poly`：`luna-poly` の密多項式と一変数疎多項式の導関数"
 
-#: manual/index.md:68
+#: manual/index.md:59
 msgid "[tutorial](tutorial/poly.md)"
 msgstr "[チュートリアル](tutorial/poly.md)"
 
-#: manual/index.md:68
+#: manual/index.md:59
 msgid "[API](api/poly.md)"
 msgstr "[API](api/poly.md)"
 
-#: manual/index.md:68
+#: manual/index.md:59
 msgid "[design](design/poly.md)"
 msgstr "[設計](design/poly.md)"
 
-#: manual/index.md:69
+#: manual/index.md:60
 msgid "Guides"
 msgstr "ガイド"
 
-#: manual/index.md:69
+#: manual/index.md:60
 msgid "[architecture](architecture.md)"
 msgstr "[アーキテクチャ](architecture.md)"
 
-#: manual/index.md:69
+#: manual/index.md:60
 msgid "[conventions](conventions.md)"
 msgstr "[規約](conventions.md)"
 
-#: manual/index.md:71
+#: manual/index.md:62
 msgid "Two more packages have no manual pages. `examples` holds five small functions (`basic_diff_example`, `square_diff_example`, `gradient_example`, `jacobian_example`, `polynomial_derivative_example`) that show each layer in a few lines; read [`src/examples/examples.mbt`](../../src/examples/examples.mbt). `tests` is the black-box test suite of all packages, including the `linear-algebra` and `luna-poly` integration tests."
 msgstr "ほかに 2 つのパッケージにはマニュアルページがありません。`examples` には各層を数行で示す 5 つの小さな関数（`basic_diff_example`、`square_diff_example`、`gradient_example`、`jacobian_example`、`polynomial_derivative_example`）があります。[`src/examples/examples.mbt`](../../src/examples/examples.mbt) を読んでください。`tests` は全パッケージのブラックボックステストスイートで、`linear-algebra` と `luna-poly` の統合テストも含みます。"
 
-#: manual/index.md:78
+#: manual/index.md:69
 msgid "Exported items"
 msgstr "公開項目"
 
-#: manual/index.md:80
+#: manual/index.md:71
 msgid "The number type"
 msgstr "数値型"
 
-#: manual/index.md:82
-msgid "`Dual[T]` with `Dual::new`, `constant`, `variable`, `value`, `tangent`, `zero` and `one`"
-msgstr "`Dual::new`、`constant`、`variable`、`value`、`tangent`、`zero`、`one` を持つ `Dual[T]`"
+#: manual/index.md:73
+msgid "`Dual[T]` with `Dual::new`, `constant`, `variable`, `value`, `tangent`, `zero`, `one`, `from_natural` and `from_integer`"
+msgstr "`Dual::new`、`constant`、`variable`、`value`、`tangent`、`zero`、`one`、`from_natural`、`from_integer` を持つ `Dual[T]`"
 
-#: manual/index.md:84
+#: manual/index.md:75
 msgid "Arithmetic: `add`, `sub`, `neg`, `mul`, `div` and `equal`, also as operators"
 msgstr "算術：`add`、`sub`、`neg`、`mul`、`div`、`equal`（演算子としても使える）"
 
-#: manual/index.md:86
+#: manual/index.md:77
 msgid "Elementary rules: `sqrt`, `exp`, `exp2`, `ln`, `log2`, `log10`, `sin`, `cos`, `tan`"
 msgstr "初等関数の規則：`sqrt`、`exp`、`exp2`、`ln`、`log2`、`log10`、`sin`、`cos`、`tan`"
 
-#: manual/index.md:88
+#: manual/index.md:79
 msgid "Checked forms: `div_checked`, `sqrt_checked`"
 msgstr "チェック付きの形：`div_checked`、`sqrt_checked`"
 
-#: manual/index.md:92
+#: manual/index.md:83
 msgid "Scalar: `diff`, `value_and_diff`"
 msgstr "スカラー：`diff`、`value_and_diff`"
 
-#: manual/index.md:93
+#: manual/index.md:84
 msgid "Vector: `gradient`, `value_and_gradient`, `jacobian`, `value_and_jacobian`"
 msgstr "ベクトル：`gradient`、`value_and_gradient`、`jacobian`、`value_and_jacobian`"
 
-#: manual/index.md:95
+#: manual/index.md:86
 msgid "Polynomial: `eval_dual`, `dense_value_and_derivative_at`, `dense_derivative_at`, the `sparse_univariate_*` functions and their compatibility names"
 msgstr "多項式：`eval_dual`、`dense_value_and_derivative_at`、`dense_derivative_at`、`sparse_univariate_*` の各関数とその互換名"
 
-#: manual/index.md:99
+#: manual/index.md:90
 msgid "Re-exported vocabulary"
 msgstr "再エクスポートする語彙"
 
-#: manual/index.md:101
-msgid "From `luna-generic`: `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring`, `Ring`, `IntegralHomomorphism`"
-msgstr "`luna-generic` から：`Zero`、`One`、`AddMonoid`、`AddGroup`、`MulMonoid`、`Semiring`、`Ring`、`IntegralHomomorphism`"
+#: manual/index.md:92
+msgid "From `luna-generic`: `Zero`, `One`, `AddMonoid`, `AddGroup`, `MulMonoid`, `Semiring`, `Ring`, `FromNat`, `FromInteger`"
+msgstr "`luna-generic` から：`Zero`、`One`、`AddMonoid`、`AddGroup`、`MulMonoid`、`Semiring`、`Ring`、`FromNat`、`FromInteger`"
 
-#: manual/index.md:103
+#: manual/index.md:94
 msgid "From `arithmetic`: `Sqrt`, `SqrtChecked`, `Exponential`, `Logarithmic`, `Trigonometric`, `Constants`, `DivChecked`, `ArithmeticContext`, `ArithmeticError`, `ArithmeticErrorKind`, `RoundingMode`"
 msgstr "`arithmetic` から：`Sqrt`、`SqrtChecked`、`Exponential`、`Logarithmic`、`Trigonometric`、`Constants`、`DivChecked`、`ArithmeticContext`、`ArithmeticError`、`ArithmeticErrorKind`、`RoundingMode`"
 
-#: manual/index.md:106
+#: manual/index.md:97
 msgid "From `linear-algebra` and `luna-poly`: `Vector`, `Matrix`, `DensePolynomial`, `SparsePolynomial` in the bridge packages"
 msgstr "`linear-algebra` と `luna-poly` から：ブリッジパッケージの `Vector`、`Matrix`、`DensePolynomial`、`SparsePolynomial`"
 
-#: manual/index.md:109
+#: manual/index.md:100
 msgid "Where to read next"
 msgstr "次に読むもの"
 
-#: manual/index.md:111
+#: manual/index.md:102
 msgid "The [autodiff tutorial](tutorial/autodiff.md) differentiates a function with one import. The [dual API](api/dual.md) lists every rule and instance of the number type, and the [dual design](design/dual.md) derives them, with the rounding error bounds and the comparison with finite differences."
 msgstr "[autodiff チュートリアル](tutorial/autodiff.md) は 1 つのインポートだけで関数を微分します。[dual API](api/dual.md) は数値型のすべての規則とインスタンスを挙げ、[dual の設計](design/dual.md) はそれらを、丸め誤差の上界や有限差分との比較とともに導出します。"
 
-#: manual/index.md:116
+#: manual/index.md:107
 msgid "New to automatic differentiation: read the [autodiff tutorial](tutorial/autodiff.md), then the [dual tutorial](tutorial/dual.md), which compares dual numbers with finite differences."
 msgstr "自動微分が初めての場合：[autodiff チュートリアル](tutorial/autodiff.md) を読み、次に双対数と有限差分を比較している [dual チュートリアル](tutorial/dual.md) を読んでください。"
 
-#: manual/index.md:120
+#: manual/index.md:111
 msgid "Using it in a library: import `Luna-Flow/autodiff` and keep the [autodiff API](api/autodiff.md) and the [dual API](api/dual.md) at hand; add the [linalg tutorial](tutorial/linalg.md) or the [poly tutorial](tutorial/poly.md) for vectors and polynomials, and the [checked tutorial](tutorial/checked.md) when failures must be values."
 msgstr "ライブラリで使う場合：`Luna-Flow/autodiff` をインポートし、[autodiff API](api/autodiff.md) と [dual API](api/dual.md) を手元に置いてください。ベクトルと多項式には [linalg チュートリアル](tutorial/linalg.md) か [poly チュートリアル](tutorial/poly.md) を、失敗を値として扱う必要があるときは [checked チュートリアル](tutorial/checked.md) を加えてください。"
 
-#: manual/index.md:125
+#: manual/index.md:116
 msgid "Contributing: read the [dual design](design/dual.md) for the algebra, the derivative rules and the error bounds that every new operation must respect, then the [architecture guide](architecture.md), the [repository conventions](conventions.md) and the design page of the package you change."
 msgstr "貢献する場合：新しい演算が守るべき代数、微分規則、誤差の上界について [dual の設計](design/dual.md) を読み、次に [アーキテクチャガイド](architecture.md)、[リポジトリの規約](conventions.md)、変更するパッケージの設計ページを読んでください。"
 
-#: manual/index.md:131
+#: manual/index.md:122
 msgid "Validation"
 msgstr "検証"
 
-#: manual/index.md:133
+#: manual/index.md:124
 msgid "Recommended release checks:"
 msgstr "推奨するリリース前チェック:"
 
@@ -3113,7 +3150,7 @@ msgstr "チェック付きの失敗を処理する"
 
 #: manual/tutorial/autodiff.md:119
 #: manual/tutorial/checked.md:144
-#: manual/tutorial/core.md:123
+#: manual/tutorial/core.md:126
 #: manual/tutorial/dual.md:221
 #: manual/tutorial/elementary.md:128
 #: manual/tutorial/forward.md:169
@@ -3144,7 +3181,7 @@ msgstr "チェック付き演算の詳細：[checked チュートリアル](chec
 
 #: manual/tutorial/autodiff.md:128
 #: manual/tutorial/checked.md:154
-#: manual/tutorial/core.md:132
+#: manual/tutorial/core.md:135
 #: manual/tutorial/dual.md:275
 #: manual/tutorial/elementary.md:138
 #: manual/tutorial/forward.md:214
@@ -3162,12 +3199,12 @@ msgid "**Re-exported traits are the original traits.** An instance you write for
 msgstr "**再エクスポートされたトレイトは元のトレイトそのものです。** `@lg.Ring` に対して書いたインスタンスは `@autodiff.Ring` のインスタンスでもあります。両方を実装しないでください。"
 
 #: manual/tutorial/autodiff.md:134
-msgid "**Literals need `Dual::constant`** or `from_integral` inside differentiated code."
-msgstr "**微分されるコード内のリテラルには `Dual::constant`** または `from_integral` が必要です。"
+msgid "**Literals need `Dual::constant`** or `FromInteger::from_integer` inside differentiated code."
+msgstr "**微分されるコード内のリテラルには `Dual::constant`** または `FromInteger::from_integer` が必要です。"
 
 #: manual/tutorial/autodiff.md:137
-#: manual/tutorial/checked.md:170
-#: manual/tutorial/core.md:141
+#: manual/tutorial/checked.md:166
+#: manual/tutorial/core.md:144
 #: manual/tutorial/dual.md:298
 #: manual/tutorial/elementary.md:151
 #: manual/tutorial/forward.md:228
@@ -3265,22 +3302,18 @@ msgid "**Tiny and huge divisors.** $c^2$ rounds to zero for $|c| < 1.57 \\times 
 msgstr "**極小と極大の除数。** $|c| < 1.57 \\times 10^{-162}$ では $c^2$ がゼロに丸められ、接成分の除算が失敗します（ゼロ除算、分子もゼロなら定義域エラー）。$|c| > 1.34 \\times 10^{154}$ ではオーバーフローし、`div_checked` は接成分 $0$ の `Ok` を返します。このような除数はスケーリングしてください。"
 
 #: manual/tutorial/checked.md:163
-msgid "**The pinned `arithmetic` does not check square roots.** With `arithmetic@0.2.1` from `moon.mod`, `sqrt_checked` of a negative `Double` returns NaN components instead of an error; see [versions of arithmetic](../api/checked.md#versions-of-arithmetic)."
-msgstr "**固定されている `arithmetic` は平方根をチェックしない。** `moon.mod` の `arithmetic@0.2.1` では、負の `Double` に対する `sqrt_checked` はエラーではなく NaN 成分を返します。[arithmetic のバージョン](../api/checked.md#versions-of-arithmetic) を参照してください。"
-
-#: manual/tutorial/checked.md:167
 msgid "**Unchecked operators stay unchecked.** `x / y` and `x.sqrt()` on dual numbers never return errors; use the `_checked` forms."
 msgstr "**チェックなしの演算子はチェックなしのままです。** 双対数上の `x / y` と `x.sqrt()` がエラーを返すことはありません。`_checked` の形式を使ってください。"
 
-#: manual/tutorial/checked.md:172
+#: manual/tutorial/checked.md:168
 msgid "The [checked API](../api/checked.md) lists the re-exported names."
 msgstr "[checked API](../api/checked.md) には再エクスポートされる名前が記載されています。"
 
-#: manual/tutorial/checked.md:173
+#: manual/tutorial/checked.md:169
 msgid "The [dual API](../api/dual.md#checked-operations) gives the exact error table."
 msgstr "[dual API](../api/dual.md#checked-operations) には正確なエラー表があります。"
 
-#: manual/tutorial/checked.md:175
+#: manual/tutorial/checked.md:171
 msgid "[arithmetic](https://lunaflow.cn/en/arithmetic/) documents the error model."
 msgstr "[arithmetic](https://lunaflow.cn/en/arithmetic/) ではエラーモデルを文書化しています。"
 
@@ -3300,6 +3333,10 @@ msgstr "環レベルのジェネリックなコードを書く"
 msgid "use an integer constant in generic code"
 msgstr "ジェネリックなコードで整数定数を使う"
 
+#: manual/tutorial/core.md:12
+msgid "`@ad_core.FromInteger::from_integer(n)`, or `@lg.lift_to(n)` for an `Int`"
+msgstr "`@ad_core.FromInteger::from_integer(n)`、`Int` なら `@lg.lift_to(n)`"
+
 #: manual/tutorial/core.md:13
 msgid "start a sum or a product"
 msgstr "和や積を始める"
@@ -3317,62 +3354,62 @@ msgid "Integer constants in generic code"
 msgstr "ジェネリックなコード中の整数定数"
 
 #: manual/tutorial/core.md:51
-msgid "Literals have a fixed type; inside a generic function, make constants with `IntegralHomomorphism::from_integral`:"
-msgstr "リテラルは型が固定されています。ジェネリック関数の中では、`IntegralHomomorphism::from_integral` で定数を作ります："
+msgid "Literals have a fixed type; inside a generic function, make constants with `FromInteger::from_integer`, which takes a `BigInt` literal such as `2N`:"
+msgstr "リテラルは型が固定されています。ジェネリック関数の中では、`FromInteger::from_integer` で定数を作ります。引数は `2N` のような `BigInt` リテラルです："
 
 #: manual/tutorial/core.md:71
-msgid "On `Dual[T]`, `from_integral` produces constants with tangent zero."
-msgstr "`Dual[T]` 上では、`from_integral` は接成分 0 の定数を生成します。"
+msgid "On `Dual[T]`, `from_integer` produces constants with tangent zero. For an integer held in an `Int` (or another integral type), `@lg.lift_to(n)` from `Luna-Flow/luna-generic` converts it through the same map; the older `IntegralHomomorphism::from_integral` is deprecated."
+msgstr "`Dual[T]` 上では、`from_integer` は接成分がゼロの定数を作ります。`Int`（または他の整数型）に入った整数は、`Luna-Flow/luna-generic` の `@lg.lift_to(n)` が同じ写像で変換します。従来の `IntegralHomomorphism::from_integral` は非推奨です。"
 
-#: manual/tutorial/core.md:73
+#: manual/tutorial/core.md:76
 msgid "Identities"
 msgstr "単位元"
 
-#: manual/tutorial/core.md:75
+#: manual/tutorial/core.md:78
 msgid "`Zero::zero()` and `One::one()` are constants of any ring, including `Dual[T]`:"
 msgstr "`Zero::zero()` と `One::one()` は、`Dual[T]` を含む任意の環の定数です："
 
-#: manual/tutorial/core.md:97
+#: manual/tutorial/core.md:100
 msgid "Generic code over a semiring"
 msgstr "半環上のジェネリックなコード"
 
-#: manual/tutorial/core.md:99
+#: manual/tutorial/core.md:102
 msgid "Code that needs no subtraction can ask for `Semiring` only, so it also accepts unsigned integers:"
 msgstr "減算を必要としないコードは `Semiring` だけを要求できるので、符号なし整数も受け付けます："
 
-#: manual/tutorial/core.md:125
+#: manual/tutorial/core.md:128
 msgid "The same generic functions can be passed to `@autodiff.diff`, see the [forward tutorial](forward.md)."
 msgstr "同じジェネリック関数を `@autodiff.diff` に渡すこともできます。[forward チュートリアル](forward.md) を参照してください。"
 
-#: manual/tutorial/core.md:127
+#: manual/tutorial/core.md:130
 msgid "For `sqrt`, `exp`, `sin` and friends you need the analytic traits; import [`elementary`](elementary.md) or the root package."
 msgstr "`sqrt`、`exp`、`sin` などには解析的トレイトが必要です。[`elementary`](elementary.md) またはルートパッケージをインポートしてください。"
 
-#: manual/tutorial/core.md:129
+#: manual/tutorial/core.md:132
 msgid "Your own number type joins by implementing the `luna-generic` traits; it then works both directly and as the `T` of `Dual[T]`."
 msgstr "独自の数値型は `luna-generic` のトレイトを実装することで参加できます。そうすれば直接でも、`Dual[T]` の `T` としても動作します。"
 
-#: manual/tutorial/core.md:134
+#: manual/tutorial/core.md:137
 msgid "**No division.** `core` has no `Field`; use the `Div` operator on concrete types or the [checked](checked.md) facade."
 msgstr "**除算はありません。** `core` には `Field` がありません。具体的な型では `Div` 演算子を使うか、[checked](checked.md) ファサードを使ってください。"
 
-#: manual/tutorial/core.md:136
+#: manual/tutorial/core.md:139
 msgid "**`one()` is not the variable.** `One::one()` on `Dual[T]` has tangent zero; seed the variable with `Dual::variable`."
 msgstr "**`one()` は変数ではありません。** `Dual[T]` 上の `One::one()` の接成分は 0 です。変数は `Dual::variable` でシードしてください。"
 
-#: manual/tutorial/core.md:138
+#: manual/tutorial/core.md:141
 msgid "**Unsigned types stop at `Semiring`.** `UInt` has no `Ring` instance, so functions bounded by `Ring` do not accept it."
 msgstr "**符号なし型は `Semiring` までです。** `UInt` には `Ring` インスタンスがないので、`Ring` で境界付けられた関数はこれを受け付けません。"
 
-#: manual/tutorial/core.md:143
+#: manual/tutorial/core.md:146
 msgid "The [core API](../api/core.md) lists the re-exported traits and their `Dual[T]` instances."
 msgstr "[core API](../api/core.md) には再エクスポートされるトレイトとその `Dual[T]` インスタンスが記載されています。"
 
-#: manual/tutorial/core.md:145
+#: manual/tutorial/core.md:148
 msgid "The [dual design](../design/dual.md) proves the ring laws of $T[\\varepsilon]$."
 msgstr "[dual の設計](../design/dual.md) では $T[\\varepsilon]$ の環の法則を証明しています。"
 
-#: manual/tutorial/core.md:147
+#: manual/tutorial/core.md:150
 msgid "[luna-generic](https://lunaflow.cn/en/luna-generic/) documents the trait hierarchy."
 msgstr "[luna-generic](https://lunaflow.cn/en/luna-generic/) ではトレイト階層を文書化しています。"
 
@@ -3486,8 +3523,8 @@ msgid "Write one function for plain and dual numbers"
 msgstr "通常の数と双対数のための 1 つの関数を書く"
 
 #: manual/tutorial/dual.md:163
-msgid "Write the function against the traits it needs. The same code then runs on `Double` and, for derivatives, on `Dual[Double]`. Integer constants come from `IntegralHomomorphism::from_integral`:"
-msgstr "関数を、それが必要とするトレイトに対して書きます。すると同じコードが `Double` 上で、そして導関数のためには `Dual[Double]` 上で動作します。整数定数は `IntegralHomomorphism::from_integral` から得ます："
+msgid "Write the function against the traits it needs. The same code then runs on `Double` and, for derivatives, on `Dual[Double]`. Integer constants come from `FromInteger::from_integer`:"
+msgstr "関数を、それが必要とするトレイトに対して書きます。すると同じコードが `Double` 上で、そして導関数のためには `Dual[Double]` 上で動作します。整数定数は `FromInteger::from_integer` から得ます："
 
 #: manual/tutorial/dual.md:189
 msgid "The value computed on dual numbers is bit-for-bit the value computed on `Double`; the tangent is $6x - \\sin x$ at $0.5$."
@@ -3530,8 +3567,8 @@ msgid "To differentiate through `exp` or `sin` with your own type, implement `Ex
 msgstr "独自の型で `exp` や `sin` を通して微分するには、その型に `Luna-Flow/arithmetic` の `Exponential` や `Trigonometric` を実装してください。"
 
 #: manual/tutorial/dual.md:277
-msgid "**Literals are not dual numbers.** `x * 2.0` does not compile when `x` is a `Dual[Double]`. Write `x * @autodiff.Dual::constant(2.0)`, or use `IntegralHomomorphism::from_integral(2)` in generic code."
-msgstr "**リテラルは双対数ではありません。** `x` が `Dual[Double]` のとき、`x * 2.0` はコンパイルできません。`x * @autodiff.Dual::constant(2.0)` と書くか、ジェネリックなコードでは `IntegralHomomorphism::from_integral(2)` を使ってください。"
+msgid "**Literals are not dual numbers.** `x * 2.0` does not compile when `x` is a `Dual[Double]`. Write `x * @autodiff.Dual::constant(2.0)`, or use `FromInteger::from_integer(2N)` in generic code."
+msgstr "**リテラルは双対数ではありません。** `x` が `Dual[Double]` のとき、`x * 2.0` はコンパイルできません。`x * @autodiff.Dual::constant(2.0)` と書くか、ジェネリックなコードでは `FromInteger::from_integer(2N)` を使ってください。"
 
 #: manual/tutorial/dual.md:280
 msgid "**Comparisons see only what you compare.** `Dual[T]` has no `<`. Compare `x.value()`; the derivative is then the derivative of the branch taken, so functions such as `abs` written with a branch have the one-sided derivative at the kink."
@@ -3658,8 +3695,8 @@ msgid "**Outside the domain you get NaN or infinity.** `ln` of a non-positive nu
 msgstr "**定義域の外では NaN や無限大になる。** 非正の数の `ln` やゼロでの `sqrt` はチェックされません。負の数の `ln` は値が NaN でも接成分は有限なので、値を確認してください。"
 
 #: manual/tutorial/elementary.md:143
-msgid "**The trait instances need more than the method.** Calling `@elementary.Exponential::exp` on `Dual[T]` needs the full instance bound (`Logarithmic` and `IntegralHomomorphism` on `T`); the method `x.exp()` needs less."
-msgstr "**トレイトインスタンスはメソッドより多くを必要とします。** `Dual[T]` 上で `@elementary.Exponential::exp` を呼び出すには、インスタンスの完全な境界（`T` 上の `Logarithmic` と `IntegralHomomorphism`）が必要です。メソッド `x.exp()` が必要とするものはより少なくなります。"
+msgid "**The trait instances need more than the method.** Calling `@elementary.Exponential::exp` on `Dual[T]` needs the full instance bound (`Logarithmic` and `FromInteger` on `T`); the method `x.exp()` needs less."
+msgstr "**トレイトインスタンスはメソッドより多くを必要とします。** `Dual[T]` 上で `@elementary.Exponential::exp` を呼び出すには、インスタンスの完全な境界（`T` 上の `Logarithmic` と `FromInteger`）が必要です。メソッド `x.exp()` が必要とするものはより少なくなります。"
 
 #: manual/tutorial/elementary.md:147
 msgid "**No hyperbolic or inverse functions.** `sinh`, `asin`, `atan` and friends have no dual rule yet; compose them from the available functions if you need them."
@@ -4057,6 +4094,54 @@ msgstr "[poly の設計](../design/poly.md) では双対数上のホーナー法
 msgid "[luna-poly](https://lunaflow.cn/en/luna-poly/) documents the polynomial types."
 msgstr "[luna-poly](https://lunaflow.cn/en/luna-poly/) では多項式型を文書化しています。"
 
+#~ msgid "Versions of `arithmetic`"
+#~ msgstr "`arithmetic` のバージョン"
+
+#~ msgid "The checked rules of `Dual[T]` only call `T`'s `div_checked` and `sqrt_checked`, so the errors depend on the `arithmetic` release that provides the `Double` instances. This manual and its examples follow `arithmetic` 0.5, which the repository is developed against in a workspace. `moon.mod` still pins `arithmetic@0.2.1`, where `Double` behaves differently:"
+#~ msgstr "`Dual[T]` のチェック付き規則は `T` の `div_checked` と `sqrt_checked` を呼ぶだけなので、エラーは `Double` のインスタンスを提供する `arithmetic` のリリースに依存します。このマニュアルとその例は、リポジトリがワークスペースで開発に使っている `arithmetic` 0.5 に従います。`moon.mod` はまだ `arithmetic@0.2.1` に固定されており、そこでは `Double` の振る舞いが異なります。"
+
+#~ msgid "Operation on `Double`"
+#~ msgstr "`Double` 上の演算"
+
+#~ msgid "exists"
+#~ msgstr "あり"
+
+#~ msgid "does not exist"
+#~ msgstr "なし"
+
+#~ msgid "[!WARNING] With `arithmetic@0.2.1`, `Dual::sqrt_checked` of a negative `Double` returns `Ok` with value and tangent NaN instead of an error. Check `value().is_nan()` until the pin is raised."
+#~ msgstr "[!WARNING] `arithmetic@0.2.1` では、負の `Double` に対する `Dual::sqrt_checked` はエラーではなく、値と接成分がともに NaN の `Ok` を返します。固定バージョンが引き上げられるまでは `value().is_nan()` を確認してください。"
+
+#~ msgid "`from_integral` from integral types"
+#~ msgstr "整数型からの `from_integral`"
+
+#~ msgid "The canonical map from the integers, used for integer constants in generic code."
+#~ msgstr "整数からの標準的な写像です。ジェネリックコード中の整数定数に使います。"
+
+#~ msgid "With the `arithmetic@0.2.1` pinned in `moon.mod`, every zero divisor, including $0/0$, gives `is_division_by_zero()`, and $\\infty/\\infty$ gives NaN without an error (see [versions of arithmetic](checked.md#versions-of-arithmetic))."
+#~ msgstr "`moon.mod` で固定されている `arithmetic@0.2.1` では、$0/0$ を含むすべてのゼロ除数が `is_division_by_zero()` を返し、$\\infty/\\infty$ はエラーなしで NaN になります（[arithmetic のバージョン](checked.md#versions-of-arithmetic) を参照）。"
+
+#~ msgid "`from_integral(n)` is `Dual::constant(from_integral(n))`"
+#~ msgstr "`from_integral(n)` は `Dual::constant(from_integral(n))`"
+
+#~ msgid "`NatHomomorphism::from_nat(n)` from `Luna-Flow/luna-generic`"
+#~ msgstr "`Luna-Flow/luna-generic` の `NatHomomorphism::from_nat(n)`"
+
+#~ msgid "`sqrt_checked(x)` succeeds exactly when `T`'s `sqrt_checked(a)` and `div_checked(b, 2√a)` succeed; for `Double` with `arithmetic` 0.5 that is $a > 0$, or $a$ NaN. With `arithmetic@0.2.1` it also succeeds, with NaN components, for $a < 0$, because that release does not check the domain of the square root (see [versions of arithmetic](../api/checked.md#versions-of-arithmetic))."
+#~ msgstr "`sqrt_checked(x)` が成功するのは、`T` の `sqrt_checked(a)` と `div_checked(b, 2√a)` がともに成功するときに限ります。`arithmetic` 0.5 の `Double` では $a > 0$ または $a$ が NaN の場合です。`arithmetic@0.2.1` では平方根の定義域をチェックしないため、$a < 0$ でも NaN 成分で成功します（[arithmetic のバージョン](../api/checked.md#versions-of-arithmetic) を参照）。"
+
+#~ msgid "No `Field`, `MulGroup`, `Inverse` or `NatHomomorphism`."
+#~ msgstr "`Field`、`MulGroup`、`Inverse`、`NatHomomorphism` は含みません。"
+
+#~ msgid "[!IMPORTANT] The checked operations report the errors of `T`'s own `DivChecked` and `SqrtChecked`. This manual describes `Double` as implemented by `Luna-Flow/arithmetic` 0.5, the version the repository is developed against. `moon.mod` still pins `arithmetic@0.2.1`, whose `Double` `sqrt_checked` never fails (a negative input gives NaN) and whose `div_checked` reports every zero divisor, including $0/0$, as a division by zero. See the [checked API](api/checked.md#versions-of-arithmetic)."
+#~ msgstr "[!IMPORTANT] チェック付き演算が報告するのは `T` 自身の `DivChecked` と `SqrtChecked` のエラーです。このマニュアルは、リポジトリの開発に使われている `Luna-Flow/arithmetic` 0.5 の実装に従って `Double` を説明します。`moon.mod` はまだ `arithmetic@0.2.1` に固定されており、その `Double` の `sqrt_checked` は決して失敗せず（負の入力は NaN になる）、`div_checked` は $0/0$ を含むすべてのゼロ除数をゼロ除算として報告します。[checked API](api/checked.md#versions-of-arithmetic) を参照してください。"
+
+#~ msgid "**The pinned `arithmetic` does not check square roots.** With `arithmetic@0.2.1` from `moon.mod`, `sqrt_checked` of a negative `Double` returns NaN components instead of an error; see [versions of arithmetic](../api/checked.md#versions-of-arithmetic)."
+#~ msgstr "**固定されている `arithmetic` は平方根をチェックしない。** `moon.mod` の `arithmetic@0.2.1` では、負の `Double` に対する `sqrt_checked` はエラーではなく NaN 成分を返します。[arithmetic のバージョン](../api/checked.md#versions-of-arithmetic) を参照してください。"
+
+#~ msgid "On `Dual[T]`, `from_integral` produces constants with tangent zero."
+#~ msgstr "`Dual[T]` 上では、`from_integral` は接成分 0 の定数を生成します。"
+
 #~ msgid "the tangent division fails; see the pitfall below"
 #~ msgstr "接成分の除算が失敗します。下記の落とし穴を参照してください"
 
@@ -4068,9 +4153,6 @@ msgstr "[luna-poly](https://lunaflow.cn/en/luna-poly/) では多項式型を文�
 
 #~ msgid "In `Double`, $c^2$ can be zero for non-zero $c$: $c^2$ underflows to $0$ for $|c| < 2^{-537}$ (rounding to nearest, with gradual underflow) even though $a/c$ may be finite. The checked quotient then reports a division by zero from the tangent. Such inputs are better rescaled; the [dual design](dual.md#rounding-error) assumes no underflow."
 #~ msgstr "`Double` では、0 でない $c$ に対しても $c^2$ が 0 になることがあります。$|c| < 2^{-537}$ では（最近接丸め、漸進的アンダーフローのもとで）$a/c$ が有限であっても $c^2$ はアンダーフローして $0$ になります。このときチェック付きの商は接成分からのゼロ除算を報告します。このような入力はスケーリングし直すほうがよいでしょう。[dual の設計](dual.md#rounding-error) はアンダーフローが起きないことを仮定しています。"
-
-#~ msgid "`sqrt_checked(x)` succeeds exactly when `T`'s `sqrt_checked(a)` and `div_checked(b, 2√a)` succeed; for `Double` that is $a > 0$, or $a$ NaN."
-#~ msgstr "`sqrt_checked(x)` は、`T` の `sqrt_checked(a)` と `div_checked(b, 2√a)` が成功するときにちょうど成功します。`Double` ではそれは $a > 0$、または $a$ が NaN の場合です。"
 
 #~ msgid "First derivatives only. Higher derivatives come from nesting `Dual[Dual[T]]`, which costs $2^k$ per order; there is no truncated Taylor (jet) type."
 #~ msgstr "1 階導関数のみです。高階導関数は `Dual[Dual[T]]` を入れ子にすることで得られ、1 階ごとに $2^k$ のコストがかかります。打ち切りテイラー（ジェット）型はありません。"

@@ -60,7 +60,7 @@ pub using @arithmetic {trait SqrtChecked}
 ### `Exponential`
 
 `exp` and `exp2`. The `Dual[T]` instance needs `T : Exponential +
-Logarithmic + IntegralHomomorphism + Mul`, because `exp2` uses $\ln 2$.
+Logarithmic + FromInteger + Mul`, because `exp2` uses $\ln 2$.
 
 ```mbti
 pub using @arithmetic {trait Exponential}
@@ -69,7 +69,7 @@ pub using @arithmetic {trait Exponential}
 ### `Logarithmic`
 
 `ln`, `log2` and `log10`. The `Dual[T]` instance needs `T : Logarithmic +
-IntegralHomomorphism + Mul + Div`.
+FromInteger + Mul + Div`.
 
 ```mbti
 pub using @arithmetic {trait Logarithmic}

@@ -80,9 +80,13 @@ project uses semantic versioning.
   documented the other failure modes of squaring the divisor: the domain
   error for a constant over a tiny constant, the subnormal range, and the
   silent zero tangent when $c^2$ overflows ($|c| \ge 2^{512}$).
-- Documented which `arithmetic` release the checked examples assume (0.5)
-  and how `Double` behaves under the pinned `arithmetic@0.2.1`
-  (`sqrt_checked` of a negative input returns NaN instead of an error).
+- The manual follows the dependency bump: generic code uses `FromInteger`
+  (`FromInteger::from_integer(2N)`, `@lg.lift_to`) instead of
+  `IntegralHomomorphism`, the API pages list `Dual::from_natural`,
+  `Dual::from_integer` and the deprecated compatibility shims, and the notes
+  on `arithmetic@0.2.1` (the version table on the checked API page and the
+  overview warning) are gone now that `arithmetic` 0.5 is pinned. Install
+  lines name the `0.3.0` in `moon.mod`.
 - Documented that `ln` of a negative input has a NaN value but a finite
   tangent, and that `sqrt` and `ln` of a constant zero give a NaN tangent.
 - Derivations added or fixed: nested second derivatives and the cost of

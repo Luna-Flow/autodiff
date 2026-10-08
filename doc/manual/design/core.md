@@ -28,8 +28,8 @@ $$
 
 holds in every commutative ring, so the traits `Zero`, `One`, `AddMonoid`,
 `AddGroup`, `MulMonoid`, `Semiring`, `Ring` and the canonical map
-$\mathbb Z \to T$ (`IntegralHomomorphism`) are all such code needs. The
-facade re-exports exactly these. In `luna-generic` each trait extends the
+$\mathbb Z \to T$ (`FromInteger`, with its supertrait `FromNat`) are all
+such code needs. The facade re-exports exactly these. In `luna-generic` each trait extends the
 ones before it,
 
 $$
@@ -37,7 +37,7 @@ $$
 \texttt{AddGroup} &: \texttt{AddMonoid} + \texttt{Neg} + \texttt{Sub}, &
 \texttt{Semiring} &: \texttt{AddMonoid} + \texttt{MulMonoid}, \\
 \texttt{Ring} &: \texttt{Semiring} + \texttt{Neg} + \texttt{Sub}, &
-\texttt{IntegralHomomorphism} &: \texttt{NatHomomorphism},
+\texttt{FromInteger} &: \texttt{FromNat},
 \end{aligned}
 $$
 
@@ -89,4 +89,5 @@ shared with the rest of Luna Flow.
 ## Boundaries
 
 - No analytic traits, no checked operations, no drivers.
-- No `Field`, `MulGroup`, `Inverse` or `NatHomomorphism`.
+- No `Field`, `MulGroup` or `Inverse`, and none of the `NatHomomorphism` /
+  `IntegralHomomorphism` traits that `luna-generic` 0.4.0 deprecates.

@@ -3,6 +3,5 @@ import {
   "Luna-Flow/autodiff/linalg",
   "Luna-Flow/autodiff/poly",
   "Luna-Flow/linear-algebra/immut" @la,
-  "Luna-Flow/luna-generic",
   "Luna-Flow/luna-poly/immut/dense",
 }

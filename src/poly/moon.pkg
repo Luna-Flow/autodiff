@@ -4,7 +4,3 @@ import {
   "Luna-Flow/luna-poly/immut/dense",
   "Luna-Flow/luna-poly/immut/sparse",
 }
-
-import {
-  "moonbitlang/core/test",
-} for "test"

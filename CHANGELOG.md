@@ -25,8 +25,8 @@ project uses semantic versioning.
 - **Breaking:** migrated from the `NatHomomorphism` / `IntegralHomomorphism`
   traits, deprecated in luna-generic 0.4.0, to `FromNat` / `FromInteger`.
   `Dual[T]` implements `FromNat` and `FromInteger` (a constant with zero
-  tangent) instead of the old traits, and `Dual::from_natural` /
-  `Dual::from_integer` are promoted like `Dual::zero` / `Dual::one`.
+  tangent), and `Dual::from_natural` / `Dual::from_integer` are promoted like
+  `Dual::zero` / `Dual::one`.
   `Dual::sqrt`, `sqrt_checked`, `exp2`, `log2`, `log10` and the `Sqrt`,
   `SqrtChecked`, `Exponential` and `Logarithmic` instances of `Dual[T]` now
   require `T : FromInteger` instead of `T : IntegralHomomorphism`; the
@@ -44,15 +44,19 @@ project uses semantic versioning.
   `Dual::pi`, `Dual::e` and `Dual::tau`. Use `!=`,
   `Repr(x)` / `@debug.Debug::to_repr` and `Constants::pi` / `e` / `tau`
   instead.
+- The `NatHomomorphism` and `IntegralHomomorphism` instances of `Dual[T]`, with
+  the hidden method forms `Dual::from_nat` and `Dual::from_integral`, are kept
+  as compatibility shims in `src/dual/compat.mbt`. luna-poly 0.2.0 still
+  bounds `DensePolynomial::derivative` by `NatHomomorphism`, and the shims keep
+  it working for dual coefficients (covered by a test). They will be removed
+  once luna-poly moves to `FromNat` and is published. Use
+  `FromNat::from_natural`, `FromInteger::from_integer` or `@lg.lift_to` in
+  new code.
 
 ### Removed
 
-- `Dual::from_nat` and `Dual::from_integral`, together with the
-  `NatHomomorphism` and `IntegralHomomorphism` instances of `Dual[T]` and the
-  `IntegralHomomorphism` re-export. Use `FromNat::from_natural`,
-  `FromInteger::from_integer` or `@lg.lift_to` instead. A consequence:
-  `DensePolynomial[Dual[T]]::derivative` from luna-poly 0.2.0, which still
-  requires `NatHomomorphism`, is no longer available for dual coefficients.
+- The `IntegralHomomorphism` re-export from the root package and `core`; they
+  re-export `FromInteger` and `FromNat` instead.
 
 ### Added
 

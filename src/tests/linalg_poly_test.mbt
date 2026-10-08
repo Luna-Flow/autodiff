@@ -286,3 +286,19 @@ test "poly sparse bridge works after contextual partial evaluation" {
   assert_eq(approx_eq(value, 59.0), true)
   assert_eq(approx_eq(derivative, 16.0), true)
 }
+
+///|
+/// luna-poly 0.2.0 bounds `derivative` by the deprecated `NatHomomorphism`;
+/// the compatibility instance on `Dual[T]` keeps dual coefficients working.
+test "poly dense formal derivative accepts dual coefficients" {
+  // p(y) = 1 + (2 + t) y + (3 + t/2) y^2, differentiated in t by the tangents.
+  let polynomial = @dense.DensePolynomial::from_coefficients([
+    @autodiff.Dual::new(1.0, 0.0),
+    @autodiff.Dual::new(2.0, 1.0),
+    @autodiff.Dual::new(3.0, 0.5),
+  ])
+  // p'(y) = (2 + t) + (6 + t) y, so p'(2) = 14 + 3 t.
+  let formal = polynomial.derivative().eval(@autodiff.Dual::new(2.0, 0.0))
+  assert_eq(approx_eq(formal.value(), 14.0), true)
+  assert_eq(approx_eq(formal.tangent(), 3.0), true)
+}

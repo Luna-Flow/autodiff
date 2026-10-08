@@ -19,6 +19,4 @@ keywords = [ "autodiff", "dual-numbers", "math" ]
 
 description = "Forward-mode automatic differentiation over Luna Flow algebraic and arithmetic structures."
 
-options(
-  source: "src",
-)
+source = "src"

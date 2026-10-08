@@ -39,6 +39,26 @@ fn dot_dual(
 }
 
 ///|
+fn contextual_to_univariate_sparse(
+  polynomial : @ctx.ContextPolynomial[Double],
+  active_variable : Int,
+) -> @sparse.SparsePolynomial[Double] {
+  @sparse.SparsePolynomial::from_array(
+    polynomial
+    .to_terms()
+    .map(fn(term) {
+      let exponents = term.0.to_array()
+      let active_exponent = if active_variable < exponents.length() {
+        exponents[active_variable]
+      } else {
+        0U
+      }
+      ([active_exponent], term.1)
+    }),
+  )
+}
+
+///|
 test "linalg value_and_gradient handles simple scalar function" {
   let x = @la.Vector::from_array([2.0, 3.0])
   let (value, gradient) = @linalg.value_and_gradient(
@@ -143,6 +163,16 @@ test "poly dense cubic derivative through dual evaluation" {
 }
 
 ///|
+test "poly dense eval_dual scales tangent by input tangent" {
+  let polynomial = @dense.DensePolynomial::from_coefficients([
+    1.0, 2.0, 0.0, 1.0,
+  ])
+  let result = @poly.eval_dual(polynomial, @autodiff.Dual::new(3.0, 4.0))
+  assert_eq(approx_eq(result.value(), 34.0), true)
+  assert_eq(approx_eq(result.tangent(), 116.0), true)
+}
+
+///|
 test "poly dense constant derivative is zero" {
   let polynomial = @dense.DensePolynomial::from_coefficients([5.0])
   let (value, derivative) = @poly.dense_value_and_derivative_at(polynomial, 3.0)
@@ -156,6 +186,32 @@ test "poly dense linear derivative is slope" {
   let (value, derivative) = @poly.value_and_derivative_at(polynomial, 10.0)
   assert_eq(approx_eq(value, 33.0), true)
   assert_eq(approx_eq(derivative, 4.0), true)
+}
+
+///|
+test "poly dense helper matches formal derivative polynomial" {
+  let polynomial = @dense.DensePolynomial::from_coefficients([
+    5.0, -1.0, 0.0, 3.0,
+  ])
+  let x = 2.0
+  let derivative = @poly.dense_derivative_at(polynomial, x)
+  let formal = polynomial.derivative().eval(x)
+  assert_eq(approx_eq(derivative, formal), true)
+}
+
+///|
+test "poly dense substitute preserves dual composition semantics" {
+  let outer = @dense.DensePolynomial::from_coefficients([1.0, 1.0, 1.0])
+  let inner = @dense.DensePolynomial::from_coefficients([2.0, 0.0, 1.0])
+  let rewritten = outer.substitute(inner)
+  let x = @autodiff.Dual::new(3.0, 2.0)
+  let rewritten_result = @poly.eval_dual(rewritten, x)
+  let nested_result = @poly.eval_dual(outer, @poly.eval_dual(inner, x))
+  assert_eq(approx_eq(rewritten_result.value(), nested_result.value()), true)
+  assert_eq(
+    approx_eq(rewritten_result.tangent(), nested_result.tangent()),
+    true,
+  )
 }
 
 ///|
@@ -193,4 +249,40 @@ test "poly sparse univariate linear derivative is slope" {
   )
   assert_eq(approx_eq(value, -2.0), true)
   assert_eq(approx_eq(derivative, -2.0), true)
+}
+
+///|
+test "poly sparse compatibility aliases agree" {
+  let polynomial = @sparse.SparsePolynomial::from_array([
+    ([3U], 2.0),
+    ([1U], -1.0),
+    ([0U], 4.0),
+  ])
+  let x = 2.0
+  let old_value = @poly.sparse_value_and_derivative_at(polynomial, x)
+  let new_value = @poly.sparse_univariate_value_and_derivative_at(polynomial, x)
+  let old_derivative = @poly.sparse_derivative_at(polynomial, x)
+  let new_derivative = @poly.sparse_univariate_derivative_at(polynomial, x)
+  assert_eq(approx_eq(old_value.0, new_value.0), true)
+  assert_eq(approx_eq(old_value.1, new_value.1), true)
+  assert_eq(approx_eq(old_derivative, new_derivative), true)
+}
+
+///|
+test "poly sparse bridge works after contextual partial evaluation" {
+  let context = @poly_core.VariableContext::from_names(["x", "y"])
+  let x = context.require_variable("x")
+  let y = context.require_variable("y")
+  let polynomial = @ctx.ContextPolynomial::from_named_terms_as_sparse(context, [
+    ([(x, 1U), (y, 1U)], 3.0),
+    ([(y, 2U)], 1.0),
+    ([], 4.0),
+  ])
+  let partial = polynomial.eval_partial([(x, 2.0)])
+  let univariate = contextual_to_univariate_sparse(partial, 1)
+  let (value, derivative) = @poly.sparse_univariate_value_and_derivative_at(
+    univariate, 5.0,
+  )
+  assert_eq(approx_eq(value, 59.0), true)
+  assert_eq(approx_eq(derivative, 16.0), true)
 }

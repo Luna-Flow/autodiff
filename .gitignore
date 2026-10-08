@@ -6,3 +6,13 @@ target/
 coverage/
 _coverage/
 coverage_summary.txt
+
+# AI agent / assistant local state (never track)
+.claude/
+.codex/
+.cursor/
+.gemini/
+.kiro/
+.windsurf/
+.aider*
+CLAUDE.local.md

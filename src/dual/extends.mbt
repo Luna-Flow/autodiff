@@ -33,18 +33,16 @@ pub extend Dual with Zero::{zero}
 pub extend Dual with One::{one}
 
 ///|
+/// Canonical constant from a natural number, as with `Dual::zero` and `Dual::one`.
+pub extend Dual with FromNat::{from_natural}
+
+///|
+/// Canonical constant from an integer, as with `Dual::zero` and `Dual::one`.
+pub extend Dual with FromInteger::{from_integer}
+
+///|
 /// Checked quotient-rule division, mirroring the inherent `Dual::sqrt_checked`.
 pub extend Dual with DivChecked::{div_checked}
-
-///|
-#deprecated("Use `@lg.NatHomomorphism::from_nat` instead", skip_current_package=true)
-#doc(hidden)
-pub extend Dual with NatHomomorphism::{from_nat}
-
-///|
-#deprecated("Use `@lg.IntegralHomomorphism::from_integral` instead", skip_current_package=true)
-#doc(hidden)
-pub extend Dual with IntegralHomomorphism::{from_integral}
 
 ///|
 #deprecated("Use `@arithmetic.Constants::pi`/`e`/`tau` instead", skip_current_package=true)

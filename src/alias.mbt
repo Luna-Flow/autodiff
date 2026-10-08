@@ -8,7 +8,8 @@ pub using @forward {value_and_diff, diff}
 pub using @lg {
   trait AddGroup,
   trait AddMonoid,
-  trait IntegralHomomorphism,
+  trait FromInteger,
+  trait FromNat,
   trait MulMonoid,
   trait One,
   trait Ring,

@@ -4,7 +4,7 @@
 fn[T : One + Zero] seed_vector(x : Vector[T], active : Int) -> Vector[Dual[T]] {
   Vector::makei(x.length(), fn(i) {
     if i == active {
-      Dual::new(x[i], T::one())
+      Dual::new(x[i], One::one())
     } else {
       Dual::constant(x[i])
     }

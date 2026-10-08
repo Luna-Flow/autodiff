@@ -6,17 +6,17 @@ pub struct Dual[T] {
 
 ///|
 pub fn[T] Dual::new(value : T, tangent : T) -> Dual[T] {
-  { value, tangent }
+  { value, tangent, }
 }
 
 ///|
 pub fn[T : Zero] Dual::constant(value : T) -> Dual[T] {
-  { value, tangent: T::zero() }
+  { value, tangent: Zero::zero(), }
 }
 
 ///|
 pub fn[T : One] Dual::variable(value : T) -> Dual[T] {
-  { value, tangent: T::one() }
+  { value, tangent: One::one(), }
 }
 
 ///|
@@ -31,12 +31,12 @@ pub fn[T] Dual::tangent(self : Dual[T]) -> T {
 
 ///|
 pub impl[T : Zero] Zero for Dual[T] with fn zero() -> Dual[T] {
-  Dual::constant(T::zero())
+  Dual::constant(Zero::zero())
 }
 
 ///|
 pub impl[T : One + Zero] One for Dual[T] with fn one() -> Dual[T] {
-  Dual::constant(T::one())
+  Dual::constant(One::one())
 }
 
 ///|
@@ -90,14 +90,14 @@ pub impl[T : Ring] Ring for Dual[T]
 pub impl[T : NatHomomorphism + Zero] NatHomomorphism for Dual[T] with fn[
   S : Nat,
 ] from_nat(value : S) -> Dual[T] {
-  Dual::constant(T::from_nat(value))
+  Dual::constant(NatHomomorphism::from_nat(value))
 }
 
 ///|
 pub impl[T : IntegralHomomorphism + Zero] IntegralHomomorphism for Dual[T] with fn[
   S : Integral,
 ] from_integral(value : S) -> Dual[T] {
-  Dual::constant(T::from_integral(value))
+  Dual::constant(IntegralHomomorphism::from_integral(value))
 }
 
 ///|
@@ -129,7 +129,7 @@ pub fn[T : SqrtChecked + DivChecked + IntegralHomomorphism + Mul] Dual::sqrt_che
   match SqrtChecked::sqrt_checked(self.value, ctx) {
     Err(err) => Err(err)
     Ok(root) => {
-      let two : T = T::from_integral(2)
+      let two : T = IntegralHomomorphism::from_integral(2)
       match DivChecked::div_checked(self.tangent, two * root, ctx) {
         Err(err) => Err(err)
         Ok(tangent) => Ok(Dual::new(root, tangent))
@@ -143,7 +143,7 @@ pub fn[T : Sqrt + IntegralHomomorphism + Mul + Div] Dual::sqrt(
   self : Dual[T],
 ) -> Dual[T] {
   let root = Sqrt::sqrt(self.value)
-  let two : T = T::from_integral(2)
+  let two : T = IntegralHomomorphism::from_integral(2)
   Dual::new(root, self.tangent / (two * root))
 }
 
@@ -158,7 +158,7 @@ pub fn[T : Exponential + Logarithmic + IntegralHomomorphism + Mul] Dual::exp2(
   self : Dual[T],
 ) -> Dual[T] {
   let value = Exponential::exp2(self.value)
-  let two : T = T::from_integral(2)
+  let two : T = IntegralHomomorphism::from_integral(2)
   Dual::new(value, self.tangent * value * Logarithmic::ln(two))
 }
 
@@ -171,7 +171,7 @@ pub fn[T : Logarithmic + Div] Dual::ln(self : Dual[T]) -> Dual[T] {
 pub fn[T : Logarithmic + IntegralHomomorphism + Mul + Div] Dual::log2(
   self : Dual[T],
 ) -> Dual[T] {
-  let two : T = T::from_integral(2)
+  let two : T = IntegralHomomorphism::from_integral(2)
   Dual::new(
     Logarithmic::log2(self.value),
     self.tangent / (self.value * Logarithmic::ln(two)),
@@ -182,7 +182,7 @@ pub fn[T : Logarithmic + IntegralHomomorphism + Mul + Div] Dual::log2(
 pub fn[T : Logarithmic + IntegralHomomorphism + Mul + Div] Dual::log10(
   self : Dual[T],
 ) -> Dual[T] {
-  let ten : T = T::from_integral(10)
+  let ten : T = IntegralHomomorphism::from_integral(10)
   Dual::new(
     Logarithmic::log10(self.value),
     self.tangent / (self.value * Logarithmic::ln(ten)),

@@ -6,6 +6,14 @@ This tutorial differentiates analytic code written against the
 its derivative by running it on `Dual[Double]`. The rules behind it are in
 the [elementary design](../design/elementary.md).
 
+| I want to | Use |
+| --- | --- |
+| differentiate `exp`, `ln`, `sin`, ... | the methods `x.exp()`, `x.ln()`, `x.sin()`, ... |
+| write generic analytic code | bounds such as `T : @elementary.Exponential` |
+| use other bases | `exp2`, `log2`, `log10` |
+| use $\pi$, $\tau$ or $e$ | `@elementary.Constants::pi()`, `tau()`, `e()` |
+| a square root that reports errors | `SqrtChecked::sqrt_checked` |
+
 ## Quick start
 
 ```bash
@@ -130,7 +138,8 @@ The derivative $1/\cos^2 a$ grows without bound towards $\pi/2$.
 ## Common pitfalls
 
 - **Outside the domain you get NaN or infinity.** `ln` of a non-positive
-  number and `sqrt` at zero are not checked.
+  number and `sqrt` at zero are not checked. `ln` of a negative number has a
+  NaN value but a finite tangent, so test the value.
 - **The trait instances need more than the method.** Calling
   `@elementary.Exponential::exp` on `Dual[T]` needs the full instance bound
   (`Logarithmic` and `IntegralHomomorphism` on `T`); the method `x.exp()`

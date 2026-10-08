@@ -7,8 +7,19 @@ their errors arise from the derivative rules, and why the facade reuses the
 ## Design goal
 
 Let differentiated code report invalid operations as values, with the same
-error type that scalar Luna Flow code uses, and make it impossible for a
-checked operation to return a valid value with an invalid derivative.
+error type that scalar Luna Flow code uses, and never return a valid value
+with an invalid derivative. The section on
+[floating-point domains](#floating-point-domains) shows where the current
+implementation falls short of the second goal.
+
+## Constraints
+
+- The checked traits and errors belong to `Luna-Flow/arithmetic`; this
+  repository can implement them for `Dual[T]` but cannot add variants.
+- A checked dual operation can only use the checked operations of `T`, so
+  its errors are those of `T`'s instances.
+- `Dual[T]` keeps the unchecked operators `/` and `sqrt` for ordinary
+  formulas; the checked forms are separate methods.
 
 ## Mathematical background
 
@@ -36,11 +47,23 @@ of the scalar square root.
 
 ### Floating-point domains
 
-In `Double`, $c^2$ can be zero for non-zero $c$: $c^2$ underflows to $0$
-for $|c| < 2^{-537}$ (rounding to nearest, with gradual underflow) even
-though $a/c$ may be finite. The checked quotient then reports a division by
-zero from the tangent. Such inputs are better rescaled; the
-[dual design](dual.md#rounding-error) assumes no underflow.
+In `Double`, $c^2$ can be zero for non-zero $c$. With rounding to nearest
+and gradual underflow, $c^2$ rounds to $0$ exactly when $c^2 \le 2^{-1075}$,
+half the smallest subnormal number, that is for
+$|c| < 2^{-537.5} \approx 1.57 \times 10^{-162}$, even though $a/c$ may be
+finite. The checked quotient then fails in the tangent: with a division by
+zero when $bc - ad \ne 0$, and with the domain error of $0/0$ when
+$bc - ad = 0$, for example for a constant divided by a constant, whose true
+tangent is $0$.
+
+At the other end $c^2$ overflows to $\infty$ for
+$|c| \ge 2^{512} \approx 1.34 \times 10^{154}$. `T`'s `div_checked` accepts a
+finite numerator over $\infty$, so the checked quotient returns `Ok` with
+tangent $0$ even when the true tangent $(bc - ad)/c^2$ is a normal number.
+This breaks the design goal: a checked operation returns a wrong derivative
+without an error. Rescale such divisors; the
+[dual design](dual.md#rounding-error) derives the ranges and a formula that
+avoids squaring $c$.
 
 ## Design decisions
 
@@ -59,7 +82,8 @@ $f$ and $f'$, as derived above; in particular `sqrt_checked` fails at $0$.
 At $a = 0$ with $b = 0$ the tangent is the indeterminate $0/0$. One could
 return $0$ (a constant input has no derivative to report), but that would
 make the result depend on how a constant was produced. The implementation
-lets `T` decide, and for `Double` this is a domain error.
+lets `T` decide: for `Double` this is a domain error with `arithmetic` 0.5,
+and a division by zero with the pinned `arithmetic@0.2.1`.
 
 ### Reuse `arithmetic`
 
@@ -83,7 +107,11 @@ follow the unchecked semantics of `T`.
   both $a/c$ and $(bc - ad)/c^2$; then it equals `x / y` computed with the
   same operations.
 - `sqrt_checked(x)` succeeds exactly when `T`'s `sqrt_checked(a)` and
-  `div_checked(b, 2√a)` succeed; for `Double` that is $a > 0$, or $a$ NaN.
+  `div_checked(b, 2√a)` succeed; for `Double` with `arithmetic` 0.5 that is
+  $a > 0$, or $a$ NaN. With `arithmetic@0.2.1` it also succeeds, with NaN
+  components, for $a < 0$, because that release does not check the domain
+  of the square root (see
+  [versions of arithmetic](../api/checked.md#versions-of-arithmetic)).
 - The context is passed to `T` unchanged and never modified.
 
 ## Alternatives rejected

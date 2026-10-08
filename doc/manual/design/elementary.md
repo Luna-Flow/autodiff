@@ -9,6 +9,13 @@ Make analytic code written against the `arithmetic` traits differentiable
 without change, by exposing exactly the traits that `Dual[T]` implements
 with a correct derivative rule.
 
+## Constraints
+
+- A trait instance must implement every method of the trait, so a trait
+  appears here only when `Dual[T]` has a rule for all of its methods.
+- The traits belong to `Luna-Flow/arithmetic`; this repository adds
+  instances, never traits.
+
 ## Mathematical background
 
 Every rule has the form $f(a + b\varepsilon) = f(a) + f'(a)\,b\,\varepsilon$
@@ -60,9 +67,11 @@ structure-preserving choice: the map $T \to T[\varepsilon]$, $c \mapsto c +
 
 - Each rule matches the derivative table above and is tested on `Double`
   (`sin`, `exp` and others in `src/tests/dual_test.mbt`).
-- Outside the open domain, the result follows `T`: for `Double`, `ln(0)` is
-  $-\infty$ with tangent $b/0$, and `sqrt` at $0$ has an infinite or NaN
-  tangent.
+- Outside the open domain, each component follows `T` separately: for
+  `Double`, `ln(0)` is $-\infty$ with tangent $b/0$, `sqrt` at $0$ has an
+  infinite or NaN tangent, and `ln` at $a < 0$ has a NaN value with the
+  finite tangent $b/a$, the derivative of $\ln\lvert a \rvert$. A NaN in the
+  value is therefore the reliable sign of a domain violation.
 - The tangent error is the error of `T`'s implementation of $f'(a)$ plus at
   most two roundings; see the [dual design](dual.md#rounding-error).
 

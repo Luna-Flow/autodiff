@@ -5,6 +5,14 @@ division and square root on dual numbers, propagate their errors through a
 computation, and write generic checked code that runs on plain and dual
 numbers. The reasoning is in the [checked design](../design/checked.md).
 
+| I want to | Use |
+| --- | --- |
+| divide and get an error on a zero divisor | `x.div_checked(y, ctx)` |
+| take a square root and get an error at $a \le 0$ | `x.sqrt_checked(ctx)` |
+| build the context | `ArithmeticContext::new(53)` |
+| find out what failed | `e.is_division_by_zero()`, `e.is_domain_error()`, `e.kind` |
+| write one checked function for scalars and duals | bounds `T : DivChecked + SqrtChecked` |
+
 ## Quick start
 
 ```bash
@@ -147,8 +155,15 @@ dual: 2, d/da 0.125
 
 - **`sqrt_checked` fails at zero.** The derivative does not exist there,
   even when the input is a constant.
-- **Tiny divisors.** $c^2$ underflows for $|c| < 1.5 \times 10^{-162}$, and
-  the tangent division reports a division by zero.
+- **Tiny and huge divisors.** $c^2$ rounds to zero for
+  $|c| < 1.57 \times 10^{-162}$, and the tangent division then fails (a
+  division by zero, or a domain error when the numerator is zero too). For
+  $|c| > 1.34 \times 10^{154}$ it overflows, and `div_checked` returns `Ok`
+  with tangent $0$. Rescale such divisors.
+- **The pinned `arithmetic` does not check square roots.** With
+  `arithmetic@0.2.1` from `moon.mod`, `sqrt_checked` of a negative `Double`
+  returns NaN components instead of an error; see
+  [versions of arithmetic](../api/checked.md#versions-of-arithmetic).
 - **Unchecked operators stay unchecked.** `x / y` and `x.sqrt()` on dual
   numbers never return errors; use the `_checked` forms.
 

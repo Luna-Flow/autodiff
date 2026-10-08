@@ -13,6 +13,20 @@ The type has to satisfy the algebraic laws its instances advertise, report
 domain failures through the shared `arithmetic` error values, and stay
 independent of any container or polynomial library.
 
+## Constraints
+
+- MoonBit has no operator overloading for mixed types, so a literal cannot
+  be added to a `Dual[T]`; every constant enters through
+  `Dual::constant` or a trait such as `IntegralHomomorphism`.
+- Luna Flow traits are single-parameter traits on `Self`, so `Dual[T]` can
+  only claim a structure for every `T` with a given bound, never for one
+  particular `T`.
+- The tangent must live in the same type as the value: a generic
+  `Dual[T]` cannot store a vector of tangents without a second type
+  parameter.
+- The checked tier must use the error values of `Luna-Flow/arithmetic`, so
+  that dual and scalar failures share one vocabulary.
+
 ## Mathematical background
 
 ### The algebra of dual numbers
@@ -272,11 +286,20 @@ v_k'(x)\,\varepsilon$.
 
 *Proof by induction on the steps.* Inputs: the variable is $x +
 1\varepsilon$ and $x' = 1$; a constant is $c + 0\varepsilon$ and $c' = 0$.
-Step: if the operands are $u + u'\varepsilon$ and $w + w'\varepsilon$, the
-sum, product and quotient formulas give $(u \circ w) + (u \circ w)'
-\varepsilon$ by the rules derived above, and an elementary function gives
-$g(u) + g'(u)\,u'\,\varepsilon = g(u) + (g \circ u)'\varepsilon$ by the chain
-rule. The last intermediate is $y$, so `tangent` is $f'(x)$. $\square$
+Step: let the operands be $u + u'\varepsilon$ and $w + w'\varepsilon$, where
+$u$ and $w$ are functions of $x$ differentiable at the point. For a binary
+operation $\star \in \{+, -, \times, /\}$ (with $w(x) \ne 0$ for $/$), the
+formulas derived above give
+
+$$
+(u + u'\varepsilon) \star (w + w'\varepsilon) = (u \star w) + (u \star w)'\,\varepsilon ,
+$$
+
+because they are exactly the sum, difference, product and quotient rules.
+An elementary function $g$, applied in the open set where it is
+differentiable, gives $g(u) + g'(u)\,u'\,\varepsilon = g(u) + (g \circ
+u)'\varepsilon$ by the chain rule. The last intermediate is $y$, so `tangent`
+is $f'(x)$. $\square$
 
 The same argument with input tangent $b$ gives $f'(x)\,b$, and with several
 inputs seeded by a vector $v$ it gives the directional derivative $\nabla
@@ -319,11 +342,33 @@ $$
 
 Both bounds have the shape of the error of evaluating the derivative
 formula directly; the relative error is only large when $ad$ and $bc$ cancel,
-which is the conditioning of the derivative itself. They assume that no
-intermediate overflows or underflows; in particular $c^2$ underflows long
-before $c$ does (see the warning on `Dual::div_checked`). For an elementary
-rule the tangent error is the error of `T`'s implementation of $f'(a)$
-(for example of `cos` in `sin`) plus at most two more roundings.
+which is the conditioning of the derivative itself. For an elementary rule
+the tangent error is the error of `T`'s implementation of $f'(a)$ (for
+example of `cos` in `sin`) plus at most two more roundings.
+
+The model $\mathrm{fl}(x \circ y) = (x \circ y)(1 + \delta)$ only holds while
+no result leaves the normal range of `T`. For `Double` that range is
+$[2^{-1022}, 2^{1024})$ in magnitude, and the quotient tangent leaves it
+much earlier than the quotient, because it squares the divisor:
+
+$$
+\begin{aligned}
+c^2 &= 0 && \text{for } |c| < 2^{-537.5} \approx 1.57 \times 10^{-162}, \\
+c^2 &\text{ is subnormal} && \text{for } |c| < 2^{-511} \approx 1.49 \times 10^{-154}, \\
+c^2 &= \infty && \text{for } |c| \ge 2^{512} \approx 1.34 \times 10^{154} .
+\end{aligned}
+$$
+
+The first line holds because a square below half the smallest subnormal,
+$2^{-1075}$, rounds to zero. In the first case the tangent is a division by
+zero, in the second it carries a relative error up to $2^{-1075}/c^2$
+instead of $u$, and in the third it is $0$ whenever $bc - ad$ is finite,
+although the true tangent $(bc - ad)/c^2$ can be a normal number: for
+$a = 0$, $b = 1$, $c = 10^{155}$ it is $10^{-155}$. Writing the tangent as
+$(b - q\,d)/c$ with $q = a/c$, which is the same expression in exact
+arithmetic because $(bc - ad)/c^2 = (b - (a/c)\,d)/c$, would avoid squaring
+$c$; the current code does not do this (see the warning on
+`Dual::div_checked`).
 
 ### Comparison with finite differences
 
@@ -361,9 +406,12 @@ SIAM, 2008, chapters 2–3, treat forward mode and its error analysis in full.
 Addition, subtraction and negation cost two operations of `T` instead of
 one; multiplication costs three multiplications and one addition; division
 costs three multiplications, one subtraction and two divisions; an
-elementary function costs the function plus its derivative factor. A program
-therefore runs at most a small constant factor (about three to four) slower
-on `Dual[T]` than on `T`, and needs a constant factor more memory.
+elementary function costs the function plus its derivative factor (for
+`sin`, one `sin`, one `cos` and one multiplication). Counted in operations
+of `T`, the ratio is $2$ for linear operations, $4$ for a product, $6$ for a
+quotient and about $2$ for an elementary function, so a program runs a
+small constant factor, at most about six, slower on `Dual[T]` than on `T`,
+and needs twice the memory for its numbers.
 
 ### Laws to keep
 
@@ -392,8 +440,10 @@ on `Dual[T]` than on `T`, and needs a constant factor more memory.
 ## Boundaries
 
 - First derivatives only. Higher derivatives come from nesting
-  `Dual[Dual[T]]`, which costs $2^k$ per order; there is no truncated Taylor
-  (jet) type.
+  `Dual[Dual[T]]`; the $k$-th derivative stores $2^k$ components and a
+  product costs $3^k$ multiplications and $3^k - 2^k$ additions of `T` (see the
+  [forward design](forward.md#higher-derivatives-by-nesting)). There is no
+  truncated Taylor (jet) type.
 - No reverse mode and no symbolic differentiation.
 - No `Field`, `MulGroup`, `Inverse` or order instance, and no `Show`.
 - Only `div_checked` and `sqrt_checked` check their domain. Logarithms,

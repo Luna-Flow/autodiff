@@ -1,5 +1,7 @@
 # checked API
 
+## Purpose
+
 The `checked` package is the facade for differentiation with checked
 domains. It re-exports `Dual`, the two checked traits that `Dual[T]`
 implements, `DivChecked` and `SqrtChecked`, and the context and error types
@@ -40,7 +42,7 @@ pub using @arithmetic {trait DivChecked}
 
 On `Dual[T]` (for `T : DivChecked + Sub + Mul`) it computes $a/c$ and $(bc -
 ad)/c^2$ with `T`'s `div_checked` and returns the first error. For `Double`
-it fails with `is_division_by_zero()` when $c = 0 \ne a$ and with
+(with `arithmetic` 0.5) it fails with `is_division_by_zero()` when $c = 0 \ne a$ and with
 `is_domain_error()` for $0/0$ and $\infty/\infty$.
 
 ### `SqrtChecked`
@@ -52,7 +54,8 @@ pub using @arithmetic {trait SqrtChecked}
 ```
 
 On `Dual[T]` it computes $\sqrt a$ with `T`'s `sqrt_checked` and the tangent
-$b/(2\sqrt a)$ with `div_checked`. For `Double` it fails for $a < 0$
+$b/(2\sqrt a)$ with `div_checked`. For `Double` (with `arithmetic` 0.5) it
+fails for $a < 0$
 (domain error) and for $a = 0$ (division by zero, or $0/0$ when $b = 0$).
 
 ```moonbit
@@ -124,3 +127,26 @@ test "matching on the error kind" {
   }
 }
 ```
+
+## Versions of `arithmetic`
+
+The checked rules of `Dual[T]` only call `T`'s `div_checked` and
+`sqrt_checked`, so the errors depend on the `arithmetic` release that
+provides the `Double` instances. This manual and its examples follow
+`arithmetic` 0.5, which the repository is developed against in a
+workspace. `moon.mod` still pins `arithmetic@0.2.1`, where `Double` behaves
+differently:
+
+| Operation on `Double` | `arithmetic` 0.5 | `arithmetic` 0.2.1 |
+| --- | --- | --- |
+| `div_checked(x, 0.0)`, $x \ne 0$ | `DivisionByZero` | `DivisionByZero` |
+| `div_checked(0.0, 0.0)` | `DomainError` | `DivisionByZero` |
+| `div_checked(inf, inf)` | `DomainError` | `Ok(NaN)` |
+| `sqrt_checked(x)`, $x < 0$ | `DomainError` | `Ok(NaN)` |
+| `ArithmeticErrorKind::CertificationFailure` | exists | does not exist |
+| `ArithmeticContext::new` | `precision`, `rounding?`, `e_min?`, `e_max?`, `clamp?` | `precision`, `rounding?` |
+
+> [!WARNING]
+> With `arithmetic@0.2.1`, `Dual::sqrt_checked` of a negative `Double`
+> returns `Ok` with value and tangent NaN instead of an error. Check
+> `value().is_nan()` until the pin is raised.

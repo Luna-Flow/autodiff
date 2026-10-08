@@ -7,6 +7,15 @@ direction, write one generic function for plain and dual numbers, and handle
 division and square-root failures as data. The mathematics is in the
 [dual design](../design/dual.md).
 
+| I want to | Use |
+| --- | --- |
+| seed the differentiation variable | `Dual::variable(x)` |
+| bring in a constant | `Dual::constant(c)` |
+| seed an arbitrary direction | `Dual::new(x, v)` |
+| read the result | `y.value()`, `y.tangent()` |
+| differentiate through `exp`, `sin`, ... | the methods `x.exp()`, `x.sin()`, ... |
+| get a second derivative | `Dual[Dual[T]]` with a generic function |
+
 ## Quick start
 
 Add the module to your project:
@@ -274,11 +283,15 @@ To differentiate through `exp` or `sin` with your own type, implement
   at the kink.
 - **Equality includes the tangent.** `Dual::new(1.0, 0.0) == Dual::new(1.0,
   1.0)` is `false`.
-- **Unchecked operations follow `Double`.** `x / y` with `y.value() == 0.0`,
-  `ln` of a negative number or `sqrt` at zero give infinities or NaN in the
-  tangent. Use the checked forms when that must not happen.
-- **Tiny divisors.** The quotient rule divides by $c^2$, which underflows
-  for $|c| < 1.5 \times 10^{-162}$; rescale before dividing.
+- **Unchecked operations follow `Double`.** `x / y` with `y.value() == 0.0`
+  and `sqrt` or `ln` at zero give infinities or NaN in the tangent, even for
+  a constant input. `ln` of a negative number gives a NaN value but a
+  finite tangent $b/a$, so test the value. Use the checked forms when that
+  must not happen.
+- **Tiny and huge divisors.** The quotient rule divides by $c^2$, which
+  rounds to zero for $|c| < 1.57 \times 10^{-162}$ and overflows for
+  $|c| > 1.34 \times 10^{154}$; in the second case the tangent silently
+  becomes $0$. Rescale before dividing.
 - **No printing.** `Dual[T]` has no `Show`. Print `value()` and `tangent()`,
   or use `debug_inspect` and `@debug.to_string` from `Debug`.
 

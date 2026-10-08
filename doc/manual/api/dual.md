@@ -1,5 +1,7 @@
 # dual API
 
+## Purpose
+
 The `dual` package owns `Dual[T]`, the dual number $a + b\varepsilon$ with
 $\varepsilon^2 = 0$, together with its arithmetic, its Luna Flow trait
 instances and the derivative rules of the elementary functions. Every other
@@ -117,6 +119,7 @@ Returns the additive identity $0 + 0\varepsilon$.
 
 ```mbti
 pub fn[T : @luna-generic.Zero] Dual::zero() -> Dual[T]
+pub impl[T : @luna-generic.Zero] @luna-generic.Zero for Dual[T]
 ```
 
 This is the promoted method of the `Zero` instance.
@@ -127,6 +130,7 @@ Returns the multiplicative identity $1 + 0\varepsilon$.
 
 ```mbti
 pub fn[T : @luna-generic.One + @luna-generic.Zero] Dual::one() -> Dual[T]
+pub impl[T : @luna-generic.One + @luna-generic.Zero] @luna-generic.One for Dual[T]
 ```
 
 `one` is a constant, so its tangent is zero; it is not
@@ -199,6 +203,10 @@ The tangent is `(self.tangent * other.value - self.value * other.tangent) /
 division gives (for `Double`, an infinity or NaN). Use `Dual::div_checked`
 to get an error instead.
 
+Because the tangent divides by $c^2$ rather than by $c$ twice, it leaves the
+range of `Double` long before the quotient does; see the warning under
+`Dual::div_checked`, which applies to `/` as well.
+
 ```moonbit
 test "dual arithmetic" {
   let x = @autodiff.Dual::new(2.0, 3.0)
@@ -239,14 +247,20 @@ pub impl[T : @arithmetic.DivChecked + Sub + Mul] @arithmetic.DivChecked for Dual
 
 The value $a / c$ is computed first with `T`'s `div_checked`; the tangent
 $(bc - ad) / c^2$ is then computed with a second `div_checked` call. The
-first error is returned unchanged. For `Double` the errors are:
+first error is returned unchanged, so the errors are exactly those of `T`.
+For `Double` with `arithmetic` 0.5 they are:
 
 | Condition | Error |
 | --- | --- |
 | $c = 0$ and $a \ne 0$ | `is_division_by_zero()` |
 | $a = 0$ and $c = 0$ | `is_domain_error()` (zero divided by zero) |
 | both $a$ and $c$ infinite | `is_domain_error()` |
-| $c \ne 0$ but $c \cdot c$ underflows to $0$ | the tangent division fails; see the pitfall below |
+| $c \ne 0$ but $c \cdot c$ underflows to $0$ | the tangent division fails: `is_division_by_zero()` when $bc - ad \ne 0$, `is_domain_error()` when $bc - ad = 0$ |
+| $c \cdot c$ overflows to $\infty$ | no error; see the warning below |
+
+With the `arithmetic@0.2.1` pinned in `moon.mod`, every zero divisor,
+including $0/0$, gives `is_division_by_zero()`, and $\infty/\infty$ gives
+NaN without an error (see [versions of arithmetic](checked.md#versions-of-arithmetic)).
 
 The context argument is passed through to `T`; the `Double` and `Float`
 instances of `arithmetic` ignore it.
@@ -268,10 +282,23 @@ test "checked dual division" {
 ```
 
 > [!WARNING]
-> The tangent divides by $c^2$, which leaves the range of `Double` sooner
-> than $c$ itself: for $|c| < 2^{-537} \approx 1.5\times10^{-162}$ the square
-> underflows to zero and `div_checked` reports a division by zero even when
-> $a / c$ is finite. Rescale such inputs before dividing.
+> The tangent divides by $c^2$, which leaves the range of `Double` long
+> before $c$ itself does.
+>
+> - For $|c| < 2^{-537.5} \approx 1.57\times10^{-162}$ the square rounds to
+>   zero. `div_checked` then reports an error although $a / c$ is finite and
+>   the true tangent may be finite too: $(0 + 1\varepsilon) / (10^{-170} +
+>   0\varepsilon)$ has tangent $10^{170}$ but fails with a division by zero,
+>   and a constant divided by a tiny constant fails with a domain error
+>   instead of returning tangent $0$. `/` returns an infinity or NaN.
+> - Between that bound and $2^{-511} \approx 1.5\times10^{-154}$ the square
+>   is subnormal and loses relative precision.
+> - For $|c| > 2^{512} \approx 1.34\times10^{154}$ the square overflows to
+>   $\infty$, and both `/` and `div_checked` silently return the tangent $0$
+>   when $bc - ad$ is finite: $(0 + 1\varepsilon)/(10^{155} + 0\varepsilon)$
+>   gives tangent $0$ instead of $10^{-155}$.
+>
+> Rescale such divisors before dividing.
 
 ### `Dual::sqrt_checked`
 
@@ -295,7 +322,9 @@ root)`, where `2` comes from `IntegralHomomorphism::from_integral(2)`. For
 
 So `sqrt_checked` fails at $a = 0$ even for a constant input: $\sqrt{\cdot}$
 has no derivative at $0$, and the checked form does not special-case a zero
-tangent.
+tangent. With the pinned `arithmetic@0.2.1`, `Double`'s `sqrt_checked` does
+not reject $a < 0$: the result is `Ok` with value and tangent NaN, and
+$a = 0$ always gives `is_division_by_zero()`.
 
 ```moonbit
 test "checked dual square root" {
@@ -334,6 +363,30 @@ below. None of them checks its domain: outside it the result is whatever
 | `Dual::tan` | $\tan a$ | `b / (cos(a) * cos(a))` | $\sec^2 a$ |
 
 The constants $2$ and $10$ come from `IntegralHomomorphism::from_integral`.
+
+Outside the domain the two components do not fail together, because the
+tangent formula is evaluated as written:
+
+| Input (`Double`) | Value | Tangent |
+| --- | --- | --- |
+| `ln`, `log2`, `log10` at $a < 0$ | NaN | $b/a$ scaled, finite: the derivative of $\ln\lvert a\rvert$ |
+| `ln` at $a = 0$ | $-\infty$ | $b/0$: $\pm\infty$, or NaN when $b = 0$ |
+| `sqrt` at $a = 0$ | $0$ | $b/0$: $\pm\infty$, or NaN when $b = 0$ |
+| `sqrt` at $a < 0$ | NaN | NaN |
+
+So a constant input (tangent $0$) at $a = 0$ produces a NaN tangent for
+`sqrt` and `ln`, although a constant has derivative $0$. Test the value,
+not only the tangent, when an input can leave the domain.
+
+```moonbit
+test "elementary rules outside the domain" {
+  let y = @autodiff.Dual::variable(-1.0).ln()
+  assert_true(y.value().is_nan())
+  assert_eq(y.tangent(), -1.0)
+  let z : @autodiff.Dual[Double] = @autodiff.Dual::constant(0.0)
+  assert_true(z.sqrt().tangent().is_nan())
+}
+```
 
 ### `Dual::sqrt`
 
@@ -452,6 +505,56 @@ $T[\varepsilon]/(\varepsilon^2)$ satisfies, each under the matching bound on
 
 The integer and natural-number embeddings and the constants produce tangent
 zero, because they do not depend on the differentiation variable.
+
+### `AddMonoid`, `AddGroup`
+
+Componentwise addition, negation and subtraction make $T \times T$ an
+additive monoid or group whenever `T` is one.
+
+```mbti
+pub impl[T : @luna-generic.AddMonoid] @luna-generic.AddMonoid for Dual[T]
+pub impl[T : @luna-generic.AddGroup] @luna-generic.AddGroup for Dual[T]
+```
+
+### `MulMonoid`, `Semiring`, `Ring`
+
+Multiplication by the product rule, with unit $1 + 0\varepsilon$, makes
+`Dual[T]` the ring $T[\varepsilon]/(\varepsilon^2)$.
+
+```mbti
+pub impl[T : @luna-generic.Semiring] @luna-generic.MulMonoid for Dual[T]
+pub impl[T : @luna-generic.Semiring] @luna-generic.Semiring for Dual[T]
+pub impl[T : @luna-generic.Ring] @luna-generic.Ring for Dual[T]
+```
+
+`MulMonoid` needs `T : Semiring`, not only `T : MulMonoid`, because the
+tangent $ad + bc$ uses the addition of `T`. Associativity and
+distributivity hold because the multiplication of `T` is commutative; the
+[dual design](../design/dual.md#ring-level-instances-only) checks the laws.
+
+### `NatHomomorphism`, `IntegralHomomorphism`
+
+The canonical maps from the natural numbers and the integers land on
+constants.
+
+```mbti
+pub impl[T : @luna-generic.NatHomomorphism + @luna-generic.Zero] @luna-generic.NatHomomorphism for Dual[T]
+pub impl[T : @luna-generic.IntegralHomomorphism + @luna-generic.Zero] @luna-generic.IntegralHomomorphism for Dual[T]
+```
+
+`from_integral(n)` is `Dual::constant(from_integral(n))`, so integer
+literals in generic code have tangent zero.
+
+### `Constants`
+
+$\pi$, $\tau$ and $e$ as constants.
+
+```mbti
+pub impl[T : @arithmetic.Constants + @luna-generic.Zero] @arithmetic.Constants for Dual[T]
+```
+
+The instances of `Sqrt`, `Exponential`, `Logarithmic`, `Trigonometric`,
+`DivChecked` and `SqrtChecked` are listed with their methods above.
 
 ```moonbit
 fn[T : @autodiff.Ring + @autodiff.IntegralHomomorphism] three_x_squared(x : T) -> T {

@@ -71,6 +71,24 @@ project uses semantic versioning.
   an architecture guide, derivations of the derivative rules and rounding
   error bounds) with zh_CN and ja_JP translations.
 - `.gitignore` ignores local AI agent state.
+- Manual brought to the luna-generic layout: an overview with install,
+  page table, exported items and reading paths; `Purpose` sections on every
+  API page, headings for every trait instance of `Dual[T]`, task tables on
+  every tutorial, and `Constraints` sections on every design page.
+- Corrected the underflow bound of the quotient tangent ($c^2 = 0$ for
+  $|c| < 2^{-537.5} \approx 1.57 \times 10^{-162}$, not $2^{-537}$) and
+  documented the other failure modes of squaring the divisor: the domain
+  error for a constant over a tiny constant, the subnormal range, and the
+  silent zero tangent when $c^2$ overflows ($|c| \ge 2^{512}$).
+- Documented which `arithmetic` release the checked examples assume (0.5)
+  and how `Double` behaves under the pinned `arithmetic@0.2.1`
+  (`sqrt_checked` of a negative input returns NaN instead of an error).
+- Documented that `ln` of a negative input has a NaN value but a finite
+  tangent, and that `sqrt` and `ln` of a constant zero give a NaN tangent.
+- Derivations added or fixed: nested second derivatives and the cost of
+  nesting ($3^k$ multiplications per product, not $2^k$), the reverse-mode
+  adjoint recurrence, the direction of the trait/class inclusions, and the
+  cost ratios of dual arithmetic.
 
 ## 0.2.0
 

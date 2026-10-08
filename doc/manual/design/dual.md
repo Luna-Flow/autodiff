@@ -345,8 +345,8 @@ h^\ast = 2\sqrt{\frac{u|f|}{|f''|}}, \qquad
 $$
 
 so even the best step loses about half of the significant digits
-($\sqrt u \approx 10^{-8}$ for `Double`). The central difference $(f(x + h)
-- f(x - h))/(2h)$ has truncation error $\frac{h^2}{6}|f'''|$ and reaches
+($\sqrt u \approx 10^{-8}$ for `Double`). The central difference
+$(f(x + h) - f(x - h))/(2h)$ has truncation error $\frac{h^2}{6}|f'''|$ and reaches
 about $u^{2/3} \approx 10^{-11}$. Dual numbers have no truncation term at
 all: by the induction above they compute the exact derivative of the
 program, and the only error is rounding with the bounds of the previous

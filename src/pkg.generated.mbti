@@ -37,7 +37,9 @@ pub using @arithmetic {trait DivChecked}
 
 pub using @arithmetic {trait Exponential}
 
-pub using @luna-generic {trait IntegralHomomorphism}
+pub using @luna-generic {trait FromInteger}
+
+pub using @luna-generic {trait FromNat}
 
 pub using @arithmetic {trait Logarithmic}
 

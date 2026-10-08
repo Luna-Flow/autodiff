@@ -2,15 +2,14 @@
 using @lg {
   trait AddGroup,
   trait AddMonoid,
-  trait Integral,
-  trait IntegralHomomorphism,
+  trait FromInteger,
+  trait FromNat,
   trait MulMonoid,
-  trait Nat,
-  trait NatHomomorphism,
   trait One,
   trait Ring,
   trait Semiring,
   trait Zero,
+  lift_to,
 }
 
 ///|

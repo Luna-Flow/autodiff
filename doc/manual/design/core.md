@@ -1,63 +1,70 @@
-# Design notes
+# core design
 
-autodiff v0.2 keeps the core deliberately small while adding ecosystem
-integration packages. The core still provides forward-mode automatic
-differentiation with dual numbers and avoids symbolic algebra, reverse mode, and
-optimizer APIs.
+This page explains why the `core` facade exists and why it contains exactly
+the ring-level vocabulary of `Dual[T]`.
 
-## Package ownership
+## Design goal
 
-`Dual[T]` is owned by the `dual` package so MoonBit methods and trait
-implementations can live with the type. The `core`, `checked`, `elementary`,
-`forward`, and root packages are lightweight facades over that implementation.
+Offer the smallest import for code that only needs the algebra of dual
+numbers: ring operations, identities and integer constants, without the
+analytic traits and error types of `arithmetic`.
 
-The `linalg` and `poly` packages are integration layers. They depend on the
-external Luna Flow libraries they bridge to, but lower-level autodiff packages
-do not depend on them.
+## Mathematical background
 
-## Algebraic constraints
+Many differentiable programs are polynomial: they use only $+$, $-$,
+$\times$ and integer constants. For those, the identity of the
+[dual design](dual.md#polynomials-where-derivatives-come-from)
 
-Dual numbers are ring-like but not field-like. The value `0 + 1ε` is nonzero and
-nilpotent, so it cannot have a multiplicative inverse. For this reason,
-`Dual[T]` must not implement `Field`, `MulGroup`, or `Inverse`.
+$$
+p(a + b\varepsilon) = p(a) + p'(a)\,b\,\varepsilon
+$$
 
-Dual numbers also do not have a natural total order. The package does not
-implement `Compare` for `Dual[T]`.
+holds in every commutative ring, so the traits `Zero`, `One`, `AddMonoid`,
+`AddGroup`, `MulMonoid`, `Semiring`, `Ring` and the canonical map
+$\mathbb Z \to T$ (`IntegralHomomorphism`) are all such code needs. The
+facade re-exports exactly these, mirroring the hierarchy
 
-## Checked semantics
+$$
+\texttt{AddMonoid} \subset \texttt{AddGroup},\quad
+\texttt{AddMonoid} + \texttt{MulMonoid} \subset \texttt{Semiring} \subset \texttt{Ring}
+$$
 
-Checked operations reuse `Luna-Flow/arithmetic`:
+whose instances on $T[\varepsilon]$ are derived in the
+[dual design](dual.md#ring-level-instances-only).
 
-- `ArithmeticContext`
-- `ArithmeticError`
-- `DivChecked`
-- `SqrtChecked`
+## Design decisions
 
-This keeps error handling compatible with the wider Luna Flow ecosystem.
+### A separate facade for the algebra
 
-## Dependency direction
+**Problem.** The root package also re-exports the analytic traits and the
+checked error types, which belong to another layer of the ecosystem.
 
-The integration packages sit above the core autodiff layers:
+**Choice.** `core` re-exports only `Dual` and the `luna-generic` structure
+traits. Its `moon.pkg` imports `dual` and `luna-generic` only, so a reader
+of an import list can see that the code is purely algebraic.
 
-```text
-autodiff/core       -> luna-generic only
-autodiff/dual       -> luna-generic, arithmetic
-autodiff/elementary -> arithmetic
-autodiff/checked    -> arithmetic
-autodiff/forward    -> core/dual/elementary
-autodiff/linalg     -> autodiff + linear-algebra
-autodiff/poly       -> autodiff + luna-poly
-```
+### Re-export, do not redefine
 
-Lower-level packages do not import `linear-algebra`, `luna-poly`, `floating`, or
-`type_theory`.
+As in the [autodiff design](autodiff.md#re-export-with-pub-using), the
+names are `pub using` aliases of the original traits, so instances are
+shared with the rest of Luna Flow.
 
-## Out of scope
+## Correctness and invariants
 
-The following remain future work, not v0.2 integration features:
+- `core` defines no items; its interface file contains only `pub using`
+  lines.
+- It depends on `autodiff/dual` and `luna-generic` and on nothing else.
+- Every re-exported trait has an instance on `Dual[T]` under the matching
+  bound on `T`.
 
-- vector-valued tangent storage for `Forward[T]`
-- higher-order `Jet[T]` derivatives
-- validated automatic differentiation over interval or ball scalars
-- reverse-mode automatic differentiation
-- symbolic differentiation through a CAS layer
+## Alternatives rejected
+
+- **Merging `core` into the root package.** The root package also carries
+  `arithmetic`; keeping the algebra apart keeps that layering visible.
+- **Re-exporting `Field` or `Inverse`.** `Dual[T]` does not implement them,
+  so they would only invite unsatisfiable bounds.
+
+## Boundaries
+
+- No analytic traits, no checked operations, no drivers.
+- No `Field`, `MulGroup`, `Inverse` or `NatHomomorphism`.

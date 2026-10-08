@@ -58,4 +58,3 @@ pub using @arithmetic {trait Trigonometric}
 pub using @luna-generic {trait Zero}
 
 // Traits
-

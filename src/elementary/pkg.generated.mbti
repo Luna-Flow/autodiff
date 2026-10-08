@@ -28,4 +28,3 @@ pub using @arithmetic {trait SqrtChecked}
 pub using @arithmetic {trait Trigonometric}
 
 // Traits
-

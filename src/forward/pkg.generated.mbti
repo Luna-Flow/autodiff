@@ -19,4 +19,3 @@ pub fn[T : @luna-generic.One] value_and_diff((@dual.Dual[T]) -> @dual.Dual[T], T
 pub using @dual {type Dual}
 
 // Traits
-

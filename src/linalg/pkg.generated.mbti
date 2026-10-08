@@ -28,4 +28,3 @@ pub using @immut {type Matrix}
 pub using @immut {type Vector}
 
 // Traits
-

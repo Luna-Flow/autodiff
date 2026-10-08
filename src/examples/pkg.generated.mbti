@@ -23,4 +23,3 @@ pub fn square_diff_example() -> Double
 // Type aliases
 
 // Traits
-

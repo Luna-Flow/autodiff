@@ -10,6 +10,13 @@ Give `luna-poly` users the value and the derivative of a polynomial at a
 point with no new polynomial representation and no symbolic step, by reusing
 the evaluation algorithms `luna-poly` already has.
 
+## Constraints
+
+- `luna-poly` owns the polynomial types and their evaluation; the bridge
+  may only call their public API.
+- Sparse polynomials are multivariate in `luna-poly`, but a variable has no
+  identity outside a `VariableContext`.
+
 ## Mathematical background
 
 ### Evaluation over dual numbers is the derivative
@@ -144,7 +151,10 @@ $$
 |\hat q_0 - p'(a)| \le \gamma_{2n} \sum_{k=1}^{n} k\,|c_k|\,|a|^{k-1} ,
 $$
 
-the same bound as for evaluating the formal derivative by Horner's rule.
+essentially the bound for evaluating the formal derivative by Horner's
+rule, which is $\gamma_{2n-2} \sum_k k\,|c_k|\,|a|^{k-1}$ once the
+coefficients $k\,c_k$ are formed exactly; the dual evaluation pays at most
+two more roundings per term.
 The relative error is small unless the terms cancel, that is unless $p'$ is
 ill-conditioned at $a$.
 

@@ -10,6 +10,13 @@ the drivers, and every trait that appears in the bounds of `Dual[T]`. At the
 same time no behaviour may live in two places, so that the root package can
 never disagree with `dual` and `forward`.
 
+## Constraints
+
+- `pub using` re-exports a name without creating a new item, so the root
+  package can only offer names that exist elsewhere.
+- The root package must not depend on `linear-algebra` or `luna-poly`, so
+  that the scalar use case stays light.
+
 ## Mathematical background
 
 The root package adds no mathematics. Its content is the vocabulary of the
@@ -44,9 +51,12 @@ ecosystem and break instance sharing.
 The root package re-exports the traits that occur in the bounds of the
 public `Dual` methods and instances, plus the error and context types of the
 checked methods. It does not re-export `Field`, `MulGroup` or `Inverse`
-(which `Dual[T]` deliberately lacks), nor `NatHomomorphism` (only needed by
-a deprecated method form), nor the contextual or enclosure traits of
-`arithmetic`, which `Dual[T]` does not implement.
+(which `Dual[T]` deliberately lacks), nor the contextual or enclosure traits
+of `arithmetic`, which `Dual[T]` does not implement. `NatHomomorphism` is
+the one trait with an instance on `Dual[T]` that is left out: it occurs only
+in the bound of its own instance, no method needs it, and generic code
+reaches the natural numbers through `IntegralHomomorphism`, which extends
+it.
 
 ### Drivers but no bridges
 
@@ -56,8 +66,10 @@ every user of the root package depend on `linear-algebra` and `luna-poly`.
 
 ## Correctness and invariants
 
-- The root package defines no functions, types or instances; its
-  `pkg.generated.mbti` contains only `pub using` lines.
+- The root package defines no functions, types or instances. Its
+  `pkg.generated.mbti` lists `diff` and `value_and_diff` as `pub fn` lines,
+  because `pub using @forward {value_and_diff, diff}` re-exports values, and
+  every other item as a `pub using` line.
 - `@autodiff.Dual`, `@dual.Dual`, `@forward.Dual` and the facade types are
   the same type.
 - The root package depends on `dual`, `forward`, `luna-generic` and

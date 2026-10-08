@@ -10,6 +10,13 @@ Give the common case, the derivative of a function of one variable, a
 one-line API that hides the seeding of the variable, while keeping all
 semantics in `Dual[T]` so that the drivers cannot disagree with the type.
 
+## Constraints
+
+- A MoonBit closure has one concrete type, so a driver can only take a
+  function that is already written for `Dual[T]`.
+- The drivers must not depend on containers, so that scalar users do not
+  pull in `linear-algebra` or `luna-poly`.
+
 ## Mathematical background
 
 ### Forward mode
@@ -36,18 +43,53 @@ derivatives of each $\varphi_k$. Seeding $\dot x = 1$ is
 ### Higher derivatives by nesting
 
 If `f` is generic in its scalar, it can be applied to `Dual[Dual[T]]`.
-Differentiating $x \mapsto f'(x)$ with dual numbers over `Dual[T]` gives
+Write $\varepsilon_1$ for the outer perturbation (the tangent of
+`Dual[T]`) and $\varepsilon_2$ for the inner one (the tangent of
+`Dual[Dual[T]]`), with $\varepsilon_1^2 = \varepsilon_2^2 = 0$ and
+$\varepsilon_1\varepsilon_2 = \varepsilon_2\varepsilon_1 \ne 0$. The outer
+`diff` seeds $x + \varepsilon_1$; the inner `diff` seeds that number as its
+variable, so `f` runs on $x + \varepsilon_1 + \varepsilon_2$. Applying the
+first-order identity twice,
 
 $$
-\frac{d}{dx}\,\mathrm{diff}(f, x) = f''(x),
+\begin{aligned}
+f(x + \varepsilon_1 + \varepsilon_2)
+&= f(x + \varepsilon_1) + f'(x + \varepsilon_1)\,\varepsilon_2 \\
+&= f(x) + f'(x)\,\varepsilon_1
+   + \bigl(f'(x) + f''(x)\,\varepsilon_1\bigr)\varepsilon_2 .
+\end{aligned}
 $$
 
-because `diff(f, ·)` is itself a program built from dual operations (on the
-inner level). The outer and the inner tangent live in different types, so
-the classic *perturbation confusion* of untyped nested forward mode, where
-the inner derivative picks up the outer perturbation, is rejected by the
-type checker.[^siskind] Each nesting level doubles the number of
-components, so the $k$-th derivative costs $2^k$ times a plain evaluation.
+The inner `diff` returns the coefficient of $\varepsilon_2$, which is
+$f'(x) + f''(x)\,\varepsilon_1$, and the outer `diff` returns its
+$\varepsilon_1$ coefficient, so
+
+$$
+\frac{d}{dx}\,\mathrm{diff}(f, x) = f''(x) .
+$$
+
+The two perturbations live at different nesting levels, so they cannot be
+mixed up without an explicit conversion: a value of the outer level enters
+the inner computation only through `Dual::constant`, which gives it inner
+tangent zero. This rules out the classic *perturbation confusion* of
+untyped nested forward mode, where the inner derivative picks up the outer
+perturbation.[^siskind]
+
+Nesting is expensive. Level $k$ stores $2^k$ components of `T`. If a
+product at level $k$ costs $m_k$ multiplications and $p_k$ additions of
+`T`, then $m_k = 3m_{k-1}$ and $p_k = 3p_{k-1} + 2^{k-1}$, because a dual
+product makes three products and one addition one level down, and an
+addition at level $k - 1$ costs $2^{k-1}$ additions. With $m_0 = 1$ and
+$p_0 = 0$,
+
+$$
+m_k = 3^k, \qquad p_k = 3^k - 2^k ,
+$$
+
+so the $k$-th derivative of a multiplication-heavy program costs about
+$2 \cdot 3^k$ times a plain evaluation, and many of the components are
+duplicates (both first-order components hold $f'(x)$). A truncated Taylor
+series would need only $k + 1$ components and $O(k^2)$ work per product.
 
 [^siskind]: J. M. Siskind and B. A. Pearlmutter, "Perturbation confusion and
 referential transparency", IFL 2005, describes the problem for untyped

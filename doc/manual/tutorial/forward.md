@@ -6,6 +6,14 @@ You will differentiate closures, named generic functions, functions that
 call checked operations, and finally compute second derivatives. The
 background is in the [forward design](../design/forward.md).
 
+| I want to | Use |
+| --- | --- |
+| get the derivative at a point | `@autodiff.diff(f, x)` |
+| get value and derivative in one pass | `@autodiff.value_and_diff(f, x)` |
+| differentiate a named function | make it generic in `T` and pass it to `diff` |
+| get a second derivative | `diff(x => diff(f, x), x0)` with a generic `f` |
+| differentiate through a checked step | carry the `Result` out of the closure |
+
 ## Quick start
 
 ```bash
@@ -183,7 +191,8 @@ f''(1) = 0.23913362692838303
 2 cos 1 - sin 1 = 0.23913362692838303
 ```
 
-The nested derivative matches the closed form. Each level doubles the work, so use this for
+The nested derivative matches the closed form. Each level doubles the
+number of components and triples the cost of a product, so use this for
 low orders only.
 
 ### Other scalar types

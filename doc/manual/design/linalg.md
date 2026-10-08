@@ -10,6 +10,14 @@ Differentiate functions $f : T^n \to T$ and $f : T^n \to T^m$ written with
 the immutable vectors of `linear-algebra`, reusing `Dual[T]` unchanged, with
 a small API whose results follow the usual matrix conventions.
 
+## Constraints
+
+- `Dual[T]` carries one scalar tangent, so one evaluation yields one
+  directional derivative.
+- `linear-algebra` has no shape-error type shared with this repository.
+- `Dual[T]` is only a ring, so `f` may use only the ring operations of the
+  vectors and matrices.
+
 ## Mathematical background
 
 ### Directional derivatives from one pass
@@ -42,19 +50,37 @@ returns it as a vector.
 ### Cost compared with reverse mode
 
 Let $C(f)$ be the cost of evaluating $f$ on $T$. One dual pass costs at most
-a small constant times $C(f)$ (see the
-[dual design](dual.md#cost)), so
+a small constant $c$ times $C(f)$, with $c \le 6$ and typically $3$ to $4$
+(see the [dual design](dual.md#cost)), so
 
 $$
 C(\texttt{gradient}) \approx n \cdot c \cdot C(f), \qquad
-C(\texttt{jacobian}) \approx (n + 1) \cdot c \cdot C(f), \qquad c \approx 3 .
+C(\texttt{jacobian}) \approx (n + 1) \cdot c \cdot C(f) .
 $$
 
-Reverse mode computes vector-Jacobian products $u^{\mathsf T} J_f(x)$, one
-row per pass, and obtains a gradient for a constant multiple of $C(f)$
-independent of $n$, at the price of storing the computation.[^cheap]
-Forward mode is therefore the right tool when $n$ is small or $n \lesssim
-m$, and the slower one for gradients of functions of many variables.
+Reverse mode, which this repository does not implement, propagates
+sensitivities the other way. Write the program as intermediates
+$v_k = \varphi_k(v_i)_{i \prec k}$ ending in the outputs, and define the
+adjoint $\bar v_i = \sum_{\ell} u_\ell\, \partial y_\ell / \partial v_i$ for a
+chosen output weight $u \in T^m$, so that $\bar y = u$. Because $v_i$ influences the outputs
+only through the $v_k$ that use it, the chain rule gives the backward
+recurrence
+
+$$
+\bar v_i = \sum_{k \,:\, i \prec k} \bar v_k\,\frac{\partial \varphi_k}{\partial v_i},
+\qquad \bar x_j = \bigl(u^{\mathsf T} J_f(x)\bigr)_j ,
+$$
+
+evaluated from the outputs back to the inputs. One backward sweep therefore
+yields a whole row combination $u^{\mathsf T} J_f(x)$, and for $m = 1$,
+$u = 1$, the whole gradient. Each elementary step has a bounded number of
+partial derivatives, so the sweep costs a constant multiple of $C(f)$,
+independent of $n$, at the price of storing the intermediates (or
+recomputing them).[^cheap] The two modes are transposes of each other:
+forward mode computes $J_f(x)\,v$, reverse mode $u^{\mathsf T} J_f(x)$.
+Forward mode is therefore the right tool when $n$ is small or
+$n \lesssim m$, and the slower one for gradients of functions of many
+variables.
 
 [^cheap]: This is the "cheap gradient principle"; see A. Griewank and
 A. Walther, *Evaluating Derivatives*, 2nd ed., SIAM, 2008, section 4.6.

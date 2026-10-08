@@ -9,6 +9,13 @@ Offer the smallest import for code that only needs the algebra of dual
 numbers: ring operations, identities and integer constants, without the
 analytic traits and error types of `arithmetic`.
 
+## Constraints
+
+- A facade can only re-export names; it cannot add instances or methods,
+  which live with `Dual[T]` in `dual`.
+- The name `core` is taken inside this module, so examples import the
+  package under the alias `@ad_core`.
+
 ## Mathematical background
 
 Many differentiable programs are polynomial: they use only $+$, $-$,
@@ -22,14 +29,29 @@ $$
 holds in every commutative ring, so the traits `Zero`, `One`, `AddMonoid`,
 `AddGroup`, `MulMonoid`, `Semiring`, `Ring` and the canonical map
 $\mathbb Z \to T$ (`IntegralHomomorphism`) are all such code needs. The
-facade re-exports exactly these, mirroring the hierarchy
+facade re-exports exactly these. In `luna-generic` each trait extends the
+ones before it,
 
 $$
-\texttt{AddMonoid} \subset \texttt{AddGroup},\quad
-\texttt{AddMonoid} + \texttt{MulMonoid} \subset \texttt{Semiring} \subset \texttt{Ring}
+\begin{aligned}
+\texttt{AddGroup} &: \texttt{AddMonoid} + \texttt{Neg} + \texttt{Sub}, &
+\texttt{Semiring} &: \texttt{AddMonoid} + \texttt{MulMonoid}, \\
+\texttt{Ring} &: \texttt{Semiring} + \texttt{Neg} + \texttt{Sub}, &
+\texttt{IntegralHomomorphism} &: \texttt{NatHomomorphism},
+\end{aligned}
 $$
 
-whose instances on $T[\varepsilon]$ are derived in the
+so the classes of structures shrink as the traits grow: every ring is a
+semiring and an additive group, and every semiring and every additive group
+is an additive monoid,
+
+$$
+\mathbf{Ring} \subset \mathbf{Semiring} \subset \mathbf{AddMonoid},
+\qquad
+\mathbf{Ring} \subset \mathbf{AddGroup} \subset \mathbf{AddMonoid} .
+$$
+
+The instances on $T[\varepsilon]$ are derived in the
 [dual design](dual.md#ring-level-instances-only).
 
 ## Design decisions

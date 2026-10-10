@@ -11,7 +11,7 @@ polynomials.
 ## Install
 
 ```bash
-moon add Luna-Flow/autodiff@0.2.0
+moon add Luna-Flow/autodiff@0.3.0
 ```
 
 ```moonbit nocheck

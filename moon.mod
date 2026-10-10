@@ -5,8 +5,8 @@ version = "0.3.0"
 import {
   "Luna-Flow/luna-generic@0.4.0",
   "Luna-Flow/arithmetic@0.5.0",
-  "Luna-Flow/linear-algebra@0.4.7",
-  "Luna-Flow/luna-poly@0.2.0",
+  "Luna-Flow/linear-algebra@0.5.0",
+  "Luna-Flow/luna-poly@0.3.0",
 }
 
 readme = "README.md"

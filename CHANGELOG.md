@@ -6,6 +6,8 @@ project uses semantic versioning.
 
 ## Unreleased
 
+## 0.3.0 - 2026-10-10
+
 ### Changed
 
 - Migrated to MoonBit 0.10: `moon.mod` declares `source = "src"` directly
@@ -20,8 +22,9 @@ project uses semantic versioning.
   (`Zero::zero()`, `One::one()`) instead of the deprecated `T::method` form.
 - Dependencies bumped to the latest published releases:
   `Luna-Flow/luna-generic` 0.3.3 → 0.4.0, `Luna-Flow/arithmetic` 0.2.1 →
-  0.5.0 and `Luna-Flow/linear-algebra` 0.3.0 → 0.4.7. `Luna-Flow/luna-poly`
-  stays at 0.2.0.
+  0.5.0, `Luna-Flow/linear-algebra` 0.3.0 → 0.5.0 and `Luna-Flow/luna-poly`
+  0.2.0 → 0.3.0. The public interface of autodiff is unchanged by these
+  bumps.
 - **Breaking:** migrated from the `NatHomomorphism` / `IntegralHomomorphism`
   traits, deprecated in luna-generic 0.4.0, to `FromNat` / `FromInteger`.
   `Dual[T]` implements `FromNat` and `FromInteger` (a constant with zero

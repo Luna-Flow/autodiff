@@ -1,7 +1,10 @@
 ///|
 /// Creates a dual vector whose `active` coordinate has tangent one and all
 /// other coordinates have tangent zero.
-fn[T : One + Zero] seed_vector(x : Vector[T], active : Int) -> Vector[Dual[T]] {
+fn[T : One + Zero] seed_vector(
+  x : Vector[T],
+  active : Int32,
+) -> Vector[Dual[T]] {
   Vector::makei(x.length(), fn(i) {
     if i == active {
       Dual::new(x[i], One::one())

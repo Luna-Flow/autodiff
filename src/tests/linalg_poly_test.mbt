@@ -41,7 +41,7 @@ fn dot_dual(
 ///|
 fn contextual_to_univariate_sparse(
   polynomial : @ctx.ContextPolynomial[Double],
-  active_variable : Int,
+  active_variable : Int32,
 ) -> @sparse.SparsePolynomial[Double] {
   @sparse.SparsePolynomial::from_array(
     polynomial

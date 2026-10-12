@@ -31,10 +31,10 @@ test "constructors expose value and tangent" {
   let x = @autodiff.Dual::new(2, 3)
   assert_eq(x.value(), 2)
   assert_eq(x.tangent(), 3)
-  let c : @autodiff.Dual[Int] = @autodiff.Dual::constant(4)
+  let c : @autodiff.Dual[Int32] = @autodiff.Dual::constant(4)
   assert_eq(c.value(), 4)
   assert_eq(c.tangent(), 0)
-  let v : @autodiff.Dual[Int] = @autodiff.Dual::variable(5)
+  let v : @autodiff.Dual[Int32] = @autodiff.Dual::variable(5)
   assert_eq(v.value(), 5)
   assert_eq(v.tangent(), 1)
 }
@@ -55,8 +55,8 @@ test "dual arithmetic follows product rule algebra" {
 
 ///|
 test "zero and one create constant dual values" {
-  let z : @autodiff.Dual[Int] = @autodiff.Dual::zero()
-  let o : @autodiff.Dual[Int] = @autodiff.Dual::one()
+  let z : @autodiff.Dual[Int32] = @autodiff.Dual::zero()
+  let o : @autodiff.Dual[Int32] = @autodiff.Dual::one()
   assert_eq(z.value(), 0)
   assert_eq(z.tangent(), 0)
   assert_eq(o.value(), 1)

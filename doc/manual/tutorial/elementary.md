@@ -17,7 +17,7 @@ the [elementary design](../design/elementary.md).
 ## Quick start
 
 ```bash
-moon add Luna-Flow/autodiff@0.3.0
+moon add Luna-Flow/autodiff@0.3.1
 ```
 
 ```moonbit nocheck

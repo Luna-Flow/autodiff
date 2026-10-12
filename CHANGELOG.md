@@ -6,6 +6,8 @@ project uses semantic versioning.
 
 ## Unreleased
 
+## 0.3.1 - 2026-10-13
+
 ### Changed
 
 - Builds with the latest MoonBit toolchain (moon 0.1.20261012, moonc 0.10.15):

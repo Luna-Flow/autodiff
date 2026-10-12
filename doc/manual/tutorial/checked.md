@@ -16,7 +16,7 @@ numbers. The reasoning is in the [checked design](../design/checked.md).
 ## Quick start
 
 ```bash
-moon add Luna-Flow/autodiff@0.3.0
+moon add Luna-Flow/autodiff@0.3.1
 ```
 
 ```moonbit nocheck

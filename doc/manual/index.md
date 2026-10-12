@@ -1,7 +1,7 @@
 # autodiff
 
 This manual documents the unreleased `main` branch of `Luna-Flow/autodiff`
-(version `0.3.0` in `moon.mod`) after its migration to MoonBit 0.10.
+(version `0.3.1` in `moon.mod`) after its migration to MoonBit 0.10.
 
 ## Overview
 
@@ -24,7 +24,7 @@ checked domains for division and square roots, gradients and Jacobians over
 ## Install
 
 ```bash
-moon add Luna-Flow/autodiff@0.3.0
+moon add Luna-Flow/autodiff@0.3.1
 ```
 
 Then import the root package in your `moon.pkg`:

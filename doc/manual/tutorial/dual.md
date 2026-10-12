@@ -21,7 +21,7 @@ division and square-root failures as data. The mathematics is in the
 Add the module to your project:
 
 ```bash
-moon add Luna-Flow/autodiff@0.3.0
+moon add Luna-Flow/autodiff@0.3.1
 ```
 
 Import the root package in your `moon.pkg`; it re-exports `Dual` and the

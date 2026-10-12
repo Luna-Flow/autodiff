@@ -1,6 +1,6 @@
 name = "Luna-Flow/autodiff"
 
-version = "0.3.0"
+version = "0.3.1"
 
 import {
   "Luna-Flow/luna-generic@0.4.0",

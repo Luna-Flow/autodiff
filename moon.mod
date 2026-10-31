@@ -5,7 +5,7 @@ version = "0.3.1"
 import {
   "Luna-Flow/luna-generic@0.4.0",
   "Luna-Flow/arithmetic@0.5.1",
-  "Luna-Flow/linear-algebra@0.5.1",
+  "Luna-Flow/linear-algebra@0.5.2",
   "Luna-Flow/luna-poly@0.4.0",
 }
 

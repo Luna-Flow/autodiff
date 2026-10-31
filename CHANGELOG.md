@@ -6,6 +6,12 @@ project uses semantic versioning.
 
 ## Unreleased
 
+## 0.3.2 - 2026-10-31
+
+### Changed
+
+- Dependencies: Luna-Flow/linear-algebra 0.5.2. Interfaces regenerated with moon 0.1.20261028.
+
 ## 0.3.1 - 2026-10-13
 
 ### Changed

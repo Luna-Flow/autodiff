@@ -6,8 +6,11 @@ project uses semantic versioning.
 
 ## Unreleased
 
+## 0.3.3 - 2026-11-12
+
 ### Changed
 
+- Dependencies: `Luna-Flow/arithmetic` 0.5.2 (was 0.5.1), `Luna-Flow/linear-algebra` 0.5.3 (was 0.5.2), `Luna-Flow/luna-poly` 0.4.1 (was 0.4.0).
 - Require MoonBit `moonc` 0.10.20 or later, verified with `moon 0.1.20261104` and `moonc v0.10.20`: `derive(...)` clauses are now `#derive(...)` attributes, which older 0.10 compilers ignore. No public API changed.
 
 ## 0.3.2 - 2026-10-31

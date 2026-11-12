@@ -1,8 +1,9 @@
 ///|
+#derive(Eq, Debug)
 pub struct Dual[T] {
   value : T
   tangent : T
-} derive(Eq, Debug)
+}
 
 ///|
 pub fn[T] Dual::new(value : T, tangent : T) -> Dual[T] {

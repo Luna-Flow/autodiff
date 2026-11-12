@@ -2793,8 +2793,8 @@ msgid "Then import the root package in your `moon.pkg`:"
 msgstr "然后在你的 `moon.pkg` 中导入根包："
 
 #: manual/index.md:38
-msgid "The bridges need their libraries too: `moon add Luna-Flow/linear-algebra` for `linalg` and `moon add Luna-Flow/luna-poly` for `poly`. The code needs the MoonBit toolchain 0.10 or later (`moonc` ≥ 0.10) with `moon.mod` / `moon.pkg` manifests, and the test suite runs on the `wasm-gc`, `wasm`, `js` and `native` targets."
-msgstr "桥接包还需要各自的库：`linalg` 需要 `moon add Luna-Flow/linear-algebra`，`poly` 需要 `moon add Luna-Flow/luna-poly`。代码需要 MoonBit 工具链 0.10 或更高版本（`moonc` ≥ 0.10）以及 `moon.mod` / `moon.pkg` 清单格式，测试套件在 `wasm-gc`、`wasm`、`js` 和 `native` 目标上运行。"
+msgid "The bridges need their libraries too: `moon add Luna-Flow/linear-algebra` for `linalg` and `moon add Luna-Flow/luna-poly` for `poly`. The code needs the MoonBit toolchain 0.10.20 or later (`moonc` ≥ 0.10.20) with `moon.mod` / `moon.pkg` manifests, and the test suite runs on the `wasm-gc`, `wasm`, `js` and `native` targets."
+msgstr "桥接包还需要各自的库：`linalg` 需要 `moon add Luna-Flow/linear-algebra`，`poly` 需要 `moon add Luna-Flow/luna-poly`。代码需要 MoonBit 工具链 0.10.20 或更高版本（`moonc` ≥ 0.10.20）以及 `moon.mod` / `moon.pkg` 清单格式，测试套件在 `wasm-gc`、`wasm`、`js` 和 `native` 目标上运行。"
 
 #: manual/index.md:44
 msgid "Pages"

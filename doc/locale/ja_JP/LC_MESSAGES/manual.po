@@ -2793,8 +2793,8 @@ msgid "Then import the root package in your `moon.pkg`:"
 msgstr "次に、`moon.pkg` でルートパッケージをインポートします。"
 
 #: manual/index.md:38
-msgid "The bridges need their libraries too: `moon add Luna-Flow/linear-algebra` for `linalg` and `moon add Luna-Flow/luna-poly` for `poly`. The code needs the MoonBit toolchain 0.10 or later (`moonc` ≥ 0.10) with `moon.mod` / `moon.pkg` manifests, and the test suite runs on the `wasm-gc`, `wasm`, `js` and `native` targets."
-msgstr "ブリッジにはそれぞれのライブラリも必要です。`linalg` には `moon add Luna-Flow/linear-algebra`、`poly` には `moon add Luna-Flow/luna-poly` を実行します。コードには MoonBit ツールチェーン 0.10 以降（`moonc` ≥ 0.10）と `moon.mod` / `moon.pkg` マニフェストが必要で、テストスイートは `wasm-gc`、`wasm`、`js`、`native` の各ターゲットで実行されます。"
+msgid "The bridges need their libraries too: `moon add Luna-Flow/linear-algebra` for `linalg` and `moon add Luna-Flow/luna-poly` for `poly`. The code needs the MoonBit toolchain 0.10.20 or later (`moonc` ≥ 0.10.20) with `moon.mod` / `moon.pkg` manifests, and the test suite runs on the `wasm-gc`, `wasm`, `js` and `native` targets."
+msgstr "ブリッジにはそれぞれのライブラリも必要です。`linalg` には `moon add Luna-Flow/linear-algebra`、`poly` には `moon add Luna-Flow/luna-poly` を実行します。コードには MoonBit ツールチェーン 0.10.20 以降（`moonc` ≥ 0.10.20）と `moon.mod` / `moon.pkg` マニフェストが必要で、テストスイートは `wasm-gc`、`wasm`、`js`、`native` の各ターゲットで実行されます。"
 
 #: manual/index.md:44
 msgid "Pages"

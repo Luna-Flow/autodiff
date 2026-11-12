@@ -37,7 +37,7 @@ import {
 
 The bridges need their libraries too: `moon add Luna-Flow/linear-algebra`
 for `linalg` and `moon add Luna-Flow/luna-poly` for `poly`. The code needs
-the MoonBit toolchain 0.10 or later (`moonc` ≥ 0.10) with `moon.mod` /
+the MoonBit toolchain 0.10.20 or later (`moonc` ≥ 0.10.20) with `moon.mod` /
 `moon.pkg` manifests, and the test suite runs on the `wasm-gc`, `wasm`, `js`
 and `native` targets.
 
